@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.xcconfig = { 'CLANG_MODULES_AUTOLINK' => 'YES' }
   
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
   s.ios.exclude_files = 'Source/Mac'
   s.ios.frameworks   = ['AVFoundation']
   
@@ -24,6 +24,7 @@ Pod::Spec.new do |s|
   s.dependency 'Masonry'
   s.dependency 'FMDB'
   s.dependency 'MJRefresh'
+  s.dependency 'GPUImage'
   
   #s.osx.deployment_target = '10.6'
   #s.osx.exclude_files = 'framework/Source/iOS',
