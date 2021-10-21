@@ -32,5 +32,8 @@
 #import "NSObject+JP.h"
 #import "NSThread+JP.h"
 
+#import "JPNewPageViewController.h"
+#import "JPNewCameraViewController.h"
+
 
 #endif /* JPSDK_h */

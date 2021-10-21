@@ -1221,18 +1221,18 @@
 		B7915F0027214D6700468E95 /* viewcontroller */ = {
 			isa = PBXGroup;
 			children = (
-				B7915F0127214D6700468E95 /* JPVideoClipViewController.h */,
-				B7915F0327214D6700468E95 /* JPAlbumViewController.m */,
-				B7915F0427214D6700468E95 /* JPPhotoEditViewController.h */,
-				B7915F0527214D6700468E95 /* JPNewImportViewController.h */,
-				B7915F0627214D6700468E95 /* JPNewCameraViewController.h */,
 				B7915F0727214D6700468E95 /* JPAblumSourceViewController.h */,
-				B7915F0A27214D6700468E95 /* JPAlbumViewController.h */,
-				B7915F0C27214D6700468E95 /* JPVideoClipViewController.m */,
-				B7915F0D27214D6700468E95 /* JPNewImportViewController.m */,
-				B7915F0E27214D6700468E95 /* JPPhotoEditViewController.m */,
-				B7915F0F27214D6700468E95 /* JPNewCameraViewController.m */,
 				B7915F1127214D6700468E95 /* JPAblumSourceViewController.m */,
+				B7915F0A27214D6700468E95 /* JPAlbumViewController.h */,
+				B7915F0327214D6700468E95 /* JPAlbumViewController.m */,
+				B7915F0627214D6700468E95 /* JPNewCameraViewController.h */,
+				B7915F0F27214D6700468E95 /* JPNewCameraViewController.m */,
+				B7915F0527214D6700468E95 /* JPNewImportViewController.h */,
+				B7915F0D27214D6700468E95 /* JPNewImportViewController.m */,
+				B7915F0427214D6700468E95 /* JPPhotoEditViewController.h */,
+				B7915F0E27214D6700468E95 /* JPPhotoEditViewController.m */,
+				B7915F0127214D6700468E95 /* JPVideoClipViewController.h */,
+				B7915F0C27214D6700468E95 /* JPVideoClipViewController.m */,
 			);
 			path = viewcontroller;
 			sourceTree = "<group>";

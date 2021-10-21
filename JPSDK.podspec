@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'JPSDK'
-  s.version  = '0.0.3'
+  s.version  = '0.0.4'
   s.license  = 'BSD'
   s.summary  = 'JPSDK.'
   s.homepage = 'https://github.com/RRRenJ/JPSDK'
@@ -10,8 +10,9 @@ Pod::Spec.new do |s|
 
   s.prefix_header_file = false
   s.prefix_header_file = 'JPVideoEdit/Base/Model/JPSDK-prefix.pch'
-  s.source_files = 'JPVideoEdit/**/*.{h,m}'
-  s.resource = 'JPVideoEdit/Resource/JPResource.bundle'
+ 
+  s.source_files = "JPVideoEdit/**/*.{h,m}"
+  s.resource = "JPVideoEdit/Resource/JPResource.bundle"
   s.requires_arc = true
   s.xcconfig = { 'CLANG_MODULES_AUTOLINK' => 'YES' }
   
