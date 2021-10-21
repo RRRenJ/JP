@@ -47,39 +47,39 @@
 #pragma mark - 
 
 - (void)getListsData {
-    NSMutableDictionary *dic = @{@"service":@"App.Material_Music.Resource_lists",
-                                 @"id":_category.material_type_id
-                                 }.mutableCopy;
-    [JPService requestWithURLString:API_HOST parameters:dic type:JPHttpRequestTypePost success:^(JPResultBase *response){
-        if (response.ret && 200 == [response.ret intValue]) {
-            if (response.data && [response.data isKindOfClass:[NSArray class]]) {
-                for (int i = 0; i < [response.data count]; i ++) {
-                    if ([[response.data objectAtIndex:i] isKindOfClass:[NSDictionary class]]) {
-                        JPMaterial *material = [JPMaterial mj_objectWithKeyValues:[response.data objectAtIndex:i]];
-                        NSString *index = @"";
-                        if ((i + 1) < 10) {
-                            index = [NSString stringWithFormat:@"0%d",i + 1];
-                        } else {
-                            index = [NSString stringWithFormat:@"%d",i + 1];
-                        }
-                        material.indexStr = index;
-                        material.material_id = 2;
-                        [dataArr sgrAddObject:material];
-                        JPMaterial *m = [[JPMaterialDownloader shareInstance] getMaterialWithLocalPath:material.localPath];
-                        if (m) {
-                            material.materialStatus = m.materialStatus;
-                            material.downloadPro = m.downloadPro;
-                        } else {
-                            material.materialStatus = JPMaterialStatusUnknown;
-                        }
-                    }
-                }
-            }
-        }
-        [self createUI];
-    }failure:^(NSError *error){
-        [self createUI];
-    } withErrorMsg:nil];
+//    NSMutableDictionary *dic = @{@"service":@"App.Material_Music.Resource_lists",
+//                                 @"id":_category.material_type_id
+//                                 }.mutableCopy;
+//    [JPService requestWithURLString:API_HOST parameters:dic type:JPHttpRequestTypePost success:^(JPResultBase *response){
+//        if (response.ret && 200 == [response.ret intValue]) {
+//            if (response.data && [response.data isKindOfClass:[NSArray class]]) {
+//                for (int i = 0; i < [response.data count]; i ++) {
+//                    if ([[response.data objectAtIndex:i] isKindOfClass:[NSDictionary class]]) {
+//                        JPMaterial *material = [JPMaterial mj_objectWithKeyValues:[response.data objectAtIndex:i]];
+//                        NSString *index = @"";
+//                        if ((i + 1) < 10) {
+//                            index = [NSString stringWithFormat:@"0%d",i + 1];
+//                        } else {
+//                            index = [NSString stringWithFormat:@"%d",i + 1];
+//                        }
+//                        material.indexStr = index;
+//                        material.material_id = 2;
+//                        [dataArr sgrAddObject:material];
+//                        JPMaterial *m = [[JPMaterialDownloader shareInstance] getMaterialWithLocalPath:material.localPath];
+//                        if (m) {
+//                            material.materialStatus = m.materialStatus;
+//                            material.downloadPro = m.downloadPro;
+//                        } else {
+//                            material.materialStatus = JPMaterialStatusUnknown;
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        [self createUI];
+//    }failure:^(NSError *error){
+//        [self createUI];
+//    } withErrorMsg:nil];
 }
 
 - (JPMusicListsTableViewCell *)getCurrentDownloadCell:(NSString *)uuid {
@@ -102,11 +102,11 @@
         return;
     }
     tittleLb = [[UILabel alloc] initWithFrame:CGRectZero];
-    tittleLb.font = [UIFont pingFangFontWithSize:12];
+    tittleLb.font = [UIFont jp_pingFangWithSize:12];
     tittleLb.text = _category.material_type_name;
-    tittleLb.textColor = [UIColor colorWithHex:0x545454];
+    tittleLb.textColor = [UIColor jp_colorWithHexString:@"545454"];
     tittleLb.textAlignment = NSTextAlignmentCenter;
-    tittleLb.backgroundColor = [UIColor colorWithHex:0x0e0e0e];
+    tittleLb.backgroundColor = [UIColor jp_colorWithHexString:@"0e0e0e"];
     [self addSubview:tittleLb];
     tittleLb.sd_layout.leftEqualToView(self).topEqualToView(self).rightEqualToView(self).heightIs(40);
 
@@ -115,12 +115,12 @@
                                                    withFrame:CGRectZero
                                                       target:self
                                                       action:@selector(back:)];
-    backBtn.titleLabel.font = [UIFont pingFangFontWithSize:12];
+    backBtn.titleLabel.font = [UIFont jp_pingFangWithSize:12];
     [self addSubview:backBtn];
-    backBtn.sd_layout.leftEqualToView(self).topEqualToView(self).widthIs(ScreenFitFloat6(52)).heightIs(40);
+    backBtn.sd_layout.leftEqualToView(self).topEqualToView(self).widthIs(JPScreenFitFloat6(52)).heightIs(40);
     
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectZero];
-    lineView.backgroundColor = [UIColor colorWithHex:0x1f1f1f];
+    lineView.backgroundColor = [UIColor jp_colorWithHexString:@"1f1f1f"];
     [self addSubview:lineView];
     lineView.sd_layout.leftEqualToView(self).rightEqualToView(self).topSpaceToView(backBtn, 0).heightIs(0.5);
     
@@ -135,7 +135,7 @@
     tbView.dataSource = self;
     [self addSubview:tbView];
     tbView.sd_layout.topSpaceToView(lineView, 10).bottomEqualToView(self).leftEqualToView(self).rightEqualToView(self);
-    [tbView registerNib:[UINib nibWithNibName:@"JPMusicListsTableViewCell" bundle:nil] forCellReuseIdentifier:@"JPMusicListsTableViewCell"];
+    [tbView registerNib:[UINib nibWithNibName:@"JPMusicListsTableViewCell" bundle:JPResourceBundle] forCellReuseIdentifier:@"JPMusicListsTableViewCell"];
 }
 
 #pragma mark - UITableViewDelegate
@@ -162,20 +162,18 @@
         material.isSelected = YES;
     } else {
         material.isSelected = NO;
-        if ([PKGuideManager manager].guide && indexPath.row == 0) {
-            if (material.materialStatus == JPMaterialStatusUnknown) {
-                if ([self.delegate respondsToSelector:@selector(firstMusicUnDownload)]) {
-                    [self.delegate firstMusicUnDownload];
-                }
-                
-            }else if (material.materialStatus == JPMaterialStatusDownLoaded){
-                if ([self.delegate respondsToSelector:@selector(firstMusicDownloaded)]) {
-                    [self.delegate firstMusicDownloaded];
-                }
-            }else{
-                if ([self.delegate respondsToSelector:@selector(firstMusicDownloading)]) {
-                    [self.delegate firstMusicDownloading];
-                }
+        if (material.materialStatus == JPMaterialStatusUnknown) {
+            if ([self.delegate respondsToSelector:@selector(firstMusicUnDownload)]) {
+                [self.delegate firstMusicUnDownload];
+            }
+            
+        }else if (material.materialStatus == JPMaterialStatusDownLoaded){
+            if ([self.delegate respondsToSelector:@selector(firstMusicDownloaded)]) {
+                [self.delegate firstMusicDownloaded];
+            }
+        }else{
+            if ([self.delegate respondsToSelector:@selector(firstMusicDownloading)]) {
+                [self.delegate firstMusicDownloading];
             }
         }
     }
@@ -197,10 +195,8 @@
 - (void)mediaDownloaderInsertMediaModelWillDownload:(JPMaterial *)model withDownLoader:(JPMaterialDownloader *)downLoader{
     JPMusicListsTableViewCell *cell = [self getCurrentDownloadCell:model.localPath];
     [cell updateViewWithProgress:0];
-    if ([PKGuideManager manager].guide && cell.index == 0) {
-        if ([self.delegate respondsToSelector:@selector(firstMusicDownloading)]) {
-            [self.delegate firstMusicDownloading];
-        }
+    if ([self.delegate respondsToSelector:@selector(firstMusicDownloading)]) {
+        [self.delegate firstMusicDownloading];
     }
 }
 

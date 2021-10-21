@@ -43,15 +43,15 @@
     _contentImageView.sd_layout.topEqualToView(_backgorundView).leftEqualToView(_backgorundView).rightEqualToView(_backgorundView).bottomEqualToView(_backgorundView);
     
     _filterNameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    _filterNameLabel.font = [UIFont placardMTStdCondBoldFontWithSize:12];
+    _filterNameLabel.font = [UIFont jp_placardMTStdCondBoldFontWithSize:12];
     _filterNameLabel.textColor = [UIColor whiteColor];
     _filterNameLabel.textAlignment = NSTextAlignmentCenter;
     [_backgorundView addSubview:_filterNameLabel];
     _filterNameLabel.sd_layout.topEqualToView(_backgorundView).leftEqualToView(_backgorundView).rightEqualToView(_backgorundView).bottomEqualToView(_backgorundView);
     
     _filterCNNameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    _filterCNNameLabel.font = [UIFont pingFangFontWithSize:12];
-    _filterCNNameLabel.textColor = [UIColor colorWithHex:0x545454];
+    _filterCNNameLabel.font = [UIFont jp_pingFangWithSize:12];
+    _filterCNNameLabel.textColor = [UIColor jp_colorWithHexString:@"545454"];
     _filterCNNameLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_filterCNNameLabel];
     _filterCNNameLabel.sd_layout.leftEqualToView(self.contentView).rightEqualToView(self.contentView).bottomEqualToView(self.contentView).heightIs(13);
@@ -60,7 +60,7 @@
     _backgorundView.layer.cornerRadius = 3;
     _backgorundView.layer.borderWidth = 0.5;
     _backgorundView.layer.borderColor = [UIColor whiteColor].CGColor;
-    _filterNameLabel.font = [UIFont placardMTStdCondBoldFontWithSize:12];
+    _filterNameLabel.font = [UIFont jp_placardMTStdCondBoldFontWithSize:12];
 }
 
 - (void)updateFilterModel:(JPFilterModel *)filterModel andIsSelect:(BOOL)isSelect
@@ -68,7 +68,7 @@
     self.selectFilterModel = filterModel;
     if (isSelect) {
         _backgorundView.layer.borderWidth = 1;
-        _backgorundView.layer.borderColor = [UIColor appMainYellowColor].CGColor;
+        _backgorundView.layer.borderColor = [UIColor jp_colorWithHexString:@"0091ff"].CGColor;
     }else{
         _backgorundView.layer.borderWidth = 0.5;
         _backgorundView.layer.borderColor = [UIColor whiteColor].CGColor;

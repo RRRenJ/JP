@@ -19,14 +19,36 @@
 
 @implementation PKBackTipView
 
-PK_VIEW_XIB_INIT
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+    if (self = [super initWithCoder:aDecoder]) {
+        [self configueView];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        [self configueView];
+    }
+    return self;
+}
+
+- (void)configueView{
+    [JPResourceBundle loadNibNamed:NSStringFromClass([self class]) owner:self options:nil];
+    self.view.frame = self.bounds;
+    [self addSubview:self.view];
+    self.view.sd_layout.bottomEqualToView(self).topEqualToView(self).leftEqualToView(self).rightEqualToView(self);
+    [self configueSubview];
+    [self layoutSubviews];
+}
+
 
 - (void)configueSubview {
     self.bgView.layer.cornerRadius = 7.0f;
     self.saveBtn.layer.cornerRadius = 15.0f;
     self.notSaveBtn.layer.cornerRadius = 15.0f;
     self.notSaveBtn.layer.masksToBounds = YES;
-    self.notSaveBtn.layer.borderColor = [UIColor appMainBlueColor].CGColor;
+    self.notSaveBtn.layer.borderColor = [UIColor jp_colorWithHexString:@"0091FF"].CGColor;
     self.notSaveBtn.layer.borderWidth = 1.0f;
 }
 

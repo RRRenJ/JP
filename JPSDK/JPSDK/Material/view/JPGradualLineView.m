@@ -38,8 +38,8 @@
         CAGradientLayer *gradientLayer = [CAGradientLayer layer];
         gradientLayer.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
         [gradientLayer setColors:[NSArray arrayWithObjects:
-                                  (id)[UIColor appMainBlueColor].CGColor,
-                                  (id)[[UIColor appMainBlueColor] colorWithAlphaComponent:0.0].CGColor,
+                                  (id)[UIColor jp_colorWithHexString:@"0091FF"].CGColor,
+                                  (id)[[UIColor jp_colorWithHexString:@"0091FF"] colorWithAlphaComponent:0.0].CGColor,
                                   nil]];
         
         // 设置颜色的分割点
@@ -76,8 +76,8 @@
             CAGradientLayer *gradientLayer = [CAGradientLayer layer];
             gradientLayer.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
             [gradientLayer setColors:[NSArray arrayWithObjects:
-                                      (id)[UIColor colorWithHex:0xf40949].CGColor,
-                                      (id)[[UIColor colorWithHex:0xf40949] colorWithAlphaComponent:0.0].CGColor,
+                                      (id)[UIColor jp_colorWithHexString:@"f40949"].CGColor,
+                                      (id)[[UIColor jp_colorWithHexString:@"f40949"] colorWithAlphaComponent:0.0].CGColor,
                                       nil]];
             
             // 设置颜色的分割点

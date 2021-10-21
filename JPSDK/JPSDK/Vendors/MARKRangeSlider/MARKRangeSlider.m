@@ -82,7 +82,7 @@ static NSString * const kMARKRangeSliderThumbImage = @"rangeSliderThumb.png";
     }
     // Init track image
     self.trackImageView = [[UIView alloc] initWithFrame:CGRectMake(0, lineHeight, 3, 1)];
-    self.trackImageView.backgroundColor = [UIColor colorWithHex:0x313131];
+    self.trackImageView.backgroundColor = [UIColor jp_colorWithHexString:@"313131"];
     [self addSubview:self.trackImageView];
 
     // Init range image
@@ -291,7 +291,7 @@ static NSString * const kMARKRangeSliderThumbImage = @"rangeSliderThumb.png";
             _leftTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 12)];
             _leftTimeLabel.textAlignment = NSTextAlignmentCenter;
             _leftTimeLabel.font = [UIFont systemFontOfSize:12];
-            _leftTimeLabel.textColor = [UIColor colorWithHex:0x777777];
+            _leftTimeLabel.textColor = [UIColor jp_colorWithHexString:@"777777"];
             _leftTimeLabel.text = [NSString stringWithTimeInterval:floor(_leftValue)];
             _leftTimeLabel.centerX = self.leftThumbView.centerX;
             [self addSubview:_leftTimeLabel];
@@ -299,7 +299,7 @@ static NSString * const kMARKRangeSliderThumbImage = @"rangeSliderThumb.png";
             _rightTimelabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 12)];
             _rightTimelabel.textAlignment = NSTextAlignmentCenter;
             _rightTimelabel.font = [UIFont systemFontOfSize:12];
-            _rightTimelabel.textColor = [UIColor colorWithHex:0x777777];
+            _rightTimelabel.textColor = [UIColor jp_colorWithHexString:@"777777"];
             _rightTimelabel.text = [NSString stringWithTimeInterval:floor(_rightValue)];
             _rightTimelabel.centerX = self.rightThumbImageView.centerX;
             [self addSubview:_rightTimelabel];

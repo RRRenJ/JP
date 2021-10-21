@@ -58,7 +58,7 @@
     self.imageArray = [NSMutableArray array];
     self.backgroundColor = [UIColor clearColor];
     self.backView = [[UIView alloc] initWithFrame:CGRectMake(0, 12.5, self.width, 50)];
-    self.backView.backgroundColor = [[UIColor colorWithHex:0x101010] colorWithAlphaComponent:0.4];
+    self.backView.backgroundColor = [[UIColor jp_colorWithHexString:@"101010"] colorWithAlphaComponent:0.4];
     [self addSubview:self.backView];
     UIView *imageBcakView = [[UIView alloc] initWithFrame:CGRectMake(6, 0, self.backView.width - 12, 50)];
     imageBcakView.backgroundColor = [UIColor clearColor];
@@ -74,13 +74,13 @@
         NSInteger count = (NSInteger)ceil(imageWidth / 100.0f);
         for (NSInteger index = 0; index < count; index ++) {
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(100 * index, (50 - 12.5) / 2.0, 100, 12.5)];
-            imageView.image = [UIImage imageNamed:@"voiceline"];
+            imageView.image = JPImageWithName(@"voiceline");
             [imageBcakView addSubview:imageView];
             [self.imageArray addObject:imageView];
         }
     }
     self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 63, self.width, 16)];
-    self.timeLabel.textColor = [UIColor colorWithHex:0x787878];
+    self.timeLabel.textColor = [UIColor jp_colorWithHexString:@"787878"];
     self.timeLabel.textAlignment = NSTextAlignmentCenter;
     self.timeLabel.font = [UIFont fontWithName:@"PlacardMTStd-Cond" size:12];
     [self addSubview:self.timeLabel];
@@ -89,7 +89,7 @@
     self.timeLabel.text = [NSString stringWithFormat:@"%lds", (NSInteger)ceil(CMTimeGetSeconds(self.audioModel.durationTime))];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapTheSelf)];
     [self.backView addGestureRecognizer:tap];
-    self.backView.layer.borderColor = [UIColor appMainYellowColor].CGColor;
+    self.backView.layer.borderColor = [UIColor jp_colorWithHexString:@"0091FF"].CGColor;
 }
 
 - (void)setIsSelect:(BOOL)isSelect
@@ -99,7 +99,7 @@
         self.backView.layer.borderWidth = 0;
     }else{
         self.backView.layer.borderWidth = 1.5;
-        self.backView.layer.borderColor = [UIColor appMainYellowColor].CGColor;
+        self.backView.layer.borderColor = [UIColor jp_colorWithHexString:@"0091FF"].CGColor;
     }
 }
 

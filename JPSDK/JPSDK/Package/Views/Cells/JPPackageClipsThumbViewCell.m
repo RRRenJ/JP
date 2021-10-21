@@ -31,7 +31,7 @@
     self.txtLb = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.width - 3, 13)];
     self.txtLb.textAlignment = NSTextAlignmentCenter;
     self.txtLb.font = [UIFont EnglishContentFont];
-    self.txtLb.textColor = [UIColor colorWithHex:0x535353];
+    self.txtLb.textColor = [UIColor jp_colorWithHexString:@"535353"];
     [self.contentView addSubview:self.txtLb];
     
     self.imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.height - 40, self.width - 3, 40)];
@@ -42,13 +42,13 @@
 }
 
 - (void)createShapeLayer {
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.imgView.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(ScreenFitFloat6(2), ScreenFitFloat6(2))];
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.imgView.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(JPScreenFitFloat6(2), JPScreenFitFloat6(2))];
     borderShape = [CAShapeLayer layer];
     borderShape.frame = self.imgView.bounds;
     borderShape.path = maskPath.CGPath;
-    borderShape.strokeColor = [UIColor appMainYellowColor].CGColor;
+    borderShape.strokeColor = [UIColor jp_colorWithHexString:@"0091ff"].CGColor;
     borderShape.fillColor = nil;
-    borderShape.lineWidth = ScreenFitFloat6(1.5);
+    borderShape.lineWidth = JPScreenFitFloat6(1.5);
 }
 
 - (void)setCellNeedsLayout {
@@ -57,10 +57,10 @@
             [self createShapeLayer];
         }
         [self.imgView.layer addSublayer:borderShape];
-        self.txtLb.textColor = [UIColor appMainYellowColor];
+        self.txtLb.textColor = [UIColor jp_colorWithHexString:@"0091ff"];
     }else{
         [borderShape removeFromSuperlayer];
-        self.txtLb.textColor = [UIColor colorWithHex:0x535353];
+        self.txtLb.textColor = [UIColor jp_colorWithHexString:@"535353"];
     }
 }
 

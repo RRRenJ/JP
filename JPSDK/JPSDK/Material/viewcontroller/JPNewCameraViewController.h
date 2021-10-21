@@ -14,16 +14,10 @@
 @property (nonatomic, assign) BOOL fromPackage;
 
 //开始选择视频
-@property (nonatomic, copy) void (^startTakeVideo)();
+@property (nonatomic, copy) void (^startTakeVideo)(void);
 
-//引导视频开始展示
-@property (nonatomic, copy) void (^guideVideoShowBlock)();
 
-//引导视频隐藏
-@property (nonatomic, copy) void (^guideVideoHideBlock)();
 
-//隐藏引导视频
-- (void)guideVideoHide;
 
 @end
 

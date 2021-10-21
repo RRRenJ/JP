@@ -13,7 +13,7 @@
 {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"active_daoxu_tishi" ofType:@"png"];
     if (self = [super initWithImage:[UIImage imageWithContentsOfFile:path]]) {
-        self.frame = CGRectMake((SCREEN_WIDTH - 219) / 2.0, (SCREEN_HEIGHT - 192) / 2.0, 219, 192);
+        self.frame = CGRectMake((JP_SCREEN_WIDTH - 219) / 2.0, (JP_SCREEN_HEIGHT - 192) / 2.0, 219, 192);
         self.alpha = 0.0;
     }
     return self;
@@ -21,7 +21,7 @@
 
 - (void)show
 {
-    [[JPAppDelegate shareAppdelegate].window addSubview:self];
+    [[UIApplication sharedApplication].keyWindow addSubview:self];
     
     [UIView animateWithDuration:0.10 animations:^{
         self.alpha = 1.0;

@@ -38,7 +38,7 @@
 }
 
 - (void)addArcBackColor{
-    CGColorRef color = [UIColor appMainGrayColor].CGColor;
+    CGColorRef color = [UIColor jp_colorWithHexString:@"535353"].CGColor;
     
     CGContextRef contextRef = UIGraphicsGetCurrentContext();
     CGSize viewSize = self.bounds.size;
@@ -59,7 +59,7 @@
     }
     
     if (_percent == 1) {
-        CGColorRef color = [UIColor appMainYellowColor].CGColor;
+        CGColorRef color = [UIColor jp_colorWithHexString:@"0091FF"].CGColor;
         
         CGContextRef contextRef = UIGraphicsGetCurrentContext();
         CGSize viewSize = self.bounds.size;
@@ -75,7 +75,7 @@
         
         float endAngle = 2*M_PI - 2*M_PI*_percent - 0.5 * M_PI;
         
-        CGColorRef color = [UIColor appMainYellowColor].CGColor;
+        CGColorRef color = [UIColor jp_colorWithHexString:@"0091FF"].CGColor;
         CGContextRef contextRef = UIGraphicsGetCurrentContext();
         CGSize viewSize = self.bounds.size;
         CGPoint center = CGPointMake(viewSize.width / 2, viewSize.height / 2);
@@ -93,7 +93,7 @@
 -(void)addCenterBack{
     float width = 4;
     
-    CGColorRef color = [UIColor colorWithHex:0x181818].CGColor;
+    CGColorRef color = [UIColor jp_colorWithHexString:@"181818"].CGColor;
     CGContextRef contextRef = UIGraphicsGetCurrentContext();
     CGSize viewSize = self.bounds.size;
     CGPoint center = CGPointMake(viewSize.width / 2, viewSize.height / 2);
@@ -110,7 +110,7 @@
 {
     float width = 10;
     
-    CGColorRef color = [UIColor colorWithHex:0xf7d619].CGColor;
+    CGColorRef color = [UIColor jp_colorWithHexString:@"f7d619"].CGColor;
     CGContextRef contextRef = UIGraphicsGetCurrentContext();
     CGSize viewSize = self.bounds.size;
     CGPoint center = CGPointMake(viewSize.width / 2, viewSize.height / 2);

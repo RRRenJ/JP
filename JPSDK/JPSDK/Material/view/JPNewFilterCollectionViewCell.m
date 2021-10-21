@@ -36,13 +36,13 @@
         _contentImageView.image = nil;
         _selectImageView.hidden = NO;
         _filterNameLabel.textColor = [UIColor whiteColor];
-        _backgorundView.backgroundColor = _isPage == YES ? [UIColor colorWithHex:0x181818] : [UIColor clearColor] ;
+        _backgorundView.backgroundColor = _isPage == YES ? [UIColor jp_colorWithHexString:@"181818"] : [UIColor clearColor] ;
         _filterNameLabel.backgroundColor = _isPage == YES ? [UIColor clearColor] : [UIColor clearColor];
     }else{
         _contentImageView.image = model.thumbImage;
         _selectImageView.hidden = YES;
         _backgorundView.backgroundColor = _isPage == YES ? [UIColor clearColor] : [UIColor clearColor];
-        _filterNameLabel.textColor = [UIColor colorWithHex:0x838383];
+        _filterNameLabel.textColor = [UIColor jp_colorWithHexString:@"838383"];
         _filterNameLabel.backgroundColor =  [UIColor clearColor];
     }
 }

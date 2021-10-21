@@ -87,7 +87,7 @@
     UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
     //设置布局方向为垂直流布局
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    collecView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0 , SCREEN_WIDTH ,self.height - 80) collectionViewLayout:layout];
+    collecView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0 , JP_SCREEN_WIDTH ,self.height - 80) collectionViewLayout:layout];
     collecView.delegate = self;
     collecView.backgroundColor = self.backgroundColor;
     collecView.dataSource = self;
@@ -97,7 +97,7 @@
     [collecView registerClass:[JPPackageMenuAttributeColorCell class] forCellWithReuseIdentifier:@"JPPackageMenuAttributeColorCell"];
     [collecView registerClass:[JPPackageMenuAttributePhotoCell class] forCellWithReuseIdentifier:@"JPPackageMenuAttributePhotoCell"];
     [collecView registerClass:[JPPackageMenuAttributeTimeSliderCell class] forCellWithReuseIdentifier:@"JPPackageMenuAttributeTimeSliderCell"];
-    [collecView registerNib:[UINib nibWithNibName:@"JPTextFontCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"JPTextFontSizeCollectionViewCell"];
+    [collecView registerNib:[UINib nibWithNibName:@"JPTextFontCollectionViewCell" bundle:JPResourceBundle] forCellWithReuseIdentifier:@"JPTextFontSizeCollectionViewCell"];
     [collecView registerClass:[JPPackageMenuAttributeTextFontCell class] forCellWithReuseIdentifier:@"JPPackageMenuAttributeTextFontCell"];
     [self addSubview:collecView];
     collecView.sd_layout.bottomSpaceToView(self, 0).centerXEqualToView(self).widthRatioToView(self, 1.0).topSpaceToView(self.tittleView, 10);
@@ -117,14 +117,14 @@
     JPPackagePatternAttributeType type = (JPPackagePatternAttributeType)[[dataArr objectAtIndex:indexPath.row] intValue];
     if (JPPackagePatternAttributeTypeBackgroundColor == type){
         JPPackageMenuAttributeColorCell * cell  = [collectionView dequeueReusableCellWithReuseIdentifier:@"JPPackageMenuAttributeColorCell" forIndexPath:indexPath];
-        cell.textLb.text = NSLocalizedString(@"pattern_attribute_background_color",nil);
+        cell.textLb.text = @"背景颜色";
         cell.attributeType = JPPackagePatternAttributeTypeBackgroundColor;
         cell.patternInteractiveView = self.apearView;
 
         return cell;
     } else if (JPPackagePatternAttributeTypeFontColor == type){
         JPPackageMenuAttributeColorCell * cell  = [collectionView dequeueReusableCellWithReuseIdentifier:@"JPPackageMenuAttributeColorCell" forIndexPath:indexPath];
-        cell.textLb.text = NSLocalizedString(@"pattern_attribute_text_color",nil);
+        cell.textLb.text = @"字体颜色";
         cell.attributeType = JPPackagePatternAttributeTypeFontColor;
         cell.patternInteractiveView = self.apearView;
 
@@ -168,13 +168,13 @@
     JPPackagePatternAttributeType type = typeNumber.integerValue;
     if (type == JPPackagePatternAttributeTypePhoto || type == JPPackagePatternAttributeTypeTextFont)
     {
-        return CGSizeMake(SCREEN_WIDTH, 74);
+        return CGSizeMake(JP_SCREEN_WIDTH, 74);
     }else if (type == JPPackagePatternAttributeTypeTimeRange)
     {
-        return CGSizeMake(SCREEN_WIDTH, 90);
+        return CGSizeMake(JP_SCREEN_WIDTH, 90);
 
     }else{
-        return CGSizeMake(SCREEN_WIDTH, 49);
+        return CGSizeMake(JP_SCREEN_WIDTH, 49);
 
     }
 }

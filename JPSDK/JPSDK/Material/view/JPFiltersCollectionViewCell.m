@@ -20,7 +20,7 @@
     [super awakeFromNib];
     _selectImageView.layer.cornerRadius = 22.5f;
     _selectImageView.layer.borderWidth = 1.5;
-    _selectImageView.layer.borderColor = [UIColor appMainYellowColor].CGColor;
+    _selectImageView.layer.borderColor = [UIColor jp_colorWithHexString:@"0091FF"].CGColor;
     
 }
 

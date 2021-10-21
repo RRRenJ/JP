@@ -24,7 +24,7 @@
     if (type == JPPromptViewTypeTenth || type == JPPromptViewTypeEleventh || type == JPPromptViewTypetwlve || type == JPPromptViewTypethirteen) {
         imageName = [NSString stringWithFormat:@"%zd",type];
     }
-    UIImage *image = [UIImage imageNamed:imageName];
+    UIImage *image = JPImageWithName(imageName);
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
     [imageView sizeToFit];
     CGSize size = imageView.size;
@@ -87,27 +87,27 @@
     _imageView.frame = CGRectMake(0, 0, 1, 1);
     self.hidden = NO;
     [UIView animateWithDuration:0.5 animations:^{
-        self.frame = _reallyRect;
-        _imageView.frame = CGRectMake(0, 0, _reallyRect.size.width, _reallyRect.size.height);
+        self.frame = self.reallyRect;
+        self.imageView.frame = CGRectMake(0, 0, self.reallyRect.size.width, self.reallyRect.size.height);
     }];
 }
 
 - (void)dismiss
 {
     [UIView animateWithDuration:0.5 animations:^{
-        CGFloat originY = _reallyRect.origin.y;
-        if (_isTop == YES) {
-            originY = _reallyRect.origin.y + _reallyRect.size.height - 1;
+        CGFloat originY = self.reallyRect.origin.y;
+        if (self.isTop == YES) {
+            originY = self.reallyRect.origin.y + self.reallyRect.size.height - 1;
         }
-        if (_alignment == NSTextAlignmentLeft) {
-            self.frame = CGRectMake(_reallyRect.origin.x, originY, 1, 1);
-        }else if (_alignment == NSTextAlignmentCenter)
+        if (self.alignment == NSTextAlignmentLeft) {
+            self.frame = CGRectMake(self.reallyRect.origin.x, originY, 1, 1);
+        }else if (self.alignment == NSTextAlignmentCenter)
         {
-            self.frame = CGRectMake(_reallyRect.origin.x + _reallyRect.size.width / 2.0, originY, 1, 1);
+            self.frame = CGRectMake(self.reallyRect.origin.x + self.reallyRect.size.width / 2.0, originY, 1, 1);
         }else{
-            self.frame = CGRectMake(_reallyRect.origin.x + _reallyRect.size.width, originY, 1, 1);
+            self.frame = CGRectMake(self.reallyRect.origin.x + self.reallyRect.size.width, originY, 1, 1);
         }
-        _imageView.frame = CGRectMake(0, 0, 1, 1);
+        self.imageView.frame = CGRectMake(0, 0, 1, 1);
     } completion:^(BOOL finished) {
         self.hidden = YES;
         [self removeFromSuperview];

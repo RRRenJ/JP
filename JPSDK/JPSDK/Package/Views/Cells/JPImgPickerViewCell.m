@@ -37,12 +37,12 @@
     self.imgView.contentMode = UIViewContentModeScaleAspectFill;
     [self.contentView addSubview:self.imgView];
 
-    self.txtLb = [[UILabel alloc] initWithFrame:CGRectMake(self.width - ScreenFitFloat6(22), ScreenFitFloat6(4), ScreenFitFloat6(18), ScreenFitFloat6(18))];
+    self.txtLb = [[UILabel alloc] initWithFrame:CGRectMake(self.width - JPScreenFitFloat6(22), JPScreenFitFloat6(4), JPScreenFitFloat6(18), JPScreenFitFloat6(18))];
     self.txtLb.textAlignment = NSTextAlignmentCenter;
     self.txtLb.font = [UIFont EnglishContentFont];
-    self.txtLb.backgroundColor = [UIColor appMainYellowColor];
-    self.txtLb.textColor = [UIColor colorWithHex:0x535353];
-    [JPUtil setViewRadius:self.txtLb byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(ScreenFitFloat6(18)/2, ScreenFitFloat6(18)/2)];
+    self.txtLb.backgroundColor = [UIColor jp_colorWithHexString:@"0091ff"];
+    self.txtLb.textColor = [UIColor jp_colorWithHexString:@"535353"];
+    [JPUtil setViewRadius:self.txtLb byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(JPScreenFitFloat6(18)/2, JPScreenFitFloat6(18)/2)];
     [self.contentView addSubview:self.txtLb];
 }
 
@@ -51,9 +51,9 @@
     selectedborderShape = [CAShapeLayer layer];
     selectedborderShape.frame = self.imgView.bounds;
     selectedborderShape.path = maskPath.CGPath;
-    selectedborderShape.strokeColor = [UIColor appMainYellowColor].CGColor;
+    selectedborderShape.strokeColor = [UIColor jp_colorWithHexString:@"0091ff"].CGColor;
     selectedborderShape.fillColor = nil;
-    selectedborderShape.lineWidth = ScreenFitFloat6(2);
+    selectedborderShape.lineWidth = JPScreenFitFloat6(2);
 }
 
 - (void)createUnselectedShapeLayer {
@@ -61,9 +61,9 @@
     unselectedborderShape = [CAShapeLayer layer];
     unselectedborderShape.frame = self.imgView.bounds;
     unselectedborderShape.path = maskPath.CGPath;
-    unselectedborderShape.strokeColor = [UIColor colorWithHex:0x303030].CGColor;
+    unselectedborderShape.strokeColor = [UIColor jp_colorWithHexString:@"303030"].CGColor;
     unselectedborderShape.fillColor = nil;
-    unselectedborderShape.lineWidth = ScreenFitFloat6(0.5);
+    unselectedborderShape.lineWidth = JPScreenFitFloat6(0.5);
 }
 
 - (void)setCellNeedsLayout {

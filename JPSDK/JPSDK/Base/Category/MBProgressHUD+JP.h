@@ -7,10 +7,22 @@
 
 #import <MBProgressHUD/MBProgressHUD.h>
 
-NS_ASSUME_NONNULL_BEGIN
+
 
 @interface MBProgressHUD (JP)
 
++ (void)jp_showMessage:(NSString *)message;
+
++ (void)jp_showMessage:(NSString *)message toView:(UIView *)view;
+
++ (MBProgressHUD *)jp_showProgressMessage:(NSString *)message;
+
++ (MBProgressHUD *)jp_showProgressMessage:(NSString *)message toView:(UIView *)view;
+
++ (void)jp_hideHUD;
+
+- (void)jp_hideHUD;
+
 @end
 
-NS_ASSUME_NONNULL_END
+

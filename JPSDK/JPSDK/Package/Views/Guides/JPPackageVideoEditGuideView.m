@@ -8,7 +8,6 @@
 
 #import "JPPackageVideoEditGuideView.h"
 #import "JPGradientAnimateGuideView.h"
-#import "JPSession.h"
 
 #define VIDEO_SPEED_TAG   999
 #define TRANVERSE_VIDEO_TAG   1000
@@ -30,32 +29,32 @@
     self = [super initWithFrame:frame];
     if (self) {
         _isActive = isActive;
-        CGFloat width = SCREEN_WIDTH / 4.0;
+        CGFloat width = JP_SCREEN_WIDTH / 4.0;
         self.userInteractionEnabled = NO;
-        if (![JPUtil getInfoFromUserDefaults:kPackageOfVideoSpeedGuideStep]) {
-            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(0, 0, width, 40) andText:@"快慢速"];
-            view.centerX = width / 2.0;
-            view.tag = VIDEO_SPEED_TAG;
-            [self addSubview:view];
-        }
-        if ((![JPUtil getInfoFromUserDefaults:kPackageOfVideoTranverseGuideStep])    || isActive) {
-            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(0, 0, width, 40) andText:@"时间倒序" andIsActive:isActive];
-            view.tag = TRANVERSE_VIDEO_TAG;
-            view.centerX = width / 2.0 + width;
-            [self addSubview:view];
-        }
-        if (![JPUtil getInfoFromUserDefaults:kPackageOfvideoTrimGuideStep]) {
-            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(0, 0, width, 40) andText:@"剪切"];
-            view.tag = TRIM_VIDEO_TAG;
-            view.centerX = width / 2.0 + width * 2;
-            [self addSubview:view];
-        }
-        if (![JPUtil getInfoFromUserDefaults:kPackageOfVideoDeleteGuideStep]) {
-            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(0, 0, width, 40) andText:@"删除"];
-            view.tag = DELETE_VIDEO_TAG;
-            view.centerX = width / 2.0 + width * 3;
-            [self addSubview:view];
-        }
+//        if (![JPUtil getInfoFromUserDefaults:kPackageOfVideoSpeedGuideStep]) {
+//            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(0, 0, width, 40) andText:@"快慢速"];
+//            view.centerX = width / 2.0;
+//            view.tag = VIDEO_SPEED_TAG;
+//            [self addSubview:view];
+//        }
+//        if ((![JPUtil getInfoFromUserDefaults:kPackageOfVideoTranverseGuideStep])    || isActive) {
+//            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(0, 0, width, 40) andText:@"时间倒序" andIsActive:isActive];
+//            view.tag = TRANVERSE_VIDEO_TAG;
+//            view.centerX = width / 2.0 + width;
+//            [self addSubview:view];
+//        }
+//        if (![JPUtil getInfoFromUserDefaults:kPackageOfvideoTrimGuideStep]) {
+//            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(0, 0, width, 40) andText:@"剪切"];
+//            view.tag = TRIM_VIDEO_TAG;
+//            view.centerX = width / 2.0 + width * 2;
+//            [self addSubview:view];
+//        }
+//        if (![JPUtil getInfoFromUserDefaults:kPackageOfVideoDeleteGuideStep]) {
+//            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(0, 0, width, 40) andText:@"删除"];
+//            view.tag = DELETE_VIDEO_TAG;
+//            view.centerX = width / 2.0 + width * 3;
+//            [self addSubview:view];
+//        }
     }
     return self;
 }
@@ -95,27 +94,27 @@
 }
 
 - (void)removeGuide:(NSString *)str withAnimation:(BOOL)animation {
-    [JPSession sharedInstance].showPackageVdieoEditGuide = NO;
-    if ([str isEqualToString:kPackageOfVideoSpeedGuideStep] && ![JPUtil getInfoFromUserDefaults:kPackageOfVideoSpeedGuideStep]) {
-        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kPackageOfVideoSpeedGuideStep];
-        [self removeViewWithTag:VIDEO_SPEED_TAG withAnimation:animation];
-        return;
-    }
-    if (([str isEqualToString:kPackageOfVideoTranverseGuideStep] && ![JPUtil getInfoFromUserDefaults:kPackageOfVideoTranverseGuideStep]) || _isActive) {
-        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kPackageOfVideoTranverseGuideStep];
-        [self removeViewWithTag:TRANVERSE_VIDEO_TAG withAnimation:animation];
-        return;
-    }
-    if ([str isEqualToString:kPackageOfvideoTrimGuideStep] && ![JPUtil getInfoFromUserDefaults:kPackageOfvideoTrimGuideStep]) {
-        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kPackageOfvideoTrimGuideStep];
-        [self removeViewWithTag:TRIM_VIDEO_TAG withAnimation:animation];
-        return;
-    }
-    if ([str isEqualToString:kPackageOfVideoDeleteGuideStep] && ![JPUtil getInfoFromUserDefaults:kPackageOfVideoDeleteGuideStep]) {
-        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kPackageOfVideoDeleteGuideStep];
-        [self removeViewWithTag:DELETE_VIDEO_TAG withAnimation:animation];
-        return;
-    }
+//    [JPSession sharedInstance].showPackageVdieoEditGuide = NO;
+//    if ([str isEqualToString:kPackageOfVideoSpeedGuideStep] && ![JPUtil getInfoFromUserDefaults:kPackageOfVideoSpeedGuideStep]) {
+//        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kPackageOfVideoSpeedGuideStep];
+//        [self removeViewWithTag:VIDEO_SPEED_TAG withAnimation:animation];
+//        return;
+//    }
+//    if (([str isEqualToString:kPackageOfVideoTranverseGuideStep] && ![JPUtil getInfoFromUserDefaults:kPackageOfVideoTranverseGuideStep]) || _isActive) {
+//        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kPackageOfVideoTranverseGuideStep];
+//        [self removeViewWithTag:TRANVERSE_VIDEO_TAG withAnimation:animation];
+//        return;
+//    }
+//    if ([str isEqualToString:kPackageOfvideoTrimGuideStep] && ![JPUtil getInfoFromUserDefaults:kPackageOfvideoTrimGuideStep]) {
+//        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kPackageOfvideoTrimGuideStep];
+//        [self removeViewWithTag:TRIM_VIDEO_TAG withAnimation:animation];
+//        return;
+//    }
+//    if ([str isEqualToString:kPackageOfVideoDeleteGuideStep] && ![JPUtil getInfoFromUserDefaults:kPackageOfVideoDeleteGuideStep]) {
+//        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kPackageOfVideoDeleteGuideStep];
+//        [self removeViewWithTag:DELETE_VIDEO_TAG withAnimation:animation];
+//        return;
+//    }
 }
 
 @end

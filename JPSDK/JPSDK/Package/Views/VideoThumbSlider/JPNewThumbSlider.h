@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol JPNewThumbSliderDelegate <NSObject>
+
 - (void)didChangedToTime:(CMTime)currentTime;
 - (void)newThumbSliderWillSelectThisVideoModel:(JPVideoModel *)videoModel;
 - (void)newThumbSliderWillDeselectThisVideoModel:(JPVideoModel *)videoModel;
@@ -18,13 +19,12 @@
 - (void)newThumbSliderWillUpdateVideoLong:(JPVideoModel *)videoModel;
 - (void)newThumbSliderWillUpdateAddVideo;
 - (void)newThumbSliderWillDistranstion:(JPVideoModel *)videoModel;
+
 @end
 
 @interface JPNewThumbSlider : UIView
 
 @property (nonatomic, strong, readonly) UICollectionView * collectionView;
-
-@property (nonatomic, strong) PKGuideView * guideView;
 
 @property (nonatomic, weak) id<JPNewThumbSliderDelegate> delegate;
 - (instancetype)initWithRecordInfo:(JPVideoRecordInfo *)videoRecordInfo;

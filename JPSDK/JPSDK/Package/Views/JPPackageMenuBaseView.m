@@ -17,11 +17,11 @@
         _tittleView = [[UIView alloc] initWithFrame:CGRectZero];
         [self addSubview:_tittleView];
         _tittleView.sd_layout.topEqualToView(self).leftEqualToView(self).rightEqualToView(self).heightIs(40.5);
-        _tittleView.backgroundColor = [UIColor colorWithHex:0x0e0e0e];
+        _tittleView.backgroundColor = [UIColor jp_colorWithHexString:@"0e0e0e"];
 
         _tittleLb = [[UILabel alloc] initWithFrame:CGRectZero];
-        _tittleLb.font = [UIFont pingFangFontWithSize:12];
-        _tittleLb.textColor = [UIColor colorWithHex:0x545454];
+        _tittleLb.font = [UIFont jp_pingFangWithSize:12];
+        _tittleLb.textColor = [UIColor jp_colorWithHexString:@"545454"];
         _tittleLb.textAlignment = NSTextAlignmentCenter;
         [_tittleView addSubview:_tittleLb];
         _tittleLb.sd_layout.leftEqualToView(_tittleView).rightEqualToView(_tittleView).centerYEqualToView(_tittleView).heightIs(13);
@@ -32,12 +32,12 @@
                                                              target:self
                                                              action:@selector(dismiss)];
         [self.confirmBt setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        self.confirmBt.titleLabel.font = [UIFont pingFangFontWithSize:12.f];
+        self.confirmBt.titleLabel.font = [UIFont jp_pingFangWithSize:12.f];
         [_tittleView addSubview:self.confirmBt];
-        self.confirmBt.sd_layout.topEqualToView(_tittleView).rightEqualToView(_tittleView).widthIs(ScreenFitFloat6(47)).bottomSpaceToView(_tittleView, 0.5);
+        self.confirmBt.sd_layout.topEqualToView(_tittleView).rightEqualToView(_tittleView).widthIs(JPScreenFitFloat6(47)).bottomSpaceToView(_tittleView, 0.5);
         
         UIView *linView = [[UIView alloc] initWithFrame:CGRectZero];
-        linView.backgroundColor = [UIColor colorWithHex:0x1e1f20];
+        linView.backgroundColor = [UIColor jp_colorWithHexString:@"1e1f20"];
         [_tittleView addSubview:linView];
         linView.sd_layout.bottomEqualToView(_tittleView).leftSpaceToView(_tittleView, 0).rightSpaceToView(_tittleView, 0).heightIs(0.5);
     }

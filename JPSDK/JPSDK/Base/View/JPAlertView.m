@@ -19,7 +19,7 @@
         UILabel *lable = [[UILabel alloc] init];
         lable.numberOfLines = 0;
         lable.textAlignment = NSTextAlignmentCenter;
-        lable.font = [UIFont pingFangFontWithSize:17];
+        lable.font = [UIFont jp_pingFangWithSize:17];
         lable.textColor = [UIColor whiteColor];
         lable.backgroundColor = [UIColor clearColor];
         lable.text = title;

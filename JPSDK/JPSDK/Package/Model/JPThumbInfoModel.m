@@ -7,6 +7,7 @@
 //
 
 #import "JPThumbInfoModel.h"
+#import "JPTranstionsModelManager.h"
 
 @implementation JPThumbInfoModel
 

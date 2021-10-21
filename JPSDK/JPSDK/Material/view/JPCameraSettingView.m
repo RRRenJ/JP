@@ -9,7 +9,7 @@
 #import "JPCameraSettingView.h"
 #import "JPCameraSettingCollectionViewCell.h"
 #import "JPHowFastCollectionViewCell.h"
-#import "UIButton+ImageAndText.h"
+
 static NSString *JPCameraSettingViewIdentifier = @"JPCameraSettingViewIdentifier";
 static NSString *JPHowFastViewIdentifier = @"JPHowFastViewIdentifier";
 
@@ -35,29 +35,29 @@ static NSString *JPHowFastViewIdentifier = @"JPHowFastViewIdentifier";
         switch (model.aspectRatio) {
             case JPVideoAspectRatio1X1:
                 model.name = @"1:1";
-                model.imageName = @"1:1_normal";
-                model.selectImageName = @"1:1_highlight";
-                model.disableImageName = @"1:1_normal";//gray
+                model.imageName = @"1:1_nm";
+                model.selectImageName = @"1:1_hl";
+                model.disableImageName = @"1:1_nm";//gray
                 [daraArr addObject:model];
                 break;
             case JPVideoAspectRatio16X9:
                 model.name = @"16:9";
-                model.imageName = @"16:9_normal";
-                model.selectImageName = @"16:9_highlight";
-                model.disableImageName = @"16:9_normal";
+                model.imageName = @"16:9_nm";
+                model.selectImageName = @"16:9_hl";
+                model.disableImageName = @"16:9_nm";
                 [daraArr addObject:model];
                 break;
             case JPVideoAspectRatio9X16:
                 model.name = @"9:16";
-                model.imageName = @"vertical-off";
-                model.selectImageName = @"vertical-on";
+                model.imageName = @"9:16_nm";
+                model.selectImageName = @"9:16_hl";
                 model.disableImageName = @"vertical-grey";
                 break;
             case JPVideoAspectRatio4X3:
                 model.name = @"4:3";
-                model.imageName = @"4:3_normal";
-                model.selectImageName = @"4:3_highlight";
-                model.disableImageName = @"4:3_normal";
+                model.imageName = @"4:3_nm";
+                model.selectImageName = @"4:3_hl";
+                model.disableImageName = @"4:3_nm";
                 [daraArr addObject:model];
                 break;
             case JPVideoAspectRatioCircular:
@@ -167,30 +167,30 @@ static NSString *JPHowFastViewIdentifier = @"JPHowFastViewIdentifier";
 
 - (void)createSubviews
 {
-    _viewWidth = (SCREEN_WIDTH - 30);
+    _viewWidth = (JP_SCREEN_WIDTH - 30);
     _isOpenLight = NO;
     _isFront = NO;
     _isOpenFilters = NO;
-    [[NSBundle mainBundle] loadNibNamed:@"JPCameraSettingView" owner:self options:nil];
+    [JPResourceBundle loadNibNamed:@"JPCameraSettingView" owner:self options:nil];
     [self addSubview:self.view];
     self.view.frame = self.bounds;
     self.view.sd_layout.topEqualToView(self).bottomEqualToView(self).topEqualToView(self).rightEqualToView(self);
-    self.collectionView.backgroundColor = [UIColor colorWithHexString:@"ffffff" alpha:0.13];
+    self.collectionView.backgroundColor = [UIColor jp_colorWithHexString:@"ffffff" alpha:0.13];
     self.collectionView.layer.cornerRadius = 2;
     self.collectionView.layer.masksToBounds = YES;
     _dataArr = [[JPVideoFrameModel getAllFrameModel] mutableCopy];
     _howFastArr = [[JPVideoFastModel getAllFastModel] mutableCopy];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    [self.collectionView registerNib:[UINib nibWithNibName:@"JPCameraSettingCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:JPCameraSettingViewIdentifier];
-    [self.collectionView registerNib:[UINib nibWithNibName:@"JPHowFastCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:JPHowFastViewIdentifier];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"JPCameraSettingCollectionViewCell" bundle:JPResourceBundle] forCellWithReuseIdentifier:JPCameraSettingViewIdentifier];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"JPHowFastCollectionViewCell" bundle:JPResourceBundle] forCellWithReuseIdentifier:JPHowFastViewIdentifier];
 
     _collectionViewFlowLayout.itemSize = CGSizeMake(86 , 30);
-    [self.howFastButton layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleTop imageTitleSpace:6];
-    [self.cameraButton layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleTop imageTitleSpace:6];
-    [self.filterButton  layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleTop imageTitleSpace:6];
-    [self.lightButton layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleTop imageTitleSpace:6];
-    [self.frameButton layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleTop imageTitleSpace:6];
+    [self.howFastButton jp_layoutButtonWithEdgeInsetsStyle:JPButtonEdgeInsetsStyleTop imageTitleSpace:6];
+    [self.cameraButton jp_layoutButtonWithEdgeInsetsStyle:JPButtonEdgeInsetsStyleTop imageTitleSpace:6];
+    [self.filterButton  jp_layoutButtonWithEdgeInsetsStyle:JPButtonEdgeInsetsStyleTop imageTitleSpace:6];
+    [self.lightButton jp_layoutButtonWithEdgeInsetsStyle:JPButtonEdgeInsetsStyleTop imageTitleSpace:6];
+    [self.frameButton jp_layoutButtonWithEdgeInsetsStyle:JPButtonEdgeInsetsStyleTop imageTitleSpace:6];
 }
 
 
@@ -259,9 +259,9 @@ static NSString *JPHowFastViewIdentifier = @"JPHowFastViewIdentifier";
 {
     JPVideoFrameModel *videoFastModel = _selectFrameModel ? _selectFrameModel : _dataArr.firstObject;
     _frameButton.enabled = NO;
-    [_frameButton setImage:[UIImage imageNamed:videoFastModel.disableImageName] forState:UIControlStateNormal];
+    [_frameButton setImage:JPImageWithName(videoFastModel.disableImageName) forState:UIControlStateNormal];
 //    _filterButton.enabled = NO;
-//    [_filterButton setImage:[UIImage imageNamed:@"Filter-grey"] forState:UIControlStateNormal];
+//    [_filterButton setImage:JPImageWithName(@"Filter-grey") forState:UIControlStateNormal];
     _isOpenFilters = NO;
     [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
@@ -270,7 +270,7 @@ static NSString *JPHowFastViewIdentifier = @"JPHowFastViewIdentifier";
 {
     JPVideoFrameModel *videoFastModel = _selectFrameModel ? _selectFrameModel : _dataArr.firstObject;
     _frameButton.enabled = YES;
-    [_frameButton setImage:[UIImage imageNamed:videoFastModel.selectImageName] forState:UIControlStateNormal];
+    [_frameButton setImage:JPImageWithName(videoFastModel.selectImageName) forState:UIControlStateNormal];
     _filterButton.enabled = YES;
     _filterButton.selected = NO;
     _isOpenFilters = NO;
@@ -308,18 +308,18 @@ static NSString *JPHowFastViewIdentifier = @"JPHowFastViewIdentifier";
         howFastCell.textLabel.text = fastModel.title;
         if (_selectFastModel == nil){
             if (indexPath.row == 1){
-                howFastCell.textLabel.textColor = [UIColor appMainBlueColor];
+                howFastCell.textLabel.textColor = [UIColor jp_colorWithHexString:@"0091FF"];
                 [howFastCell selected:YES];
             }else{
-                howFastCell.textLabel.textColor = [UIColor colorWithHex:0xffffff];
+                howFastCell.textLabel.textColor = [UIColor jp_colorWithHexString:@"ffffff"];
                 [howFastCell selected:NO];
             }
         }else{
             if(_selectFastModel.fastType == fastModel.fastType) {
-                howFastCell.textLabel.textColor = [UIColor appMainBlueColor];
+                howFastCell.textLabel.textColor = [UIColor jp_colorWithHexString:@"0091FF"];
                 [howFastCell selected:YES];
             }else{
-                howFastCell.textLabel.textColor = [UIColor colorWithHex:0xffffff];
+                howFastCell.textLabel.textColor = [UIColor jp_colorWithHexString:@"ffffff"];
                 [howFastCell selected:NO];
             }
         }
@@ -328,10 +328,10 @@ static NSString *JPHowFastViewIdentifier = @"JPHowFastViewIdentifier";
         JPCameraSettingCollectionViewCell *cameraCell = (JPCameraSettingCollectionViewCell *)cell;
         JPVideoFrameModel *frameModel = (JPVideoFrameModel *)model;
         cameraCell.name = frameModel.name;
-//        cameraCell.contentImageView.image = [UIImage imageNamed:frameModel.imageName];
+//        cameraCell.contentImageView.image = JPImageWithName(frameModel.imageName);
         if ((_selectFrameModel == nil && indexPath.row == 0) || (_selectFrameModel.aspectRatio == frameModel.aspectRatio)) {
             [cameraCell selected:YES];
-//            cameraCell.contentImageView.image = [UIImage imageNamed:frameModel.selectImageName];
+//            cameraCell.contentImageView.image = JPImageWithName(frameModel.selectImageName);
         }else{
             [cameraCell selected:NO];
         }
@@ -348,14 +348,14 @@ static NSString *JPHowFastViewIdentifier = @"JPHowFastViewIdentifier";
             _cameraButton.enabled = !(fastModel.fastType == JPVideoHowFastSlow);
             [self.delegate cameraSettingViewDidChangeVideoHowFast:fastModel.fastType];
         }
-        [_howFastButton setImage:[UIImage imageNamed:fastModel.imageName] forState:UIControlStateNormal];
+        [_howFastButton setImage:JPImageWithName(fastModel.imageName) forState:UIControlStateNormal];
         _selectFastModel = fastModel;
     }else{
         JPVideoFrameModel *frameModel = (JPVideoFrameModel *)model;
         if (self.delegate) {
             [self.delegate cameraSettingViewDidChangeVideoFrame:frameModel.aspectRatio];
         }
-        [_frameButton setImage:[UIImage imageNamed:frameModel.selectImageName] forState:UIControlStateNormal];
+        [_frameButton setImage:JPImageWithName(frameModel.selectImageName) forState:UIControlStateNormal];
         _selectFrameModel = frameModel;
     }
     [self.collectionView reloadData];
@@ -380,7 +380,7 @@ static NSString *JPHowFastViewIdentifier = @"JPHowFastViewIdentifier";
         JPVideoFrameModel *model = _dataArr[index];
         if (model.aspectRatio == recordInfo.aspectRatio) {
             selecIndex = index;
-            [_frameButton setImage:[UIImage imageNamed:model.selectImageName] forState:UIControlStateNormal];
+            [_frameButton setImage:JPImageWithName(model.selectImageName) forState:UIControlStateNormal];
             _selectFrameModel = model;
             break;
         }

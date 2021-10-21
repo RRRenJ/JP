@@ -7,26 +7,24 @@
 //
 
 #import "JPCompositionManager.h"
-#import "JPSession.h"
-#import "NSString+MD5.h"
-#import "JPMultiPartFileUploader.h"
+//#import "JPSession.h"
+//#import "JPMultiPartFileUploader.h"
 #import <UIKit/UIKit.h>
-#import "JPTag.h"
-#import "JPUploadedVideoModel.h"
-#import <MPShareSDK/MPShareSDK.h>
-#import "JPShareAccount.h"
-#import "JPAccountBindRulesViewController.h"
+//#import "JPTag.h"
+//#import "JPUploadedVideoModel.h"
+//#import "JPShareAccount.h"
+//#import "JPAccountBindRulesViewController.h"
 #import "JPErrorMessageView.h"
-#import "JPFourGMeesgaeView.h"
-#import "AFNetworkReachabilityManager.h"
+//#import "JPFourGMeesgaeView.h"
+//#import "AFNetworkReachabilityManager.h"
 #include <sys/param.h>
 #include <sys/mount.h>
-#import "JPNewShareViewController.h"
-#import "PKActiveDetailModel.h"
-#import "PKTaskLabelModel.h"
-#import "PKCopyrightModel.h"
+//#import "JPNewShareViewController.h"
+//#import "PKActiveDetailModel.h"
+//#import "PKTaskLabelModel.h"
+//#import "PKCopyrightModel.h"
 
-@interface JPCompositionManager ()<JPMultiPartFileUploaderDelegate, JPErrorMessageViewDelegate, JPFourGMeesgaeViewDelegate>
+@interface JPCompositionManager ()<JPErrorMessageViewDelegate>
 {
     NSString *uploadedCoverPath;
     NSString *uploadedVideoPath;
@@ -45,7 +43,6 @@
     NSString *bgMusicName;
     NSString *shape;
     int recordAudioCount;
-    JPShareAccountType shareAccountType;
     BOOL isPausedUploading;
     BOOL isFirstLoad;
     NSString *cloudIds;
@@ -55,22 +52,22 @@
     BOOL isFormat;
     long long videoFileSize;
     UIAlertView *failedAlert;
-    NSArray <JPTag *> *selectedTag;
+//    NSArray <JPTag *> *selectedTag;
     JPTag *selectedActiveTag;
     NSString *tagId;
     NSString *tagName;
 }
 @property (nonatomic, strong) NSURL *savedVideoAssetUrl;
-@property (nonatomic, strong) JPMultiPartFileUploader *videoFileUploader;
+//@property (nonatomic, strong) JPMultiPartFileUploader *videoFileUploader;
 @property (nonatomic, strong) NSOperationQueue *uploadVideoQueue;
 @property (nonatomic, strong) NSMutableDictionary *videoProgressDic;
 @property (nonatomic, strong) AVAssetExportSession *exportSession;
 @property (nonatomic, strong) JPErrorMessageView *errorMessageView;
-@property (nonatomic, strong) JPFourGMeesgaeView *fourGMeesgaeView;
+//@property (nonatomic, strong) JPFourGMeesgaeView *fourGMeesgaeView;
 
-- (void)pushVideoToThirdPlatformWithType:(NSString *)type
-                           andSharedType:(JPShareAccountType)shareType
-                     withCompletionBlock:(void (^)(JPPushVideoStatusCode code, JPShareAccountType type))completionHandler;
+//- (void)pushVideoToThirdPlatformWithType:(NSString *)type
+//                           andSharedType:(JPShareAccountType)shareType
+//                     withCompletionBlock:(void (^)(JPPushVideoStatusCode code, JPShareAccountType type))completionHandler;
 @end
 
 @implementation JPCompositionManager
@@ -131,7 +128,7 @@
         _manager_id = recordInfo.recordId;
         _stickersArr = stickersArr;
         _videoProgressDic = [NSMutableDictionary dictionary];
-        _videoFileUploader = [[JPMultiPartFileUploader alloc] init];
+//        _videoFileUploader = [[JPMultiPartFileUploader alloc] init];
         _uploadVideoQueue = [[NSOperationQueue alloc] init];
         _uploadVideoQueue.maxConcurrentOperationCount = 1;
         [self creteComposition];
@@ -172,44 +169,44 @@
     if (self.labelIDArray && self.labelIDArray.count > 0) {
         [dict setObject:self.labelIDArray forKey:@"labelIDArray"];
     }else{
-        if (self.labelArr) {
-            NSMutableArray * labelIdArr = @[].mutableCopy;
-            for (PKTaskLabelModel *model in self.labelArr) {
-                [labelIdArr sgrAddObject:model.label_id];
-            }
-            self.labelIDArray = labelIdArr.copy;
-            [dict setObject:self.labelIDArray forKey:@"labelIDArray"];
-        }else{
-            [dict setObject:@[] forKey:@"labelIDArray"];
-        }
+//        if (self.labelArr) {
+//            NSMutableArray * labelIdArr = @[].mutableCopy;
+//            for (PKTaskLabelModel *model in self.labelArr) {
+//                [labelIdArr sgrAddObject:model.label_id];
+//            }
+//            self.labelIDArray = labelIdArr.copy;
+//            [dict setObject:self.labelIDArray forKey:@"labelIDArray"];
+//        }else{
+//            [dict setObject:@[] forKey:@"labelIDArray"];
+//        }
     }
     if (self.labels) {
         [dict setObject:self.labels forKey:@"labels"];
     }else{
-        if (self.labelArr) {
-            NSMutableArray * labelNameArray = @[].mutableCopy;
-            for (PKTaskLabelModel *model in self.labelArr) {
-                [labelNameArray sgrAddObject:model.label_name];
-            }
-            self.labels = [labelNameArray componentsJoinedByString:@","];
-            [dict setObject:self.labels forKey:@"labels"];
-        }else{
-            [dict setObject:@"" forKey:@"labels"];
-        }
+//        if (self.labelArr) {
+//            NSMutableArray * labelNameArray = @[].mutableCopy;
+//            for (PKTaskLabelModel *model in self.labelArr) {
+//                [labelNameArray sgrAddObject:model.label_name];
+//            }
+//            self.labels = [labelNameArray componentsJoinedByString:@","];
+//            [dict setObject:self.labels forKey:@"labels"];
+//        }else{
+//            [dict setObject:@"" forKey:@"labels"];
+//        }
     }
     if (self.copyrightIDArray && self.copyrightIDArray.count > 0) {
         [dict setObject:self.copyrightIDArray forKey:@"copyroghtIDArray"];
     }else{
-        if (self.copyrightArr) {
-            NSMutableArray * copyrightIdArr = @[].mutableCopy;
-            for (PKCopyrightModel *model in self.copyrightArr) {
-                [copyrightIdArr sgrAddObject:model.copr_id];
-            }
-            self.copyrightIDArray = copyrightIdArr.copy;
-            [dict setObject:self.copyrightIDArray forKey:@"copyroghtIDArray"];
-        }else{
-            [dict setObject:@[] forKey:@"copyroghtIDArray"];
-        }
+//        if (self.copyrightArr) {
+//            NSMutableArray * copyrightIdArr = @[].mutableCopy;
+//            for (PKCopyrightModel *model in self.copyrightArr) {
+//                [copyrightIdArr sgrAddObject:model.copr_id];
+//            }
+//            self.copyrightIDArray = copyrightIdArr.copy;
+//            [dict setObject:self.copyrightIDArray forKey:@"copyroghtIDArray"];
+//        }else{
+//            [dict setObject:@[] forKey:@"copyroghtIDArray"];
+//        }
     }
     if (self.works_hope_id) {
         [dict setObject:self.works_hope_id forKey:@"works_hope_id"];
@@ -307,11 +304,11 @@
 //- (void)faildToAuth:(NSNotification *)notification {
 //    JPShareAccountType type = (JPShareAccountType)[[notification object] integerValue];
 //    if (JPShareAccountTypeWeiBo == type) {
-//        [[JPAppDelegate shareAppdelegate] showAlertViewWithTitle:@"微博账号绑定失败。"];
+//        [MBProgressHUD jp_showMessage:@"微博账号绑定失败。"];
 //    } else if (JPShareAccountTypeTouTiao == type){
-//        [[JPAppDelegate shareAppdelegate] showAlertViewWithTitle:@"头条账号绑定失败。"];
+//        [MBProgressHUD jp_showMessage:@"头条账号绑定失败。"];
 //    }else if (JPShareAccountTypeAiQiYi == type){
-//        [[JPAppDelegate shareAppdelegate] showAlertViewWithTitle:@"爱奇艺账号绑定失败。"];
+//        [MBProgressHUD jp_showMessage:@"爱奇艺账号绑定失败。"];
 //    }
 //}
 
@@ -373,16 +370,17 @@
             NSURL *originUrl = url;
             if (videoUrl == nil) {
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    
                     if (self.delegate && [self.delegate respondsToSelector:@selector(compositionErrorWillEndEdit)]) {
                         [self.delegate compositionErrorWillEndEdit];
                     }
                     weakSelf.compositinType = JPCompositionTypeCompositionFaild;
-//                    JPErrorMessageView *errorView = [[JPErrorMessageView alloc] initWithErrorType:JPErrorMessageViewTypeComposition];
-//                    errorView.delegate = self;
+                    if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(compositionStatusChangeed:)]) {
+                        [weakSelf.delegate compositionStatusChangeed:weakSelf];
+                    }
                 });
                 return ;
-            }else
-            {
+            }else{
                 if ([self getDivceSize] < 500 * 1024 * 1024) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         if (self.delegate && [self.delegate respondsToSelector:@selector(compositionErrorWillEndEdit)]) {
@@ -440,19 +438,19 @@
     }
 }
 
-- (void)fourGMeesgaeViewWillContinue:(BOOL)willContinue
-{
-    _fourGMeesgaeView = nil;
-    if (willContinue == YES) {
-        [self startUploadFile];
-    }else{
-        _toMyPage = YES;
-        if ([self.baseViewController isKindOfClass:[JPNewShareViewController class]]) {
-            [self fileUploaderDidPausedByUser:_videoFileUploader];
-        }
-    }
-    
-}
+//- (void)fourGMeesgaeViewWillContinue:(BOOL)willContinue
+//{
+//    _fourGMeesgaeView = nil;
+//    if (willContinue == YES) {
+//        [self startUploadFile];
+//    }else{
+//        _toMyPage = YES;
+////        if ([self.baseViewController isKindOfClass:[JPNewShareViewController class]]) {
+////            [self fileUploaderDidPausedByUser:_videoFileUploader];
+////        }
+//    }
+//
+//}
 
 - (void)errorViewWillDismiss:(JPErrorMessageView *)errorView
 {
@@ -461,38 +459,38 @@
             [self.delegate compositionErrorWillBackToPage];
         }
     }else if(errorView.errorType == JPErrorMessageViewTypeNetwork){
-        if(errorView.tag == UPLOAD_FAILD_ALERT_TAG)
-        {
-            videoFileSize = _videoFileUploader.fileSize;
-            [self uploadFaildToSave];
-        }
+//        if(errorView.tag == UPLOAD_FAILD_ALERT_TAG)
+//        {
+//            videoFileSize = _videoFileUploader.fileSize;
+//            [self uploadFaildToSave];
+//        }
     }
 }
 
-- (void)setCurrentTags:(NSArray<JPTag *> *)currentTags
-{
-    selectedTag = currentTags;
-    tagId = @"";
-    tagName = @"";
-    for (JPTag *tag in selectedTag) {
-        if (tagId && tagId.length) {
-            tagId = [tagId stringByAppendingString:@","];
-        }
-        tagId = [tagId stringByAppendingString:tag.tagId];
-        if (tagName && tagName.length) {
-            tagName = [tagName stringByAppendingString:@","];
-        }
-        tagName = [tagName stringByAppendingString:tag.name];
-    }
-}
+//- (void)setCurrentTags:(NSArray<JPTag *> *)currentTags
+//{
+//    selectedTag = currentTags;
+//    tagId = @"";
+//    tagName = @"";
+//    for (JPTag *tag in selectedTag) {
+//        if (tagId && tagId.length) {
+//            tagId = [tagId stringByAppendingString:@","];
+//        }
+//        tagId = [tagId stringByAppendingString:tag.tagId];
+//        if (tagName && tagName.length) {
+//            tagName = [tagName stringByAppendingString:@","];
+//        }
+//        tagName = [tagName stringByAppendingString:tag.name];
+//    }
+//}
 
 
 
 
-- (NSArray <JPTag *> *)currentTags
-{
-    return selectedTag;
-}
+//- (NSArray <JPTag *> *)currentTags
+//{
+//    return selectedTag;
+//}
 
 
 - (void)setCurrentActiveTags:(JPTag *)currentActiveTags
@@ -517,16 +515,16 @@
     NSString *filter = self.filterName ? self.filterName: @"";
     //1:同意公开   2:不同意公开
     NSNumber *isSecrest = isPublish ? @(1) : @(2);
-    NSString *location = isLocate ? [JPSession sharedInstance].streetName: @"";
+//    NSString *location = isLocate ? [JPSession sharedInstance].streetName: @"";
     CGFloat w = videoSize.width;
     CGFloat h = videoSize.height;
     NSString *title = videoTitle;
     if (title == nil || title.length == 0 || [title isEqualToString:@"杰出的作品都需要一个好名字"]) {
-        title = JP_VIDEO_SHARE_TITLE;
+//        title = JP_VIDEO_SHARE_TITLE;
     }
     
-    NSString *activeId = selectedActiveTag ? selectedActiveTag.tagId: @"";
-    NSString *activeName = selectedActiveTag ? selectedActiveTag.name: @"";
+//    NSString *activeId = selectedActiveTag ? selectedActiveTag.tagId: @"";
+//    NSString *activeName = selectedActiveTag ? selectedActiveTag.name: @"";
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic sgrSetObject:[path lastPathComponent] forKey:@"videoLocalPath"];
@@ -540,15 +538,15 @@
     [dic sgrSetObject:[NSNumber numberWithFloat:w] forKey:@"width"];
     [dic sgrSetObject:tagId forKey:@"tagId"];
     [dic sgrSetObject:tagName forKey:@"tagName"];
-    [dic sgrSetObject:location forKey:@"location"];
+//    [dic sgrSetObject:location forKey:@"location"];
     [dic sgrSetObject:@([[NSDate date] timeIntervalSince1970]) forKey:@"createDate"];
     [dic sgrSetObject:@(size) forKey:@"videoSize"];
-    if (activeId != nil) {
-        [dic sgrSetObject:activeId forKey:@"activityId"];
-    }
-    if (activeName != nil) {
-        [dic sgrSetObject:activeName forKey:@"activityName"];
-    }
+//    if (activeId != nil) {
+//        [dic sgrSetObject:activeId forKey:@"activityId"];
+//    }
+//    if (activeName != nil) {
+//        [dic sgrSetObject:activeName forKey:@"activityName"];
+//    }
     if (patterns && patterns.length) {
         [dic sgrSetObject:patterns forKey:@"element"];
     }
@@ -561,138 +559,138 @@
     if (recordAudioCount > 0) {
         [dic sgrSetObject:@(recordAudioCount) forKey:@"recordCount"];
     }
-    JPUploadedVideoModel *model = [JPUploadedVideoModel mj_objectWithKeyValues:dic];
-    [model insertToDB];
+//    JPUploadedVideoModel *model = [JPUploadedVideoModel mj_objectWithKeyValues:dic];
+//    [model insertToDB];
 }
 #pragma mark - JPMultiPartFileUploaderDelegate
 
 /* 文件上传失败 */
-- (void)fileUploaderDidFailToUploadFile:(JPMultiPartFileUploader *)uploader {
-    if (_errorMessageView) {
-        return;
-    }
-    dispatch_queue_t queue = dispatch_queue_create("data", 0);
-    dispatch_async(queue, ^{
-        self.compositinType = JPCompositionTypeuploadFaild;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            JPErrorMessageView *errorView = [[JPErrorMessageView alloc] initWithErrorType:JPErrorMessageViewTypeNetwork];
-            errorView.delegate = self;
-            errorView.tag = UPLOAD_FAILD_ALERT_TAG;
-            _errorMessageView = errorView;
-        });
-    });
-}
-
-/*文件暂停上传 */
-- (void)fileUploaderDidPausedToUploadFile:(JPMultiPartFileUploader *)uploader {
-    
-}
-
-/* 文件分割成PartsCount个分片，准备上传 */
-- (void)fileUploader:(JPMultiPartFileUploader *)uploader willUploadFileWithNumberOfParts:(NSInteger)PartsCount {
-    if ([uploader isEqual:_videoFileUploader] && !isPausedUploading) {//上传视频
-        _compositinType = JPCompositionTypeUploading;
-        _uploadProgress = 0.0;
-        videoLastProgress = 0.f;//视频合成进度
-        videoLastDate = [NSDate date];
-    }
-    isPausedUploading = NO;
-}
-
-/* 获取某个分片的上传进度 */
-- (void)fileUploader:(JPMultiPartFileUploader *)uploader UploadProgressed:(double)progress ofPartID:(NSInteger)partID {
-    if ([uploader isEqual:_videoFileUploader]) {//上传视频
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSString *key = [NSString stringWithFormat:@"%ld",(long)partID];
-            if ([[_videoProgressDic allKeys] containsObject:key]) {
-                CGFloat partPro = [[_videoProgressDic valueForKey:[NSString stringWithFormat:@"%ld",(long)partID]] floatValue];
-                if (partPro < progress) {
-                    [_videoProgressDic sgrSetObject:[NSString stringWithFormat:@"%f",progress] forKey:[NSString stringWithFormat:@"%ld",(long)partID]];
-                }
-            } else {
-                [_videoProgressDic sgrSetObject:[NSString stringWithFormat:@"%f",progress] forKey:[NSString stringWithFormat:@"%ld",(long)partID]];
-            }
-            double pro = 0.f;
-            for (NSString *key in [_videoProgressDic allKeys]) {
-                pro += [[_videoProgressDic valueForKey:key] doubleValue];
-            }
-            float p = pro/uploader.numberOfParts;
-            
-            if (p > videoLastProgress) {//断点续传
-                NSDate *currentDate = [NSDate date];
-                double time = [currentDate timeIntervalSinceDate:videoLastDate];
-                if (time >= 1) {
-                    videoLastDate = currentDate;
-                    videoLastProgress = p;
-                    _uploadProgress = p;
-                    if (self.delegate && [self.delegate respondsToSelector:@selector(compositionStatusChangeed:)]) {
-                        [self.delegate compositionStatusChangeed:self];
-                    }
-                    
-                }
-            }
-        });
-    }
-}
-
-/* 某个分片上传完成 */
-- (void)fileUploader:(JPMultiPartFileUploader *)uploader didUploadedPartID:(NSInteger)partID descFilename:(NSString *)fileName {
-    if ([uploader isEqual:_videoFileUploader]) {//上传视频
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [_videoProgressDic sgrSetObject:@"1.00000" forKey:[NSString stringWithFormat:@"%ld",(long)partID]];
-            double pro = 0.f;
-            for (NSString *key in [_videoProgressDic allKeys]) {
-                pro += [[_videoProgressDic valueForKey:key] doubleValue];
-            }
-            float p = pro/uploader.numberOfParts;
-            if (p > videoLastProgress) {//断点续传
-                videoLastProgress = p;
-                _uploadProgress = p;
-                if (self.delegate && [self.delegate respondsToSelector:@selector(compositionStatusChangeed:)]) {
-                    [self.delegate compositionStatusChangeed:self];
-                }
-            }
-        });
-    }
-}
-
-/* 整个文件上传成功 */
-- (void)fileUploaderDidFinishUploadingFile:(JPMultiPartFileUploader *)uploader {
-    uploadedVideoPath = uploader.descFilename;
-    if ([[NSFileManager defaultManager] fileExistsAtPath:uploader.filePathUrl]) {
-        [[NSFileManager defaultManager] removeItemAtPath:uploader.filePathUrl error:nil];
-    }
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.compositinType = JPCompositionTypeWaitedShare;
-        self.uploadProgress = 1.0;
-        if (self.delegate && [self.delegate respondsToSelector:@selector(compositionStatusChangeed:)]) {
-            [self.delegate compositionStatusChangeed:self];
-        }
-    });
-    
-}
-
-/* 放弃文件的上传 */
-- (void)fileUploaderDidAbort:(JPMultiPartFileUploader *)uploader {
-    
-}
-
-- (void)fileUploaderDidPausedByUser:(JPMultiPartFileUploader *)uploader {
-    [self uploadFaildToSave];
-}
-
-- (void)uploadFaildToSave
-{
-    dispatch_queue_t queue = dispatch_queue_create("data", 0);
-    dispatch_async(queue, ^{
-        [self savedVideoIntoDBWithFilePath:[self.videoUrl absoluteString] withVideoSize:videoFileSize];
-        [self destructionTheCompositionPlayer];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            BOOL toHotList = NO;
-            [[NSNotificationCenter defaultCenter] postNotificationName:FINISHEDUPLOADVIDEOFAILNOTIFICATION object:[NSNumber numberWithBool:toHotList]];
-        });
-    });
-}
+//- (void)fileUploaderDidFailToUploadFile:(JPMultiPartFileUploader *)uploader {
+//    if (_errorMessageView) {
+//        return;
+//    }
+//    dispatch_queue_t queue = dispatch_queue_create("data", 0);
+//    dispatch_async(queue, ^{
+//        self.compositinType = JPCompositionTypeuploadFaild;
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            JPErrorMessageView *errorView = [[JPErrorMessageView alloc] initWithErrorType:JPErrorMessageViewTypeNetwork];
+//            errorView.delegate = self;
+//            errorView.tag = UPLOAD_FAILD_ALERT_TAG;
+//            _errorMessageView = errorView;
+//        });
+//    });
+//}
+//
+///*文件暂停上传 */
+//- (void)fileUploaderDidPausedToUploadFile:(JPMultiPartFileUploader *)uploader {
+//
+//}
+//
+///* 文件分割成PartsCount个分片，准备上传 */
+//- (void)fileUploader:(JPMultiPartFileUploader *)uploader willUploadFileWithNumberOfParts:(NSInteger)PartsCount {
+//    if ([uploader isEqual:_videoFileUploader] && !isPausedUploading) {//上传视频
+//        _compositinType = JPCompositionTypeUploading;
+//        _uploadProgress = 0.0;
+//        videoLastProgress = 0.f;//视频合成进度
+//        videoLastDate = [NSDate date];
+//    }
+//    isPausedUploading = NO;
+//}
+//
+///* 获取某个分片的上传进度 */
+//- (void)fileUploader:(JPMultiPartFileUploader *)uploader UploadProgressed:(double)progress ofPartID:(NSInteger)partID {
+//    if ([uploader isEqual:_videoFileUploader]) {//上传视频
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            NSString *key = [NSString stringWithFormat:@"%ld",(long)partID];
+//            if ([[_videoProgressDic allKeys] containsObject:key]) {
+//                CGFloat partPro = [[_videoProgressDic valueForKey:[NSString stringWithFormat:@"%ld",(long)partID]] floatValue];
+//                if (partPro < progress) {
+//                    [_videoProgressDic sgrSetObject:[NSString stringWithFormat:@"%f",progress] forKey:[NSString stringWithFormat:@"%ld",(long)partID]];
+//                }
+//            } else {
+//                [_videoProgressDic sgrSetObject:[NSString stringWithFormat:@"%f",progress] forKey:[NSString stringWithFormat:@"%ld",(long)partID]];
+//            }
+//            double pro = 0.f;
+//            for (NSString *key in [_videoProgressDic allKeys]) {
+//                pro += [[_videoProgressDic valueForKey:key] doubleValue];
+//            }
+//            float p = pro/uploader.numberOfParts;
+//
+//            if (p > videoLastProgress) {//断点续传
+//                NSDate *currentDate = [NSDate date];
+//                double time = [currentDate timeIntervalSinceDate:videoLastDate];
+//                if (time >= 1) {
+//                    videoLastDate = currentDate;
+//                    videoLastProgress = p;
+//                    _uploadProgress = p;
+//                    if (self.delegate && [self.delegate respondsToSelector:@selector(compositionStatusChangeed:)]) {
+//                        [self.delegate compositionStatusChangeed:self];
+//                    }
+//
+//                }
+//            }
+//        });
+//    }
+//}
+//
+///* 某个分片上传完成 */
+//- (void)fileUploader:(JPMultiPartFileUploader *)uploader didUploadedPartID:(NSInteger)partID descFilename:(NSString *)fileName {
+//    if ([uploader isEqual:_videoFileUploader]) {//上传视频
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [_videoProgressDic sgrSetObject:@"1.00000" forKey:[NSString stringWithFormat:@"%ld",(long)partID]];
+//            double pro = 0.f;
+//            for (NSString *key in [_videoProgressDic allKeys]) {
+//                pro += [[_videoProgressDic valueForKey:key] doubleValue];
+//            }
+//            float p = pro/uploader.numberOfParts;
+//            if (p > videoLastProgress) {//断点续传
+//                videoLastProgress = p;
+//                _uploadProgress = p;
+//                if (self.delegate && [self.delegate respondsToSelector:@selector(compositionStatusChangeed:)]) {
+//                    [self.delegate compositionStatusChangeed:self];
+//                }
+//            }
+//        });
+//    }
+//}
+//
+///* 整个文件上传成功 */
+//- (void)fileUploaderDidFinishUploadingFile:(JPMultiPartFileUploader *)uploader {
+//    uploadedVideoPath = uploader.descFilename;
+//    if ([[NSFileManager defaultManager] fileExistsAtPath:uploader.filePathUrl]) {
+//        [[NSFileManager defaultManager] removeItemAtPath:uploader.filePathUrl error:nil];
+//    }
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        self.compositinType = JPCompositionTypeWaitedShare;
+//        self.uploadProgress = 1.0;
+//        if (self.delegate && [self.delegate respondsToSelector:@selector(compositionStatusChangeed:)]) {
+//            [self.delegate compositionStatusChangeed:self];
+//        }
+//    });
+//
+//}
+//
+///* 放弃文件的上传 */
+//- (void)fileUploaderDidAbort:(JPMultiPartFileUploader *)uploader {
+//
+//}
+//
+//- (void)fileUploaderDidPausedByUser:(JPMultiPartFileUploader *)uploader {
+//    [self uploadFaildToSave];
+//}
+//
+//- (void)uploadFaildToSave
+//{
+//    dispatch_queue_t queue = dispatch_queue_create("data", 0);
+//    dispatch_async(queue, ^{
+//        [self savedVideoIntoDBWithFilePath:[self.videoUrl absoluteString] withVideoSize:videoFileSize];
+//        [self destructionTheCompositionPlayer];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            BOOL toHotList = NO;
+//            [[NSNotificationCenter defaultCenter] postNotificationName:FINISHEDUPLOADVIDEOFAILNOTIFICATION object:[NSNumber numberWithBool:toHotList]];
+//        });
+//    });
+//}
 
 - (void)destructionTheCompositionPlayer
 {
@@ -817,22 +815,22 @@
 }
 
 
-- (void)startUploadFile
-{
-    if (_fourGMeesgaeView || _errorMessageView) {
-        return;
-    }
-    NSString *fileName = [NSString stringWithFormat:@"%@%@",[JPSession sharedInstance].UUID,[self.videoUrl lastPathComponent]];
-    if ([fileName rangeOfString:@".mp4"].location != NSNotFound) {
-        fileName = [[fileName componentsSeparatedByString:@".mp4"] firstObject];
-        if (fileName && fileName.length) {
-            fileName = [fileName md5];
-        }
-        fileName = [fileName stringByAppendingString:@".mp4"];
-    }
-    [self.videoFileUploader uploadFileAtUrl:[self.videoUrl absoluteString] fileName:fileName operationQueue:self.uploadVideoQueue delegate:self toCheckWWan:NO];
-    
-}
+//- (void)startUploadFile
+//{
+//    if (_fourGMeesgaeView || _errorMessageView) {
+//        return;
+//    }
+//    NSString *fileName = [NSString stringWithFormat:@"%@",[self.videoUrl lastPathComponent]];
+//    if ([fileName rangeOfString:@".mp4"].location != NSNotFound) {
+//        fileName = [[fileName componentsSeparatedByString:@".mp4"] firstObject];
+//        if (fileName && fileName.length) {
+//            fileName = [fileName md5];
+//        }
+//        fileName = [fileName stringByAppendingString:@".mp4"];
+//    }
+//    [self.videoFileUploader uploadFileAtUrl:[self.videoUrl absoluteString] fileName:fileName operationQueue:self.uploadVideoQueue delegate:self toCheckWWan:NO];
+//
+//}
 
 - (void)appBecomeBackgound
 {
@@ -867,7 +865,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];
     [self destructionTheCompositionPlayer];
-    [_videoFileUploader cancel];
+//    [_videoFileUploader cancel];
     [_uploadVideoQueue cancelAllOperations];
     
 }
@@ -875,7 +873,7 @@
 - (void)generateTenMinueteVideoWithWithCompletion:(void (^)(BOOL))completion
 {
     self.baseViewController.view.userInteractionEnabled = NO;
-    [self.baseViewController showHUD];
+    [self.baseViewController jp_showHUD];
     self.tenMinVideoUrl = [JPVideoUtil fileURLForDocumentMovieMP4];
     CMTime nextClistartTime = kCMTimeZero;
     NSDictionary *inputOptions = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
@@ -957,373 +955,373 @@
                 
             }
             self.baseViewController.view.userInteractionEnabled = YES;
-            [self.baseViewController hidHUD];
+            [self.baseViewController jp_hideHUD];
         });
     }];
     
 }
 
 
-- (void)pushLocalVideoToShareType:(JPShareAccountType)shareType
-{
-    [[UIApplication sharedApplication] openURL:[NSURL  URLWithString:@"weixin://"]];
-}
+//- (void)pushLocalVideoToShareType:(JPShareAccountType)shareType
+//{
+//    [[UIApplication sharedApplication] openURL:[NSURL  URLWithString:@"weixin://"]];
+//}
 
 
 
-- (void)shareLinkToShareType:(JPShareAccountType)shareType
-{
-    if ([JPUtil installMessageWithPlatform:shareType] == NO) {
-        return;
-    }
-    UMSocialPlatformType platformtype = UMSocialPlatformType_WechatSession;
-    switch (shareType) {
-        case JPShareAccountTypeWeiXin:
-            sharedType = @"weixin";
-            platformtype = UMSocialPlatformType_WechatSession;
-            break;
-        case JPShareAccountTypePengYouQuan:
-            sharedType = @"friend";
-            platformtype = UMSocialPlatformType_WechatTimeLine;
-            break;
-        case JPShareAccountTypeWeiBo:
-            sharedType = @"weibo";
-            platformtype = UMSocialPlatformType_Sina;
-            break;
-        case JPShareAccountTypeQQZone:
-            sharedType = @"qzone";
-            platformtype = UMSocialPlatformType_Qzone;
-            break;
-        default:
-            break;
-    }
-    shareAccountType = shareType;
-    __weak typeof(self) weakSelf = self;
-    [self submitVideoInfoWithCompletionBlock:^(BOOL success){
-        if (success) {
-            [weakSelf shareWebPageToPlatformType:platformtype];
-        }
-    }];
-    
-}
+//- (void)shareLinkToShareType:(JPShareAccountType)shareType
+//{
+//    if ([JPUtil installMessageWithPlatform:shareType] == NO) {
+//        return;
+//    }
+//    UMSocialPlatformType platformtype = UMSocialPlatformType_WechatSession;
+//    switch (shareType) {
+//        case JPShareAccountTypeWeiXin:
+//            sharedType = @"weixin";
+//            platformtype = UMSocialPlatformType_WechatSession;
+//            break;
+//        case JPShareAccountTypePengYouQuan:
+//            sharedType = @"friend";
+//            platformtype = UMSocialPlatformType_WechatTimeLine;
+//            break;
+//        case JPShareAccountTypeWeiBo:
+//            sharedType = @"weibo";
+//            platformtype = UMSocialPlatformType_Sina;
+//            break;
+//        case JPShareAccountTypeQQZone:
+//            sharedType = @"qzone";
+//            platformtype = UMSocialPlatformType_Qzone;
+//            break;
+//        default:
+//            break;
+//    }
+//    shareAccountType = shareType;
+//    __weak typeof(self) weakSelf = self;
+//    [self submitVideoInfoWithCompletionBlock:^(BOOL success){
+//        if (success) {
+//            [weakSelf shareWebPageToPlatformType:platformtype];
+//        }
+//    }];
+//
+//}
 
-- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType {
-    NSString *des = videoTitle;
-    if (des == nil || des.length == 0 || [des isEqualToString:@"杰出的作品都需要一个好名字"]) {
-        des = JP_VIDEO_SHARE_TITLE;
-    }
-    UIImage *img = [JPUtil zoomImage:self.firstThumbImage toScale:CGSizeMake(100, 100)];
-    NSString *linkUrl;
-    if (videoId && videoId.length) {
-        //设置网页地址
-        linkUrl = [NSString stringWithFormat:@"%@?uuid=%@&app_version=%@",kShareUrl,videoId, JP_APP_VERSION];
-    } else {
-        //设置网页地址
-        linkUrl = kShareUrl;
-    }
-    NSString *tittle = @"我的蕉片作品";
-    if ([JPUserInfo shareInstance].isLogin && [JPUserInfo shareInstance].user_nickname && [JPUserInfo shareInstance].user_nickname.length) {
-        tittle = [NSString stringWithFormat:@"%@的蕉片作品",[JPUserInfo shareInstance].user_nickname];
-    }
-    [JPUtil shareWebPageWithType:platformType
-                       andTittle:tittle
-                      andLinkUrl:linkUrl
-                         andDesc:des
-                     andThumbImg:img
-                       andImgUrl:nil
-                   andSharedType:sharedType
-                      andVideoId:videoId];
-}
+//- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType {
+//    NSString *des = videoTitle;
+//    if (des == nil || des.length == 0 || [des isEqualToString:@"杰出的作品都需要一个好名字"]) {
+//        des = JP_VIDEO_SHARE_TITLE;
+//    }
+//    UIImage *img = [JPUtil zoomImage:self.firstThumbImage toScale:CGSizeMake(100, 100)];
+//    NSString *linkUrl;
+//    if (videoId && videoId.length) {
+//        //设置网页地址
+//        linkUrl = [NSString stringWithFormat:@"%@?uuid=%@&app_version=%@",kShareUrl,videoId, JP_APP_VERSION];
+//    } else {
+//        //设置网页地址
+//        linkUrl = kShareUrl;
+//    }
+//    NSString *tittle = @"我的蕉片作品";
+//    if ([JPUserInfo shareInstance].isLogin && [JPUserInfo shareInstance].user_nickname && [JPUserInfo shareInstance].user_nickname.length) {
+//        tittle = [NSString stringWithFormat:@"%@的蕉片作品",[JPUserInfo shareInstance].user_nickname];
+//    }
+//    [JPUtil shareWebPageWithType:platformType
+//                       andTittle:tittle
+//                      andLinkUrl:linkUrl
+//                         andDesc:des
+//                     andThumbImg:img
+//                       andImgUrl:nil
+//                   andSharedType:sharedType
+//                      andVideoId:videoId];
+//}
+//
+//- (void)uploadFail
+//{
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        JPErrorMessageView *errorView = [[JPErrorMessageView alloc] initWithErrorType:JPErrorMessageViewTypeNetwork];
+//        errorView.delegate = self;
+//    });
+//
+//}
 
-- (void)uploadFail
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        JPErrorMessageView *errorView = [[JPErrorMessageView alloc] initWithErrorType:JPErrorMessageViewTypeNetwork];
-        errorView.delegate = self;
-    });
 
-}
-
-
-- (void)submitVideoInfoWithCompletionBlock:(void (^)(BOOL success))completionHandler {
-    if (MAX_TOU_TIAO_CONTENT_LENGTH < videoTitle.length){
-        [[JPAppDelegate shareAppdelegate] showAlertViewWithTitle:@"标题至多不超过20个字符，请重新输入。"];
-        return;
-    }
-    if (!uploadedVideoPath) {
-        if (completionHandler) {
-            [self uploadFail];
-            completionHandler(NO);
-        }
-        return;
-    } else if (videoId){
-        if (completionHandler) {
-            completionHandler(YES);
-        }
-        return;
-    }
-    NSString *activeId = selectedActiveTag.tagId ? selectedActiveTag.tagId : nil;
-    [self.baseViewController showHUD];
-    self.baseViewController.view.userInteractionEnabled = NO;
-    NSString *filter = self.filterName ? self.filterName: @"";
-    NSString *url = [NSString stringWithFormat:@"%@user/submit-video-info",API_HOST];
-    //1:同意公开   2:不同意公开
-    NSNumber *isSecrest = isPublish ? @(1) : @(2);
-    NSString *location = isLocate ? [JPSession sharedInstance].streetName: @"";
-    CGFloat w = videoSize.width;
-    CGFloat h = videoSize.height;
-    NSString *title = videoTitle;
-    if (title == nil || title.length == 0 || [title isEqualToString:@"杰出的作品都需要一个好名字"]) {
-        title = JP_VIDEO_SHARE_TITLE;
-    }
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic sgrSetObject:[JPUserInfo shareInstance].token forKey:@"token"];
-    [dic sgrSetObject:uploadedVideoPath forKey:@"video_url"];
-    [dic sgrSetObject:title forKey:@"title"];
-    [dic sgrSetObject:isSecrest forKey:@"is_secret"];
-    [dic sgrSetObject:@(CMTimeGetSeconds(videoDuration)) forKey:@"video_len"];
-    [dic sgrSetObject:@(videoSegment) forKey:@"segment"];
-    [dic sgrSetObject:filter forKey:@"video_filter"];
-    [dic sgrSetObject:[NSNumber numberWithFloat:h] forKey:@"height"];
-    [dic sgrSetObject:[NSNumber numberWithFloat:w] forKey:@"width"];
-    [dic sgrSetObject:tagId forKey:@"tag_id"];
-    [dic sgrSetObject:location forKey:@"location"];
-    if (activeId != nil) {
-        [dic sgrSetObject:activeId forKey:@"activity_id"];
-    }
-    if (patterns && patterns.length) {
-        [dic sgrSetObject:patterns forKey:@"video_element"];
-    }
-    if (shape && shape.length) {
-        [dic sgrSetObject:shape forKey:@"shape"];
-    }
-    if (bgMusicName && bgMusicName.length) {
-        [dic sgrSetObject:bgMusicName forKey:@"music"];
-    }
-    if (recordAudioCount > 0) {
-        [dic sgrSetObject:@(recordAudioCount) forKey:@"recording"];
-    }
-    [JPUtil requestBodyAddParameterWithDic:dic];
-    [JPService requestWithURLString:url
-                         parameters:dic
-                               type:JPHttpRequestTypePost
-                            success:^(JPResultBase *response){
-                                self.baseViewController.view.userInteractionEnabled = YES;
-                                [self.baseViewController hidHUD];
-                                if (response && 0 == [response.code intValue]) {
-                                    if (response.data && [response.data isKindOfClass:[NSDictionary class]]) {
-                                        videoId = [response.data valueForKey:@"uuid"];
-                                        if (videoId && videoId.length) {
-                                            [self videoRecord];
-                                        }
-                                        if (completionHandler) {
-                                            completionHandler(YES);
-                                            return ;
-                                        }
-                                    }
-                                }
-                                if (completionHandler) {
-                                    [self uploadFail];
-                                    completionHandler(NO);
-                                }
-                            }failure:^(NSError *error){
-                                self.baseViewController.view.userInteractionEnabled = YES;
-                                [self.baseViewController hidHUD];
-                                if (completionHandler) {
-                                    [self uploadFail];
-                                    completionHandler(NO);
-                                }
-                            } withErrorMsg:nil];
-}
+//- (void)submitVideoInfoWithCompletionBlock:(void (^)(BOOL success))completionHandler {
+//    if (MAX_TOU_TIAO_CONTENT_LENGTH < videoTitle.length){
+//        [MBProgressHUD jp_showMessage:@"标题至多不超过20个字符，请重新输入。"];
+//        return;
+//    }
+//    if (!uploadedVideoPath) {
+//        if (completionHandler) {
+//            [self uploadFail];
+//            completionHandler(NO);
+//        }
+//        return;
+//    } else if (videoId){
+//        if (completionHandler) {
+//            completionHandler(YES);
+//        }
+//        return;
+//    }
+//    NSString *activeId = selectedActiveTag.tagId ? selectedActiveTag.tagId : nil;
+//    [self.baseViewController jp_showHUD];
+//    self.baseViewController.view.userInteractionEnabled = NO;
+//    NSString *filter = self.filterName ? self.filterName: @"";
+//    NSString *url = [NSString stringWithFormat:@"%@user/submit-video-info",API_HOST];
+//    //1:同意公开   2:不同意公开
+//    NSNumber *isSecrest = isPublish ? @(1) : @(2);
+////    NSString *location = isLocate ? [JPSession sharedInstance].streetName: @"";
+//    CGFloat w = videoSize.width;
+//    CGFloat h = videoSize.height;
+//    NSString *title = videoTitle;
+//    if (title == nil || title.length == 0 || [title isEqualToString:@"杰出的作品都需要一个好名字"]) {
+//        title = JP_VIDEO_SHARE_TITLE;
+//    }
+//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+//    [dic sgrSetObject:[JPUserInfo shareInstance].token forKey:@"token"];
+//    [dic sgrSetObject:uploadedVideoPath forKey:@"video_url"];
+//    [dic sgrSetObject:title forKey:@"title"];
+//    [dic sgrSetObject:isSecrest forKey:@"is_secret"];
+//    [dic sgrSetObject:@(CMTimeGetSeconds(videoDuration)) forKey:@"video_len"];
+//    [dic sgrSetObject:@(videoSegment) forKey:@"segment"];
+//    [dic sgrSetObject:filter forKey:@"video_filter"];
+//    [dic sgrSetObject:[NSNumber numberWithFloat:h] forKey:@"height"];
+//    [dic sgrSetObject:[NSNumber numberWithFloat:w] forKey:@"width"];
+//    [dic sgrSetObject:tagId forKey:@"tag_id"];
+//    [dic sgrSetObject:location forKey:@"location"];
+//    if (activeId != nil) {
+//        [dic sgrSetObject:activeId forKey:@"activity_id"];
+//    }
+//    if (patterns && patterns.length) {
+//        [dic sgrSetObject:patterns forKey:@"video_element"];
+//    }
+//    if (shape && shape.length) {
+//        [dic sgrSetObject:shape forKey:@"shape"];
+//    }
+//    if (bgMusicName && bgMusicName.length) {
+//        [dic sgrSetObject:bgMusicName forKey:@"music"];
+//    }
+//    if (recordAudioCount > 0) {
+//        [dic sgrSetObject:@(recordAudioCount) forKey:@"recording"];
+//    }
+//    [JPUtil requestBodyAddParameterWithDic:dic];
+//    [JPService requestWithURLString:url
+//                         parameters:dic
+//                               type:JPHttpRequestTypePost
+//                            success:^(JPResultBase *response){
+//                                self.baseViewController.view.userInteractionEnabled = YES;
+//                                [self.baseViewController jp_hideHUD];
+//                                if (response && 0 == [response.code intValue]) {
+//                                    if (response.data && [response.data isKindOfClass:[NSDictionary class]]) {
+//                                        videoId = [response.data valueForKey:@"uuid"];
+//                                        if (videoId && videoId.length) {
+//                                            [self videoRecord];
+//                                        }
+//                                        if (completionHandler) {
+//                                            completionHandler(YES);
+//                                            return ;
+//                                        }
+//                                    }
+//                                }
+//                                if (completionHandler) {
+//                                    [self uploadFail];
+//                                    completionHandler(NO);
+//                                }
+//                            }failure:^(NSError *error){
+//                                self.baseViewController.view.userInteractionEnabled = YES;
+//                                [self.baseViewController jp_hideHUD];
+//                                if (completionHandler) {
+//                                    [self uploadFail];
+//                                    completionHandler(NO);
+//                                }
+//                            } withErrorMsg:nil];
+//}
 
 
 - (void)videoRecord {
-    NSString *url = [NSString stringWithFormat:@"%@user/video-case",API_HOST];
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic sgrSetObject:[JPUserInfo shareInstance].token forKey:@"token"];
-    if (ymzTypes && ymzTypes.length) {
-        [dic sgrSetObject:ymzTypes forKey:@"ymz_type"];
-    }
-    if (cloudIds && cloudIds.length) {
-        [dic sgrSetObject:cloudIds forKey:@"cloud_id"];
-    }
-    if (startTimes && startTimes.length) {
-        [dic sgrSetObject:startTimes forKey:@"start_time"];
-    }
-    if (endTimes && endTimes.length) {
-        [dic sgrSetObject:endTimes forKey:@"end_time"];
-    }
-    NSString *filter = self.filterName ? self.filterName: @"";
-    [dic sgrSetObject:filter forKey:@"video_filter"];
-    if (patterns && patterns.length) {
-        [dic sgrSetObject:patterns forKey:@"video_element"];
-    }
-    if (shape && shape.length) {
-        [dic sgrSetObject:shape forKey:@"shape"];
-    }
-    if (bgMusicName && bgMusicName.length) {
-        [dic sgrSetObject:bgMusicName forKey:@"music"];
-    }
-    [dic sgrSetObject:videoId forKey:@"uuid"];
-    [JPUtil requestBodyAddParameterWithDic:dic];
-    [JPService requestWithURLString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] parameters:dic type:JPHttpRequestTypePost success:^(JPResultBase *response){
-        if (response.code && 0 == [response.code intValue]) {
-            
-        } else {
-            
-        }
-        
-    }failure:^(NSError *error){
-        
-    } withErrorMsg:nil];
+//    NSString *url = [NSString stringWithFormat:@"%@user/video-case",API_HOST];
+//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+//    [dic sgrSetObject:[JPUserInfo shareInstance].token forKey:@"token"];
+//    if (ymzTypes && ymzTypes.length) {
+//        [dic sgrSetObject:ymzTypes forKey:@"ymz_type"];
+//    }
+//    if (cloudIds && cloudIds.length) {
+//        [dic sgrSetObject:cloudIds forKey:@"cloud_id"];
+//    }
+//    if (startTimes && startTimes.length) {
+//        [dic sgrSetObject:startTimes forKey:@"start_time"];
+//    }
+//    if (endTimes && endTimes.length) {
+//        [dic sgrSetObject:endTimes forKey:@"end_time"];
+//    }
+//    NSString *filter = self.filterName ? self.filterName: @"";
+//    [dic sgrSetObject:filter forKey:@"video_filter"];
+//    if (patterns && patterns.length) {
+//        [dic sgrSetObject:patterns forKey:@"video_element"];
+//    }
+//    if (shape && shape.length) {
+//        [dic sgrSetObject:shape forKey:@"shape"];
+//    }
+//    if (bgMusicName && bgMusicName.length) {
+//        [dic sgrSetObject:bgMusicName forKey:@"music"];
+//    }
+//    [dic sgrSetObject:videoId forKey:@"uuid"];
+//    [JPUtil requestBodyAddParameterWithDic:dic];
+//    [JPService requestWithURLString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] parameters:dic type:JPHttpRequestTypePost success:^(JPResultBase *response){
+//        if (response.code && 0 == [response.code intValue]) {
+//
+//        } else {
+//
+//        }
+//
+//    }failure:^(NSError *error){
+//
+//    } withErrorMsg:nil];
 }
 
 
-- (void)copiesLink
-{
-    [self submitVideoInfoWithCompletionBlock:^(BOOL success) {
-        if (success) {
-            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-            NSString *linkUrl;
-            if (videoId && videoId.length) {
-                //设置网页地址
-                linkUrl = [NSString stringWithFormat:@"%@?uuid=%@&app_version=%@",kShareUrl,videoId, JP_APP_VERSION];
-            } else {
-                //设置网页地址
-                linkUrl = kShareUrl;
-            }
-            pasteboard.string = linkUrl;
-            [[JPAppDelegate shareAppdelegate] showAlertViewWithTitle:@"已复制内容到剪切板"];
-        }
-    }];
-}
+//- (void)copiesLink
+//{
+//    [self submitVideoInfoWithCompletionBlock:^(BOOL success) {
+//        if (success) {
+//            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+//            NSString *linkUrl;
+//            if (videoId && videoId.length) {
+//                //设置网页地址
+//                linkUrl = [NSString stringWithFormat:@"%@?uuid=%@&app_version=%@",kShareUrl,videoId, JP_APP_VERSION];
+//            } else {
+//                //设置网页地址
+//                linkUrl = kShareUrl;
+//            }
+//            pasteboard.string = linkUrl;
+//            [MBProgressHUD jp_showMessage:@"已复制内容到剪切板"];
+//        }
+//    }];
+//}
 
 
-- (void)shareToIns
-{
-    if ([JPUtil installMessageWithPlatform:JPShareAccountTypeIns] == NO) {
-        return;
-    }
-    
-    if (!self.savedVideoAssetUrl) {
-        return;
-    }
-    NSString *assetUrl = [self.savedVideoAssetUrl absoluteString];
-    NSString *caption = @"caption";
-    NSURL *instagramURL = [NSURL URLWithString:
-                           [NSString stringWithFormat:@"instagram://library?AssetPath=%@&InstagramCaption=%@",
-                            [assetUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]],
-                            [caption stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]]]
-                           ];
-    if ([[UIApplication sharedApplication] canOpenURL:instagramURL]) {
-        [[UIApplication sharedApplication] openURL:instagramURL];
-    }else {
-        NSLog(@"Can't open Instagram");
-    }
-}
+//- (void)shareToIns
+//{
+//    if ([JPUtil installMessageWithPlatform:JPShareAccountTypeIns] == NO) {
+//        return;
+//    }
+//    
+//    if (!self.savedVideoAssetUrl) {
+//        return;
+//    }
+//    NSString *assetUrl = [self.savedVideoAssetUrl absoluteString];
+//    NSString *caption = @"caption";
+//    NSURL *instagramURL = [NSURL URLWithString:
+//                           [NSString stringWithFormat:@"instagram://library?AssetPath=%@&InstagramCaption=%@",
+//                            [assetUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]],
+//                            [caption stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]]]
+//                           ];
+//    if ([[UIApplication sharedApplication] canOpenURL:instagramURL]) {
+//        [[UIApplication sharedApplication] openURL:instagramURL];
+//    }else {
+//        NSLog(@"Can't open Instagram");
+//    }
+//}
+//
+//- (void)shareToMeiPai
+//{
+//    if ([JPUtil installMessageWithPlatform:JPShareAccountTypeBeatifulTakePhoto] == NO) {
+//        return;
+//    }
+//    if (!self.savedVideoAssetUrl) {
+//        return;
+//    }
+//    [MPShareSDK shareVideoAtPathToMeiPai:self.savedVideoAssetUrl];
+//}
 
-- (void)shareToMeiPai
-{
-    if ([JPUtil installMessageWithPlatform:JPShareAccountTypeBeatifulTakePhoto] == NO) {
-        return;
-    }
-    if (!self.savedVideoAssetUrl) {
-        return;
-    }
-    [MPShareSDK shareVideoAtPathToMeiPai:self.savedVideoAssetUrl];
-}
-
-- (void)shareToBindWithShareType:(JPShareAccountType)accountType
-{
-    NSString *account = @"头条账号";
-    switch (accountType) {
-        case JPShareAccountTypeAiQiYi:
-            sharedType = @"iqiyi";
-            account = @"爱奇艺账号";
-            break;
-        case JPShareAccountTypeTouTiao:
-            sharedType = @"toutiao";
-            break;
-        case JPShareAccountTypeWeiBo:
-            sharedType = @"weibo";
-            account = @"微博账号";
-            break;
-        default:
-            break;
-    }
-    shareAccountType = accountType;
-    __weak typeof(self) weakSelf = self;
-    //    [self submitVideoInfoWithCompletionBlock:^(BOOL success){
-    //        if (success) {
-    [weakSelf pushVideoToThirdPlatformWithType:sharedType
-                                 andSharedType:accountType
-                           withCompletionBlock:^(JPPushVideoStatusCode code,JPShareAccountType type){
-                               if (JPPushVideoStatusCodeInvalidToken == code) {
-                                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                                                   message:[NSString stringWithFormat:@"您的%@未绑定或绑定已过期，请绑定？", account]
-                                                                                  delegate:self
-                                                                         cancelButtonTitle:@"否"
-                                                                         otherButtonTitles:@"是", nil];
-                                   alert.tag = type;
-                                   [alert show];
-                               }
-                           }];
-    //        }
-    //    }];
-    
-}
-
-- (void)pushVideoToThirdPlatformWithType:(NSString *)type
-                           andSharedType:(JPShareAccountType)shareType
-                     withCompletionBlock:(void (^)(JPPushVideoStatusCode code, JPShareAccountType t))completionHandler{
-    self.baseViewController.view.userInteractionEnabled = NO;
-    [self.baseViewController showHUD];
-    if (!videoId || !videoId.length) {
-        [self.baseViewController hidHUD];
-        [self.baseViewController.view setUserInteractionEnabled:YES];
-        [[JPAppDelegate shareAppdelegate] showAlertViewWithTitle:@"推送失败!"];
-        if (completionHandler) {
-            completionHandler(JPPushVideoStatusCodeFailed,shareType);
-        }
-        return;
-    }
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic sgrSetObject:[JPUserInfo shareInstance].token forKey:@"token"];
-    [dic sgrSetObject:videoId forKey:@"uuid"];
-    [dic sgrSetObject:type forKey:@"type"];
-    NSString *url = [NSString stringWithFormat:@"%@user/push",API_HOST];
-    [JPService requestWithURLString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] parameters:dic type:JPHttpRequestTypePost success:^(JPResultBase *response){
-        [self.baseViewController hidHUD];
-        [self.baseViewController.view setUserInteractionEnabled:YES];
-        if (response.code && 0 == [response.code intValue]) {
-            [[JPAppDelegate shareAppdelegate] showAlertViewWithTitle:@"推送成功！"];
-            if (completionHandler) {
-                completionHandler(JPPushVideoStatusCodeSuccess,shareType);
-            }
-        } else if(response.code && JPPushVideoStatusCodeIsPushed == [response.code intValue]){
-            [[JPAppDelegate shareAppdelegate] showAlertViewWithTitle:response.msg];
-            if (completionHandler) {
-                completionHandler(JPPushVideoStatusCodeFailed,shareType);
-            }
-        }else if(response.code && JPPushVideoStatusCodeInvalidToken == [response.code intValue]) {
-            if (completionHandler) {
-                completionHandler(JPPushVideoStatusCodeInvalidToken,shareType);
-            }
-        } else {
-            [[JPAppDelegate shareAppdelegate] showAlertViewWithTitle:@"推送失败!"];
-            if (completionHandler) {
-                completionHandler(JPPushVideoStatusCodeFailed,shareType);
-            }
-        }
-        
-    }failure:^(NSError *error){
-        [self.baseViewController hidHUD];
-        [self.baseViewController.view setUserInteractionEnabled:YES];
-        if (completionHandler) {
-            completionHandler(JPPushVideoStatusCodeFailed,shareType);
-        }
-    } withErrorMsg:@"推送出错啦!"];
-}
+//- (void)shareToBindWithShareType:(JPShareAccountType)accountType
+//{
+//    NSString *account = @"头条账号";
+//    switch (accountType) {
+//        case JPShareAccountTypeAiQiYi:
+//            sharedType = @"iqiyi";
+//            account = @"爱奇艺账号";
+//            break;
+//        case JPShareAccountTypeTouTiao:
+//            sharedType = @"toutiao";
+//            break;
+//        case JPShareAccountTypeWeiBo:
+//            sharedType = @"weibo";
+//            account = @"微博账号";
+//            break;
+//        default:
+//            break;
+//    }
+//    shareAccountType = accountType;
+//    __weak typeof(self) weakSelf = self;
+//    //    [self submitVideoInfoWithCompletionBlock:^(BOOL success){
+//    //        if (success) {
+//    [weakSelf pushVideoToThirdPlatformWithType:sharedType
+//                                 andSharedType:accountType
+//                           withCompletionBlock:^(JPPushVideoStatusCode code,JPShareAccountType type){
+//                               if (JPPushVideoStatusCodeInvalidToken == code) {
+//                                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+//                                                                                   message:[NSString stringWithFormat:@"您的%@未绑定或绑定已过期，请绑定？", account]
+//                                                                                  delegate:self
+//                                                                         cancelButtonTitle:@"否"
+//                                                                         otherButtonTitles:@"是", nil];
+//                                   alert.tag = type;
+//                                   [alert show];
+//                               }
+//                           }];
+//    //        }
+//    //    }];
+//    
+//}
+//
+//- (void)pushVideoToThirdPlatformWithType:(NSString *)type
+//                           andSharedType:(JPShareAccountType)shareType
+//                     withCompletionBlock:(void (^)(JPPushVideoStatusCode code, JPShareAccountType t))completionHandler{
+//    self.baseViewController.view.userInteractionEnabled = NO;
+//    [self.baseViewController jp_showHUD];
+//    if (!videoId || !videoId.length) {
+//        [self.baseViewController jp_hideHUD];
+//        [self.baseViewController.view setUserInteractionEnabled:YES];
+//        [MBProgressHUD jp_showMessage:@"推送失败!"];
+//        if (completionHandler) {
+//            completionHandler(JPPushVideoStatusCodeFailed,shareType);
+//        }
+//        return;
+//    }
+//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+//    [dic sgrSetObject:[JPUserInfo shareInstance].token forKey:@"token"];
+//    [dic sgrSetObject:videoId forKey:@"uuid"];
+//    [dic sgrSetObject:type forKey:@"type"];
+//    NSString *url = [NSString stringWithFormat:@"%@user/push",API_HOST];
+//    [JPService requestWithURLString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] parameters:dic type:JPHttpRequestTypePost success:^(JPResultBase *response){
+//        [self.baseViewController jp_hideHUD];
+//        [self.baseViewController.view setUserInteractionEnabled:YES];
+//        if (response.code && 0 == [response.code intValue]) {
+//            [MBProgressHUD jp_showMessage:@"推送成功!"];
+//            if (completionHandler) {
+//                completionHandler(JPPushVideoStatusCodeSuccess,shareType);
+//            }
+//        } else if(response.code && JPPushVideoStatusCodeIsPushed == [response.code intValue]){
+//            [MBProgressHUD jp_showMessage:response.msg];
+//            if (completionHandler) {
+//                completionHandler(JPPushVideoStatusCodeFailed,shareType);
+//            }
+//        }else if(response.code && JPPushVideoStatusCodeInvalidToken == [response.code intValue]) {
+//            if (completionHandler) {
+//                completionHandler(JPPushVideoStatusCodeInvalidToken,shareType);
+//            }
+//        } else {
+//            [MBProgressHUD jp_showMessage:@"推送失败!"];
+//            if (completionHandler) {
+//                completionHandler(JPPushVideoStatusCodeFailed,shareType);
+//            }
+//        }
+//        
+//    }failure:^(NSError *error){
+//        [self.baseViewController jp_hideHUD];
+//        [self.baseViewController.view setUserInteractionEnabled:YES];
+//        if (completionHandler) {
+//            completionHandler(JPPushVideoStatusCodeFailed,shareType);
+//        }
+//    } withErrorMsg:@"推送出错啦!"];
+//}
 
 
 - (void)finishWithCompletion:(void (^)(void))completion

@@ -11,6 +11,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JPManager : NSObject
 
+
++ (void)loadConfige;
+
++ (void)startVideoEdit;
+
++ (void)reeditVideo:(JPVideoRecordInfo *)info;
+
++ (void)getLocalVideoDraft:(void(^)(NSArray <JPVideoRecordInfo *>*videoArray))completion;
+
++ (void)removeDraftWithVideo:(JPVideoRecordInfo *)info completion:(void(^)(void))completion;
+
+
+
+
 @end
 
 NS_ASSUME_NONNULL_END

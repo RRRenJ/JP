@@ -20,7 +20,7 @@
     self.logoImageView.layer.masksToBounds = YES;
     self.logoImageView.layer.cornerRadius = 2;
     self.logoImageView.layer.borderWidth = 1;
-    self.logoImageView.layer.borderColor = [UIColor appMainYellowColor].CGColor;
+    self.logoImageView.layer.borderColor = [UIColor jp_colorWithHexString:@"0091ff"].CGColor;
 }
 
 - (void)setPatternAttribute:(JPPackagePatternAttribute *)patternAttribute
@@ -40,15 +40,15 @@
         self.logoImageView.layer.borderWidth = 0;
         self.logoImageView.layer.cornerRadius = 0;
         self.logoImageView.layer.borderColor = [UIColor clearColor].CGColor;
-        self.logoImageView.image = [UIImage imageNamed:@"add_picture"];
+        self.logoImageView.image = JPImageWithName(@"add_picture");
     }if(_isSelected){
         self.logoImageView.layer.cornerRadius = 2;
         self.logoImageView.layer.borderWidth = 1;
-        self.logoImageView.layer.borderColor = [UIColor appMainYellowColor].CGColor;
+        self.logoImageView.layer.borderColor = [UIColor jp_colorWithHexString:@"0091ff"].CGColor;
     } else {
         self.logoImageView.layer.borderWidth = 1;
         self.logoImageView.layer.cornerRadius = 2;
-        self.logoImageView.layer.borderColor = [UIColor colorWithHex:0x303030].CGColor;
+        self.logoImageView.layer.borderColor = [UIColor jp_colorWithHexString:@"303030"].CGColor;
     }
 }
 

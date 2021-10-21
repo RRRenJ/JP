@@ -44,13 +44,15 @@
     downloadProView = [[JPVideoPublishProgressView alloc] initWithFrame:CGRectMake(0, 0, 15, 15) withStartAngle:-M_PI endAngle:M_PI];
     [downloadProView updateViewWithProgress:0];
     [downloadProView hideProgerssLb];
-    [downloadProView changeProgessColorWithColor:[UIColor colorWithHex:0x313131] andTintColor:[UIColor appMainYellowColor]];
+    [downloadProView changeProgessColorWithColor:[UIColor jp_colorWithHexString:@"313131"] andTintColor:[UIColor jp_colorWithHexString:@"0091ff"]];
     downloadProView.hidden = YES;
     [self.contentView addSubview:downloadProView];
     downloadProView.sd_layout.bottomEqualToView(self.contentView).rightEqualToView(self.contentView).heightIs(15).widthEqualToHeight();
     
+    
+    
     downloadBtn = [[UIImageView alloc] initWithFrame:CGRectZero];
-    downloadBtn.image = [UIImage imageNamed:@"graph_download"];
+    downloadBtn.image = JPImageWithName(@"graph_download");
     [self.contentView addSubview:downloadBtn];
     downloadBtn.sd_layout.bottomEqualToView(self.contentView).rightEqualToView(self.contentView).heightIs(15).widthEqualToHeight();
 }

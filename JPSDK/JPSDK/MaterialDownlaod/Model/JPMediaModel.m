@@ -10,7 +10,7 @@
 
 #import "JPMediaModel.h"
 #import "JPDataBase.h"
-#import <FMDB.h>
+
 static NSString *JPMediaDataTableName = @"media";
 @implementation JPMediaModel
 

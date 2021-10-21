@@ -11,7 +11,7 @@
 
 #import "JPNewPageViewController.h"
 
-@interface JPPhotoEditViewController ()<UIAlertViewDelegate>
+@interface JPPhotoEditViewController ()
 @property (nonatomic) JPVideoAspectRatio  aspectRatio;
 @property (weak, nonatomic) IBOutlet UIImageView *backImageView;
 @property (weak, nonatomic) IBOutlet UIView *clipView;
@@ -61,9 +61,9 @@
         [filterGroup endProcessing];
         [[GPUImageContext sharedImageProcessingContext].framebufferCache purgeAllUnassignedFramebuffers];
     }
-    _backImageViewTop.constant = KShrinkStatusBarHeight;
-    _rightButtonTop.constant = KShrinkStatusBarHeight;
-    _leftButtonTop.constant = KShrinkStatusBarHeight;
+    _backImageViewTop.constant = JPShrinkStatusBarHeight;
+    _rightButtonTop.constant = JPShrinkStatusBarHeight;
+    _leftButtonTop.constant = JPShrinkStatusBarHeight;
     _clipView.layer.masksToBounds = YES;
     _clipView.layer.borderWidth = 4;
     _clipView.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -76,15 +76,15 @@
     CGSize imageSize = _videoModel.originImage.size;
     CGFloat maxValue = imageSize.width > imageSize.height ? imageSize.width : imageSize.height;
     CGFloat minValue = imageSize.width > imageSize.height ? imageSize.height : imageSize.width;
-    minValue = (SCREEN_WIDTH / maxValue) * minValue;
-    maxValue = SCREEN_WIDTH;
+    minValue = (JP_SCREEN_WIDTH / maxValue) * minValue;
+    maxValue = JP_SCREEN_WIDTH;
     CGSize videoSize = imageSize;
     _imageViewSize = CGSizeMake(minValue, maxValue);
     if (videoSize.height < videoSize.width) {
         _imageViewSize = CGSizeMake(maxValue, minValue);
     }
-    _imageSizeRect = CGRectMake((SCREEN_WIDTH - _imageViewSize.width) / 2.0, (SCREEN_WIDTH - _imageViewSize.height) / 2.0, _imageViewSize.width, _imageViewSize.height);
-    _imageSizeRect.origin.y = _imageSizeRect.origin.y + KShrinkStatusBarHeight;
+    _imageSizeRect = CGRectMake((JP_SCREEN_WIDTH - _imageViewSize.width) / 2.0, (JP_SCREEN_WIDTH - _imageViewSize.height) / 2.0, _imageViewSize.width, _imageViewSize.height);
+    _imageSizeRect.origin.y = _imageSizeRect.origin.y + JPShrinkStatusBarHeight;
     _aspectRatio = _recordInfo.aspectRatio;
     if (_recordInfo.videoSource.count > 0) {
         self.actionView.hidden = YES;
@@ -182,27 +182,27 @@
 //    model.imageName = @"vertical-off";
 //    model.selectImageName = @"vertical-on";
 //    model.disableImageName = @"vertical-grey";
-    [_horizontalButton setImage:[UIImage imageNamed:@"16:9_normal"] forState:UIControlStateNormal];
-    [_squareButton setImage:[UIImage imageNamed:@"1:1_normal"] forState:UIControlStateNormal];
-    [_fourthreeButton setImage:[UIImage imageNamed:@"4:3_normal"] forState:UIControlStateNormal];
+    [_horizontalButton setImage:JPImageWithName(@"16/9_nm") forState:UIControlStateNormal];
+    [_squareButton setImage:JPImageWithName(@"1/1_nm") forState:UIControlStateNormal];
+    [_fourthreeButton setImage:JPImageWithName(@"4/3_nm") forState:UIControlStateNormal];
     if (_aspectRatio == JPVideoAspectRatio16X9) {
-        [_horizontalButton setImage:[UIImage imageNamed:@"16:9_highlight"] forState:UIControlStateNormal];
+        [_horizontalButton setImage:JPImageWithName(@"16/9_hl") forState:UIControlStateNormal];
     }else if(_aspectRatio == JPVideoAspectRatio1X1){
-        [_squareButton setImage:[UIImage imageNamed:@"1:1_highlight"] forState:UIControlStateNormal];
+        [_squareButton setImage:JPImageWithName(@"1/1_hl") forState:UIControlStateNormal];
     }else if(_aspectRatio == JPVideoAspectRatio4X3){
-        [_fourthreeButton setImage:[UIImage imageNamed:@"4:3_highlight"] forState:UIControlStateNormal];
+        [_fourthreeButton setImage:JPImageWithName(@"4/3_hl") forState:UIControlStateNormal];
     }
     CGSize clipRect = [self getLocalVideoCropSizeWithOriginSize:_imageViewSize];
     [UIView animateWithDuration:0.2 animations:^{
-        _clipViewWidth.constant = clipRect.width;
-        _clipViewHeight.constant = clipRect.height;
-        _clipOriginX.constant = 0;
-        _clipOriginY.constant = 0;
+        self.clipViewWidth.constant = clipRect.width;
+        self.clipViewHeight.constant = clipRect.height;
+        self.clipOriginX.constant = 0;
+        self.clipOriginY.constant = 0;
         [self.view layoutIfNeeded];
-        if (_aspectRatio == JPVideoAspectRatioCircular) {
-            _circularView.hidden = NO;
+        if (self.aspectRatio == JPVideoAspectRatioCircular) {
+            self.circularView.hidden = NO;
         }else{
-            _circularView.hidden = YES;
+            self.circularView.hidden = YES;
         }
         
     }];
@@ -234,12 +234,20 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)popLast:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                    message:@"确定要退出本次编辑？"
-                                                   delegate:self
-                                          cancelButtonTitle:@"否"
-                                          otherButtonTitles:@"是", nil];
-    [alert show];
+    
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:nil message:@"确定要退出本次编辑？" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction * comfirmAction = [UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        self.videoModel.originImage = nil;
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    [alert addAction:comfirmAction];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
+   
 }
 - (IBAction)changeDuration:(id)sender {
     CGFloat value = self.videoDurationView.value;
@@ -261,10 +269,10 @@
     _recordInfo.aspectRatio = _aspectRatio;
     [self compressImagesCompletion:^(NSString *outName) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf hidHUD];
+            [weakSelf jp_hideHUD];
             weakSelf.view.userInteractionEnabled = YES;
             if (outName == nil) {
-                [[JPAppDelegate shareAppdelegate] showAlertViewWithTitle:@"合成图片出错,请重试"];
+                [MBProgressHUD jp_showMessage:@"合成图片出错,请重试"];
                 return;
             }
             weakSelf.videoModel.videoBaseFile = outName;
@@ -275,13 +283,13 @@
             if (weakSelf.delegate) {
                 [weakSelf.delegate didFinishedClipVideoModel:weakSelf.videoModel];
             }
-            if (_fromPackage) {
+            if (self.fromPackage) {
                 [weakSelf.navigationController dismissViewControllerAnimated:YES completion:nil];
             } else {
 //                [weakSelf.navigationController popViewControllerAnimated:YES];
-                JPNewPageViewController *trimVC = [[JPNewPageViewController alloc] init];
-                trimVC.recordInfo = _recordInfo;
-                trimVC.cancelGesturesReturn = YES;
+                JPNewPageViewController *trimVC = [[JPNewPageViewController alloc] initWithNibName:@"JPNewPageViewController" bundle:JPResourceBundle];
+                trimVC.recordInfo = self.recordInfo;
+                trimVC.jp_cancelGesturesReturn = YES;
                 [self.navigationController setViewControllers:@[trimVC] animated:YES];
             }
         });
@@ -319,10 +327,10 @@
         return;
     }
     self.view.userInteractionEnabled = NO;
-    [self showHUD];
+    [self jp_showHUD];
     UIImage *finalImage = _videoModel.originImage;
     CGRect  floatRect = [self getLocalVideoCropSizeWithOriginSizeFloat:_videoModel.originImage.size];
-    finalImage = [UIImage croppedImage:finalImage bounds:floatRect];
+    finalImage = [UIImage jp_croppedImage:finalImage bounds:floatRect];
     NSString    *outName = [JPVideoUtil fileNameForDocumentMovie];
     CGSize size = _recordInfo.videoSize;//定义视频的大小
      self.videoWriter = [[AVAssetWriter alloc] initWithURL:[NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingPathComponent:outName]]
@@ -353,7 +361,7 @@
         block(nil);
         return;
     }
-    buffer = (CVPixelBufferRef)[UIImage pixelBufferFromCGImage:finalImage.CGImage];
+    buffer = (CVPixelBufferRef)[UIImage jp_pixelBufferFromCGImage:finalImage.CGImage];
     if (buffer == nil) {
         block(nil);
         return;
@@ -398,13 +406,6 @@
     
 }
 
-#pragma mark - UIAlertViewDelegate
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (1 == buttonIndex) {
-        self.videoModel.originImage = nil;
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
 
 @end

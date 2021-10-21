@@ -22,16 +22,16 @@
     self = [super initWithFrame:frame];
     if (self) {
         timeLb = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
-        timeLb.font = [UIFont placardMTStdCondBoldFontWithSize:20];
-        timeLb.textColor = [UIColor appMainYellowColor];
+        timeLb.font = [UIFont jp_placardMTStdCondBoldFontWithSize:20];
+        timeLb.textColor = [UIColor jp_colorWithHexString:@"0091FF"];
         timeLb.textAlignment = NSTextAlignmentCenter;
         [self addSubview:timeLb];
         
         progressShapeLayer = [[JPCircleShapeLayer alloc] initWithStartAngle:(-M_PI/2) endAngle:(3*M_PI/2)];
         progressShapeLayer.frame = self.bounds;
         progressShapeLayer.backgroundColor = [UIColor clearColor].CGColor;
-        progressShapeLayer.tintColor = [UIColor appMainYellowColor];
-        progressShapeLayer.progressColor = [UIColor colorWithHex:0x313131];
+        progressShapeLayer.tintColor = [UIColor jp_colorWithHexString:@"0091FF"];
+        progressShapeLayer.progressColor = [UIColor jp_colorWithHexString:@"313131"];
         [self.layer addSublayer:progressShapeLayer];
     }
     return self;

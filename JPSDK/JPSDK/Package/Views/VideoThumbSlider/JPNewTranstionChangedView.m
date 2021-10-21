@@ -9,6 +9,8 @@
 #import "JPNewTranstionChangedView.h"
 #import "JPTranstionsCollectionViewCell.h"
 #import "JPTranstionTypeSelectButton.h"
+#import "JPTranstionsModelManager.h"
+
 @interface JPNewTranstionChangedView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UIView *view;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -50,11 +52,11 @@
 {
     _dataSource = [JPTranstionsModelManager getAllTranstionsModels];
     self.backgroundColor = [UIColor blackColor];
-    [[NSBundle mainBundle] loadNibNamed:@"JPNewTranstionChangedView" owner:self options:nil];
+    [JPResourceBundle loadNibNamed:@"JPNewTranstionChangedView" owner:self options:nil];
     [self addSubview:self.view];
     self.view.sd_layout.topEqualToView(self).rightEqualToView(self).bottomEqualToView(self).leftEqualToView(self);
-    _collectionViewLayout.itemSize = CGSizeMake(SCREEN_WIDTH / 4.5, 60);
-    [_collectionView registerNib:[UINib nibWithNibName:@"JPTranstionsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"JPTranstionsCollectionViewCell"];
+    _collectionViewLayout.itemSize = CGSizeMake(JP_SCREEN_WIDTH / 4.5, 60);
+    [_collectionView registerNib:[UINib nibWithNibName:@"JPTranstionsCollectionViewCell" bundle:JPResourceBundle] forCellWithReuseIdentifier:@"JPTranstionsCollectionViewCell"];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     self.clipsToBounds = NO;
@@ -80,9 +82,9 @@
     JPVideoTranstionsModel *model = _dataSource[indexPath.row];
     cell.transtionNameLabel.text = model.title;
     if (model.transtionIndex == _videoModel.transtionModel.transtionIndex) {
-        cell.transtionImageView.image = [UIImage imageNamed:model.onImageName];
+        cell.transtionImageView.image = JPImageWithName(model.onImageName);
     }else{
-        cell.transtionImageView.image = [UIImage imageNamed:model.offImageName];
+        cell.transtionImageView.image = JPImageWithName(model.offImageName);
     }
     return cell;
 }

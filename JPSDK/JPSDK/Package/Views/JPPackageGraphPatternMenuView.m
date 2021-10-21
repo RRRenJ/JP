@@ -14,7 +14,7 @@
 #import "JPGraphListView.h"
 #import "JPLocalGraphList.h"
 #import "JPMaterialCategory.h"
-#import "JPService.h"
+
 #import "JPLocalTextView.h"
 #import "JPHotGraphList.h"
 #import "JPGifListView.h"
@@ -55,23 +55,24 @@
 #pragma mark - public methods
 
 - (void)getCategoryData {
-    NSMutableDictionary *dic = @{@"service":@"App.Material_Pattern.Lists"}.mutableCopy;
-    [JPService requestWithURLString:API_HOST parameters:dic type:JPHttpRequestTypePost success:^(JPResultBase *response){
-        if (response.ret && 200 == [response.ret intValue]) {
-            if (response.data && [response.data isKindOfClass:[NSArray class]]) {
-                for (int i = 0; i < [response.data count]; i ++) {
-                    if ([[response.data objectAtIndex:i] isKindOfClass:[NSDictionary class]]) {
-                        JPMaterialCategory *category = [JPMaterialCategory mj_objectWithKeyValues:[response.data objectAtIndex:i]];
-                        category.material_id = 1;
-                        [dataArr sgrAddObject:category];
-                    }
-                }
-            }
-        }
-        [self createUI];
-    }failure:^(NSError *error){
-        [self createUI];
-    } withErrorMsg:nil];
+    [self createUI];
+//    NSMutableDictionary *dic = @{@"service":@"App.Material_Pattern.Lists"}.mutableCopy;
+//    [JPService requestWithURLString:API_HOST parameters:dic type:JPHttpRequestTypePost success:^(JPResultBase *response){
+//        if (response.ret && 200 == [response.ret intValue]) {
+//            if (response.data && [response.data isKindOfClass:[NSArray class]]) {
+//                for (int i = 0; i < [response.data count]; i ++) {
+//                    if ([[response.data objectAtIndex:i] isKindOfClass:[NSDictionary class]]) {
+//                        JPMaterialCategory *category = [JPMaterialCategory mj_objectWithKeyValues:[response.data objectAtIndex:i]];
+//                        category.material_id = 1;
+//                        [dataArr sgrAddObject:category];
+//                    }
+//                }
+//            }
+//        }
+//
+//    }failure:^(NSError *error){
+//        [self createUI];
+//    } withErrorMsg:nil];
 }
 
 - (void)switchToPage:(int)page {
@@ -97,21 +98,21 @@
         return;
     }
     
-    self.tittleView.backgroundColor = [UIColor colorWithHexString:@"0e0e0e"];
+    self.tittleView.backgroundColor = [UIColor jp_colorWithHexString:@"0e0e0e"];
     self.tittleView.sd_layout.topEqualToView(self).leftEqualToView(self).rightEqualToView(self).heightIs(65);
     self.confirmBt.sd_layout.topSpaceToView(self.tittleView, 19).rightSpaceToView(self.tittleView, 15).widthIs(55).bottomSpaceToView(self.tittleView, 18);
     self.confirmBt.layer.cornerRadius = 2;
     self.confirmBt.layer.masksToBounds = YES;
-    self.confirmBt.backgroundColor = [UIColor colorWithHexString:@"#4E4E4E"];
+    self.confirmBt.backgroundColor = [UIColor jp_colorWithHexString:@"#4E4E4E"];
     UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
     //设置布局方向为垂直流布局
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    layout.itemSize = CGSizeMake(ScreenFitFloat6(60), 64);
+    layout.itemSize = CGSizeMake(JPScreenFitFloat6(60), 64);
     layout.minimumInteritemSpacing = 0;
 
-    collecView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0 , SCREEN_WIDTH ,0) collectionViewLayout:layout];
+    collecView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0 , JP_SCREEN_WIDTH ,0) collectionViewLayout:layout];
     collecView.delegate = self;
-    collecView.backgroundColor = [UIColor colorWithHexString:@"0e0e0e"];
+    collecView.backgroundColor = [UIColor jp_colorWithHexString:@"0e0e0e"];
     collecView.dataSource = self;
     collecView.scrollEnabled = YES;
     collecView.showsHorizontalScrollIndicator = NO;
@@ -138,15 +139,15 @@
     localListView = [[JPLocalGraphList alloc] initWithFrame:CGRectZero];
     localListView.delegate = self;
     [src addSubview:localListView];
-    localListView.sd_layout.topEqualToView(src).bottomEqualToView(src).leftSpaceToView(src, SCREEN_WIDTH).widthRatioToView(src, 1.0);
+    localListView.sd_layout.topEqualToView(src).bottomEqualToView(src).leftSpaceToView(src, JP_SCREEN_WIDTH).widthRatioToView(src, 1.0);
     
     localTextView = [[JPLocalTextView alloc] initWithFrame:CGRectZero];
     localTextView.delegate = self;
     [src addSubview:localTextView];
-    localTextView.sd_layout.topEqualToView(src).bottomEqualToView(src).leftSpaceToView(src, SCREEN_WIDTH * 2).widthRatioToView(src, 1.0);
+    localTextView.sd_layout.topEqualToView(src).bottomEqualToView(src).leftSpaceToView(src, JP_SCREEN_WIDTH * 2).widthRatioToView(src, 1.0);
     gifListView  = [[JPGifListView alloc] initWithFrame:CGRectZero];
     [src addSubview:gifListView];
-    gifListView.sd_layout.topEqualToView(src).bottomEqualToView(src).leftSpaceToView(src, SCREEN_WIDTH * 3).widthRatioToView(src, 1.0);
+    gifListView.sd_layout.topEqualToView(src).bottomEqualToView(src).leftSpaceToView(src, JP_SCREEN_WIDTH * 3).widthRatioToView(src, 1.0);
     gifListView.delegate = self;
     
     for (int i = 0; i< [dataArr count]; i++) {
@@ -203,40 +204,40 @@
         cell.isCustom = NO;
         cell.title = @"封面";
         if ([selectedPath isEqual:indexPath] || !selectedPath) {
-            cell.imgView.image = [UIImage imageNamed:@"icon_huo_hl"];
+            cell.imgView.image = JPImageWithName(@"icon_huo_hl");
             cell.isSelect = YES;
         } else {
-            cell.imgView.image = [UIImage imageNamed:@"icon_huo_nm"];
+            cell.imgView.image = JPImageWithName(@"icon_huo_nm");
             cell.isSelect = NO;
         }
     }else if (1 == indexPath.row) {
         cell.isCustom = NO;
         cell.title = @"文字";
         if ([selectedPath isEqual:indexPath]) {
-            cell.imgView.image = [UIImage imageNamed:@"icon_star_hl"];
+            cell.imgView.image = JPImageWithName(@"icon_star_hl");
             cell.isSelect = YES;
         } else {
-            cell.imgView.image = [UIImage imageNamed:@"icon_star_nm"];
+            cell.imgView.image = JPImageWithName(@"icon_star_nm");
             cell.isSelect = NO;
         }
     }else if(2 == indexPath.row){
         cell.isCustom = NO;
         cell.title = @"标题";
         if ([selectedPath isEqual:indexPath]) {
-            cell.imgView.image = [UIImage imageNamed:@"icon_a_hl"];
+            cell.imgView.image = JPImageWithName(@"icon_a_hl");
             cell.isSelect = YES;
         } else {
-            cell.imgView.image = [UIImage imageNamed:@"icon_a_nm"];
+            cell.imgView.image = JPImageWithName(@"icon_a_nm");
             cell.isSelect = NO;
         }
     }else if (3 == indexPath.row){
         cell.isCustom = NO;
         cell.title = @"动感";
         if ([selectedPath isEqual:indexPath]) {
-            cell.imgView.image = [UIImage imageNamed:@"icon_yuan_hl"];
+            cell.imgView.image = JPImageWithName(@"icon_yuan_hl");
             cell.isSelect = YES;
         } else {
-            cell.imgView.image = [UIImage imageNamed:@"icon_yuan_nm"];
+            cell.imgView.image = JPImageWithName(@"icon_yuan_nm");
             cell.isSelect = NO;
         }
     }else {

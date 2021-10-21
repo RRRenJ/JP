@@ -6,19 +6,29 @@
 //  Copyright © 2017年 MuXiao. All rights reserved.
 //
 #import "JPUtil.h"
-#import "NSString+MD5.h"
-#import "JPHotListViewController.h"
-#import "JPNewCameraViewController.h"
-#import "JPBaseTabBarViewController.h"
-#import "PKLoginViewController.h"
-#import <MPShareSDK/MPShareSDK.h>
-#import "JPSession.h"
-#import "AFNetworkReachabilityManager.h"
-#import "JPVideoClipViewController.h"
-#import "JPAdController.h"
-#import "PKProvideLoginController.h"
+#import "NSString+JP.h"
+#import "JPFilterManagers.h"
 #import <CoreText/CoreText.h>
+
 @implementation JPUtil
+
+
++ (NSBundle *)bundleWithName:(NSString *)name{
+    static NSBundle *bundle = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        bundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[self class]] pathForResource:name ofType:@"bundle"]];
+    });
+    return bundle;
+}
+
++ (UIImage *)imageNamed:(NSString *)name withBundle:(NSBundle *)bundle{
+    if (name.length == 0) return nil;
+
+    UIImage * image = [UIImage imageNamed:name inBundle:bundle compatibleWithTraitCollection:nil];
+    
+    return image;
+}
 
 + (void)setViewRadius:(UIView *)view
     byRoundingCorners:(UIRectCorner)corners
@@ -48,6 +58,11 @@
     return btn;
 }
 
+
+
+
+
+
 + (BOOL)createJperFolder{
     if (![[NSFileManager defaultManager] fileExistsAtPath:JPER_RECORD_FILES_FOLDER]) {
         NSError *error;
@@ -55,7 +70,6 @@
                                        withIntermediateDirectories:NO
                                                         attributes:nil
                                                              error:&error]){
-            JPLog(@"Create directory error: %@", error);
             return NO;
         }
     }
@@ -63,18 +77,26 @@
 }
 
 + (BOOL)createJperFolderInDocument{
-    if (![[NSFileManager defaultManager] fileExistsAtPath:PK_MATERIAL_FILES_FOLDER]) {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:JP_MATERIAL_FILES_FOLDER]) {
         NSError *error;
-        if (![[NSFileManager defaultManager] createDirectoryAtPath:PK_MATERIAL_FILES_FOLDER
+        if (![[NSFileManager defaultManager] createDirectoryAtPath:JP_MATERIAL_FILES_FOLDER
                                        withIntermediateDirectories:NO
                                                         attributes:nil
                                                              error:&error]){
-            JPLog(@"Create directory error: %@", error);
             return NO;
         }
     }
     return YES;
 }
+
++ (void)loadCustomFont{
+    [JPUtil registNewFontWithName:@"PlacardMTStd-Cond.otf"];
+    [JPUtil registNewFontWithName:@"新蒂下午茶基本版.ttf"];
+    [JPUtil registNewFontWithName:@"习宋体.ttf"];
+    [JPUtil registNewFontWithName:@"TrajanPro-Bold.otf"];
+    [JPUtil registNewFontWithName:@"Arista2.0.ttf"];
+}
+
 
 + (BOOL)addSkipBackupAttributeToItemAtURLNew:(NSURL *)URL{
     NSString* path=[URL path];
@@ -91,30 +113,7 @@
     return success;
 }
 
-+ (NSString *)signStringWithDictionary:(NSDictionary *)dic
-{
-    NSMutableString *bodyStr = [NSMutableString string];
-    NSArray *keys = dic.allKeys;
-    NSArray *sortKeys = [keys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-        NSString *key1 = obj1;
-        NSString *key2 = obj2;
-        return [key1 compare:key2];
-    }];
-    for (NSString *key in sortKeys) {
-        NSString *keyValue = [NSString stringWithFormat:@"%@=%@",key, dic[key]];
-        if (bodyStr.length == 0) {
-            [bodyStr appendString:keyValue];
-        }else{
-            [bodyStr appendFormat:@"&%@", keyValue];
-        }
-    }
-    NSString *uppercaseString = [bodyStr uppercaseString];
-    NSString *tempStr = [NSString stringWithFormat:@"%@%@", uppercaseString, @"JPER_API"];
-    NSString *firstMD5 = [tempStr md5];
-    NSString *thirtyStr = [firstMD5 substringWithRange:NSMakeRange(0, 30)];
-    NSString *sign = [thirtyStr md5];
-    return sign;
-}
+
 
 + (void)saveIssueInfoToUserDefaults:(id)obj resouceName:(NSString *)res{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -180,63 +179,7 @@
     return str;
 }
 
-+ (void)updateVideoInfoWithSharedType:(NSString *)type andVideoId:(NSString *)videoId{
-    NSString *url = [NSString stringWithFormat:@"%@user/update-video-info",API_HOST];
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic sgrSetObject:type forKey:@"share_to"];
-    [dic sgrSetObject:videoId forKey:@"uuid"];
-    if ([JPUserInfo shareInstance].isLogin && [JPUserInfo shareInstance].token) {
-        [dic setObject:[JPUserInfo shareInstance].token forKey:@"token"];
-    }
-    [JPService requestWithURLString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] parameters:dic type:JPHttpRequestTypePost success:^(JPResultBase *response){
-        if (response.code && 0 == [response.code intValue]) {
-            
-        } else {
-            
-        }
-        
-    }failure:^(NSError *error){
-        
-    } withErrorMsg:nil];
-}
 
-+ (void)shareWebPageWithType:(UMSocialPlatformType)platformType
-                   andTittle:(NSString *)tittle
-                  andLinkUrl:(NSString *)url
-                     andDesc:(NSString *)desc
-                 andThumbImg:(UIImage *)img
-                   andImgUrl:(NSString *)imgUrl
-               andSharedType:(NSString *)type
-                  andVideoId:(NSString *)videoId{
-    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
-    UMShareWebpageObject *shareObject;
-    NSString *description;
-    if ([desc length] > 40) {
-        description = [NSString stringWithFormat:@"%@...",[desc substringToIndex:39]];
-    } else {
-        description = desc;
-    }
-    if (img) {
-        //创建分享消息对象
-        //创建网页内容对象
-        shareObject = [UMShareWebpageObject shareObjectWithTitle:tittle descr:description thumImage:img];
-
-    } else if (imgUrl){
-        shareObject = [UMShareWebpageObject shareObjectWithTitle:tittle descr:description thumImage:imgUrl];
-    }
-    shareObject.webpageUrl = url;
-    //分享消息对象设置分享内容对象
-    messageObject.shareObject = shareObject;
-    
-    //调用分享接口
-    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:nil completion:^(id data, NSError *error) {
-        if (error) {
-            UMSocialLogInfo(@"************Share fail with error %@*********",error);
-        }else{
-            [JPUtil updateVideoInfoWithSharedType:type andVideoId:videoId];
-        }
-    }];
-}
 
 + (NSString *)UUID {
     CFUUIDRef puuid = CFUUIDCreate( nil );
@@ -247,55 +190,7 @@
     return result;
 }
 
-+ (NSString*) decodeFromPercentEscapeString:(NSString *) string {
-    return (__bridge NSString *) CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,
-                                                                                         (__bridge CFStringRef) string,
-                                                                                         CFSTR(""),
-                                                                                         kCFStringEncodingUTF8);
-}
 
-+ (NSString *)urlEncode:(NSString *)string {
-    return CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
-                                                                     
-                                                                     (__bridge CFStringRef)string,
-                                                                     NULL,CFSTR("!*'();:@&=+$,/?%#[]"),                                                              CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding)));
-}
-
-+ (NSString *)getAuthUrlWithShareType:(JPShareAccountType)type {
-    NSString *url = @"";
-    switch (type) {
-        case JPShareAccountTypeTouTiao:
-            url = [NSString stringWithFormat:@"%@?response_type=code&auth_only=1&client_key=%@&redirect_uri=%@&state=febac09284cba",TOU_TIAO_AUTH_URL,TOU_TIAO_CLIENT_KEY,TOU_TIAO_REDIRECT_URL];
-            break;
-        case JPShareAccountTypeWeiBo:
-            url = [NSString stringWithFormat:@"%@client_id=%@&response_type=code&redirect_uri=%@",WEI_BO_AUTH_URL,WEI_BO_AUTH_APP_KEY,TOU_TIAO_REDIRECT_URL];
-            break;
-        case JPShareAccountTypeAiQiYi:
-            url = [[NSString stringWithFormat:@"%@?token=%@",AI_QI_YI_AUTH_URL,[JPUserInfo shareInstance].token] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            break;
-        default:
-            break;
-    }
-    return url;
-}
-
-+ (NSString *)getRulesUrlWithShareType:(JPShareAccountType)type {
-    NSString *url = @"";
-    switch (type) {
-        case JPShareAccountTypeTouTiao:
-            url = @"http://cdn-jper.foundao.com/jper_h5/tt_bound.html";
-            break;
-        case JPShareAccountTypeWeiBo:
-            url = @"http://cdn-jper.foundao.com/jper_h5/wb_bound.html";
-            break;
-        case JPShareAccountTypeAiQiYi:
-            url = @"http://cdn-jper.foundao.com/jper_h5/aqy_bound.html";
-            break;
-        default:
-            break;
-    }
-    return url;
-}
 
 + (void)showVideoAuthorizationAlertWithCompletionHandler:(void (^)(BOOL granted))completionHandler {
     AVAuthorizationStatus auth = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
@@ -345,121 +240,13 @@
 
 + (BOOL)showAlbumAuthorizationAlert {
     BOOL show = NO;
-    ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
-    if(author == ALAuthorizationStatusRestricted || author == ALAuthorizationStatusDenied) {
+     PHAuthorizationStatus author = [PHPhotoLibrary authorizationStatus];
+    if(author == PHAuthorizationStatusRestricted || author == PHAuthorizationStatusDenied) {
         show = YES;
     }
     return show;
 }
 
-+ (void)requestBodyAddParameterWithDic:(NSMutableDictionary *)dic
-{
-    [dic setObject:[NSNumber numberWithInteger:3] forKey:@"channel_id"];
-    [dic setObject:[NSNumber numberWithInteger:1] forKey:@"platform"];
-    [dic setObject:[NSNumber numberWithInteger:1] forKey:@"app_type"];
-    [dic sgrSetObject:JP_APP_VERSION forKey:@"app_version"];
-
-}
-
-///登录成功后 window的root改为tabbarvc
-+ (void)changeBaseVCWithTabBar {
-    [JPUtil setupStatusBarHidden:NO];
-    if ([PKThreeLoginManager manager].isThreeLogin && [JPUserInfo shareInstance].isLogin) {
-        PKProvideLoginController *Vc = [[PKProvideLoginController alloc]init];
-        [JPAppDelegate shareAppdelegate].window.rootViewController = Vc;
-    }else{
-        JPBaseTabBarViewController *tabBarVC = [[JPBaseTabBarViewController alloc] init];
-        [JPAppDelegate shareAppdelegate].window.rootViewController = tabBarVC;
-        [JPAppDelegate shareAppdelegate].window.backgroundColor = [UIColor whiteColor];
-        [[JPAppDelegate shareAppdelegate].window makeKeyAndVisible];
-    }
-    
-}
-
-///退出登录后 window的root改为loginvc
-+ (void)changeBaseVCWithLogin {
-    PKLoginViewController *vc = [[PKLoginViewController alloc] init];
-    vc.isRoot = YES;
-    JPBaseNavigationViewController *nav = [[JPBaseNavigationViewController alloc] initWithRootViewController:vc];
-    [JPAppDelegate shareAppdelegate].window.rootViewController = nav;
-    [JPAppDelegate shareAppdelegate].window.backgroundColor = [UIColor whiteColor];
-    [[JPAppDelegate shareAppdelegate].window makeKeyAndVisible];
-}
-
-+ (void)reloadTabBarChildVC{
-    [[JPAppDelegate shareAppdelegate].baseTabBarController reloadChildVC];
-}
-
-
-+ (BOOL)installMessageWithPlatform:(JPShareAccountType)accountType
-{
-    if (accountType == JPShareAccountTypeWeiBo && ![[UIApplication sharedApplication] canOpenURL:[NSURL  URLWithString:@"sinaweibo://"]]) {
-        [[JPAppDelegate shareAppdelegate] showAlertViewWithTitle:@"请先安装微博再进行分享"];
-        return NO;
-    }else if((accountType == JPShareAccountTypeWeiXin || accountType == JPShareAccountTypePengYouQuan) && ![[UIApplication sharedApplication] canOpenURL:[NSURL  URLWithString:@"weixin://"]]){
-        [[JPAppDelegate shareAppdelegate] showAlertViewWithTitle:@"请先安装微信再进行分享"];
-        return NO;
-    }
-    return YES;
-}
-
-+ (void)pageRecordWithVideoId:(NSString *)videoId andPosition:(NSString *)position {
-    NSString *url = [NSString stringWithFormat:@"%@case/page-case",API_HOST];
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    if ([JPUserInfo shareInstance].isLogin && [JPUserInfo shareInstance].token) {
-        [dic sgrSetObject:[JPUserInfo shareInstance].token forKey:@"token"];
-    }
-    if (videoId) {
-        [dic sgrSetObject:videoId forKey:@"uuid"];
-    }
-    if (position) {
-        [dic sgrSetObject:position forKey:@"position"];
-    }
-    [dic sgrSetObject:[JPSession sharedInstance].positionStr forKey:@"location"];
-    [dic sgrSetObject:[JPSession sharedInstance].locationCoordinateStr forKey:@"long_lat"];
-    [JPUtil requestBodyAddParameterWithDic:dic];
-    [JPService requestWithURLString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] parameters:dic type:JPHttpRequestTypePost success:^(JPResultBase *response){
-        if (response.code && 0 == [response.code intValue]) {
-            
-        } else {
-            
-        }
-        
-    }failure:^(NSError *error){
-        
-    } withErrorMsg:nil];
-}
-
-+ (void)setGifHeaderWithHeader:(MJRefreshGifHeader *)header {
-    NSMutableArray *pullingArr = [NSMutableArray array];
-    [pullingArr sgrAddObject:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"drop-down00000" ofType:@".png"]]];
-    NSMutableArray *refreshingArr = [NSMutableArray array];
-    for (int i = 0; i < 17;i++) {
-        NSString *name;
-
-        if (i < 10) {
-            name = [NSString stringWithFormat:@"drop-down0000%d",i];
-        } else {
-            name = [NSString stringWithFormat:@"drop-down000%d",i];
-        }
-        UIImage *img = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:name ofType:@".png"]];
-        [refreshingArr sgrAddObject:img];
-        
-    }
-    
-    NSMutableArray *willRefreshingArr = [NSMutableArray array];
-    for (int i = 17; i < 36;i++) {
-        NSString *name = [NSString stringWithFormat:@"drop-down000%d",i];
-        UIImage *img = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:name ofType:@".png"]];
-        [willRefreshingArr sgrAddObject:img];
-        
-    }
-    header.stateLabel.hidden = YES;
-    header.lastUpdatedTimeLabel.hidden = YES;
-    [header setImages:pullingArr forState:MJRefreshStateIdle];
-    [header setImages:refreshingArr forState:MJRefreshStatePulling];
-    [header setImages:willRefreshingArr forState:MJRefreshStateRefreshing];
-}
 
 + (CGSize)getStringSizeWith:(UIFont *)font
            andContainerSize:(CGSize)size
@@ -497,159 +284,50 @@
     CTFrameRef frame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(0, 0), path, NULL);
     NSArray *lines = ( NSArray *)CTFrameGetLines(frame);
     return lines.count;
+    
 }
 
 
-+ (BOOL)showRecordGuideView {
-    if (![JPUtil getInfoFromUserDefaults:kRecordOfVideoSpeedGuideStep]) {
-        return YES;
-    }
-    if (![JPUtil getInfoFromUserDefaults:kRecordOfCamaraFlipGuideStep]) {
-        return YES;
-    }
-    if (![JPUtil getInfoFromUserDefaults:kRecordOfFilterSelectedGuideStep]) {
-        return YES;
-    }
-    if (![JPUtil getInfoFromUserDefaults:kRecordOfFlashLightSelectedGuideStep]) {
-        return YES;
-    }
-    if (![JPUtil getInfoFromUserDefaults:kRecordOfVideoFrameGuideStep]) {
-        return YES;
-    }
-    return NO;
-}
-
-+ (BOOL)showPackageGuideView {
-    if (![JPUtil getInfoFromUserDefaults:kPackageOfFilterSelectedGuideStep]) {
-        return YES;
-    }
-    if (![JPUtil getInfoFromUserDefaults:kPackageOfAddPatternGuideStep]) {
-        return YES;
-    }
-    if (![JPUtil getInfoFromUserDefaults:kPackageOfAddMusicGuideStep]) {
-        return YES;
-    }
-    return NO;
-}
-
-+ (BOOL)showPackageVideoEditGuideView {
-    if (![JPUtil getInfoFromUserDefaults:kPackageOfVideoSpeedGuideStep]) {
-        return YES;
-    }
-    if (![JPUtil getInfoFromUserDefaults:kPackageOfVideoTranverseGuideStep]) {
-        return YES;
-    }
-    if (![JPUtil getInfoFromUserDefaults:kPackageOfvideoTrimGuideStep]) {
-        return YES;
-    }
-    if (![JPUtil getInfoFromUserDefaults:kPackageOfVideoDeleteGuideStep]) {
-        return YES;
-    }
-    return NO;
-}
-
-+ (BOOL)showPackagePhotoEditGuideView {
-    if (![JPUtil getInfoFromUserDefaults:kPackageOfPhotoDeleteGuideStep]) {
-        return YES;
-    }
-    if (![JPUtil getInfoFromUserDefaults:kPackageOfEnlargePhotoGuideStep]) {
-        return YES;
-    }
-    if (![JPUtil getInfoFromUserDefaults:kPackageOfReducePhotoGuideStep]) {
-        return YES;
-    }
-    return NO;
-}
-
-+ (NSString *)getRidOfWith:(NSString *)text {
-    NSString * content = text;
-    content = [content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]; //去除掉首尾的空白字符和换行字符
-    content = [content stringByReplacingOccurrencesOfString:@"\r" withString:@""];
-    content = [content stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    return content;
-}
-
-+ (BOOL)isIPhoneX
-{
-    if ((int)((SCREEN_HEIGHT/SCREEN_WIDTH)*100) == 216) {
++ (BOOL)isBangScreen{
+    if ((int)((JP_SCREEN_HEIGHT/JP_SCREEN_WIDTH)*100) == 216) {
         return  YES;
     }else{
         return NO;
     }
-   
-}
-
-+ (void)setupStatusBarHidden:(BOOL)hidden
-{
-    if ([self isIPhoneX]) {
-        [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    }else{
-        [[UIApplication sharedApplication] setStatusBarHidden:hidden];
-    }
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
 }
 
 
-+ (CGFloat)normalNavigationHeight
-{
-    static CGFloat normalNavigationHeightUtil = - 1.0;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        normalNavigationHeightUtil = (KISIPhoneX ? 88.0f : 64.0f);
-    });
-    return normalNavigationHeightUtil;
-}
-+ (CGFloat)statusBarHeight
-{
-    static CGFloat statusBarHeightUtil = - 1.0;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        statusBarHeightUtil = (KISIPhoneX ? 44.0f : 20.0f);
-    });
-    return statusBarHeightUtil;
-}
-+ (CGFloat)normalTabBarHeight;
-{
-    static CGFloat normalTabBarHeightUtil = - 1.0;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        normalTabBarHeightUtil = (KISIPhoneX ? 83.0f : 49.0f);
-    });
-    return normalTabBarHeightUtil;
-}
-+ (CGFloat)shrinkNavigationHeight
-{
+
+
++ (CGFloat)shrinkNavigationHeight{
     static CGFloat shrinkNavigationHeightUtil = - 1.0;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        shrinkNavigationHeightUtil = (KISIPhoneX ? 88.0f : 44.0f);
+        shrinkNavigationHeightUtil = (JPBangScreen ? 88.0f : 44.0f);
     });
     return shrinkNavigationHeightUtil;
 }
-+ (CGFloat)shrinkStatusBarHeight
-{
++ (CGFloat)shrinkStatusBarHeight{
     static CGFloat shrinkStatusBarHeightUtil = - 1.0;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        shrinkStatusBarHeightUtil = (KISIPhoneX ? 44.0f : 0.0f);
+        shrinkStatusBarHeightUtil = (JPBangScreen ? 44.0f : 0.0f);
     });
     return shrinkStatusBarHeightUtil;
 }
-+ (CGFloat)shrinkOnlyNavigationHeight
-{
++ (CGFloat)shrinkOnlyNavigationHeight{
     static CGFloat shrinkOnlyNavigationHeightUtil = - 1.0;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        shrinkOnlyNavigationHeightUtil = (KISIPhoneX ? 44.0f : 44.0f);
+        shrinkOnlyNavigationHeightUtil = (JPBangScreen ? 44.0f : 44.0f);
     });
     return shrinkOnlyNavigationHeightUtil;
 }
-+ (CGFloat)tabbarHeightLineHeight
-{
++ (CGFloat)tabbarHeightLineHeight{
     static CGFloat tabbarHeightLineHeightUtil = - 1.0;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        tabbarHeightLineHeightUtil = (KISIPhoneX ? 34.0f : 0.0f);
+        tabbarHeightLineHeightUtil = (JPBangScreen ? 34.0f : 0.0f);
     });
     return tabbarHeightLineHeightUtil;
 }
@@ -658,21 +336,12 @@
     static CGFloat normalNavigationHeightLineHeightUtil = - 1.0;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        normalNavigationHeightLineHeightUtil = (KISIPhoneX ? 24.0f : 0.0f);
+        normalNavigationHeightLineHeightUtil = (JPBangScreen ? 24.0f : 0.0f);
     });
     return normalNavigationHeightLineHeightUtil;
 }
-+ (CGFloat)bottomSafeAreaHeight
-{
-    static CGFloat bottomSafeAreaHeight = - 1.0;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        bottomSafeAreaHeight = (KISIPhoneX ? 34.0f : 0.0f);
-    });
-    return bottomSafeAreaHeight;
-}
 
-+ (NSString *)getDurationWithSecond:(NSInteger)seconds {
++ (NSString *)getDurationWithSecond:(NSInteger)seconds{
     if (seconds > 0) {
         NSInteger minute = seconds/60;
         NSInteger second = seconds%60;
@@ -704,11 +373,11 @@
 
 + (NSString *)recordsInfosPath
 {
-    return [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/paike/local_record_info.plist"];
+    return [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/JPSDK/local_record_info.plist"];
 }
 
 + (NSString *)managerDicPath{
-    return [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/paike/local_manager_Dic.plist"];
+    return [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/JPSDK/local_manager_Dic.plist"];
 }
 
 
@@ -910,17 +579,6 @@
     });
 }
 
-+ (void)exitApplication {
-    
-    UIWindow *window = [JPAppDelegate shareAppdelegate].window;
-    
-    [UIView animateWithDuration:1.0f animations:^{
-        window.alpha = 0;
-        window.frame = CGRectMake(window.bounds.size.width/2, window.bounds.size.height/2, 0, 0);
-    } completion:^(BOOL finished) {
-        exit(0);
-    }];
-}
 
 + (UIViewController *)currentViewController {
     UIWindow * window = [[UIApplication sharedApplication] keyWindow];
@@ -944,6 +602,30 @@
         currentVC = [(UINavigationController *)currentVC topViewController];
     }
     return currentVC;
+}
+
++ (void)registNewFontWithName:(NSString *)name{
+    
+   
+
+    NSString * path = [JPResourceBundlePath stringByAppendingPathComponent:name];
+    NSData *dynamicFontData = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:path]];
+    if (!dynamicFontData) {
+        return ;
+    }
+    CFErrorRef error;
+    CGDataProviderRef providerRef = CGDataProviderCreateWithCFData((CFDataRef)dynamicFontData);
+    CGFontRef font = CGFontCreateWithDataProvider(providerRef);
+    if (! CTFontManagerRegisterGraphicsFont(font, &error))
+    {
+        //如果注册失败，则不使用
+        CFStringRef errorDescription = CFErrorCopyDescription(error);
+        NSLog(@"Failed to load font: %@", errorDescription);
+        CFRelease(errorDescription);
+        return ;
+    }
+    CFRelease(font);
+    CFRelease(providerRef);
 }
 
 @end

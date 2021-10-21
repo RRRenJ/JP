@@ -1,0 +1,32 @@
+{
+  "name": "GPUImage",
+  "version": "0.1.0",
+  "license": "BSD",
+  "summary": "An open source iOS framework for GPU-based image and video processing.",
+  "homepage": "https://github.com/RRRenJ/JPGPUImage",
+  "authors": {
+    "RRRenj": "584201474@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/RRRenJ/JPGPUImage.git",
+    "tag": "0.1.0"
+  },
+  "source_files": "Source/**/*.{h,m}",
+  "resources": "Resources/*.png",
+  "requires_arc": true,
+  "xcconfig": {
+    "CLANG_MODULES_AUTOLINK": "YES"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "ios": {
+    "exclude_files": "Source/Mac",
+    "frameworks": [
+      "OpenGLES",
+      "CoreMedia",
+      "QuartzCore",
+      "AVFoundation"
+    ]
+  }
+}

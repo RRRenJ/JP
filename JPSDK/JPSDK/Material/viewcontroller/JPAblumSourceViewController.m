@@ -12,7 +12,6 @@
 #import "JPVideoClipViewController.h"
 #import "JPPhotoEditViewController.h"
 #import "JPAlertView.h"
-#import "MJRefresh.h"
 
 static PHImageRequestOptions *requestOptions;
 
@@ -47,15 +46,15 @@ static PHImageRequestOptions *requestOptions;
     UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
     //设置布局方向为垂直流布局
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    layout.itemSize = CGSizeMake((SCREEN_WIDTH - 46)/3, (SCREEN_WIDTH - 46)/3);
-    _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(ScreenFitFloat6(15), self.navagatorView.bottom + ScreenFitFloat6(15) , SCREEN_WIDTH - ScreenFitFloat6(30),SCREEN_HEIGHT - self.navagatorView.bottom - ScreenFitFloat6(100)) collectionViewLayout:layout];
+    layout.itemSize = CGSizeMake((JP_SCREEN_WIDTH - 46)/3, (JP_SCREEN_WIDTH - 46)/3);
+    _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(JPScreenFitFloat6(15), self.navagatorView.bottom + JPScreenFitFloat6(15) , JP_SCREEN_WIDTH - JPScreenFitFloat6(30),JP_SCREEN_HEIGHT - self.navagatorView.bottom - JPScreenFitFloat6(100)) collectionViewLayout:layout];
     _collectionView.delegate = self;
     _collectionView.backgroundColor = self.view.backgroundColor;
     _collectionView.dataSource = self;
     _collectionView.bounces = YES;
     _collectionView.showsHorizontalScrollIndicator = NO;
     _collectionView.showsVerticalScrollIndicator = NO;
-    [_collectionView registerNib:[UINib nibWithNibName:@"JPLocalFileCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"JPLocalFileCollectionViewCell"];
+    [_collectionView registerNib:[UINib nibWithNibName:@"JPLocalFileCollectionViewCell" bundle:JPResourceBundle] forCellWithReuseIdentifier:@"JPLocalFileCollectionViewCell"];
     [self.view addSubview:_collectionView];
     _collectionView.sd_layout.topSpaceToView(self.view, 5).bottomSpaceToView(self.view, 10).leftSpaceToView(self.view, 13).rightSpaceToView(self.view, 13);
     [_collectionView reloadData];
@@ -133,11 +132,11 @@ static PHImageRequestOptions *requestOptions;
     if (!avauthAlertView) {
         NSString *str = @"让大家看看手机里的精美素材吧~请在「设置」-「隐私」-「照片」中打开未来拍客的本地图库获取权限";
         avauthAlertView = [[JPAlertView alloc] initWithTitle:str
-                                                    andFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH)];
+                                                    andFrame:CGRectMake(0, 0, JP_SCREEN_WIDTH, JP_SCREEN_WIDTH)];
     }
     if (![self.view.subviews containsObject:avauthAlertView]) {
         [self.view addSubview:avauthAlertView];
-        avauthAlertView.sd_layout.centerXEqualToView(self.view).centerYEqualToView(self.view).widthIs(SCREEN_WIDTH).heightIs(SCREEN_WIDTH);
+        avauthAlertView.sd_layout.centerXEqualToView(self.view).centerYEqualToView(self.view).widthIs(JP_SCREEN_WIDTH).heightIs(JP_SCREEN_WIDTH);
     }
 }
 
@@ -158,7 +157,7 @@ static PHImageRequestOptions *requestOptions;
                 mediaType = PHAssetMediaTypeVideo;
             }
             PHFetchResult *smartAlbums = [PHAsset fetchAssetsWithMediaType:mediaType options:option];
-            _fetchResult = smartAlbums;
+            self.fetchResult = smartAlbums;
             for (int i = 0; i < smartAlbums.count; i++) {
                 @autoreleasepool {
                     PHAsset *originAsset = [smartAlbums objectAtIndex:i];
@@ -181,7 +180,7 @@ static PHImageRequestOptions *requestOptions;
                         if (originAsset.mediaType == PHAssetMediaTypeImage && self.type == JPAssetTypePhoto && ([originAsset respondsToSelector:@selector(sourceType)] == NO || originAsset.sourceType == PHAssetSourceTypeUserLibrary)) {
                             model.type = JPAssetTypePhoto;
                             model.localId = originAsset.localIdentifier;
-                            [_dataSource addObject:model];
+                            [self.dataSource addObject:model];
                         }else if (originAsset.mediaType == PHAssetMediaTypeVideo && self.type == JPAssetTypeVideo){
                             if (self.isTempalte == NO) {
                                 self.minTime = JP_VIDEO_MIN_DURATION;
@@ -189,7 +188,7 @@ static PHImageRequestOptions *requestOptions;
                             if ( model.duration >= CMTimeGetSeconds(self.minTime)) {
                                 model.type = JPAssetTypeVideo;
                                 model.localId = originAsset.localIdentifier;
-                                [_dataSource addObject:model];
+                                [self.dataSource addObject:model];
                             }
                         }
                     }
@@ -217,7 +216,7 @@ static PHImageRequestOptions *requestOptions;
     }
     @autoreleasepool {
         PHImageManager *imageManager = [PHImageManager defaultManager];
-        CGSize imageSize = CGSizeMake(floorf((SCREEN_WIDTH - 46)/3 * 1.4) , floorf((SCREEN_WIDTH - 46)/3 * 1.4)  );
+        CGSize imageSize = CGSizeMake(floorf((JP_SCREEN_WIDTH - 46)/3 * 1.4) , floorf((JP_SCREEN_WIDTH - 46)/3 * 1.4)  );
         [imageManager requestImageForAsset:asset targetSize:imageSize contentMode:PHImageContentModeDefault options:requestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
             model.thumImage = result;
         }];
@@ -228,7 +227,7 @@ static PHImageRequestOptions *requestOptions;
 - (void)updateModel:(JPLocalFileModel *)model
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [_collectionView reloadData];
+        [self.collectionView reloadData];
     });
 }
 
@@ -290,7 +289,7 @@ static PHImageRequestOptions *requestOptions;
 
 - (void)configueRateVideo:(JPLocalFileModel *)fileModel
 {
-    [self showHUD];
+    [self jp_showHUD];
     self.baseNavigationController.view.userInteractionEnabled = NO;
     PHImageManager *asserManager = [PHImageManager defaultManager];
     [asserManager requestExportSessionForVideo:fileModel.photoAsset options:nil exportPreset:AVAssetExportPresetHighestQuality resultHandler:^(AVAssetExportSession * _Nullable exportSession, NSDictionary * _Nullable info) {
@@ -327,8 +326,8 @@ static PHImageRequestOptions *requestOptions;
                             fileModel.videoModel = videoModel;
                             [self requestVideoSuccessWith:fileModel];
                         }else {
-                            [self hidHUD];
-                            [[JPAppDelegate shareAppdelegate] showAlertViewWithTitle:@"导入视频不能少于3秒"];
+                            [self jp_hideHUD];
+                            [MBProgressHUD jp_showMessage:@"导入视频不能少于3秒"];
                             
                         }
                     }else
@@ -409,8 +408,8 @@ static PHImageRequestOptions *requestOptions;
                                 fileModel.videoModel = videoModel;
                                 [self requestVideoSuccessWith:fileModel];
                             }else {
-                                [self hidHUD];
-                                [[JPAppDelegate shareAppdelegate] showAlertViewWithTitle:@"导入视频不能少于3秒"];
+                                [self jp_hideHUD];
+                                [MBProgressHUD jp_showMessage:@"导入视频不能少于3秒"];
                             }
                         }
                     }  break;
@@ -504,17 +503,17 @@ static PHImageRequestOptions *requestOptions;
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         self.baseNavigationController.view.userInteractionEnabled = YES;
-        [self hidHUD];
-        if (_fromPackage) {
+        [self jp_hideHUD];
+        if (self.fromPackage) {
             [self.delegate ablumSourceViewControllerDidSelectVideoModel:localModel];
             NSTimeInterval restTime = CMTimeGetSeconds([self.delegate ablumSourceViewControllerNeedGetResetTime]);
-            for (JPLocalFileModel *model in _reallydata) {
+            for (JPLocalFileModel *model in self.reallydata) {
                 model.isInvalid = NO;
-                if (_fromPackage && ((model.duration > restTime && _type == JPAssetTypeVideo) || restTime < 2.0)) {
+                if (self.fromPackage && ((model.duration > restTime && self.type == JPAssetTypeVideo) || restTime < 2.0)) {
                     model.isInvalid = YES;
                 }
             }
-            [_collectionView reloadData];
+            [self.collectionView reloadData];
         }else{
             [self pushToTheViewClipVCWithVideoModel:localModel.videoModel];
         }
@@ -524,9 +523,9 @@ static PHImageRequestOptions *requestOptions;
 - (void)requesetRateVideofail
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self hidHUD];
+        [self jp_hideHUD];
         self.baseNavigationController.view.userInteractionEnabled = YES;
-        [[JPAppDelegate shareAppdelegate] showAlertViewWithTitle:@"导出视频失败,请重试"];
+        [MBProgressHUD jp_showMessage:@"导出视频失败,请重试"];
     });
 }
 
@@ -558,25 +557,25 @@ static PHImageRequestOptions *requestOptions;
                 options.resizeMode = PHImageRequestOptionsResizeModeFast;
                 [asserManager requestImageDataForAsset:fileModel.photoAsset options:options resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
                     UIImage * image = [UIImage imageWithData:imageData];
-                    resultImage = [UIImage fixOrientation:image];
+                    resultImage = [UIImage jp_fixOrientation:image];
                     if (resultImage) {
                         JPVideoModel *videoModel = [[JPVideoModel alloc] init];
                         videoModel.sourceType = JPVideoSourceLocal;
                         videoModel.originThumbImage = fileModel.thumImage;
-                        videoModel.originImage = [UIImage fixOrientation:result];
+                        videoModel.originImage = [UIImage jp_fixOrientation:result];
                         videoModel.aspectRatio = fileModel.aspectRatio;
                         dispatch_async(dispatch_get_main_queue(), ^{
                             self.baseNavigationController.view.userInteractionEnabled = YES;
-                            if (_isTempalte == YES) {
+                            if (self.isTempalte == YES) {
                                 self.templateSelectBlock(videoModel);
                                 return ;
                             }
-                            JPPhotoEditViewController *videoClipVC = [[JPPhotoEditViewController alloc] init];
-                            videoClipVC.fromPackage = _fromPackage;
-                            videoClipVC.cancelGesturesReturn = YES;
-                            videoClipVC.cancelReturnButton = YES;
+                            JPPhotoEditViewController *videoClipVC = [[JPPhotoEditViewController alloc] initWithNibName:@"JPPhotoEditViewController" bundle:JPResourceBundle];
+                            videoClipVC.fromPackage = self.fromPackage;
+                            videoClipVC.jp_cancelGesturesReturn = YES;
+                            videoClipVC.jp_cancelReturnButton = YES;
                             videoClipVC.videoModel = videoModel;
-                            videoClipVC.recordInfo = _recordInfo;
+                            videoClipVC.recordInfo = self.recordInfo;
                             videoClipVC.delegate = self;
                             [weakSelf.baseNavigationController pushViewController:videoClipVC animated:YES];
                         });
@@ -585,25 +584,25 @@ static PHImageRequestOptions *requestOptions;
                     }
                 }];
             }else{
-                resultImage = [UIImage fixOrientation:result];
+                resultImage = [UIImage jp_fixOrientation:result];
                 if (resultImage) {
                     JPVideoModel *videoModel = [[JPVideoModel alloc] init];
                     videoModel.sourceType = JPVideoSourceLocal;
                     videoModel.originThumbImage = fileModel.thumImage;
-                    videoModel.originImage = [UIImage fixOrientation:result];
+                    videoModel.originImage = [UIImage jp_fixOrientation:result];
                     videoModel.aspectRatio = fileModel.aspectRatio;
                     dispatch_async(dispatch_get_main_queue(), ^{
                         self.baseNavigationController.view.userInteractionEnabled = YES;
-                        if (_isTempalte == YES) {
+                        if (self.isTempalte == YES) {
                             self.templateSelectBlock(videoModel);
                             return ;
                         }
-                        JPPhotoEditViewController *videoClipVC = [[JPPhotoEditViewController alloc] init];
-                        videoClipVC.fromPackage = _fromPackage;
-                        videoClipVC.cancelGesturesReturn = YES;
-                        videoClipVC.cancelReturnButton = YES;
+                        JPPhotoEditViewController *videoClipVC = [[JPPhotoEditViewController alloc] initWithNibName:@"JPPhotoEditViewController" bundle:JPResourceBundle];
+                        videoClipVC.fromPackage = self.fromPackage;
+                        videoClipVC.jp_cancelGesturesReturn = YES;
+                        videoClipVC.jp_cancelReturnButton = YES;
                         videoClipVC.videoModel = videoModel;
-                        videoClipVC.recordInfo = _recordInfo;
+                        videoClipVC.recordInfo = self.recordInfo;
                         videoClipVC.delegate = self;
                         [weakSelf.baseNavigationController pushViewController:videoClipVC animated:YES];
                     });
@@ -636,9 +635,9 @@ static PHImageRequestOptions *requestOptions;
         self.templateSelectBlock(videoModel);
         return;
     }
-    JPVideoClipViewController *videoClipVC = [[JPVideoClipViewController alloc] init];
-    videoClipVC.cancelGesturesReturn = YES;
-    videoClipVC.cancelReturnButton = YES;
+    JPVideoClipViewController *videoClipVC = [[JPVideoClipViewController alloc] initWithNibName:@"JPVideoClipViewController" bundle:JPResourceBundle];
+    videoClipVC.jp_cancelGesturesReturn = YES;
+    videoClipVC.jp_cancelReturnButton = YES;
     videoClipVC.fromPackage = _fromPackage;
     videoClipVC.videoModel = videoModel;
     videoClipVC.recordInfo = _recordInfo;
@@ -659,7 +658,7 @@ static PHImageRequestOptions *requestOptions;
 #pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake((SCREEN_WIDTH - 46)/3, (SCREEN_WIDTH - 46)/3);
+    return CGSizeMake((JP_SCREEN_WIDTH - 46)/3, (JP_SCREEN_WIDTH - 46)/3);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{

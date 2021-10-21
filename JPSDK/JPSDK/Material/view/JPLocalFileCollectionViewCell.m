@@ -25,9 +25,9 @@
     _selectNumberLabel.font = [UIFont fontWithName:@"PlacardMTStd-Cond" size:36];
     _selectView.layer.borderWidth = 2;
     _selectNumberLabel.textAlignment = NSTextAlignmentCenter;
-    _selectView.layer.borderColor = [UIColor appMainYellowColor].CGColor;
+    _selectView.layer.borderColor = [UIColor jp_colorWithHexString:@"0091FF"].CGColor;
     _contentImageView.layer.borderWidth = 0.5;
-    _contentImageView.layer.borderColor = [UIColor colorWithHex:0x303030].CGColor;
+    _contentImageView.layer.borderColor = [UIColor jp_colorWithHexString:@"303030"].CGColor;
     _timeLabel.font = [UIFont fontWithName:@"PlacardMTStd-Cond" size:10];;
     self.index = 0;
 }
@@ -41,15 +41,15 @@
     _invalidView.hidden = !(_fileModel.isSelect == NO && _fileModel.isInvalid == YES);
     _contentImageView.image = fileModel.thumImage;
     if (fileModel.aspectRatio == JPVideoAspectRatio1X1) {
-        _frameImageView.image = [UIImage imageNamed:@"1to1_aspect_ratio"];
+        _frameImageView.image = JPImageWithName(@"1to1_aspect_ratio");
     }else if (fileModel.aspectRatio == JPVideoAspectRatio16X9)
     {
-        _frameImageView.image = [UIImage imageNamed:@"16to9_aspect_ratio"];
+        _frameImageView.image = JPImageWithName(@"16to9_aspect_ratio");
     }else if (fileModel.aspectRatio == JPVideoAspectRatio9X16){
-        _frameImageView.image = [UIImage imageNamed:@"9to16_aspect_ratio"];
+        _frameImageView.image = JPImageWithName(@"9to16_aspect_ratio");
         
     }else{
-        _frameImageView.image = [UIImage imageNamed:@"4to3_aspect_ratio"];
+        _frameImageView.image = JPImageWithName(@"4to3_aspect_ratio");
         
     }
 
@@ -73,15 +73,15 @@
         _timeLabel.hidden = NO;
         _timeLabel.text = [NSString stringWithTimeInterval:model.duration];
         if (_fileModel.aspectRatio == JPVideoAspectRatio1X1) {
-            _frameImageView.image = [UIImage imageNamed:@"square-on"];
+            _frameImageView.image = JPImageWithName(@"square-on");
         }else if (_fileModel.aspectRatio == JPVideoAspectRatio16X9)
         {
-            _frameImageView.image = [UIImage imageNamed:@"transverse-on"];
+            _frameImageView.image = JPImageWithName(@"transverse-on");
         }else if (_fileModel.aspectRatio == JPVideoAspectRatio9X16){
-            _frameImageView.image = [UIImage imageNamed:@"vertical-on"];
+            _frameImageView.image = JPImageWithName(@"vertical-on");
             
         }else{
-            _frameImageView.image = [UIImage imageNamed:@"4to3-on"];
+            _frameImageView.image = JPImageWithName(@"4to3-on");
             
         }
         _frameImageView.hidden=NO;
@@ -102,4 +102,6 @@
     }
 }
 
+
 @end
+

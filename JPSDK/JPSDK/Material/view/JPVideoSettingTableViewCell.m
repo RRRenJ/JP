@@ -55,12 +55,12 @@
 {
     for (UIButton *button in _buttonArr) {
         if (button.tag == total) {
-            button.layer.borderColor = [UIColor appMainYellowColor].CGColor;
-            [button setTitleColor:[UIColor appMainYellowColor] forState:UIControlStateNormal];
+            button.layer.borderColor = [UIColor jp_colorWithHexString:@"0091FF"].CGColor;
+            [button setTitleColor:[UIColor jp_colorWithHexString:@"0091FF"] forState:UIControlStateNormal];
             
         }else{
-            button.layer.borderColor = [UIColor appMainGrayColor].CGColor;
-            [button setTitleColor:[UIColor appMainGrayColor] forState:UIControlStateNormal];
+            button.layer.borderColor = [UIColor jp_colorWithHexString:@"535353"].CGColor;
+            [button setTitleColor:[UIColor jp_colorWithHexString:@"535353"] forState:UIControlStateNormal];
 
         }
     }

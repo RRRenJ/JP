@@ -36,41 +36,41 @@
 
 - (void)complieShaderProgramWithContentFile:(NSArray<NSString *> *)contentFile
 {
-    NSString *headerFilePath = [[NSBundle mainBundle] pathForResource:@"filterHeader" ofType:@"glsl"];
+    NSString *headerFilePath = [JP_Resource_bundle pathForResource:@"filterHeader" ofType:@"glsl"];
     NSString *headerStr = [NSString stringWithContentsOfFile:headerFilePath encoding:NSUTF8StringEncoding error:nil];
     NSString *shaderStr = headerStr;
     for (NSString *fileName in contentFile) {
-        NSString *contentFilePath = [[NSBundle mainBundle] pathForResource:fileName ofType:@"glsl"];
+        NSString *contentFilePath = [JP_Resource_bundle pathForResource:fileName ofType:@"glsl"];
         NSString *contentStr = [NSString stringWithContentsOfFile:contentFilePath encoding:NSUTF8StringEncoding error:nil];
         shaderStr = [NSString stringWithFormat:@"%@\n%@", shaderStr, contentStr];
     }
-    NSString *footerFilePath = [[NSBundle mainBundle] pathForResource:@"filterFooter" ofType:@"glsl"];
+    NSString *footerFilePath = [JP_Resource_bundle pathForResource:@"filterFooter" ofType:@"glsl"];
     NSString *footerStr = [NSString stringWithContentsOfFile:footerFilePath encoding:NSUTF8StringEncoding error:nil];
     shaderStr = [NSString stringWithFormat:@"%@\n%@", shaderStr, footerStr];
     runSynchronouslyOnVideoProcessingQueue(^{
         [GPUImageContext useImageProcessingContext];
-        filterProgram = [[GPUImageContext sharedImageProcessingContext] programForVertexShaderString:kGPUImageVertexShaderString fragmentShaderString:shaderStr];
-        if (!filterProgram.initialized)
+        self->filterProgram = [[GPUImageContext sharedImageProcessingContext] programForVertexShaderString:kGPUImageVertexShaderString fragmentShaderString:shaderStr];
+        if (!self->filterProgram.initialized)
         {
             [self initializeAttributes];
-            if (![filterProgram link])
+            if (![self->filterProgram link])
             {
-                NSString *progLog = [filterProgram programLog];
+                NSString *progLog = [self->filterProgram programLog];
                 NSLog(@"Program link log: %@", progLog);
-                NSString *fragLog = [filterProgram fragmentShaderLog];
+                NSString *fragLog = [self->filterProgram fragmentShaderLog];
                 NSLog(@"Fragment shader compile log: %@", fragLog);
-                NSString *vertLog = [filterProgram vertexShaderLog];
+                NSString *vertLog = [self->filterProgram vertexShaderLog];
                 NSLog(@"Vertex shader compile log: %@", vertLog);
-                filterProgram = nil;
+                self->filterProgram = nil;
                 NSAssert(NO, @"Filter shader link failed");
             }
         }
-        filterPositionAttribute = [filterProgram attributeIndex:@"position"];
-        filterTextureCoordinateAttribute = [filterProgram attributeIndex:@"inputTextureCoordinate"];
-        filterInputTextureUniform = [filterProgram uniformIndex:@"inputImageTexture"]; // This does assume a name of "inputImageTexture" for the fragment shader
-        [GPUImageContext setActiveShaderProgram:filterProgram];
-        glEnableVertexAttribArray(filterPositionAttribute);
-        glEnableVertexAttribArray(filterTextureCoordinateAttribute);
+        self->filterPositionAttribute = [self->filterProgram attributeIndex:@"position"];
+        self->filterTextureCoordinateAttribute = [self->filterProgram attributeIndex:@"inputTextureCoordinate"];
+        self->filterInputTextureUniform = [self->filterProgram uniformIndex:@"inputImageTexture"]; // This does assume a name of "inputImageTexture" for the fragment shader
+        [GPUImageContext setActiveShaderProgram:self->filterProgram];
+        glEnableVertexAttribArray(self->filterPositionAttribute);
+        glEnableVertexAttribArray(self->filterTextureCoordinateAttribute);
     });
 }
 

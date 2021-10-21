@@ -3,25 +3,402 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8DA59D1A9FF37CD8400C5317 /* Pods_JPSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC2DB6A729C9352D081B4685 /* Pods_JPSDK.framework */; };
+		B7019A5C26FC716800ECFE04 /* UIImage+JP.m in Sources */ = {isa = PBXBuildFile; fileRef = B7019A5B26FC716800ECFE04 /* UIImage+JP.m */; };
+		B7019A5F26FD770100ECFE04 /* UIViewController+JP.m in Sources */ = {isa = PBXBuildFile; fileRef = B7019A5E26FD770100ECFE04 /* UIViewController+JP.m */; };
+		B71181542720FEA500636767 /* JPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B71181532720FEA500636767 /* JPManager.m */; };
+		B734AD1826F43FEB00171E05 /* JPLocalFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACA526F43FEB00171E05 /* JPLocalFileModel.m */; };
+		B734AD1926F43FEB00171E05 /* JPTransitionCompositionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACA826F43FEB00171E05 /* JPTransitionCompositionModel.m */; };
+		B734AD1B26F43FEB00171E05 /* JPGradualLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACAC26F43FEB00171E05 /* JPGradualLineView.m */; };
+		B734AD1C26F43FEB00171E05 /* JPVideoRecordProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACAE26F43FEB00171E05 /* JPVideoRecordProgressView.m */; };
+		B734AD1D26F43FEB00171E05 /* JPSelectVideosView.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACAF26F43FEB00171E05 /* JPSelectVideosView.m */; };
+		B734AD1E26F43FEB00171E05 /* JPFiltersCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACB026F43FEB00171E05 /* JPFiltersCollectionViewCell.m */; };
+		B734AD2026F43FEB00171E05 /* JPStartRecordButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACB226F43FEB00171E05 /* JPStartRecordButton.m */; };
+		B734AD2126F43FEB00171E05 /* JPVideoSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACB326F43FEB00171E05 /* JPVideoSettingTableViewCell.m */; };
+		B734AD2226F43FEB00171E05 /* JPNewFilterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACB426F43FEB00171E05 /* JPNewFilterCollectionViewCell.m */; };
+		B734AD2326F43FEB00171E05 /* JPPromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACB626F43FEB00171E05 /* JPPromptView.m */; };
+		B734AD2626F43FEB00171E05 /* JPFilterCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACBE26F43FEB00171E05 /* JPFilterCollectionView.m */; };
+		B734AD2726F43FEB00171E05 /* JPCoustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACBF26F43FEB00171E05 /* JPCoustomButton.m */; };
+		B734AD2926F43FEB00171E05 /* JPLocalFileCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACC126F43FEB00171E05 /* JPLocalFileCollectionViewCell.m */; };
+		B734AD2C26F43FEB00171E05 /* JPNewSegementView.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACC626F43FEB00171E05 /* JPNewSegementView.m */; };
+		B734AD2E26F43FEB00171E05 /* JPVideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACC926F43FEB00171E05 /* JPVideoPlayerView.m */; };
+		B734AD3026F43FEC00171E05 /* JPNextButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACCB26F43FEB00171E05 /* JPNextButton.m */; };
+		B734AD3226F43FEC00171E05 /* JPHowFastCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACCD26F43FEB00171E05 /* JPHowFastCollectionViewCell.m */; };
+		B734AD3326F43FEC00171E05 /* JPLocalMediaCloudTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACCE26F43FEB00171E05 /* JPLocalMediaCloudTableViewCell.m */; };
+		B734AD3626F43FEC00171E05 /* JPProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACD426F43FEB00171E05 /* JPProgressView.m */; };
+		B734AD3726F43FEC00171E05 /* JPSelectVideosViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACD726F43FEB00171E05 /* JPSelectVideosViewCell.m */; };
+		B734AD3826F43FEC00171E05 /* JPVideoInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACD926F43FEB00171E05 /* JPVideoInfoTableViewCell.m */; };
+		B734AD3B26F43FEC00171E05 /* JPNewFilterCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACDC26F43FEB00171E05 /* JPNewFilterCollectionView.m */; };
+		B734AD3C26F43FEC00171E05 /* JPGradientAnimateGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACDE26F43FEB00171E05 /* JPGradientAnimateGuideView.m */; };
+		B734AD3D26F43FEC00171E05 /* JPCameraSettingCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACDF26F43FEB00171E05 /* JPCameraSettingCollectionViewCell.m */; };
+		B734AD3E26F43FEC00171E05 /* JFRecordTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACE026F43FEB00171E05 /* JFRecordTitleView.m */; };
+		B734AD3F26F43FEC00171E05 /* JPHotListTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACE126F43FEB00171E05 /* JPHotListTitleView.m */; };
+		B734AD4126F43FEC00171E05 /* JPRecordGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACE626F43FEB00171E05 /* JPRecordGuideView.m */; };
+		B734AD4326F43FEC00171E05 /* JPRecordButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACE926F43FEB00171E05 /* JPRecordButton.m */; };
+		B734AD4526F43FEC00171E05 /* JPCameraSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACEB26F43FEB00171E05 /* JPCameraSettingView.m */; };
+		B734AD4826F43FEC00171E05 /* JPNewImportButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACF126F43FEB00171E05 /* JPNewImportButton.m */; };
+		B734AD4B26F43FEC00171E05 /* JPAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B734ACFC26F43FEB00171E05 /* JPAlbumViewController.m */; };
+		B734AD5226F43FEC00171E05 /* JPVideoClipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B734AD0B26F43FEB00171E05 /* JPVideoClipViewController.m */; };
+		B734AD5526F43FEC00171E05 /* JPNewImportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B734AD0E26F43FEB00171E05 /* JPNewImportViewController.m */; };
+		B734AD5726F43FEC00171E05 /* JPPhotoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B734AD1126F43FEB00171E05 /* JPPhotoEditViewController.m */; };
+		B734AD5926F43FEC00171E05 /* JPNewCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B734AD1326F43FEB00171E05 /* JPNewCameraViewController.m */; };
+		B734AD5B26F43FEC00171E05 /* JPAblumSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B734AD1626F43FEB00171E05 /* JPAblumSourceViewController.m */; };
+		B734AD6026F4793300171E05 /* UIColor+JP.m in Sources */ = {isa = PBXBuildFile; fileRef = B734AD5F26F4793300171E05 /* UIColor+JP.m */; };
+		B73B22AA271E694300B5E113 /* CompositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73B22A9271E694300B5E113 /* CompositionViewController.m */; };
+		B74D363A26FB0C840087FD51 /* UIFont+JP.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D363926FB0C840087FD51 /* UIFont+JP.m */; };
+		B74D367D26FB123A0087FD51 /* JPImgPickerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D363C26FB12390087FD51 /* JPImgPickerViewCell.m */; };
+		B74D367E26FB123A0087FD51 /* JPPackageClipsThumbViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D363F26FB12390087FD51 /* JPPackageClipsThumbViewCell.m */; };
+		B74D367F26FB123A0087FD51 /* JPStickerPictureCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D364026FB12390087FD51 /* JPStickerPictureCollectionViewCell.m */; };
+		B74D368026FB123A0087FD51 /* JPPackagePictureGraphCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D364526FB12390087FD51 /* JPPackagePictureGraphCell.m */; };
+		B74D368126FB123A0087FD51 /* JPPackageGraphMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D364626FB12390087FD51 /* JPPackageGraphMenuCell.m */; };
+		B74D368226FB123A0087FD51 /* JPPackageTextPatternMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D364726FB12390087FD51 /* JPPackageTextPatternMenuCell.m */; };
+		B74D368326FB123A0087FD51 /* JPBackgroundMusicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D364926FB12390087FD51 /* JPBackgroundMusicCell.m */; };
+		B74D368426FB123A0087FD51 /* JPNewPatternTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D364A26FB12390087FD51 /* JPNewPatternTableViewCell.m */; };
+		B74D368526FB123A0087FD51 /* JPPackageMenuAttributeTextFontCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D364C26FB12390087FD51 /* JPPackageMenuAttributeTextFontCell.m */; };
+		B74D368626FB123A0087FD51 /* JPPackageMenuAttributePhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D364E26FB12390087FD51 /* JPPackageMenuAttributePhotoCell.m */; };
+		B74D368726FB123A0087FD51 /* JPPackageMenuAttributeTimeSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D365026FB12390087FD51 /* JPPackageMenuAttributeTimeSliderCell.m */; };
+		B74D368926FB123A0087FD51 /* JPPackageMenuAttributeColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D365326FB12390087FD51 /* JPPackageMenuAttributeColorCell.m */; };
+		B74D368A26FB123A0087FD51 /* JPTextFontSizeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D365526FB12390087FD51 /* JPTextFontSizeCollectionViewCell.m */; };
+		B74D368E26FB123A0087FD51 /* JPSoundEffectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D365B26FB12390087FD51 /* JPSoundEffectTableViewCell.m */; };
+		B74D368F26FB123A0087FD51 /* JPVideoThumbSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D365C26FB12390087FD51 /* JPVideoThumbSliderCell.m */; };
+		B74D369426FB123A0087FD51 /* JPTextFontCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D366526FB12390087FD51 /* JPTextFontCell.m */; };
+		B74D369526FB123A0087FD51 /* JPPackageFilterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D366626FB12390087FD51 /* JPPackageFilterCollectionViewCell.m */; };
+		B74D369626FB123A0087FD51 /* JPRecordAudioThumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D366826FB12390087FD51 /* JPRecordAudioThumCell.m */; };
+		B74D369726FB123A0087FD51 /* JPGraphCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D367326FB12390087FD51 /* JPGraphCollectionViewCell.m */; };
+		B74D369826FB123A0087FD51 /* JPGIFImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D367426FB12390087FD51 /* JPGIFImageView.m */; };
+		B74D369926FB123A0087FD51 /* JPMaterialTypeCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D367526FB12390087FD51 /* JPMaterialTypeCollectionCell.m */; };
+		B74D369A26FB123A0087FD51 /* JPHotGraphListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D367626FB12390087FD51 /* JPHotGraphListCollectionViewCell.m */; };
+		B74D369C26FB123A0087FD51 /* JPMusicListsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D367826FB12390087FD51 /* JPMusicListsTableViewCell.m */; };
+		B74D369D26FB123A0087FD51 /* JPGifListCellCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D367A26FB12390087FD51 /* JPGifListCellCollectionViewCell.m */; };
+		B74D369E26FB123A0087FD51 /* JPLogoSelectCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D367C26FB12390087FD51 /* JPLogoSelectCollectionViewCell.m */; };
+		B74D36A126FB28C60087FD51 /* UIButton+JP.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D36A026FB28C60087FD51 /* UIButton+JP.m */; };
+		B74D36AB26FC5D250087FD51 /* JPMaterialDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D36A526FC5D240087FD51 /* JPMaterialDownloader.m */; };
+		B74D36AC26FC5D250087FD51 /* JPMaterialCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D36A726FC5D240087FD51 /* JPMaterialCategory.m */; };
+		B74D36AD26FC5D250087FD51 /* JPMaterial.m in Sources */ = {isa = PBXBuildFile; fileRef = B74D36A826FC5D240087FD51 /* JPMaterial.m */; };
+		B778749026F439AA0019B0F8 /* NSString+JP.m in Sources */ = {isa = PBXBuildFile; fileRef = B778748F26F439AA0019B0F8 /* NSString+JP.m */; };
+		B77AD09526FD7C5F00AC0146 /* JPErrorMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77AD09326FD7C5E00AC0146 /* JPErrorMessageView.m */; };
+		B77AD09D26FD7F1600AC0146 /* MBProgressHUD+JP.m in Sources */ = {isa = PBXBuildFile; fileRef = B77AD09C26FD7F1600AC0146 /* MBProgressHUD+JP.m */; };
+		B77AD0A326FDAC2D00AC0146 /* JPAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77AD0A126FDAC2C00AC0146 /* JPAlertView.m */; };
+		B77AD0A826FDB0DF00AC0146 /* NSObject+JP.m in Sources */ = {isa = PBXBuildFile; fileRef = B77AD0A726FDB0DF00AC0146 /* NSObject+JP.m */; };
+		B77AD0AD26FDBA1700AC0146 /* MARKRangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = B77AD0AB26FDBA1700AC0146 /* MARKRangeSlider.m */; };
+		B77AD0B027016F9C00AC0146 /* JPVideoPublishProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77AD0AF27016F9C00AC0146 /* JPVideoPublishProgressView.m */; };
+		B77AD0B32701704200AC0146 /* JPDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = B77AD0B12701704100AC0146 /* JPDataBase.m */; };
+		B77AD0B6270171A300AC0146 /* JPMediaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B77AD0B5270171A300AC0146 /* JPMediaModel.m */; };
+		B77AD0B92701A1E700AC0146 /* NSThread+JP.m in Sources */ = {isa = PBXBuildFile; fileRef = B77AD0B82701A1E700AC0146 /* NSThread+JP.m */; };
 		B77B21B226EB356600B82CE4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B21B126EB356600B82CE4 /* AppDelegate.m */; };
-		B77B21B526EB356600B82CE4 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B21B426EB356600B82CE4 /* SceneDelegate.m */; };
 		B77B21B826EB356600B82CE4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B21B726EB356600B82CE4 /* ViewController.m */; };
 		B77B21BB26EB356600B82CE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B77B21B926EB356600B82CE4 /* Main.storyboard */; };
 		B77B21BD26EB356900B82CE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B77B21BC26EB356900B82CE4 /* Assets.xcassets */; };
 		B77B21C026EB356900B82CE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B77B21BE26EB356900B82CE4 /* LaunchScreen.storyboard */; };
 		B77B21C326EB356900B82CE4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B21C226EB356900B82CE4 /* main.m */; };
+		B77B2F9D26EEFEF900B82CE4 /* JPFilterDelegateOnlyCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B2F5E26EEFEF900B82CE4 /* JPFilterDelegateOnlyCurve.m */; };
+		B77B2F9E26EEFEF900B82CE4 /* JPFilterManagers.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B2F5F26EEFEF900B82CE4 /* JPFilterManagers.m */; };
+		B77B2F9F26EEFEF900B82CE4 /* JPFilterDelegateColorBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B2F6026EEFEF900B82CE4 /* JPFilterDelegateColorBalance.m */; };
+		B77B2FA026EEFEF900B82CE4 /* JPFilterDelegateNormal.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B2F6126EEFEF900B82CE4 /* JPFilterDelegateNormal.m */; };
+		B77B2FA126EEFEF900B82CE4 /* filterModernHeader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2F6326EEFEF900B82CE4 /* filterModernHeader.glsl */; };
+		B77B2FA226EEFEF900B82CE4 /* hueAdujs.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2F6426EEFEF900B82CE4 /* hueAdujs.glsl */; };
+		B77B2FA326EEFEF900B82CE4 /* saturation.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2F6526EEFEF900B82CE4 /* saturation.glsl */; };
+		B77B2FA426EEFEF900B82CE4 /* filterHeader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2F6626EEFEF900B82CE4 /* filterHeader.glsl */; };
+		B77B2FA526EEFEF900B82CE4 /* filterFooter.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2F6726EEFEF900B82CE4 /* filterFooter.glsl */; };
+		B77B2FA626EEFEF900B82CE4 /* filterNormal.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2F6826EEFEF900B82CE4 /* filterNormal.glsl */; };
+		B77B2FA726EEFEF900B82CE4 /* funcationStart.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2F6926EEFEF900B82CE4 /* funcationStart.glsl */; };
+		B77B2FA826EEFEF900B82CE4 /* filterElapseHeader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2F6A26EEFEF900B82CE4 /* filterElapseHeader.glsl */; };
+		B77B2FA926EEFEF900B82CE4 /* filterColorBalanceFouncation.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2F6B26EEFEF900B82CE4 /* filterColorBalanceFouncation.glsl */; };
+		B77B2FAA26EEFEF900B82CE4 /* filterBlueBerryColor.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2F6C26EEFEF900B82CE4 /* filterBlueBerryColor.glsl */; };
+		B77B2FAB26EEFEF900B82CE4 /* filterBlueBerryHeader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2F6D26EEFEF900B82CE4 /* filterBlueBerryHeader.glsl */; };
+		B77B2FAC26EEFEF900B82CE4 /* filterSakuraColor.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2F6E26EEFEF900B82CE4 /* filterSakuraColor.glsl */; };
+		B77B2FAD26EEFEF900B82CE4 /* founcationEnd.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2F6F26EEFEF900B82CE4 /* founcationEnd.glsl */; };
+		B77B2FAE26EEFEF900B82CE4 /* filterAfterRaningHeader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2F7026EEFEF900B82CE4 /* filterAfterRaningHeader.glsl */; };
+		B77B2FAF26EEFEF900B82CE4 /* filterPromontoryHeader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2F7126EEFEF900B82CE4 /* filterPromontoryHeader.glsl */; };
+		B77B2FB026EEFEF900B82CE4 /* filterGreenHeader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2F7226EEFEF900B82CE4 /* filterGreenHeader.glsl */; };
+		B77B2FB126EEFEF900B82CE4 /* filterSweetWordsHeader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2F7326EEFEF900B82CE4 /* filterSweetWordsHeader.glsl */; };
+		B77B2FB226EEFEF900B82CE4 /* curveAdjust.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2F7426EEFEF900B82CE4 /* curveAdjust.glsl */; };
+		B77B2FB326EEFEF900B82CE4 /* filterMidSummerHeader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2F7526EEFEF900B82CE4 /* filterMidSummerHeader.glsl */; };
+		B77B2FB426EEFEF900B82CE4 /* filterSakuraHeader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2F7626EEFEF900B82CE4 /* filterSakuraHeader.glsl */; };
+		B77B300726EEFF1600B82CE4 /* JPTranstionsModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B2FD326EEFF1600B82CE4 /* JPTranstionsModelManager.m */; };
+		B77B300826EEFF1600B82CE4 /* transtion19.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2FD526EEFF1600B82CE4 /* transtion19.glsl */; };
+		B77B300926EEFF1600B82CE4 /* transtion15.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2FD626EEFF1600B82CE4 /* transtion15.glsl */; };
+		B77B300A26EEFF1600B82CE4 /* transtion3.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2FD726EEFF1600B82CE4 /* transtion3.glsl */; };
+		B77B300B26EEFF1600B82CE4 /* transtionHeader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2FD826EEFF1600B82CE4 /* transtionHeader.glsl */; };
+		B77B300C26EEFF1600B82CE4 /* transtion2.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2FD926EEFF1600B82CE4 /* transtion2.glsl */; };
+		B77B300D26EEFF1600B82CE4 /* transtion14.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2FDA26EEFF1600B82CE4 /* transtion14.glsl */; };
+		B77B300E26EEFF1600B82CE4 /* transtion18.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2FDB26EEFF1600B82CE4 /* transtion18.glsl */; };
+		B77B300F26EEFF1600B82CE4 /* transtion13.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2FDC26EEFF1600B82CE4 /* transtion13.glsl */; };
+		B77B301026EEFF1600B82CE4 /* transtion5.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2FDD26EEFF1600B82CE4 /* transtion5.glsl */; };
+		B77B301126EEFF1600B82CE4 /* transtion9.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2FDE26EEFF1600B82CE4 /* transtion9.glsl */; };
+		B77B301226EEFF1600B82CE4 /* transtion8.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2FDF26EEFF1600B82CE4 /* transtion8.glsl */; };
+		B77B301326EEFF1600B82CE4 /* transtion4.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2FE026EEFF1600B82CE4 /* transtion4.glsl */; };
+		B77B301426EEFF1600B82CE4 /* transtion12.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2FE126EEFF1600B82CE4 /* transtion12.glsl */; };
+		B77B301526EEFF1600B82CE4 /* transtion7.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2FE226EEFF1600B82CE4 /* transtion7.glsl */; };
+		B77B301626EEFF1600B82CE4 /* transtion11.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2FE326EEFF1600B82CE4 /* transtion11.glsl */; };
+		B77B301726EEFF1600B82CE4 /* transtion10.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2FE426EEFF1600B82CE4 /* transtion10.glsl */; };
+		B77B301826EEFF1600B82CE4 /* transtion6.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2FE526EEFF1600B82CE4 /* transtion6.glsl */; };
+		B77B301926EEFF1600B82CE4 /* transtion1.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2FE626EEFF1600B82CE4 /* transtion1.glsl */; };
+		B77B301A26EEFF1600B82CE4 /* transtion17.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2FE726EEFF1600B82CE4 /* transtion17.glsl */; };
+		B77B301B26EEFF1600B82CE4 /* transtion16.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2FE826EEFF1600B82CE4 /* transtion16.glsl */; };
+		B77B301C26EEFF1600B82CE4 /* transtion20.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B77B2FE926EEFF1600B82CE4 /* transtion20.glsl */; };
+		B77B312B26EF00EF00B82CE4 /* JPImgPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B302126EF00EF00B82CE4 /* JPImgPickerViewController.m */; };
+		B77B312C26EF00EF00B82CE4 /* JPThumbInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B302326EF00EF00B82CE4 /* JPThumbInfoModel.m */; };
+		B77B312D26EF00EF00B82CE4 /* JPFontModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B302626EF00EF00B82CE4 /* JPFontModel.m */; };
+		B77B312E26EF00F000B82CE4 /* JPSoundEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B302726EF00EF00B82CE4 /* JPSoundEffect.m */; };
+		B77B312F26EF00F000B82CE4 /* JPAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B302B26EF00EF00B82CE4 /* JPAudioRecorder.m */; };
+		B77B313026EF00F000B82CE4 /* JPHotlistGraphModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B302E26EF00EF00B82CE4 /* JPHotlistGraphModel.m */; };
+		B77B313126EF00F000B82CE4 /* JPPackageViewCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B302F26EF00EF00B82CE4 /* JPPackageViewCache.m */; };
+		B77B313226EF00F000B82CE4 /* JPHorizontalCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B303026EF00EF00B82CE4 /* JPHorizontalCollectionViewLayout.m */; };
+		B77B313526EF00F000B82CE4 /* JPNewPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B303326EF00EF00B82CE4 /* JPNewPageViewController.m */; };
+		B77B313826EF00F000B82CE4 /* JPTranstionsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B303926EF00EF00B82CE4 /* JPTranstionsCollectionViewCell.m */; };
+		B77B313926EF00F000B82CE4 /* JPVideoThumbSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B303A26EF00EF00B82CE4 /* JPVideoThumbSlider.m */; };
+		B77B313B26EF00F000B82CE4 /* JPNewThumbSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B303E26EF00EF00B82CE4 /* JPNewThumbSlider.m */; };
+		B77B313C26EF00F000B82CE4 /* JPNewTranstionChangedView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B303F26EF00EF00B82CE4 /* JPNewTranstionChangedView.m */; };
+		B77B313F26EF00F000B82CE4 /* JPNewVideoThumbCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B304826EF00EF00B82CE4 /* JPNewVideoThumbCollectionViewCell.m */; };
+		B77B314026EF00F000B82CE4 /* JPRecordInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B304926EF00EF00B82CE4 /* JPRecordInfoView.m */; };
+		B77B314126EF00F000B82CE4 /* JPNewClidView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B304A26EF00EF00B82CE4 /* JPNewClidView.m */; };
+		B77B314226EF00F000B82CE4 /* JPThumImageLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B304B26EF00EF00B82CE4 /* JPThumImageLayout.m */; };
+		B77B314326EF00F000B82CE4 /* JPTranstionTypeSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B304C26EF00EF00B82CE4 /* JPTranstionTypeSelectButton.m */; };
+		B77B314526EF00F000B82CE4 /* JPPatternInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B304F26EF00EF00B82CE4 /* JPPatternInputView.m */; };
+		B77B316826EF00F000B82CE4 /* JPTextWithUpBorderInteractiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B309726EF00EF00B82CE4 /* JPTextWithUpBorderInteractiveView.m */; };
+		B77B316926EF00F000B82CE4 /* JPTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B309C26EF00EF00B82CE4 /* JPTriangleView.m */; };
+		B77B316A26EF00F000B82CE4 /* JPPackageImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B309E26EF00EF00B82CE4 /* JPPackageImageView.m */; };
+		B77B316B26EF00F000B82CE4 /* JPPackageHollowOutInteractiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B309F26EF00EF00B82CE4 /* JPPackageHollowOutInteractiveView.m */; };
+		B77B316C26EF00F000B82CE4 /* JPPackageHollowOutView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30A226EF00EF00B82CE4 /* JPPackageHollowOutView.m */; };
+		B77B316D26EF00F000B82CE4 /* JPPackageGraphPatternView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30A326EF00EF00B82CE4 /* JPPackageGraphPatternView.m */; };
+		B77B316E26EF00F000B82CE4 /* JPPackageTextBackgroudColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30A426EF00EF00B82CE4 /* JPPackageTextBackgroudColorView.m */; };
+		B77B316F26EF00F000B82CE4 /* JPPatternInteractiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30A726EF00EF00B82CE4 /* JPPatternInteractiveView.m */; };
+		B77B317026EF00F000B82CE4 /* JPPackagePictureGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30A826EF00EF00B82CE4 /* JPPackagePictureGraphView.m */; };
+		B77B317126EF00F000B82CE4 /* JPPackageTextAndBackgroudView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30A926EF00EF00B82CE4 /* JPPackageTextAndBackgroudView.m */; };
+		B77B317226EF00F000B82CE4 /* JPPackageSuperView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30AA26EF00EF00B82CE4 /* JPPackageSuperView.m */; };
+		B77B317326EF00F000B82CE4 /* JPPackageTextNoneGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30AB26EF00EF00B82CE4 /* JPPackageTextNoneGraphView.m */; };
+		B77B317526EF00F000B82CE4 /* JPPackageGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30AE26EF00EF00B82CE4 /* JPPackageGraphView.m */; };
+		B77B317626EF00F000B82CE4 /* JPJPPackageTextWithPingyinGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30B126EF00EF00B82CE4 /* JPJPPackageTextWithPingyinGraphView.m */; };
+		B77B317726EF00F000B82CE4 /* JPTextWithBorderInteractiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30B226EF00EF00B82CE4 /* JPTextWithBorderInteractiveView.m */; };
+		B77B317926EF00F000B82CE4 /* JPPackageTextPatternView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30B626EF00EF00B82CE4 /* JPPackageTextPatternView.m */; };
+		B77B317A26EF00F000B82CE4 /* JPPackageTextWithBorderPatternView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30B826EF00EF00B82CE4 /* JPPackageTextWithBorderPatternView.m */; };
+		B77B317C26EF00F000B82CE4 /* JPPackageTenthTextPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30BB26EF00EF00B82CE4 /* JPPackageTenthTextPattern.m */; };
+		B77B317D26EF00F000B82CE4 /* JPPackageSeventhTextPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30BD26EF00EF00B82CE4 /* JPPackageSeventhTextPattern.m */; };
+		B77B317F26EF00F000B82CE4 /* JPGifContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30C026EF00EF00B82CE4 /* JPGifContentView.m */; };
+		B77B318226EF00F000B82CE4 /* JPPackageEighthTextPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30C426EF00EF00B82CE4 /* JPPackageEighthTextPattern.m */; };
+		B77B318426EF00F000B82CE4 /* JPPackageNinthTextPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30C826EF00EF00B82CE4 /* JPPackageNinthTextPattern.m */; };
+		B77B318526EF00F000B82CE4 /* JPPackageSixthTextPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30C926EF00EF00B82CE4 /* JPPackageSixthTextPattern.m */; };
+		B77B318726EF00F000B82CE4 /* JPPackageNinthTextPatternInteractiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30CD26EF00EF00B82CE4 /* JPPackageNinthTextPatternInteractiveView.m */; };
+		B77B318826EF00F000B82CE4 /* JPGifPatternInteractiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30CE26EF00EF00B82CE4 /* JPGifPatternInteractiveView.m */; };
+		B77B318926EF00F000B82CE4 /* JPPackageEighthTextPatternInteractiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30D026EF00EF00B82CE4 /* JPPackageEighthTextPatternInteractiveView.m */; };
+		B77B318A26EF00F000B82CE4 /* JPPackageSeventhTextPatternInteractiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30D226EF00EF00B82CE4 /* JPPackageSeventhTextPatternInteractiveView.m */; };
+		B77B318B26EF00F000B82CE4 /* JPPackageSixthTextPatternInteractiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30D626EF00EF00B82CE4 /* JPPackageSixthTextPatternInteractiveView.m */; };
+		B77B318C26EF00F000B82CE4 /* JPPackageTenthTextPatternInteractiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30D826EF00EF00B82CE4 /* JPPackageTenthTextPatternInteractiveView.m */; };
+		B77B318D26EF00F000B82CE4 /* PKBackAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30DB26EF00EF00B82CE4 /* PKBackAlertView.m */; };
+		B77B318E26EF00F000B82CE4 /* JPNewPatternMuneView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30DC26EF00EF00B82CE4 /* JPNewPatternMuneView.m */; };
+		B77B318F26EF00F000B82CE4 /* JPPackBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30DD26EF00EF00B82CE4 /* JPPackBackView.m */; };
+		B77B319026EF00F000B82CE4 /* JPActiveMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30DE26EF00EF00B82CE4 /* JPActiveMessageView.m */; };
+		B77B319126EF00F000B82CE4 /* JPPackageMenuBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30E026EF00EF00B82CE4 /* JPPackageMenuBaseView.m */; };
+		B77B319226EF00F000B82CE4 /* JPCalibratView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30E226EF00EF00B82CE4 /* JPCalibratView.m */; };
+		B77B319326EF00F000B82CE4 /* JPRecordingMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30E326EF00EF00B82CE4 /* JPRecordingMenuView.m */; };
+		B77B319426EF00F000B82CE4 /* JPCustomColorSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30E426EF00EF00B82CE4 /* JPCustomColorSlider.m */; };
+		B77B319626EF00F000B82CE4 /* JPVideoEditMune.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30E726EF00EF00B82CE4 /* JPVideoEditMune.m */; };
+		B77B319826EF00F000B82CE4 /* JPPhotoEditMune.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30E926EF00EF00B82CE4 /* JPPhotoEditMune.m */; };
+		B77B319926EF00F000B82CE4 /* PKBackTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30EC26EF00EF00B82CE4 /* PKBackTipView.m */; };
+		B77B319C26EF00F000B82CE4 /* JPCompositionMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30EF26EF00EF00B82CE4 /* JPCompositionMessageView.m */; };
+		B77B319E26EF00F000B82CE4 /* JPSoundEffectMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30F226EF00EF00B82CE4 /* JPSoundEffectMenuView.m */; };
+		B77B319F26EF00F000B82CE4 /* JPSoundEffectListView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30F426EF00EF00B82CE4 /* JPSoundEffectListView.m */; };
+		B77B31A126EF00F000B82CE4 /* JPAudioMenuBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30F826EF00EF00B82CE4 /* JPAudioMenuBaseView.m */; };
+		B77B31A426EF00F000B82CE4 /* JPSoundEffectListSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30FC26EF00EF00B82CE4 /* JPSoundEffectListSectionHeaderView.m */; };
+		B77B31A526EF00F000B82CE4 /* JPPackageGraphPatternMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B30FE26EF00EF00B82CE4 /* JPPackageGraphPatternMenuView.m */; };
+		B77B31A626EF00F000B82CE4 /* JPPackageGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B310126EF00EF00B82CE4 /* JPPackageGuideView.m */; };
+		B77B31A726EF00F000B82CE4 /* JPPackagePhotoEditGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B310226EF00EF00B82CE4 /* JPPackagePhotoEditGuideView.m */; };
+		B77B31A826EF00F000B82CE4 /* JPPackageVideoEditGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B310326EF00EF00B82CE4 /* JPPackageVideoEditGuideView.m */; };
+		B77B31A926EF00F000B82CE4 /* JPPackageFilterMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B310826EF00EF00B82CE4 /* JPPackageFilterMenuView.m */; };
+		B77B31AA26EF00F000B82CE4 /* JPMusicMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B310926EF00EF00B82CE4 /* JPMusicMenuView.m */; };
+		B77B31AB26EF00F000B82CE4 /* JPPackagePatternAttributeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B310A26EF00EF00B82CE4 /* JPPackagePatternAttributeView.m */; };
+		B77B31AC26EF00F000B82CE4 /* JPPackageTextPatternMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B310C26EF00EF00B82CE4 /* JPPackageTextPatternMenuView.m */; };
+		B77B31AE26EF00F000B82CE4 /* JPAudioRecordingProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B311026EF00EF00B82CE4 /* JPAudioRecordingProgressView.m */; };
+		B77B31AF26EF00F000B82CE4 /* JPCircleShapeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B311126EF00EF00B82CE4 /* JPCircleShapeLayer.m */; };
+		B77B31B126EF00F000B82CE4 /* JPGraphListView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B311826EF00EF00B82CE4 /* JPGraphListView.m */; };
+		B77B31B226EF00F000B82CE4 /* JPGifListView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B311B26EF00EF00B82CE4 /* JPGifListView.m */; };
+		B77B31B326EF00F000B82CE4 /* JPLocalTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B311C26EF00EF00B82CE4 /* JPLocalTextView.m */; };
+		B77B31B426EF00F000B82CE4 /* UIImageView+JPScorllView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B311F26EF00EF00B82CE4 /* UIImageView+JPScorllView.m */; };
+		B77B31B526EF00F000B82CE4 /* JPHotGraphList.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B312126EF00EF00B82CE4 /* JPHotGraphList.m */; };
+		B77B31B626EF00F000B82CE4 /* JPLocalGraphList.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B312226EF00EF00B82CE4 /* JPLocalGraphList.m */; };
+		B77B31B726EF00F000B82CE4 /* JPMusicListsView.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B312526EF00EF00B82CE4 /* JPMusicListsView.m */; };
+		B77B36CA26EF2DAC00B82CE4 /* JPBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B36C626EF2DAB00B82CE4 /* JPBaseViewController.m */; };
+		B77B36CB26EF2DAC00B82CE4 /* JPBaseNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B36C826EF2DAB00B82CE4 /* JPBaseNavigationViewController.m */; };
+		B77B36D026F0392D00B82CE4 /* JPUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B36CE26F0392D00B82CE4 /* JPUtil.m */; };
+		B77B36D526F039C400B82CE4 /* JPCompositionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B77B36D426F039C400B82CE4 /* JPCompositionManager.m */; };
+		B7915E15272142FF00468E95 /* JPResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B7915E14272142FF00468E95 /* JPResource.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		358D143C6FB7677D4A2B7AE1 /* Pods-JPSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JPSDK.debug.xcconfig"; path = "Target Support Files/Pods-JPSDK/Pods-JPSDK.debug.xcconfig"; sourceTree = "<group>"; };
+		B7019A5A26FC716800ECFE04 /* UIImage+JP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+JP.h"; sourceTree = "<group>"; };
+		B7019A5B26FC716800ECFE04 /* UIImage+JP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JP.m"; sourceTree = "<group>"; };
+		B7019A5D26FD770100ECFE04 /* UIViewController+JP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JP.h"; sourceTree = "<group>"; };
+		B7019A5E26FD770100ECFE04 /* UIViewController+JP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JP.m"; sourceTree = "<group>"; };
+		B71180FB272009C200636767 /* JPSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPSDK.h; sourceTree = "<group>"; };
+		B71181522720FEA400636767 /* JPManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPManager.h; sourceTree = "<group>"; };
+		B71181532720FEA500636767 /* JPManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPManager.m; sourceTree = "<group>"; };
+		B734ACA226F43D1500171E05 /* JPConfige.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPConfige.h; sourceTree = "<group>"; };
+		B734ACA526F43FEB00171E05 /* JPLocalFileModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPLocalFileModel.m; sourceTree = "<group>"; };
+		B734ACA626F43FEB00171E05 /* JPTransitionCompositionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPTransitionCompositionModel.h; sourceTree = "<group>"; };
+		B734ACA726F43FEB00171E05 /* JPLocalFileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPLocalFileModel.h; sourceTree = "<group>"; };
+		B734ACA826F43FEB00171E05 /* JPTransitionCompositionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPTransitionCompositionModel.m; sourceTree = "<group>"; };
+		B734ACAB26F43FEB00171E05 /* JPSelectVideosViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPSelectVideosViewCell.h; sourceTree = "<group>"; };
+		B734ACAC26F43FEB00171E05 /* JPGradualLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPGradualLineView.m; sourceTree = "<group>"; };
+		B734ACAD26F43FEB00171E05 /* JPProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPProgressView.h; sourceTree = "<group>"; };
+		B734ACAE26F43FEB00171E05 /* JPVideoRecordProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoRecordProgressView.m; sourceTree = "<group>"; };
+		B734ACAF26F43FEB00171E05 /* JPSelectVideosView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPSelectVideosView.m; sourceTree = "<group>"; };
+		B734ACB026F43FEB00171E05 /* JPFiltersCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPFiltersCollectionViewCell.m; sourceTree = "<group>"; };
+		B734ACB226F43FEB00171E05 /* JPStartRecordButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPStartRecordButton.m; sourceTree = "<group>"; };
+		B734ACB326F43FEB00171E05 /* JPVideoSettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoSettingTableViewCell.m; sourceTree = "<group>"; };
+		B734ACB426F43FEB00171E05 /* JPNewFilterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPNewFilterCollectionViewCell.m; sourceTree = "<group>"; };
+		B734ACB526F43FEB00171E05 /* JPHotListTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPHotListTitleView.h; sourceTree = "<group>"; };
+		B734ACB626F43FEB00171E05 /* JPPromptView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPromptView.m; sourceTree = "<group>"; };
+		B734ACB726F43FEB00171E05 /* JPCameraSettingCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPCameraSettingCollectionViewCell.h; sourceTree = "<group>"; };
+		B734ACB826F43FEB00171E05 /* JPGradientAnimateGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPGradientAnimateGuideView.h; sourceTree = "<group>"; };
+		B734ACB926F43FEB00171E05 /* JFRecordTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFRecordTitleView.h; sourceTree = "<group>"; };
+		B734ACBA26F43FEB00171E05 /* JPNewFilterCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPNewFilterCollectionView.h; sourceTree = "<group>"; };
+		B734ACBD26F43FEB00171E05 /* JPVideoInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoInfoTableViewCell.h; sourceTree = "<group>"; };
+		B734ACBE26F43FEB00171E05 /* JPFilterCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPFilterCollectionView.m; sourceTree = "<group>"; };
+		B734ACBF26F43FEB00171E05 /* JPCoustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPCoustomButton.m; sourceTree = "<group>"; };
+		B734ACC126F43FEB00171E05 /* JPLocalFileCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPLocalFileCollectionViewCell.m; sourceTree = "<group>"; };
+		B734ACC226F43FEB00171E05 /* JPCameraSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPCameraSettingView.h; sourceTree = "<group>"; };
+		B734ACC326F43FEB00171E05 /* JPRecordButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPRecordButton.h; sourceTree = "<group>"; };
+		B734ACC626F43FEB00171E05 /* JPNewSegementView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPNewSegementView.m; sourceTree = "<group>"; };
+		B734ACC726F43FEB00171E05 /* JPRecordGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPRecordGuideView.h; sourceTree = "<group>"; };
+		B734ACC926F43FEB00171E05 /* JPVideoPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPlayerView.m; sourceTree = "<group>"; };
+		B734ACCB26F43FEB00171E05 /* JPNextButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPNextButton.m; sourceTree = "<group>"; };
+		B734ACCD26F43FEB00171E05 /* JPHowFastCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPHowFastCollectionViewCell.m; sourceTree = "<group>"; };
+		B734ACCE26F43FEB00171E05 /* JPLocalMediaCloudTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPLocalMediaCloudTableViewCell.m; sourceTree = "<group>"; };
+		B734ACD026F43FEB00171E05 /* JPNewImportButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPNewImportButton.h; sourceTree = "<group>"; };
+		B734ACD226F43FEB00171E05 /* JPFiltersCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPFiltersCollectionViewCell.h; sourceTree = "<group>"; };
+		B734ACD326F43FEB00171E05 /* JPSelectVideosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPSelectVideosView.h; sourceTree = "<group>"; };
+		B734ACD426F43FEB00171E05 /* JPProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPProgressView.m; sourceTree = "<group>"; };
+		B734ACD526F43FEB00171E05 /* JPVideoRecordProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoRecordProgressView.h; sourceTree = "<group>"; };
+		B734ACD626F43FEB00171E05 /* JPGradualLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPGradualLineView.h; sourceTree = "<group>"; };
+		B734ACD726F43FEB00171E05 /* JPSelectVideosViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPSelectVideosViewCell.m; sourceTree = "<group>"; };
+		B734ACD826F43FEB00171E05 /* JPFilterCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPFilterCollectionView.h; sourceTree = "<group>"; };
+		B734ACD926F43FEB00171E05 /* JPVideoInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoInfoTableViewCell.m; sourceTree = "<group>"; };
+		B734ACDC26F43FEB00171E05 /* JPNewFilterCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPNewFilterCollectionView.m; sourceTree = "<group>"; };
+		B734ACDD26F43FEB00171E05 /* JPPromptView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPromptView.h; sourceTree = "<group>"; };
+		B734ACDE26F43FEB00171E05 /* JPGradientAnimateGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPGradientAnimateGuideView.m; sourceTree = "<group>"; };
+		B734ACDF26F43FEB00171E05 /* JPCameraSettingCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPCameraSettingCollectionViewCell.m; sourceTree = "<group>"; };
+		B734ACE026F43FEB00171E05 /* JFRecordTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFRecordTitleView.m; sourceTree = "<group>"; };
+		B734ACE126F43FEB00171E05 /* JPHotListTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPHotListTitleView.m; sourceTree = "<group>"; };
+		B734ACE226F43FEB00171E05 /* JPStartRecordButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPStartRecordButton.h; sourceTree = "<group>"; };
+		B734ACE326F43FEB00171E05 /* JPVideoSettingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoSettingTableViewCell.h; sourceTree = "<group>"; };
+		B734ACE426F43FEB00171E05 /* JPNewFilterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPNewFilterCollectionViewCell.h; sourceTree = "<group>"; };
+		B734ACE626F43FEB00171E05 /* JPRecordGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPRecordGuideView.m; sourceTree = "<group>"; };
+		B734ACE726F43FEB00171E05 /* JPNewSegementView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPNewSegementView.h; sourceTree = "<group>"; };
+		B734ACE926F43FEB00171E05 /* JPRecordButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPRecordButton.m; sourceTree = "<group>"; };
+		B734ACEB26F43FEB00171E05 /* JPCameraSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPCameraSettingView.m; sourceTree = "<group>"; };
+		B734ACEC26F43FEB00171E05 /* JPLocalFileCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPLocalFileCollectionViewCell.h; sourceTree = "<group>"; };
+		B734ACEE26F43FEB00171E05 /* JPCoustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPCoustomButton.h; sourceTree = "<group>"; };
+		B734ACF126F43FEB00171E05 /* JPNewImportButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPNewImportButton.m; sourceTree = "<group>"; };
+		B734ACF226F43FEB00171E05 /* JPLocalMediaCloudTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPLocalMediaCloudTableViewCell.h; sourceTree = "<group>"; };
+		B734ACF326F43FEB00171E05 /* JPHowFastCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPHowFastCollectionViewCell.h; sourceTree = "<group>"; };
+		B734ACF426F43FEB00171E05 /* JPNextButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPNextButton.h; sourceTree = "<group>"; };
+		B734ACF526F43FEB00171E05 /* JPVideoPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerView.h; sourceTree = "<group>"; };
+		B734ACF726F43FEB00171E05 /* JPVideoClipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoClipViewController.h; sourceTree = "<group>"; };
+		B734ACFC26F43FEB00171E05 /* JPAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPAlbumViewController.m; sourceTree = "<group>"; };
+		B734ACFD26F43FEB00171E05 /* JPPhotoEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPhotoEditViewController.h; sourceTree = "<group>"; };
+		B734AD0026F43FEB00171E05 /* JPNewImportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPNewImportViewController.h; sourceTree = "<group>"; };
+		B734AD0326F43FEB00171E05 /* JPNewCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPNewCameraViewController.h; sourceTree = "<group>"; };
+		B734AD0526F43FEB00171E05 /* JPAblumSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPAblumSourceViewController.h; sourceTree = "<group>"; };
+		B734AD0926F43FEB00171E05 /* JPAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPAlbumViewController.h; sourceTree = "<group>"; };
+		B734AD0B26F43FEB00171E05 /* JPVideoClipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoClipViewController.m; sourceTree = "<group>"; };
+		B734AD0E26F43FEB00171E05 /* JPNewImportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPNewImportViewController.m; sourceTree = "<group>"; };
+		B734AD1126F43FEB00171E05 /* JPPhotoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPhotoEditViewController.m; sourceTree = "<group>"; };
+		B734AD1326F43FEB00171E05 /* JPNewCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPNewCameraViewController.m; sourceTree = "<group>"; };
+		B734AD1626F43FEB00171E05 /* JPAblumSourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPAblumSourceViewController.m; sourceTree = "<group>"; };
+		B734AD5E26F4793300171E05 /* UIColor+JP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+JP.h"; sourceTree = "<group>"; };
+		B734AD5F26F4793300171E05 /* UIColor+JP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+JP.m"; sourceTree = "<group>"; };
+		B73B22A8271E694300B5E113 /* CompositionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompositionViewController.h; sourceTree = "<group>"; };
+		B73B22A9271E694300B5E113 /* CompositionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompositionViewController.m; sourceTree = "<group>"; };
+		B74D363826FB0C840087FD51 /* UIFont+JP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+JP.h"; sourceTree = "<group>"; };
+		B74D363926FB0C840087FD51 /* UIFont+JP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+JP.m"; sourceTree = "<group>"; };
+		B74D363C26FB12390087FD51 /* JPImgPickerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPImgPickerViewCell.m; sourceTree = "<group>"; };
+		B74D363D26FB12390087FD51 /* JPPackageFilterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageFilterCollectionViewCell.h; sourceTree = "<group>"; };
+		B74D363E26FB12390087FD51 /* JPTextFontCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPTextFontCell.h; sourceTree = "<group>"; };
+		B74D363F26FB12390087FD51 /* JPPackageClipsThumbViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageClipsThumbViewCell.m; sourceTree = "<group>"; };
+		B74D364026FB12390087FD51 /* JPStickerPictureCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPStickerPictureCollectionViewCell.m; sourceTree = "<group>"; };
+		B74D364226FB12390087FD51 /* JPPackagePictureGraphCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackagePictureGraphCell.h; sourceTree = "<group>"; };
+		B74D364326FB12390087FD51 /* JPPackageTextPatternMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageTextPatternMenuCell.h; sourceTree = "<group>"; };
+		B74D364426FB12390087FD51 /* JPPackageGraphMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageGraphMenuCell.h; sourceTree = "<group>"; };
+		B74D364526FB12390087FD51 /* JPPackagePictureGraphCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackagePictureGraphCell.m; sourceTree = "<group>"; };
+		B74D364626FB12390087FD51 /* JPPackageGraphMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageGraphMenuCell.m; sourceTree = "<group>"; };
+		B74D364726FB12390087FD51 /* JPPackageTextPatternMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageTextPatternMenuCell.m; sourceTree = "<group>"; };
+		B74D364826FB12390087FD51 /* JPRecordAudioThumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPRecordAudioThumCell.h; sourceTree = "<group>"; };
+		B74D364926FB12390087FD51 /* JPBackgroundMusicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPBackgroundMusicCell.m; sourceTree = "<group>"; };
+		B74D364A26FB12390087FD51 /* JPNewPatternTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPNewPatternTableViewCell.m; sourceTree = "<group>"; };
+		B74D364C26FB12390087FD51 /* JPPackageMenuAttributeTextFontCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageMenuAttributeTextFontCell.m; sourceTree = "<group>"; };
+		B74D364D26FB12390087FD51 /* JPTextFontSizeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPTextFontSizeCollectionViewCell.h; sourceTree = "<group>"; };
+		B74D364E26FB12390087FD51 /* JPPackageMenuAttributePhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageMenuAttributePhotoCell.m; sourceTree = "<group>"; };
+		B74D364F26FB12390087FD51 /* JPPackageMenuAttributeColorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageMenuAttributeColorCell.h; sourceTree = "<group>"; };
+		B74D365026FB12390087FD51 /* JPPackageMenuAttributeTimeSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageMenuAttributeTimeSliderCell.m; sourceTree = "<group>"; };
+		B74D365226FB12390087FD51 /* JPPackageMenuAttributeTextFontCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageMenuAttributeTextFontCell.h; sourceTree = "<group>"; };
+		B74D365326FB12390087FD51 /* JPPackageMenuAttributeColorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageMenuAttributeColorCell.m; sourceTree = "<group>"; };
+		B74D365426FB12390087FD51 /* JPPackageMenuAttributePhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageMenuAttributePhotoCell.h; sourceTree = "<group>"; };
+		B74D365526FB12390087FD51 /* JPTextFontSizeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPTextFontSizeCollectionViewCell.m; sourceTree = "<group>"; };
+		B74D365626FB12390087FD51 /* JPPackageMenuAttributeTimeSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageMenuAttributeTimeSliderCell.h; sourceTree = "<group>"; };
+		B74D365A26FB12390087FD51 /* JPLogoSelectCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPLogoSelectCollectionViewCell.h; sourceTree = "<group>"; };
+		B74D365B26FB12390087FD51 /* JPSoundEffectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPSoundEffectTableViewCell.m; sourceTree = "<group>"; };
+		B74D365C26FB12390087FD51 /* JPVideoThumbSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoThumbSliderCell.m; sourceTree = "<group>"; };
+		B74D366426FB12390087FD51 /* JPPackageClipsThumbViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageClipsThumbViewCell.h; sourceTree = "<group>"; };
+		B74D366526FB12390087FD51 /* JPTextFontCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPTextFontCell.m; sourceTree = "<group>"; };
+		B74D366626FB12390087FD51 /* JPPackageFilterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageFilterCollectionViewCell.m; sourceTree = "<group>"; };
+		B74D366726FB12390087FD51 /* JPImgPickerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImgPickerViewCell.h; sourceTree = "<group>"; };
+		B74D366826FB12390087FD51 /* JPRecordAudioThumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPRecordAudioThumCell.m; sourceTree = "<group>"; };
+		B74D366926FB12390087FD51 /* JPBackgroundMusicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPBackgroundMusicCell.h; sourceTree = "<group>"; };
+		B74D366A26FB12390087FD51 /* JPStickerPictureCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPStickerPictureCollectionViewCell.h; sourceTree = "<group>"; };
+		B74D366B26FB12390087FD51 /* JPNewPatternTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPNewPatternTableViewCell.h; sourceTree = "<group>"; };
+		B74D366C26FB12390087FD51 /* JPVideoThumbSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoThumbSliderCell.h; sourceTree = "<group>"; };
+		B74D366E26FB12390087FD51 /* JPMaterialTypeCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPMaterialTypeCollectionCell.h; sourceTree = "<group>"; };
+		B74D366F26FB12390087FD51 /* JPGIFImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPGIFImageView.h; sourceTree = "<group>"; };
+		B74D367026FB12390087FD51 /* JPMusicListsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPMusicListsTableViewCell.h; sourceTree = "<group>"; };
+		B74D367126FB12390087FD51 /* JPHotGraphListCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPHotGraphListCollectionViewCell.h; sourceTree = "<group>"; };
+		B74D367226FB12390087FD51 /* JPGifListCellCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPGifListCellCollectionViewCell.h; sourceTree = "<group>"; };
+		B74D367326FB12390087FD51 /* JPGraphCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPGraphCollectionViewCell.m; sourceTree = "<group>"; };
+		B74D367426FB12390087FD51 /* JPGIFImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPGIFImageView.m; sourceTree = "<group>"; };
+		B74D367526FB12390087FD51 /* JPMaterialTypeCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPMaterialTypeCollectionCell.m; sourceTree = "<group>"; };
+		B74D367626FB12390087FD51 /* JPHotGraphListCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPHotGraphListCollectionViewCell.m; sourceTree = "<group>"; };
+		B74D367826FB12390087FD51 /* JPMusicListsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPMusicListsTableViewCell.m; sourceTree = "<group>"; };
+		B74D367926FB12390087FD51 /* JPGraphCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPGraphCollectionViewCell.h; sourceTree = "<group>"; };
+		B74D367A26FB12390087FD51 /* JPGifListCellCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPGifListCellCollectionViewCell.m; sourceTree = "<group>"; };
+		B74D367B26FB12390087FD51 /* JPSoundEffectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPSoundEffectTableViewCell.h; sourceTree = "<group>"; };
+		B74D367C26FB12390087FD51 /* JPLogoSelectCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPLogoSelectCollectionViewCell.m; sourceTree = "<group>"; };
+		B74D369F26FB28C60087FD51 /* UIButton+JP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+JP.h"; sourceTree = "<group>"; };
+		B74D36A026FB28C60087FD51 /* UIButton+JP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+JP.m"; sourceTree = "<group>"; };
+		B74D36A426FC5D240087FD51 /* JPMaterialDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPMaterialDownloader.h; sourceTree = "<group>"; };
+		B74D36A526FC5D240087FD51 /* JPMaterialDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPMaterialDownloader.m; sourceTree = "<group>"; };
+		B74D36A726FC5D240087FD51 /* JPMaterialCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPMaterialCategory.m; sourceTree = "<group>"; };
+		B74D36A826FC5D240087FD51 /* JPMaterial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPMaterial.m; sourceTree = "<group>"; };
+		B74D36A926FC5D240087FD51 /* JPMaterialCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPMaterialCategory.h; sourceTree = "<group>"; };
+		B74D36AA26FC5D240087FD51 /* JPMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPMaterial.h; sourceTree = "<group>"; };
+		B778748C26F09ABC0019B0F8 /* JPSDK-prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JPSDK-prefix.pch"; sourceTree = "<group>"; };
+		B778748E26F439AA0019B0F8 /* NSString+JP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+JP.h"; sourceTree = "<group>"; };
+		B778748F26F439AA0019B0F8 /* NSString+JP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+JP.m"; sourceTree = "<group>"; };
+		B77AD09226FD7C5D00AC0146 /* JPErrorMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPErrorMessageView.h; sourceTree = "<group>"; };
+		B77AD09326FD7C5E00AC0146 /* JPErrorMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPErrorMessageView.m; sourceTree = "<group>"; };
+		B77AD09B26FD7F1600AC0146 /* MBProgressHUD+JP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+JP.h"; sourceTree = "<group>"; };
+		B77AD09C26FD7F1600AC0146 /* MBProgressHUD+JP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+JP.m"; sourceTree = "<group>"; };
+		B77AD0A126FDAC2C00AC0146 /* JPAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPAlertView.m; sourceTree = "<group>"; };
+		B77AD0A226FDAC2D00AC0146 /* JPAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPAlertView.h; sourceTree = "<group>"; };
+		B77AD0A626FDB0DF00AC0146 /* NSObject+JP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+JP.h"; sourceTree = "<group>"; };
+		B77AD0A726FDB0DF00AC0146 /* NSObject+JP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JP.m"; sourceTree = "<group>"; };
+		B77AD0AB26FDBA1700AC0146 /* MARKRangeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MARKRangeSlider.m; sourceTree = "<group>"; };
+		B77AD0AC26FDBA1700AC0146 /* MARKRangeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MARKRangeSlider.h; sourceTree = "<group>"; };
+		B77AD0AE27016F9B00AC0146 /* JPVideoPublishProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPublishProgressView.h; sourceTree = "<group>"; };
+		B77AD0AF27016F9C00AC0146 /* JPVideoPublishProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPublishProgressView.m; sourceTree = "<group>"; };
+		B77AD0B12701704100AC0146 /* JPDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPDataBase.m; sourceTree = "<group>"; };
+		B77AD0B22701704200AC0146 /* JPDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPDataBase.h; sourceTree = "<group>"; };
+		B77AD0B4270171A200AC0146 /* JPMediaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPMediaModel.h; sourceTree = "<group>"; };
+		B77AD0B5270171A300AC0146 /* JPMediaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPMediaModel.m; sourceTree = "<group>"; };
+		B77AD0B72701A1E700AC0146 /* NSThread+JP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSThread+JP.h"; sourceTree = "<group>"; };
+		B77AD0B82701A1E700AC0146 /* NSThread+JP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSThread+JP.m"; sourceTree = "<group>"; };
 		B77B21AD26EB356600B82CE4 /* JPSDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JPSDK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B77B21B026EB356600B82CE4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B77B21B126EB356600B82CE4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B77B21B326EB356600B82CE4 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		B77B21B426EB356600B82CE4 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		B77B21B626EB356600B82CE4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		B77B21B726EB356600B82CE4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B77B21BA26EB356600B82CE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -29,6 +406,230 @@
 		B77B21BF26EB356900B82CE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B77B21C126EB356900B82CE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B77B21C226EB356900B82CE4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B77B2F5E26EEFEF900B82CE4 /* JPFilterDelegateOnlyCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPFilterDelegateOnlyCurve.m; sourceTree = "<group>"; };
+		B77B2F5F26EEFEF900B82CE4 /* JPFilterManagers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPFilterManagers.m; sourceTree = "<group>"; };
+		B77B2F6026EEFEF900B82CE4 /* JPFilterDelegateColorBalance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPFilterDelegateColorBalance.m; sourceTree = "<group>"; };
+		B77B2F6126EEFEF900B82CE4 /* JPFilterDelegateNormal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPFilterDelegateNormal.m; sourceTree = "<group>"; };
+		B77B2F6326EEFEF900B82CE4 /* filterModernHeader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filterModernHeader.glsl; sourceTree = "<group>"; };
+		B77B2F6426EEFEF900B82CE4 /* hueAdujs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hueAdujs.glsl; sourceTree = "<group>"; };
+		B77B2F6526EEFEF900B82CE4 /* saturation.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = saturation.glsl; sourceTree = "<group>"; };
+		B77B2F6626EEFEF900B82CE4 /* filterHeader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filterHeader.glsl; sourceTree = "<group>"; };
+		B77B2F6726EEFEF900B82CE4 /* filterFooter.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filterFooter.glsl; sourceTree = "<group>"; };
+		B77B2F6826EEFEF900B82CE4 /* filterNormal.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filterNormal.glsl; sourceTree = "<group>"; };
+		B77B2F6926EEFEF900B82CE4 /* funcationStart.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = funcationStart.glsl; sourceTree = "<group>"; };
+		B77B2F6A26EEFEF900B82CE4 /* filterElapseHeader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filterElapseHeader.glsl; sourceTree = "<group>"; };
+		B77B2F6B26EEFEF900B82CE4 /* filterColorBalanceFouncation.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filterColorBalanceFouncation.glsl; sourceTree = "<group>"; };
+		B77B2F6C26EEFEF900B82CE4 /* filterBlueBerryColor.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filterBlueBerryColor.glsl; sourceTree = "<group>"; };
+		B77B2F6D26EEFEF900B82CE4 /* filterBlueBerryHeader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filterBlueBerryHeader.glsl; sourceTree = "<group>"; };
+		B77B2F6E26EEFEF900B82CE4 /* filterSakuraColor.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filterSakuraColor.glsl; sourceTree = "<group>"; };
+		B77B2F6F26EEFEF900B82CE4 /* founcationEnd.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = founcationEnd.glsl; sourceTree = "<group>"; };
+		B77B2F7026EEFEF900B82CE4 /* filterAfterRaningHeader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filterAfterRaningHeader.glsl; sourceTree = "<group>"; };
+		B77B2F7126EEFEF900B82CE4 /* filterPromontoryHeader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filterPromontoryHeader.glsl; sourceTree = "<group>"; };
+		B77B2F7226EEFEF900B82CE4 /* filterGreenHeader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filterGreenHeader.glsl; sourceTree = "<group>"; };
+		B77B2F7326EEFEF900B82CE4 /* filterSweetWordsHeader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filterSweetWordsHeader.glsl; sourceTree = "<group>"; };
+		B77B2F7426EEFEF900B82CE4 /* curveAdjust.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = curveAdjust.glsl; sourceTree = "<group>"; };
+		B77B2F7526EEFEF900B82CE4 /* filterMidSummerHeader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filterMidSummerHeader.glsl; sourceTree = "<group>"; };
+		B77B2F7626EEFEF900B82CE4 /* filterSakuraHeader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filterSakuraHeader.glsl; sourceTree = "<group>"; };
+		B77B2F7726EEFEF900B82CE4 /* JPFilterDelegateOnlyCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPFilterDelegateOnlyCurve.h; sourceTree = "<group>"; };
+		B77B2F7826EEFEF900B82CE4 /* JPFilterManagers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPFilterManagers.h; sourceTree = "<group>"; };
+		B77B2F7926EEFEF900B82CE4 /* JPFilterDelegateColorBalance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPFilterDelegateColorBalance.h; sourceTree = "<group>"; };
+		B77B2F7A26EEFEF900B82CE4 /* JPFilterDelegateNormal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPFilterDelegateNormal.h; sourceTree = "<group>"; };
+		B77B2FD326EEFF1600B82CE4 /* JPTranstionsModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPTranstionsModelManager.m; sourceTree = "<group>"; };
+		B77B2FD526EEFF1600B82CE4 /* transtion19.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transtion19.glsl; sourceTree = "<group>"; };
+		B77B2FD626EEFF1600B82CE4 /* transtion15.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transtion15.glsl; sourceTree = "<group>"; };
+		B77B2FD726EEFF1600B82CE4 /* transtion3.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transtion3.glsl; sourceTree = "<group>"; };
+		B77B2FD826EEFF1600B82CE4 /* transtionHeader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transtionHeader.glsl; sourceTree = "<group>"; };
+		B77B2FD926EEFF1600B82CE4 /* transtion2.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transtion2.glsl; sourceTree = "<group>"; };
+		B77B2FDA26EEFF1600B82CE4 /* transtion14.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transtion14.glsl; sourceTree = "<group>"; };
+		B77B2FDB26EEFF1600B82CE4 /* transtion18.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transtion18.glsl; sourceTree = "<group>"; };
+		B77B2FDC26EEFF1600B82CE4 /* transtion13.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transtion13.glsl; sourceTree = "<group>"; };
+		B77B2FDD26EEFF1600B82CE4 /* transtion5.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transtion5.glsl; sourceTree = "<group>"; };
+		B77B2FDE26EEFF1600B82CE4 /* transtion9.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transtion9.glsl; sourceTree = "<group>"; };
+		B77B2FDF26EEFF1600B82CE4 /* transtion8.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transtion8.glsl; sourceTree = "<group>"; };
+		B77B2FE026EEFF1600B82CE4 /* transtion4.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transtion4.glsl; sourceTree = "<group>"; };
+		B77B2FE126EEFF1600B82CE4 /* transtion12.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transtion12.glsl; sourceTree = "<group>"; };
+		B77B2FE226EEFF1600B82CE4 /* transtion7.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transtion7.glsl; sourceTree = "<group>"; };
+		B77B2FE326EEFF1600B82CE4 /* transtion11.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transtion11.glsl; sourceTree = "<group>"; };
+		B77B2FE426EEFF1600B82CE4 /* transtion10.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transtion10.glsl; sourceTree = "<group>"; };
+		B77B2FE526EEFF1600B82CE4 /* transtion6.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transtion6.glsl; sourceTree = "<group>"; };
+		B77B2FE626EEFF1600B82CE4 /* transtion1.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transtion1.glsl; sourceTree = "<group>"; };
+		B77B2FE726EEFF1600B82CE4 /* transtion17.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transtion17.glsl; sourceTree = "<group>"; };
+		B77B2FE826EEFF1600B82CE4 /* transtion16.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transtion16.glsl; sourceTree = "<group>"; };
+		B77B2FE926EEFF1600B82CE4 /* transtion20.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transtion20.glsl; sourceTree = "<group>"; };
+		B77B2FEA26EEFF1600B82CE4 /* JPTranstionsModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPTranstionsModelManager.h; sourceTree = "<group>"; };
+		B77B301E26EF00EF00B82CE4 /* JPImgPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImgPickerViewController.h; sourceTree = "<group>"; };
+		B77B302026EF00EF00B82CE4 /* JPNewPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPNewPageViewController.h; sourceTree = "<group>"; };
+		B77B302126EF00EF00B82CE4 /* JPImgPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPImgPickerViewController.m; sourceTree = "<group>"; };
+		B77B302326EF00EF00B82CE4 /* JPThumbInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPThumbInfoModel.m; sourceTree = "<group>"; };
+		B77B302426EF00EF00B82CE4 /* JPAudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPAudioRecorder.h; sourceTree = "<group>"; };
+		B77B302526EF00EF00B82CE4 /* JPHotlistGraphModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPHotlistGraphModel.h; sourceTree = "<group>"; };
+		B77B302626EF00EF00B82CE4 /* JPFontModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPFontModel.m; sourceTree = "<group>"; };
+		B77B302726EF00EF00B82CE4 /* JPSoundEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPSoundEffect.m; sourceTree = "<group>"; };
+		B77B302826EF00EF00B82CE4 /* JPHorizontalCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPHorizontalCollectionViewLayout.h; sourceTree = "<group>"; };
+		B77B302926EF00EF00B82CE4 /* JPPackageViewCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageViewCache.h; sourceTree = "<group>"; };
+		B77B302A26EF00EF00B82CE4 /* JPThumbInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPThumbInfoModel.h; sourceTree = "<group>"; };
+		B77B302B26EF00EF00B82CE4 /* JPAudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPAudioRecorder.m; sourceTree = "<group>"; };
+		B77B302C26EF00EF00B82CE4 /* JPSoundEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPSoundEffect.h; sourceTree = "<group>"; };
+		B77B302D26EF00EF00B82CE4 /* JPFontModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPFontModel.h; sourceTree = "<group>"; };
+		B77B302E26EF00EF00B82CE4 /* JPHotlistGraphModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPHotlistGraphModel.m; sourceTree = "<group>"; };
+		B77B302F26EF00EF00B82CE4 /* JPPackageViewCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageViewCache.m; sourceTree = "<group>"; };
+		B77B303026EF00EF00B82CE4 /* JPHorizontalCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPHorizontalCollectionViewLayout.m; sourceTree = "<group>"; };
+		B77B303326EF00EF00B82CE4 /* JPNewPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPNewPageViewController.m; sourceTree = "<group>"; };
+		B77B303526EF00EF00B82CE4 /* JPPackageGraphPatternMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageGraphPatternMenuView.h; sourceTree = "<group>"; };
+		B77B303926EF00EF00B82CE4 /* JPTranstionsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPTranstionsCollectionViewCell.m; sourceTree = "<group>"; };
+		B77B303A26EF00EF00B82CE4 /* JPVideoThumbSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoThumbSlider.m; sourceTree = "<group>"; };
+		B77B303B26EF00EF00B82CE4 /* JPRecordInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPRecordInfoView.h; sourceTree = "<group>"; };
+		B77B303C26EF00EF00B82CE4 /* JPNewVideoThumbCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPNewVideoThumbCollectionViewCell.h; sourceTree = "<group>"; };
+		B77B303E26EF00EF00B82CE4 /* JPNewThumbSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPNewThumbSlider.m; sourceTree = "<group>"; };
+		B77B303F26EF00EF00B82CE4 /* JPNewTranstionChangedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPNewTranstionChangedView.m; sourceTree = "<group>"; };
+		B77B304026EF00EF00B82CE4 /* JPThumImageLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPThumImageLayout.h; sourceTree = "<group>"; };
+		B77B304126EF00EF00B82CE4 /* JPTranstionTypeSelectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPTranstionTypeSelectButton.h; sourceTree = "<group>"; };
+		B77B304226EF00EF00B82CE4 /* JPNewClidView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPNewClidView.h; sourceTree = "<group>"; };
+		B77B304326EF00EF00B82CE4 /* JPVideoThumbSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoThumbSlider.h; sourceTree = "<group>"; };
+		B77B304426EF00EF00B82CE4 /* JPTranstionsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPTranstionsCollectionViewCell.h; sourceTree = "<group>"; };
+		B77B304526EF00EF00B82CE4 /* JPNewThumbSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPNewThumbSlider.h; sourceTree = "<group>"; };
+		B77B304826EF00EF00B82CE4 /* JPNewVideoThumbCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPNewVideoThumbCollectionViewCell.m; sourceTree = "<group>"; };
+		B77B304926EF00EF00B82CE4 /* JPRecordInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPRecordInfoView.m; sourceTree = "<group>"; };
+		B77B304A26EF00EF00B82CE4 /* JPNewClidView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPNewClidView.m; sourceTree = "<group>"; };
+		B77B304B26EF00EF00B82CE4 /* JPThumImageLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPThumImageLayout.m; sourceTree = "<group>"; };
+		B77B304C26EF00EF00B82CE4 /* JPTranstionTypeSelectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPTranstionTypeSelectButton.m; sourceTree = "<group>"; };
+		B77B304D26EF00EF00B82CE4 /* JPNewTranstionChangedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPNewTranstionChangedView.h; sourceTree = "<group>"; };
+		B77B304F26EF00EF00B82CE4 /* JPPatternInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPatternInputView.m; sourceTree = "<group>"; };
+		B77B305026EF00EF00B82CE4 /* JPCompositionMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPCompositionMessageView.h; sourceTree = "<group>"; };
+		B77B309326EF00EF00B82CE4 /* PKBackTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKBackTipView.h; sourceTree = "<group>"; };
+		B77B309426EF00EF00B82CE4 /* JPPackageFilterMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageFilterMenuView.h; sourceTree = "<group>"; };
+		B77B309526EF00EF00B82CE4 /* JPMusicMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPMusicMenuView.h; sourceTree = "<group>"; };
+		B77B309726EF00EF00B82CE4 /* JPTextWithUpBorderInteractiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPTextWithUpBorderInteractiveView.m; sourceTree = "<group>"; };
+		B77B309826EF00EF00B82CE4 /* JPPackageTextNoneGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageTextNoneGraphView.h; sourceTree = "<group>"; };
+		B77B309926EF00EF00B82CE4 /* JPPackageTextAndBackgroudView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageTextAndBackgroudView.h; sourceTree = "<group>"; };
+		B77B309A26EF00EF00B82CE4 /* JPPackageSuperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageSuperView.h; sourceTree = "<group>"; };
+		B77B309B26EF00EF00B82CE4 /* JPPackagePictureGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackagePictureGraphView.h; sourceTree = "<group>"; };
+		B77B309C26EF00EF00B82CE4 /* JPTriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPTriangleView.m; sourceTree = "<group>"; };
+		B77B309D26EF00EF00B82CE4 /* JPPackageGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageGraphView.h; sourceTree = "<group>"; };
+		B77B309E26EF00EF00B82CE4 /* JPPackageImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageImageView.m; sourceTree = "<group>"; };
+		B77B309F26EF00EF00B82CE4 /* JPPackageHollowOutInteractiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageHollowOutInteractiveView.m; sourceTree = "<group>"; };
+		B77B30A026EF00EF00B82CE4 /* JPTextWithBorderInteractiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPTextWithBorderInteractiveView.h; sourceTree = "<group>"; };
+		B77B30A126EF00EF00B82CE4 /* JPJPPackageTextWithPingyinGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPJPPackageTextWithPingyinGraphView.h; sourceTree = "<group>"; };
+		B77B30A226EF00EF00B82CE4 /* JPPackageHollowOutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageHollowOutView.m; sourceTree = "<group>"; };
+		B77B30A326EF00EF00B82CE4 /* JPPackageGraphPatternView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageGraphPatternView.m; sourceTree = "<group>"; };
+		B77B30A426EF00EF00B82CE4 /* JPPackageTextBackgroudColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageTextBackgroudColorView.m; sourceTree = "<group>"; };
+		B77B30A526EF00EF00B82CE4 /* JPPackageTextWithBorderPatternView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageTextWithBorderPatternView.h; sourceTree = "<group>"; };
+		B77B30A626EF00EF00B82CE4 /* JPPackageTextPatternView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageTextPatternView.h; sourceTree = "<group>"; };
+		B77B30A726EF00EF00B82CE4 /* JPPatternInteractiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPatternInteractiveView.m; sourceTree = "<group>"; };
+		B77B30A826EF00EF00B82CE4 /* JPPackagePictureGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackagePictureGraphView.m; sourceTree = "<group>"; };
+		B77B30A926EF00EF00B82CE4 /* JPPackageTextAndBackgroudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageTextAndBackgroudView.m; sourceTree = "<group>"; };
+		B77B30AA26EF00EF00B82CE4 /* JPPackageSuperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageSuperView.m; sourceTree = "<group>"; };
+		B77B30AB26EF00EF00B82CE4 /* JPPackageTextNoneGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageTextNoneGraphView.m; sourceTree = "<group>"; };
+		B77B30AD26EF00EF00B82CE4 /* JPTextWithUpBorderInteractiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPTextWithUpBorderInteractiveView.h; sourceTree = "<group>"; };
+		B77B30AE26EF00EF00B82CE4 /* JPPackageGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageGraphView.m; sourceTree = "<group>"; };
+		B77B30AF26EF00EF00B82CE4 /* JPTriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPTriangleView.h; sourceTree = "<group>"; };
+		B77B30B026EF00EF00B82CE4 /* JPPackageHollowOutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageHollowOutView.h; sourceTree = "<group>"; };
+		B77B30B126EF00EF00B82CE4 /* JPJPPackageTextWithPingyinGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPJPPackageTextWithPingyinGraphView.m; sourceTree = "<group>"; };
+		B77B30B226EF00EF00B82CE4 /* JPTextWithBorderInteractiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPTextWithBorderInteractiveView.m; sourceTree = "<group>"; };
+		B77B30B326EF00EF00B82CE4 /* JPPackageImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageImageView.h; sourceTree = "<group>"; };
+		B77B30B426EF00EF00B82CE4 /* JPPackageHollowOutInteractiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageHollowOutInteractiveView.h; sourceTree = "<group>"; };
+		B77B30B626EF00EF00B82CE4 /* JPPackageTextPatternView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageTextPatternView.m; sourceTree = "<group>"; };
+		B77B30B726EF00EF00B82CE4 /* JPPatternInteractiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPatternInteractiveView.h; sourceTree = "<group>"; };
+		B77B30B826EF00EF00B82CE4 /* JPPackageTextWithBorderPatternView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageTextWithBorderPatternView.m; sourceTree = "<group>"; };
+		B77B30BB26EF00EF00B82CE4 /* JPPackageTenthTextPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageTenthTextPattern.m; sourceTree = "<group>"; };
+		B77B30BC26EF00EF00B82CE4 /* JPPackageEighthTextPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageEighthTextPattern.h; sourceTree = "<group>"; };
+		B77B30BD26EF00EF00B82CE4 /* JPPackageSeventhTextPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageSeventhTextPattern.m; sourceTree = "<group>"; };
+		B77B30BF26EF00EF00B82CE4 /* JPPackageSixthTextPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageSixthTextPattern.h; sourceTree = "<group>"; };
+		B77B30C026EF00EF00B82CE4 /* JPGifContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPGifContentView.m; sourceTree = "<group>"; };
+		B77B30C126EF00EF00B82CE4 /* JPPackageNinthTextPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageNinthTextPattern.h; sourceTree = "<group>"; };
+		B77B30C426EF00EF00B82CE4 /* JPPackageEighthTextPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageEighthTextPattern.m; sourceTree = "<group>"; };
+		B77B30C526EF00EF00B82CE4 /* JPPackageTenthTextPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageTenthTextPattern.h; sourceTree = "<group>"; };
+		B77B30C726EF00EF00B82CE4 /* JPPackageSeventhTextPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageSeventhTextPattern.h; sourceTree = "<group>"; };
+		B77B30C826EF00EF00B82CE4 /* JPPackageNinthTextPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageNinthTextPattern.m; sourceTree = "<group>"; };
+		B77B30C926EF00EF00B82CE4 /* JPPackageSixthTextPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageSixthTextPattern.m; sourceTree = "<group>"; };
+		B77B30CA26EF00EF00B82CE4 /* JPGifContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPGifContentView.h; sourceTree = "<group>"; };
+		B77B30CD26EF00EF00B82CE4 /* JPPackageNinthTextPatternInteractiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageNinthTextPatternInteractiveView.m; sourceTree = "<group>"; };
+		B77B30CE26EF00EF00B82CE4 /* JPGifPatternInteractiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPGifPatternInteractiveView.m; sourceTree = "<group>"; };
+		B77B30CF26EF00EF00B82CE4 /* JPPackageTenthTextPatternInteractiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageTenthTextPatternInteractiveView.h; sourceTree = "<group>"; };
+		B77B30D026EF00EF00B82CE4 /* JPPackageEighthTextPatternInteractiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageEighthTextPatternInteractiveView.m; sourceTree = "<group>"; };
+		B77B30D126EF00EF00B82CE4 /* JPPackageSixthTextPatternInteractiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageSixthTextPatternInteractiveView.h; sourceTree = "<group>"; };
+		B77B30D226EF00EF00B82CE4 /* JPPackageSeventhTextPatternInteractiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageSeventhTextPatternInteractiveView.m; sourceTree = "<group>"; };
+		B77B30D326EF00EF00B82CE4 /* JPPackageNinthTextPatternInteractiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageNinthTextPatternInteractiveView.h; sourceTree = "<group>"; };
+		B77B30D426EF00EF00B82CE4 /* JPGifPatternInteractiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPGifPatternInteractiveView.h; sourceTree = "<group>"; };
+		B77B30D526EF00EF00B82CE4 /* JPPackageSeventhTextPatternInteractiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageSeventhTextPatternInteractiveView.h; sourceTree = "<group>"; };
+		B77B30D626EF00EF00B82CE4 /* JPPackageSixthTextPatternInteractiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageSixthTextPatternInteractiveView.m; sourceTree = "<group>"; };
+		B77B30D726EF00EF00B82CE4 /* JPPackageEighthTextPatternInteractiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageEighthTextPatternInteractiveView.h; sourceTree = "<group>"; };
+		B77B30D826EF00EF00B82CE4 /* JPPackageTenthTextPatternInteractiveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageTenthTextPatternInteractiveView.m; sourceTree = "<group>"; };
+		B77B30D926EF00EF00B82CE4 /* JPPackageTextBackgroudColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageTextBackgroudColorView.h; sourceTree = "<group>"; };
+		B77B30DA26EF00EF00B82CE4 /* JPPackageGraphPatternView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageGraphPatternView.h; sourceTree = "<group>"; };
+		B77B30DB26EF00EF00B82CE4 /* PKBackAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKBackAlertView.m; sourceTree = "<group>"; };
+		B77B30DC26EF00EF00B82CE4 /* JPNewPatternMuneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPNewPatternMuneView.m; sourceTree = "<group>"; };
+		B77B30DD26EF00EF00B82CE4 /* JPPackBackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackBackView.m; sourceTree = "<group>"; };
+		B77B30DE26EF00EF00B82CE4 /* JPActiveMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPActiveMessageView.m; sourceTree = "<group>"; };
+		B77B30DF26EF00EF00B82CE4 /* JPPackageTextPatternMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageTextPatternMenuView.h; sourceTree = "<group>"; };
+		B77B30E026EF00EF00B82CE4 /* JPPackageMenuBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageMenuBaseView.m; sourceTree = "<group>"; };
+		B77B30E126EF00EF00B82CE4 /* JPPackagePatternAttributeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackagePatternAttributeView.h; sourceTree = "<group>"; };
+		B77B30E226EF00EF00B82CE4 /* JPCalibratView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPCalibratView.m; sourceTree = "<group>"; };
+		B77B30E326EF00EF00B82CE4 /* JPRecordingMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPRecordingMenuView.m; sourceTree = "<group>"; };
+		B77B30E426EF00EF00B82CE4 /* JPCustomColorSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPCustomColorSlider.m; sourceTree = "<group>"; };
+		B77B30E726EF00EF00B82CE4 /* JPVideoEditMune.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoEditMune.m; sourceTree = "<group>"; };
+		B77B30E926EF00EF00B82CE4 /* JPPhotoEditMune.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPhotoEditMune.m; sourceTree = "<group>"; };
+		B77B30EA26EF00EF00B82CE4 /* JPVideoEditMune.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoEditMune.h; sourceTree = "<group>"; };
+		B77B30EB26EF00EF00B82CE4 /* JPPhotoEditMune.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPhotoEditMune.h; sourceTree = "<group>"; };
+		B77B30EC26EF00EF00B82CE4 /* PKBackTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKBackTipView.m; sourceTree = "<group>"; };
+		B77B30EF26EF00EF00B82CE4 /* JPCompositionMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPCompositionMessageView.m; sourceTree = "<group>"; };
+		B77B30F226EF00EF00B82CE4 /* JPSoundEffectMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPSoundEffectMenuView.m; sourceTree = "<group>"; };
+		B77B30F326EF00EF00B82CE4 /* JPAudioMenuBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPAudioMenuBaseView.h; sourceTree = "<group>"; };
+		B77B30F426EF00EF00B82CE4 /* JPSoundEffectListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPSoundEffectListView.m; sourceTree = "<group>"; };
+		B77B30F526EF00EF00B82CE4 /* JPSoundEffectListSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPSoundEffectListSectionHeaderView.h; sourceTree = "<group>"; };
+		B77B30F626EF00EF00B82CE4 /* JPSoundEffectMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPSoundEffectMenuView.h; sourceTree = "<group>"; };
+		B77B30F826EF00EF00B82CE4 /* JPAudioMenuBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPAudioMenuBaseView.m; sourceTree = "<group>"; };
+		B77B30F926EF00EF00B82CE4 /* JPSoundEffectListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPSoundEffectListView.h; sourceTree = "<group>"; };
+		B77B30FC26EF00EF00B82CE4 /* JPSoundEffectListSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPSoundEffectListSectionHeaderView.m; sourceTree = "<group>"; };
+		B77B30FD26EF00EF00B82CE4 /* JPPatternInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPatternInputView.h; sourceTree = "<group>"; };
+		B77B30FE26EF00EF00B82CE4 /* JPPackageGraphPatternMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageGraphPatternMenuView.m; sourceTree = "<group>"; };
+		B77B310026EF00EF00B82CE4 /* JPPackageVideoEditGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageVideoEditGuideView.h; sourceTree = "<group>"; };
+		B77B310126EF00EF00B82CE4 /* JPPackageGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageGuideView.m; sourceTree = "<group>"; };
+		B77B310226EF00EF00B82CE4 /* JPPackagePhotoEditGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackagePhotoEditGuideView.m; sourceTree = "<group>"; };
+		B77B310326EF00EF00B82CE4 /* JPPackageVideoEditGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageVideoEditGuideView.m; sourceTree = "<group>"; };
+		B77B310426EF00EF00B82CE4 /* JPPackageGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageGuideView.h; sourceTree = "<group>"; };
+		B77B310526EF00EF00B82CE4 /* JPPackagePhotoEditGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackagePhotoEditGuideView.h; sourceTree = "<group>"; };
+		B77B310626EF00EF00B82CE4 /* JPNewPatternMuneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPNewPatternMuneView.h; sourceTree = "<group>"; };
+		B77B310726EF00EF00B82CE4 /* PKBackAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKBackAlertView.h; sourceTree = "<group>"; };
+		B77B310826EF00EF00B82CE4 /* JPPackageFilterMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageFilterMenuView.m; sourceTree = "<group>"; };
+		B77B310926EF00EF00B82CE4 /* JPMusicMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPMusicMenuView.m; sourceTree = "<group>"; };
+		B77B310A26EF00EF00B82CE4 /* JPPackagePatternAttributeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackagePatternAttributeView.m; sourceTree = "<group>"; };
+		B77B310B26EF00EF00B82CE4 /* JPPackageMenuBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackageMenuBaseView.h; sourceTree = "<group>"; };
+		B77B310C26EF00EF00B82CE4 /* JPPackageTextPatternMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPPackageTextPatternMenuView.m; sourceTree = "<group>"; };
+		B77B310E26EF00EF00B82CE4 /* JPActiveMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPActiveMessageView.h; sourceTree = "<group>"; };
+		B77B311026EF00EF00B82CE4 /* JPAudioRecordingProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPAudioRecordingProgressView.m; sourceTree = "<group>"; };
+		B77B311126EF00EF00B82CE4 /* JPCircleShapeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPCircleShapeLayer.m; sourceTree = "<group>"; };
+		B77B311226EF00EF00B82CE4 /* JPAudioRecordingProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPAudioRecordingProgressView.h; sourceTree = "<group>"; };
+		B77B311326EF00EF00B82CE4 /* JPCircleShapeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPCircleShapeLayer.h; sourceTree = "<group>"; };
+		B77B311426EF00EF00B82CE4 /* JPPackBackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPPackBackView.h; sourceTree = "<group>"; };
+		B77B311626EF00EF00B82CE4 /* JPCustomColorSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPCustomColorSlider.h; sourceTree = "<group>"; };
+		B77B311826EF00EF00B82CE4 /* JPGraphListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPGraphListView.m; sourceTree = "<group>"; };
+		B77B311926EF00EF00B82CE4 /* UIImageView+JPScorllView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+JPScorllView.h"; sourceTree = "<group>"; };
+		B77B311A26EF00EF00B82CE4 /* JPMusicListsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPMusicListsView.h; sourceTree = "<group>"; };
+		B77B311B26EF00EF00B82CE4 /* JPGifListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPGifListView.m; sourceTree = "<group>"; };
+		B77B311C26EF00EF00B82CE4 /* JPLocalTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPLocalTextView.m; sourceTree = "<group>"; };
+		B77B311D26EF00EF00B82CE4 /* JPLocalGraphList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPLocalGraphList.h; sourceTree = "<group>"; };
+		B77B311E26EF00EF00B82CE4 /* JPHotGraphList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPHotGraphList.h; sourceTree = "<group>"; };
+		B77B311F26EF00EF00B82CE4 /* UIImageView+JPScorllView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+JPScorllView.m"; sourceTree = "<group>"; };
+		B77B312026EF00EF00B82CE4 /* JPGraphListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPGraphListView.h; sourceTree = "<group>"; };
+		B77B312126EF00EF00B82CE4 /* JPHotGraphList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPHotGraphList.m; sourceTree = "<group>"; };
+		B77B312226EF00EF00B82CE4 /* JPLocalGraphList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPLocalGraphList.m; sourceTree = "<group>"; };
+		B77B312326EF00EF00B82CE4 /* JPLocalTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPLocalTextView.h; sourceTree = "<group>"; };
+		B77B312426EF00EF00B82CE4 /* JPGifListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPGifListView.h; sourceTree = "<group>"; };
+		B77B312526EF00EF00B82CE4 /* JPMusicListsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPMusicListsView.m; sourceTree = "<group>"; };
+		B77B312926EF00EF00B82CE4 /* JPCalibratView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPCalibratView.h; sourceTree = "<group>"; };
+		B77B312A26EF00EF00B82CE4 /* JPRecordingMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPRecordingMenuView.h; sourceTree = "<group>"; };
+		B77B36C626EF2DAB00B82CE4 /* JPBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPBaseViewController.m; sourceTree = "<group>"; };
+		B77B36C726EF2DAB00B82CE4 /* JPBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPBaseViewController.h; sourceTree = "<group>"; };
+		B77B36C826EF2DAB00B82CE4 /* JPBaseNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPBaseNavigationViewController.m; sourceTree = "<group>"; };
+		B77B36C926EF2DAB00B82CE4 /* JPBaseNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPBaseNavigationViewController.h; sourceTree = "<group>"; };
+		B77B36CE26F0392D00B82CE4 /* JPUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPUtil.m; sourceTree = "<group>"; };
+		B77B36CF26F0392D00B82CE4 /* JPUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUtil.h; sourceTree = "<group>"; };
+		B77B36D326F039C400B82CE4 /* JPCompositionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPCompositionManager.h; sourceTree = "<group>"; };
+		B77B36D426F039C400B82CE4 /* JPCompositionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPCompositionManager.m; sourceTree = "<group>"; };
+		B7915E14272142FF00468E95 /* JPResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JPResource.bundle; sourceTree = "<group>"; };
+		CC2DB6A729C9352D081B4685 /* Pods_JPSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JPSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAA5F6EE987429F7BAFA1A96 /* Pods-JPSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JPSDK.release.xcconfig"; path = "Target Support Files/Pods-JPSDK/Pods-JPSDK.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,17 +637,297 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DA59D1A9FF37CD8400C5317 /* Pods_JPSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B734ACA326F43FEB00171E05 /* Material */ = {
+			isa = PBXGroup;
+			children = (
+				B734ACA426F43FEB00171E05 /* model */,
+				B734ACA926F43FEB00171E05 /* view */,
+				B734ACF626F43FEB00171E05 /* viewcontroller */,
+			);
+			path = Material;
+			sourceTree = "<group>";
+		};
+		B734ACA426F43FEB00171E05 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				B734ACA726F43FEB00171E05 /* JPLocalFileModel.h */,
+				B734ACA526F43FEB00171E05 /* JPLocalFileModel.m */,
+				B734ACA626F43FEB00171E05 /* JPTransitionCompositionModel.h */,
+				B734ACA826F43FEB00171E05 /* JPTransitionCompositionModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		B734ACA926F43FEB00171E05 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				B734ACB926F43FEB00171E05 /* JFRecordTitleView.h */,
+				B734ACE026F43FEB00171E05 /* JFRecordTitleView.m */,
+				B734ACB726F43FEB00171E05 /* JPCameraSettingCollectionViewCell.h */,
+				B734ACDF26F43FEB00171E05 /* JPCameraSettingCollectionViewCell.m */,
+				B734ACC226F43FEB00171E05 /* JPCameraSettingView.h */,
+				B734ACEB26F43FEB00171E05 /* JPCameraSettingView.m */,
+				B734ACEE26F43FEB00171E05 /* JPCoustomButton.h */,
+				B734ACBF26F43FEB00171E05 /* JPCoustomButton.m */,
+				B734ACD826F43FEB00171E05 /* JPFilterCollectionView.h */,
+				B734ACBE26F43FEB00171E05 /* JPFilterCollectionView.m */,
+				B734ACD226F43FEB00171E05 /* JPFiltersCollectionViewCell.h */,
+				B734ACB026F43FEB00171E05 /* JPFiltersCollectionViewCell.m */,
+				B734ACB826F43FEB00171E05 /* JPGradientAnimateGuideView.h */,
+				B734ACDE26F43FEB00171E05 /* JPGradientAnimateGuideView.m */,
+				B734ACD626F43FEB00171E05 /* JPGradualLineView.h */,
+				B734ACAC26F43FEB00171E05 /* JPGradualLineView.m */,
+				B734ACB526F43FEB00171E05 /* JPHotListTitleView.h */,
+				B734ACE126F43FEB00171E05 /* JPHotListTitleView.m */,
+				B734ACF326F43FEB00171E05 /* JPHowFastCollectionViewCell.h */,
+				B734ACCD26F43FEB00171E05 /* JPHowFastCollectionViewCell.m */,
+				B734ACEC26F43FEB00171E05 /* JPLocalFileCollectionViewCell.h */,
+				B734ACC126F43FEB00171E05 /* JPLocalFileCollectionViewCell.m */,
+				B734ACF226F43FEB00171E05 /* JPLocalMediaCloudTableViewCell.h */,
+				B734ACCE26F43FEB00171E05 /* JPLocalMediaCloudTableViewCell.m */,
+				B734ACBA26F43FEB00171E05 /* JPNewFilterCollectionView.h */,
+				B734ACDC26F43FEB00171E05 /* JPNewFilterCollectionView.m */,
+				B734ACE426F43FEB00171E05 /* JPNewFilterCollectionViewCell.h */,
+				B734ACB426F43FEB00171E05 /* JPNewFilterCollectionViewCell.m */,
+				B734ACD026F43FEB00171E05 /* JPNewImportButton.h */,
+				B734ACF126F43FEB00171E05 /* JPNewImportButton.m */,
+				B734ACE726F43FEB00171E05 /* JPNewSegementView.h */,
+				B734ACC626F43FEB00171E05 /* JPNewSegementView.m */,
+				B734ACF426F43FEB00171E05 /* JPNextButton.h */,
+				B734ACCB26F43FEB00171E05 /* JPNextButton.m */,
+				B734ACAD26F43FEB00171E05 /* JPProgressView.h */,
+				B734ACD426F43FEB00171E05 /* JPProgressView.m */,
+				B734ACDD26F43FEB00171E05 /* JPPromptView.h */,
+				B734ACB626F43FEB00171E05 /* JPPromptView.m */,
+				B734ACC326F43FEB00171E05 /* JPRecordButton.h */,
+				B734ACE926F43FEB00171E05 /* JPRecordButton.m */,
+				B734ACC726F43FEB00171E05 /* JPRecordGuideView.h */,
+				B734ACE626F43FEB00171E05 /* JPRecordGuideView.m */,
+				B734ACD326F43FEB00171E05 /* JPSelectVideosView.h */,
+				B734ACAF26F43FEB00171E05 /* JPSelectVideosView.m */,
+				B734ACAB26F43FEB00171E05 /* JPSelectVideosViewCell.h */,
+				B734ACD726F43FEB00171E05 /* JPSelectVideosViewCell.m */,
+				B734ACE226F43FEB00171E05 /* JPStartRecordButton.h */,
+				B734ACB226F43FEB00171E05 /* JPStartRecordButton.m */,
+				B734ACBD26F43FEB00171E05 /* JPVideoInfoTableViewCell.h */,
+				B734ACD926F43FEB00171E05 /* JPVideoInfoTableViewCell.m */,
+				B734ACF526F43FEB00171E05 /* JPVideoPlayerView.h */,
+				B734ACC926F43FEB00171E05 /* JPVideoPlayerView.m */,
+				B734ACD526F43FEB00171E05 /* JPVideoRecordProgressView.h */,
+				B734ACAE26F43FEB00171E05 /* JPVideoRecordProgressView.m */,
+				B734ACE326F43FEB00171E05 /* JPVideoSettingTableViewCell.h */,
+				B734ACB326F43FEB00171E05 /* JPVideoSettingTableViewCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		B734ACF626F43FEB00171E05 /* viewcontroller */ = {
+			isa = PBXGroup;
+			children = (
+				B734AD0526F43FEB00171E05 /* JPAblumSourceViewController.h */,
+				B734AD1626F43FEB00171E05 /* JPAblumSourceViewController.m */,
+				B734AD0926F43FEB00171E05 /* JPAlbumViewController.h */,
+				B734ACFC26F43FEB00171E05 /* JPAlbumViewController.m */,
+				B734AD0326F43FEB00171E05 /* JPNewCameraViewController.h */,
+				B734AD1326F43FEB00171E05 /* JPNewCameraViewController.m */,
+				B734AD0026F43FEB00171E05 /* JPNewImportViewController.h */,
+				B734AD0E26F43FEB00171E05 /* JPNewImportViewController.m */,
+				B734ACFD26F43FEB00171E05 /* JPPhotoEditViewController.h */,
+				B734AD1126F43FEB00171E05 /* JPPhotoEditViewController.m */,
+				B734ACF726F43FEB00171E05 /* JPVideoClipViewController.h */,
+				B734AD0B26F43FEB00171E05 /* JPVideoClipViewController.m */,
+			);
+			path = viewcontroller;
+			sourceTree = "<group>";
+		};
+		B734AD5D26F4790400171E05 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				B778748E26F439AA0019B0F8 /* NSString+JP.h */,
+				B778748F26F439AA0019B0F8 /* NSString+JP.m */,
+				B734AD5E26F4793300171E05 /* UIColor+JP.h */,
+				B734AD5F26F4793300171E05 /* UIColor+JP.m */,
+				B74D363826FB0C840087FD51 /* UIFont+JP.h */,
+				B74D363926FB0C840087FD51 /* UIFont+JP.m */,
+				B74D369F26FB28C60087FD51 /* UIButton+JP.h */,
+				B74D36A026FB28C60087FD51 /* UIButton+JP.m */,
+				B7019A5A26FC716800ECFE04 /* UIImage+JP.h */,
+				B7019A5B26FC716800ECFE04 /* UIImage+JP.m */,
+				B7019A5D26FD770100ECFE04 /* UIViewController+JP.h */,
+				B7019A5E26FD770100ECFE04 /* UIViewController+JP.m */,
+				B77AD09B26FD7F1600AC0146 /* MBProgressHUD+JP.h */,
+				B77AD09C26FD7F1600AC0146 /* MBProgressHUD+JP.m */,
+				B77AD0A626FDB0DF00AC0146 /* NSObject+JP.h */,
+				B77AD0A726FDB0DF00AC0146 /* NSObject+JP.m */,
+				B77AD0B72701A1E700AC0146 /* NSThread+JP.h */,
+				B77AD0B82701A1E700AC0146 /* NSThread+JP.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		B74D363B26FB12390087FD51 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B74D366926FB12390087FD51 /* JPBackgroundMusicCell.h */,
+				B74D364926FB12390087FD51 /* JPBackgroundMusicCell.m */,
+				B74D366726FB12390087FD51 /* JPImgPickerViewCell.h */,
+				B74D363C26FB12390087FD51 /* JPImgPickerViewCell.m */,
+				B74D365A26FB12390087FD51 /* JPLogoSelectCollectionViewCell.h */,
+				B74D367C26FB12390087FD51 /* JPLogoSelectCollectionViewCell.m */,
+				B74D366B26FB12390087FD51 /* JPNewPatternTableViewCell.h */,
+				B74D364A26FB12390087FD51 /* JPNewPatternTableViewCell.m */,
+				B74D366426FB12390087FD51 /* JPPackageClipsThumbViewCell.h */,
+				B74D363F26FB12390087FD51 /* JPPackageClipsThumbViewCell.m */,
+				B74D363D26FB12390087FD51 /* JPPackageFilterCollectionViewCell.h */,
+				B74D366626FB12390087FD51 /* JPPackageFilterCollectionViewCell.m */,
+				B74D364826FB12390087FD51 /* JPRecordAudioThumCell.h */,
+				B74D366826FB12390087FD51 /* JPRecordAudioThumCell.m */,
+				B74D367B26FB12390087FD51 /* JPSoundEffectTableViewCell.h */,
+				B74D365B26FB12390087FD51 /* JPSoundEffectTableViewCell.m */,
+				B74D366A26FB12390087FD51 /* JPStickerPictureCollectionViewCell.h */,
+				B74D364026FB12390087FD51 /* JPStickerPictureCollectionViewCell.m */,
+				B74D363E26FB12390087FD51 /* JPTextFontCell.h */,
+				B74D366526FB12390087FD51 /* JPTextFontCell.m */,
+				B74D366C26FB12390087FD51 /* JPVideoThumbSliderCell.h */,
+				B74D365C26FB12390087FD51 /* JPVideoThumbSliderCell.m */,
+				B74D366D26FB12390087FD51 /* Material */,
+				B74D364B26FB12390087FD51 /* PatternAttributes */,
+				B74D364126FB12390087FD51 /* Patterns */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		B74D364126FB12390087FD51 /* Patterns */ = {
+			isa = PBXGroup;
+			children = (
+				B74D364426FB12390087FD51 /* JPPackageGraphMenuCell.h */,
+				B74D364626FB12390087FD51 /* JPPackageGraphMenuCell.m */,
+				B74D364226FB12390087FD51 /* JPPackagePictureGraphCell.h */,
+				B74D364526FB12390087FD51 /* JPPackagePictureGraphCell.m */,
+				B74D364326FB12390087FD51 /* JPPackageTextPatternMenuCell.h */,
+				B74D364726FB12390087FD51 /* JPPackageTextPatternMenuCell.m */,
+			);
+			path = Patterns;
+			sourceTree = "<group>";
+		};
+		B74D364B26FB12390087FD51 /* PatternAttributes */ = {
+			isa = PBXGroup;
+			children = (
+				B74D364F26FB12390087FD51 /* JPPackageMenuAttributeColorCell.h */,
+				B74D365326FB12390087FD51 /* JPPackageMenuAttributeColorCell.m */,
+				B74D365426FB12390087FD51 /* JPPackageMenuAttributePhotoCell.h */,
+				B74D364E26FB12390087FD51 /* JPPackageMenuAttributePhotoCell.m */,
+				B74D365226FB12390087FD51 /* JPPackageMenuAttributeTextFontCell.h */,
+				B74D364C26FB12390087FD51 /* JPPackageMenuAttributeTextFontCell.m */,
+				B74D365626FB12390087FD51 /* JPPackageMenuAttributeTimeSliderCell.h */,
+				B74D365026FB12390087FD51 /* JPPackageMenuAttributeTimeSliderCell.m */,
+				B74D364D26FB12390087FD51 /* JPTextFontSizeCollectionViewCell.h */,
+				B74D365526FB12390087FD51 /* JPTextFontSizeCollectionViewCell.m */,
+			);
+			path = PatternAttributes;
+			sourceTree = "<group>";
+		};
+		B74D366D26FB12390087FD51 /* Material */ = {
+			isa = PBXGroup;
+			children = (
+				B74D366F26FB12390087FD51 /* JPGIFImageView.h */,
+				B74D367426FB12390087FD51 /* JPGIFImageView.m */,
+				B74D367226FB12390087FD51 /* JPGifListCellCollectionViewCell.h */,
+				B74D367A26FB12390087FD51 /* JPGifListCellCollectionViewCell.m */,
+				B74D367926FB12390087FD51 /* JPGraphCollectionViewCell.h */,
+				B74D367326FB12390087FD51 /* JPGraphCollectionViewCell.m */,
+				B74D367126FB12390087FD51 /* JPHotGraphListCollectionViewCell.h */,
+				B74D367626FB12390087FD51 /* JPHotGraphListCollectionViewCell.m */,
+				B74D366E26FB12390087FD51 /* JPMaterialTypeCollectionCell.h */,
+				B74D367526FB12390087FD51 /* JPMaterialTypeCollectionCell.m */,
+				B74D367026FB12390087FD51 /* JPMusicListsTableViewCell.h */,
+				B74D367826FB12390087FD51 /* JPMusicListsTableViewCell.m */,
+			);
+			path = Material;
+			sourceTree = "<group>";
+		};
+		B74D36A226FC5D240087FD51 /* MaterialDownlaod */ = {
+			isa = PBXGroup;
+			children = (
+				B74D36A326FC5D240087FD51 /* Downloader */,
+				B74D36A626FC5D240087FD51 /* Model */,
+			);
+			path = MaterialDownlaod;
+			sourceTree = "<group>";
+		};
+		B74D36A326FC5D240087FD51 /* Downloader */ = {
+			isa = PBXGroup;
+			children = (
+				B74D36A426FC5D240087FD51 /* JPMaterialDownloader.h */,
+				B74D36A526FC5D240087FD51 /* JPMaterialDownloader.m */,
+			);
+			path = Downloader;
+			sourceTree = "<group>";
+		};
+		B74D36A626FC5D240087FD51 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B77AD0B4270171A200AC0146 /* JPMediaModel.h */,
+				B77AD0B5270171A300AC0146 /* JPMediaModel.m */,
+				B77AD0B22701704200AC0146 /* JPDataBase.h */,
+				B77AD0B12701704100AC0146 /* JPDataBase.m */,
+				B74D36AA26FC5D240087FD51 /* JPMaterial.h */,
+				B74D36A826FC5D240087FD51 /* JPMaterial.m */,
+				B74D36A926FC5D240087FD51 /* JPMaterialCategory.h */,
+				B74D36A726FC5D240087FD51 /* JPMaterialCategory.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B77AD09126FD7C5100AC0146 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B77AD09226FD7C5D00AC0146 /* JPErrorMessageView.h */,
+				B77AD09326FD7C5E00AC0146 /* JPErrorMessageView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B77AD09A26FD7DB800AC0146 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B77AD0A226FDAC2D00AC0146 /* JPAlertView.h */,
+				B77AD0A126FDAC2C00AC0146 /* JPAlertView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B77AD0A926FDB9F800AC0146 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				B77AD0AA26FDBA1700AC0146 /* MARKRangeSlider */,
+			);
+			path = Vendors;
+			sourceTree = "<group>";
+		};
+		B77AD0AA26FDBA1700AC0146 /* MARKRangeSlider */ = {
+			isa = PBXGroup;
+			children = (
+				B77AD0AB26FDBA1700AC0146 /* MARKRangeSlider.m */,
+				B77AD0AC26FDBA1700AC0146 /* MARKRangeSlider.h */,
+			);
+			path = MARKRangeSlider;
+			sourceTree = "<group>";
+		};
 		B77B21A426EB356600B82CE4 = {
 			isa = PBXGroup;
 			children = (
 				B77B21AF26EB356600B82CE4 /* JPSDK */,
 				B77B21AE26EB356600B82CE4 /* Products */,
+				B77B2C7326EB3FD500B82CE4 /* Frameworks */,
+				C34CC176588F73BE4C8D738C /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,10 +942,9 @@
 		B77B21AF26EB356600B82CE4 /* JPSDK */ = {
 			isa = PBXGroup;
 			children = (
+				B77B21C926EB369B00B82CE4 /* JPSDK */,
 				B77B21B026EB356600B82CE4 /* AppDelegate.h */,
 				B77B21B126EB356600B82CE4 /* AppDelegate.m */,
-				B77B21B326EB356600B82CE4 /* SceneDelegate.h */,
-				B77B21B426EB356600B82CE4 /* SceneDelegate.m */,
 				B77B21B626EB356600B82CE4 /* ViewController.h */,
 				B77B21B726EB356600B82CE4 /* ViewController.m */,
 				B77B21B926EB356600B82CE4 /* Main.storyboard */,
@@ -76,6 +956,452 @@
 			path = JPSDK;
 			sourceTree = "<group>";
 		};
+		B77B21C926EB369B00B82CE4 /* JPSDK */ = {
+			isa = PBXGroup;
+			children = (
+				B77AD0A926FDB9F800AC0146 /* Vendors */,
+				B77B36C426EF2D9300B82CE4 /* Base */,
+				B77B36D126F039B000B82CE4 /* Composition */,
+				B77B31BA26EF2D6500B82CE4 /* Resource */,
+				B74D36A226FC5D240087FD51 /* MaterialDownlaod */,
+				B734ACA326F43FEB00171E05 /* Material */,
+				B77B301D26EF00EF00B82CE4 /* Package */,
+				B77B2FB526EEFF1600B82CE4 /* Transtions */,
+				B77B2F3426EEFEF900B82CE4 /* Filters */,
+			);
+			path = JPSDK;
+			sourceTree = "<group>";
+		};
+		B77B2C7326EB3FD500B82CE4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CC2DB6A729C9352D081B4685 /* Pods_JPSDK.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B77B2F3426EEFEF900B82CE4 /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				B77B2F6226EEFEF900B82CE4 /* filterGlsl */,
+				B77B2F7926EEFEF900B82CE4 /* JPFilterDelegateColorBalance.h */,
+				B77B2F6026EEFEF900B82CE4 /* JPFilterDelegateColorBalance.m */,
+				B77B2F7A26EEFEF900B82CE4 /* JPFilterDelegateNormal.h */,
+				B77B2F6126EEFEF900B82CE4 /* JPFilterDelegateNormal.m */,
+				B77B2F7726EEFEF900B82CE4 /* JPFilterDelegateOnlyCurve.h */,
+				B77B2F5E26EEFEF900B82CE4 /* JPFilterDelegateOnlyCurve.m */,
+				B77B2F7826EEFEF900B82CE4 /* JPFilterManagers.h */,
+				B77B2F5F26EEFEF900B82CE4 /* JPFilterManagers.m */,
+			);
+			path = Filters;
+			sourceTree = "<group>";
+		};
+		B77B2F6226EEFEF900B82CE4 /* filterGlsl */ = {
+			isa = PBXGroup;
+			children = (
+				B77B2F6326EEFEF900B82CE4 /* filterModernHeader.glsl */,
+				B77B2F6426EEFEF900B82CE4 /* hueAdujs.glsl */,
+				B77B2F6526EEFEF900B82CE4 /* saturation.glsl */,
+				B77B2F6626EEFEF900B82CE4 /* filterHeader.glsl */,
+				B77B2F6726EEFEF900B82CE4 /* filterFooter.glsl */,
+				B77B2F6826EEFEF900B82CE4 /* filterNormal.glsl */,
+				B77B2F6926EEFEF900B82CE4 /* funcationStart.glsl */,
+				B77B2F6A26EEFEF900B82CE4 /* filterElapseHeader.glsl */,
+				B77B2F6B26EEFEF900B82CE4 /* filterColorBalanceFouncation.glsl */,
+				B77B2F6C26EEFEF900B82CE4 /* filterBlueBerryColor.glsl */,
+				B77B2F6D26EEFEF900B82CE4 /* filterBlueBerryHeader.glsl */,
+				B77B2F6E26EEFEF900B82CE4 /* filterSakuraColor.glsl */,
+				B77B2F6F26EEFEF900B82CE4 /* founcationEnd.glsl */,
+				B77B2F7026EEFEF900B82CE4 /* filterAfterRaningHeader.glsl */,
+				B77B2F7126EEFEF900B82CE4 /* filterPromontoryHeader.glsl */,
+				B77B2F7226EEFEF900B82CE4 /* filterGreenHeader.glsl */,
+				B77B2F7326EEFEF900B82CE4 /* filterSweetWordsHeader.glsl */,
+				B77B2F7426EEFEF900B82CE4 /* curveAdjust.glsl */,
+				B77B2F7526EEFEF900B82CE4 /* filterMidSummerHeader.glsl */,
+				B77B2F7626EEFEF900B82CE4 /* filterSakuraHeader.glsl */,
+			);
+			path = filterGlsl;
+			sourceTree = "<group>";
+		};
+		B77B2FB526EEFF1600B82CE4 /* Transtions */ = {
+			isa = PBXGroup;
+			children = (
+				B77B2FD426EEFF1600B82CE4 /* glsl */,
+				B77B2FEA26EEFF1600B82CE4 /* JPTranstionsModelManager.h */,
+				B77B2FD326EEFF1600B82CE4 /* JPTranstionsModelManager.m */,
+			);
+			path = Transtions;
+			sourceTree = "<group>";
+		};
+		B77B2FD426EEFF1600B82CE4 /* glsl */ = {
+			isa = PBXGroup;
+			children = (
+				B77B2FD526EEFF1600B82CE4 /* transtion19.glsl */,
+				B77B2FD626EEFF1600B82CE4 /* transtion15.glsl */,
+				B77B2FD726EEFF1600B82CE4 /* transtion3.glsl */,
+				B77B2FD826EEFF1600B82CE4 /* transtionHeader.glsl */,
+				B77B2FD926EEFF1600B82CE4 /* transtion2.glsl */,
+				B77B2FDA26EEFF1600B82CE4 /* transtion14.glsl */,
+				B77B2FDB26EEFF1600B82CE4 /* transtion18.glsl */,
+				B77B2FDC26EEFF1600B82CE4 /* transtion13.glsl */,
+				B77B2FDD26EEFF1600B82CE4 /* transtion5.glsl */,
+				B77B2FDE26EEFF1600B82CE4 /* transtion9.glsl */,
+				B77B2FDF26EEFF1600B82CE4 /* transtion8.glsl */,
+				B77B2FE026EEFF1600B82CE4 /* transtion4.glsl */,
+				B77B2FE126EEFF1600B82CE4 /* transtion12.glsl */,
+				B77B2FE226EEFF1600B82CE4 /* transtion7.glsl */,
+				B77B2FE326EEFF1600B82CE4 /* transtion11.glsl */,
+				B77B2FE426EEFF1600B82CE4 /* transtion10.glsl */,
+				B77B2FE526EEFF1600B82CE4 /* transtion6.glsl */,
+				B77B2FE626EEFF1600B82CE4 /* transtion1.glsl */,
+				B77B2FE726EEFF1600B82CE4 /* transtion17.glsl */,
+				B77B2FE826EEFF1600B82CE4 /* transtion16.glsl */,
+				B77B2FE926EEFF1600B82CE4 /* transtion20.glsl */,
+			);
+			path = glsl;
+			sourceTree = "<group>";
+		};
+		B77B301D26EF00EF00B82CE4 /* Package */ = {
+			isa = PBXGroup;
+			children = (
+				B77B31B926EF2CFE00B82CE4 /* Controller */,
+				B77B302226EF00EF00B82CE4 /* Model */,
+				B77B303426EF00EF00B82CE4 /* Views */,
+			);
+			path = Package;
+			sourceTree = "<group>";
+		};
+		B77B302226EF00EF00B82CE4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B77B302426EF00EF00B82CE4 /* JPAudioRecorder.h */,
+				B77B302B26EF00EF00B82CE4 /* JPAudioRecorder.m */,
+				B77B302D26EF00EF00B82CE4 /* JPFontModel.h */,
+				B77B302626EF00EF00B82CE4 /* JPFontModel.m */,
+				B77B302826EF00EF00B82CE4 /* JPHorizontalCollectionViewLayout.h */,
+				B77B303026EF00EF00B82CE4 /* JPHorizontalCollectionViewLayout.m */,
+				B77B302526EF00EF00B82CE4 /* JPHotlistGraphModel.h */,
+				B77B302E26EF00EF00B82CE4 /* JPHotlistGraphModel.m */,
+				B77B302926EF00EF00B82CE4 /* JPPackageViewCache.h */,
+				B77B302F26EF00EF00B82CE4 /* JPPackageViewCache.m */,
+				B77B302C26EF00EF00B82CE4 /* JPSoundEffect.h */,
+				B77B302726EF00EF00B82CE4 /* JPSoundEffect.m */,
+				B77B302A26EF00EF00B82CE4 /* JPThumbInfoModel.h */,
+				B77B302326EF00EF00B82CE4 /* JPThumbInfoModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B77B303426EF00EF00B82CE4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B77AD0AE27016F9B00AC0146 /* JPVideoPublishProgressView.h */,
+				B77AD0AF27016F9C00AC0146 /* JPVideoPublishProgressView.m */,
+				B77B30F026EF00EF00B82CE4 /* Audio */,
+				B74D363B26FB12390087FD51 /* Cells */,
+				B77B310F26EF00EF00B82CE4 /* CircularProgressView */,
+				B77B30FF26EF00EF00B82CE4 /* Guides */,
+				B77B310E26EF00EF00B82CE4 /* JPActiveMessageView.h */,
+				B77B30DE26EF00EF00B82CE4 /* JPActiveMessageView.m */,
+				B77B312926EF00EF00B82CE4 /* JPCalibratView.h */,
+				B77B30E226EF00EF00B82CE4 /* JPCalibratView.m */,
+				B77B305026EF00EF00B82CE4 /* JPCompositionMessageView.h */,
+				B77B30EF26EF00EF00B82CE4 /* JPCompositionMessageView.m */,
+				B77B311626EF00EF00B82CE4 /* JPCustomColorSlider.h */,
+				B77B30E426EF00EF00B82CE4 /* JPCustomColorSlider.m */,
+				B77B309526EF00EF00B82CE4 /* JPMusicMenuView.h */,
+				B77B310926EF00EF00B82CE4 /* JPMusicMenuView.m */,
+				B77B310626EF00EF00B82CE4 /* JPNewPatternMuneView.h */,
+				B77B30DC26EF00EF00B82CE4 /* JPNewPatternMuneView.m */,
+				B77B309426EF00EF00B82CE4 /* JPPackageFilterMenuView.h */,
+				B77B310826EF00EF00B82CE4 /* JPPackageFilterMenuView.m */,
+				B77B303526EF00EF00B82CE4 /* JPPackageGraphPatternMenuView.h */,
+				B77B30FE26EF00EF00B82CE4 /* JPPackageGraphPatternMenuView.m */,
+				B77B310B26EF00EF00B82CE4 /* JPPackageMenuBaseView.h */,
+				B77B30E026EF00EF00B82CE4 /* JPPackageMenuBaseView.m */,
+				B77B30E126EF00EF00B82CE4 /* JPPackagePatternAttributeView.h */,
+				B77B310A26EF00EF00B82CE4 /* JPPackagePatternAttributeView.m */,
+				B77B30DF26EF00EF00B82CE4 /* JPPackageTextPatternMenuView.h */,
+				B77B310C26EF00EF00B82CE4 /* JPPackageTextPatternMenuView.m */,
+				B77B311426EF00EF00B82CE4 /* JPPackBackView.h */,
+				B77B30DD26EF00EF00B82CE4 /* JPPackBackView.m */,
+				B77B30FD26EF00EF00B82CE4 /* JPPatternInputView.h */,
+				B77B304F26EF00EF00B82CE4 /* JPPatternInputView.m */,
+				B77B312A26EF00EF00B82CE4 /* JPRecordingMenuView.h */,
+				B77B30E326EF00EF00B82CE4 /* JPRecordingMenuView.m */,
+				B77B311726EF00EF00B82CE4 /* Material */,
+				B77B309626EF00EF00B82CE4 /* Patterns */,
+				B77B310726EF00EF00B82CE4 /* PKBackAlertView.h */,
+				B77B30DB26EF00EF00B82CE4 /* PKBackAlertView.m */,
+				B77B309326EF00EF00B82CE4 /* PKBackTipView.h */,
+				B77B30EC26EF00EF00B82CE4 /* PKBackTipView.m */,
+				B77B30E526EF00EF00B82CE4 /* videoEdit */,
+				B77B303626EF00EF00B82CE4 /* VideoThumbSlider */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B77B303626EF00EF00B82CE4 /* VideoThumbSlider */ = {
+			isa = PBXGroup;
+			children = (
+				B77B304226EF00EF00B82CE4 /* JPNewClidView.h */,
+				B77B304A26EF00EF00B82CE4 /* JPNewClidView.m */,
+				B77B304526EF00EF00B82CE4 /* JPNewThumbSlider.h */,
+				B77B303E26EF00EF00B82CE4 /* JPNewThumbSlider.m */,
+				B77B304D26EF00EF00B82CE4 /* JPNewTranstionChangedView.h */,
+				B77B303F26EF00EF00B82CE4 /* JPNewTranstionChangedView.m */,
+				B77B303C26EF00EF00B82CE4 /* JPNewVideoThumbCollectionViewCell.h */,
+				B77B304826EF00EF00B82CE4 /* JPNewVideoThumbCollectionViewCell.m */,
+				B77B303B26EF00EF00B82CE4 /* JPRecordInfoView.h */,
+				B77B304926EF00EF00B82CE4 /* JPRecordInfoView.m */,
+				B77B304026EF00EF00B82CE4 /* JPThumImageLayout.h */,
+				B77B304B26EF00EF00B82CE4 /* JPThumImageLayout.m */,
+				B77B304426EF00EF00B82CE4 /* JPTranstionsCollectionViewCell.h */,
+				B77B303926EF00EF00B82CE4 /* JPTranstionsCollectionViewCell.m */,
+				B77B304126EF00EF00B82CE4 /* JPTranstionTypeSelectButton.h */,
+				B77B304C26EF00EF00B82CE4 /* JPTranstionTypeSelectButton.m */,
+				B77B304326EF00EF00B82CE4 /* JPVideoThumbSlider.h */,
+				B77B303A26EF00EF00B82CE4 /* JPVideoThumbSlider.m */,
+			);
+			path = VideoThumbSlider;
+			sourceTree = "<group>";
+		};
+		B77B309626EF00EF00B82CE4 /* Patterns */ = {
+			isa = PBXGroup;
+			children = (
+				B77B30CC26EF00EF00B82CE4 /* InteractiveViews */,
+				B77B30A126EF00EF00B82CE4 /* JPJPPackageTextWithPingyinGraphView.h */,
+				B77B30B126EF00EF00B82CE4 /* JPJPPackageTextWithPingyinGraphView.m */,
+				B77B30DA26EF00EF00B82CE4 /* JPPackageGraphPatternView.h */,
+				B77B30A326EF00EF00B82CE4 /* JPPackageGraphPatternView.m */,
+				B77B309D26EF00EF00B82CE4 /* JPPackageGraphView.h */,
+				B77B30AE26EF00EF00B82CE4 /* JPPackageGraphView.m */,
+				B77B30B426EF00EF00B82CE4 /* JPPackageHollowOutInteractiveView.h */,
+				B77B309F26EF00EF00B82CE4 /* JPPackageHollowOutInteractiveView.m */,
+				B77B30B026EF00EF00B82CE4 /* JPPackageHollowOutView.h */,
+				B77B30A226EF00EF00B82CE4 /* JPPackageHollowOutView.m */,
+				B77B30B326EF00EF00B82CE4 /* JPPackageImageView.h */,
+				B77B309E26EF00EF00B82CE4 /* JPPackageImageView.m */,
+				B77B309B26EF00EF00B82CE4 /* JPPackagePictureGraphView.h */,
+				B77B30A826EF00EF00B82CE4 /* JPPackagePictureGraphView.m */,
+				B77B309A26EF00EF00B82CE4 /* JPPackageSuperView.h */,
+				B77B30AA26EF00EF00B82CE4 /* JPPackageSuperView.m */,
+				B77B309926EF00EF00B82CE4 /* JPPackageTextAndBackgroudView.h */,
+				B77B30A926EF00EF00B82CE4 /* JPPackageTextAndBackgroudView.m */,
+				B77B30D926EF00EF00B82CE4 /* JPPackageTextBackgroudColorView.h */,
+				B77B30A426EF00EF00B82CE4 /* JPPackageTextBackgroudColorView.m */,
+				B77B309826EF00EF00B82CE4 /* JPPackageTextNoneGraphView.h */,
+				B77B30AB26EF00EF00B82CE4 /* JPPackageTextNoneGraphView.m */,
+				B77B30A626EF00EF00B82CE4 /* JPPackageTextPatternView.h */,
+				B77B30B626EF00EF00B82CE4 /* JPPackageTextPatternView.m */,
+				B77B30A526EF00EF00B82CE4 /* JPPackageTextWithBorderPatternView.h */,
+				B77B30B826EF00EF00B82CE4 /* JPPackageTextWithBorderPatternView.m */,
+				B77B30B726EF00EF00B82CE4 /* JPPatternInteractiveView.h */,
+				B77B30A726EF00EF00B82CE4 /* JPPatternInteractiveView.m */,
+				B77B30A026EF00EF00B82CE4 /* JPTextWithBorderInteractiveView.h */,
+				B77B30B226EF00EF00B82CE4 /* JPTextWithBorderInteractiveView.m */,
+				B77B30AD26EF00EF00B82CE4 /* JPTextWithUpBorderInteractiveView.h */,
+				B77B309726EF00EF00B82CE4 /* JPTextWithUpBorderInteractiveView.m */,
+				B77B30AF26EF00EF00B82CE4 /* JPTriangleView.h */,
+				B77B309C26EF00EF00B82CE4 /* JPTriangleView.m */,
+				B77B30BA26EF00EF00B82CE4 /* TextViews */,
+			);
+			path = Patterns;
+			sourceTree = "<group>";
+		};
+		B77B30BA26EF00EF00B82CE4 /* TextViews */ = {
+			isa = PBXGroup;
+			children = (
+				B77B30CA26EF00EF00B82CE4 /* JPGifContentView.h */,
+				B77B30C026EF00EF00B82CE4 /* JPGifContentView.m */,
+				B77B30BC26EF00EF00B82CE4 /* JPPackageEighthTextPattern.h */,
+				B77B30C426EF00EF00B82CE4 /* JPPackageEighthTextPattern.m */,
+				B77B30C126EF00EF00B82CE4 /* JPPackageNinthTextPattern.h */,
+				B77B30C826EF00EF00B82CE4 /* JPPackageNinthTextPattern.m */,
+				B77B30C726EF00EF00B82CE4 /* JPPackageSeventhTextPattern.h */,
+				B77B30BD26EF00EF00B82CE4 /* JPPackageSeventhTextPattern.m */,
+				B77B30BF26EF00EF00B82CE4 /* JPPackageSixthTextPattern.h */,
+				B77B30C926EF00EF00B82CE4 /* JPPackageSixthTextPattern.m */,
+				B77B30C526EF00EF00B82CE4 /* JPPackageTenthTextPattern.h */,
+				B77B30BB26EF00EF00B82CE4 /* JPPackageTenthTextPattern.m */,
+			);
+			path = TextViews;
+			sourceTree = "<group>";
+		};
+		B77B30CC26EF00EF00B82CE4 /* InteractiveViews */ = {
+			isa = PBXGroup;
+			children = (
+				B77B30D426EF00EF00B82CE4 /* JPGifPatternInteractiveView.h */,
+				B77B30CE26EF00EF00B82CE4 /* JPGifPatternInteractiveView.m */,
+				B77B30D726EF00EF00B82CE4 /* JPPackageEighthTextPatternInteractiveView.h */,
+				B77B30D026EF00EF00B82CE4 /* JPPackageEighthTextPatternInteractiveView.m */,
+				B77B30D326EF00EF00B82CE4 /* JPPackageNinthTextPatternInteractiveView.h */,
+				B77B30CD26EF00EF00B82CE4 /* JPPackageNinthTextPatternInteractiveView.m */,
+				B77B30D526EF00EF00B82CE4 /* JPPackageSeventhTextPatternInteractiveView.h */,
+				B77B30D226EF00EF00B82CE4 /* JPPackageSeventhTextPatternInteractiveView.m */,
+				B77B30D126EF00EF00B82CE4 /* JPPackageSixthTextPatternInteractiveView.h */,
+				B77B30D626EF00EF00B82CE4 /* JPPackageSixthTextPatternInteractiveView.m */,
+				B77B30CF26EF00EF00B82CE4 /* JPPackageTenthTextPatternInteractiveView.h */,
+				B77B30D826EF00EF00B82CE4 /* JPPackageTenthTextPatternInteractiveView.m */,
+			);
+			path = InteractiveViews;
+			sourceTree = "<group>";
+		};
+		B77B30E526EF00EF00B82CE4 /* videoEdit */ = {
+			isa = PBXGroup;
+			children = (
+				B77B30EB26EF00EF00B82CE4 /* JPPhotoEditMune.h */,
+				B77B30E926EF00EF00B82CE4 /* JPPhotoEditMune.m */,
+				B77B30EA26EF00EF00B82CE4 /* JPVideoEditMune.h */,
+				B77B30E726EF00EF00B82CE4 /* JPVideoEditMune.m */,
+			);
+			path = videoEdit;
+			sourceTree = "<group>";
+		};
+		B77B30F026EF00EF00B82CE4 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				B77B30F326EF00EF00B82CE4 /* JPAudioMenuBaseView.h */,
+				B77B30F826EF00EF00B82CE4 /* JPAudioMenuBaseView.m */,
+				B77B30F526EF00EF00B82CE4 /* JPSoundEffectListSectionHeaderView.h */,
+				B77B30FC26EF00EF00B82CE4 /* JPSoundEffectListSectionHeaderView.m */,
+				B77B30F926EF00EF00B82CE4 /* JPSoundEffectListView.h */,
+				B77B30F426EF00EF00B82CE4 /* JPSoundEffectListView.m */,
+				B77B30F626EF00EF00B82CE4 /* JPSoundEffectMenuView.h */,
+				B77B30F226EF00EF00B82CE4 /* JPSoundEffectMenuView.m */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		B77B30FF26EF00EF00B82CE4 /* Guides */ = {
+			isa = PBXGroup;
+			children = (
+				B77B310426EF00EF00B82CE4 /* JPPackageGuideView.h */,
+				B77B310126EF00EF00B82CE4 /* JPPackageGuideView.m */,
+				B77B310526EF00EF00B82CE4 /* JPPackagePhotoEditGuideView.h */,
+				B77B310226EF00EF00B82CE4 /* JPPackagePhotoEditGuideView.m */,
+				B77B310026EF00EF00B82CE4 /* JPPackageVideoEditGuideView.h */,
+				B77B310326EF00EF00B82CE4 /* JPPackageVideoEditGuideView.m */,
+			);
+			path = Guides;
+			sourceTree = "<group>";
+		};
+		B77B310F26EF00EF00B82CE4 /* CircularProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				B77B311226EF00EF00B82CE4 /* JPAudioRecordingProgressView.h */,
+				B77B311026EF00EF00B82CE4 /* JPAudioRecordingProgressView.m */,
+				B77B311326EF00EF00B82CE4 /* JPCircleShapeLayer.h */,
+				B77B311126EF00EF00B82CE4 /* JPCircleShapeLayer.m */,
+			);
+			path = CircularProgressView;
+			sourceTree = "<group>";
+		};
+		B77B311726EF00EF00B82CE4 /* Material */ = {
+			isa = PBXGroup;
+			children = (
+				B77B312426EF00EF00B82CE4 /* JPGifListView.h */,
+				B77B311B26EF00EF00B82CE4 /* JPGifListView.m */,
+				B77B312026EF00EF00B82CE4 /* JPGraphListView.h */,
+				B77B311826EF00EF00B82CE4 /* JPGraphListView.m */,
+				B77B311E26EF00EF00B82CE4 /* JPHotGraphList.h */,
+				B77B312126EF00EF00B82CE4 /* JPHotGraphList.m */,
+				B77B311D26EF00EF00B82CE4 /* JPLocalGraphList.h */,
+				B77B312226EF00EF00B82CE4 /* JPLocalGraphList.m */,
+				B77B312326EF00EF00B82CE4 /* JPLocalTextView.h */,
+				B77B311C26EF00EF00B82CE4 /* JPLocalTextView.m */,
+				B77B311A26EF00EF00B82CE4 /* JPMusicListsView.h */,
+				B77B312526EF00EF00B82CE4 /* JPMusicListsView.m */,
+				B77B311926EF00EF00B82CE4 /* UIImageView+JPScorllView.h */,
+				B77B311F26EF00EF00B82CE4 /* UIImageView+JPScorllView.m */,
+			);
+			path = Material;
+			sourceTree = "<group>";
+		};
+		B77B31B926EF2CFE00B82CE4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B77B301E26EF00EF00B82CE4 /* JPImgPickerViewController.h */,
+				B77B302126EF00EF00B82CE4 /* JPImgPickerViewController.m */,
+				B77B302026EF00EF00B82CE4 /* JPNewPageViewController.h */,
+				B77B303326EF00EF00B82CE4 /* JPNewPageViewController.m */,
+				B73B22A8271E694300B5E113 /* CompositionViewController.h */,
+				B73B22A9271E694300B5E113 /* CompositionViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B77B31BA26EF2D6500B82CE4 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				B7915E14272142FF00468E95 /* JPResource.bundle */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		B77B36C426EF2D9300B82CE4 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				B77AD09A26FD7DB800AC0146 /* View */,
+				B734AD5D26F4790400171E05 /* Category */,
+				B77B36CD26F0392200B82CE4 /* Model */,
+				B77B36C526EF2D9900B82CE4 /* Controller */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		B77B36C526EF2D9900B82CE4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B77B36C926EF2DAB00B82CE4 /* JPBaseNavigationViewController.h */,
+				B77B36C826EF2DAB00B82CE4 /* JPBaseNavigationViewController.m */,
+				B77B36C726EF2DAB00B82CE4 /* JPBaseViewController.h */,
+				B77B36C626EF2DAB00B82CE4 /* JPBaseViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B77B36CD26F0392200B82CE4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B77B36CF26F0392D00B82CE4 /* JPUtil.h */,
+				B77B36CE26F0392D00B82CE4 /* JPUtil.m */,
+				B778748C26F09ABC0019B0F8 /* JPSDK-prefix.pch */,
+				B734ACA226F43D1500171E05 /* JPConfige.h */,
+				B71180FB272009C200636767 /* JPSDK.h */,
+				B71181522720FEA400636767 /* JPManager.h */,
+				B71181532720FEA500636767 /* JPManager.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B77B36D126F039B000B82CE4 /* Composition */ = {
+			isa = PBXGroup;
+			children = (
+				B77AD09126FD7C5100AC0146 /* View */,
+				B77B36D226F039BB00B82CE4 /* Model */,
+			);
+			path = Composition;
+			sourceTree = "<group>";
+		};
+		B77B36D226F039BB00B82CE4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B77B36D326F039C400B82CE4 /* JPCompositionManager.h */,
+				B77B36D426F039C400B82CE4 /* JPCompositionManager.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C34CC176588F73BE4C8D738C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				358D143C6FB7677D4A2B7AE1 /* Pods-JPSDK.debug.xcconfig */,
+				EAA5F6EE987429F7BAFA1A96 /* Pods-JPSDK.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -83,9 +1409,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B77B21C626EB356900B82CE4 /* Build configuration list for PBXNativeTarget "JPSDK" */;
 			buildPhases = (
+				342A9CE48B8E812348F21373 /* [CP] Check Pods Manifest.lock */,
 				B77B21A926EB356600B82CE4 /* Sources */,
 				B77B21AA26EB356600B82CE4 /* Frameworks */,
 				B77B21AB26EB356600B82CE4 /* Resources */,
+				EF3C52F658BBC7F6EFB9F967 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -116,6 +1444,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = B77B21A426EB356600B82CE4;
 			productRefGroup = B77B21AE26EB356600B82CE4 /* Products */;
@@ -132,23 +1461,277 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B77B2FA726EEFEF900B82CE4 /* funcationStart.glsl in Resources */,
+				B77B300C26EEFF1600B82CE4 /* transtion2.glsl in Resources */,
+				B77B2FA626EEFEF900B82CE4 /* filterNormal.glsl in Resources */,
 				B77B21C026EB356900B82CE4 /* LaunchScreen.storyboard in Resources */,
+				B77B300826EEFF1600B82CE4 /* transtion19.glsl in Resources */,
+				B77B2FA126EEFEF900B82CE4 /* filterModernHeader.glsl in Resources */,
+				B77B301526EEFF1600B82CE4 /* transtion7.glsl in Resources */,
+				B77B2FAB26EEFEF900B82CE4 /* filterBlueBerryHeader.glsl in Resources */,
+				B77B300926EEFF1600B82CE4 /* transtion15.glsl in Resources */,
+				B77B300F26EEFF1600B82CE4 /* transtion13.glsl in Resources */,
+				B77B2FB126EEFEF900B82CE4 /* filterSweetWordsHeader.glsl in Resources */,
+				B77B2FAE26EEFEF900B82CE4 /* filterAfterRaningHeader.glsl in Resources */,
+				B77B300E26EEFF1600B82CE4 /* transtion18.glsl in Resources */,
+				B77B301B26EEFF1600B82CE4 /* transtion16.glsl in Resources */,
+				B77B2FA926EEFEF900B82CE4 /* filterColorBalanceFouncation.glsl in Resources */,
+				B77B2FA426EEFEF900B82CE4 /* filterHeader.glsl in Resources */,
+				B77B301126EEFF1600B82CE4 /* transtion9.glsl in Resources */,
+				B77B301A26EEFF1600B82CE4 /* transtion17.glsl in Resources */,
 				B77B21BD26EB356900B82CE4 /* Assets.xcassets in Resources */,
+				B77B301926EEFF1600B82CE4 /* transtion1.glsl in Resources */,
+				B77B300B26EEFF1600B82CE4 /* transtionHeader.glsl in Resources */,
+				B7915E15272142FF00468E95 /* JPResource.bundle in Resources */,
+				B77B2FB426EEFEF900B82CE4 /* filterSakuraHeader.glsl in Resources */,
+				B77B2FAA26EEFEF900B82CE4 /* filterBlueBerryColor.glsl in Resources */,
+				B77B2FB226EEFEF900B82CE4 /* curveAdjust.glsl in Resources */,
+				B77B301326EEFF1600B82CE4 /* transtion4.glsl in Resources */,
+				B77B2FA226EEFEF900B82CE4 /* hueAdujs.glsl in Resources */,
+				B77B300D26EEFF1600B82CE4 /* transtion14.glsl in Resources */,
+				B77B2FAD26EEFEF900B82CE4 /* founcationEnd.glsl in Resources */,
+				B77B301426EEFF1600B82CE4 /* transtion12.glsl in Resources */,
+				B77B301826EEFF1600B82CE4 /* transtion6.glsl in Resources */,
+				B77B301026EEFF1600B82CE4 /* transtion5.glsl in Resources */,
+				B77B2FAC26EEFEF900B82CE4 /* filterSakuraColor.glsl in Resources */,
+				B77B301C26EEFF1600B82CE4 /* transtion20.glsl in Resources */,
+				B77B2FA326EEFEF900B82CE4 /* saturation.glsl in Resources */,
+				B77B301626EEFF1600B82CE4 /* transtion11.glsl in Resources */,
+				B77B2FB326EEFEF900B82CE4 /* filterMidSummerHeader.glsl in Resources */,
+				B77B301226EEFF1600B82CE4 /* transtion8.glsl in Resources */,
+				B77B2FAF26EEFEF900B82CE4 /* filterPromontoryHeader.glsl in Resources */,
+				B77B2FA526EEFEF900B82CE4 /* filterFooter.glsl in Resources */,
+				B77B2FA826EEFEF900B82CE4 /* filterElapseHeader.glsl in Resources */,
+				B77B301726EEFF1600B82CE4 /* transtion10.glsl in Resources */,
+				B77B2FB026EEFEF900B82CE4 /* filterGreenHeader.glsl in Resources */,
+				B77B300A26EEFF1600B82CE4 /* transtion3.glsl in Resources */,
 				B77B21BB26EB356600B82CE4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		342A9CE48B8E812348F21373 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-JPSDK-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF3C52F658BBC7F6EFB9F967 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JPSDK/Pods-JPSDK-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JPSDK/Pods-JPSDK-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JPSDK/Pods-JPSDK-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B77B21A926EB356600B82CE4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B77B313B26EF00F000B82CE4 /* JPNewThumbSlider.m in Sources */,
+				B77B313126EF00F000B82CE4 /* JPPackageViewCache.m in Sources */,
+				B77B31AC26EF00F000B82CE4 /* JPPackageTextPatternMenuView.m in Sources */,
+				B77B317626EF00F000B82CE4 /* JPJPPackageTextWithPingyinGraphView.m in Sources */,
+				B77B31A526EF00F000B82CE4 /* JPPackageGraphPatternMenuView.m in Sources */,
+				B77B313826EF00F000B82CE4 /* JPTranstionsCollectionViewCell.m in Sources */,
+				B74D368926FB123A0087FD51 /* JPPackageMenuAttributeColorCell.m in Sources */,
+				B74D368326FB123A0087FD51 /* JPBackgroundMusicCell.m in Sources */,
+				B74D367E26FB123A0087FD51 /* JPPackageClipsThumbViewCell.m in Sources */,
+				B734AD3B26F43FEC00171E05 /* JPNewFilterCollectionView.m in Sources */,
+				B77B36CA26EF2DAC00B82CE4 /* JPBaseViewController.m in Sources */,
+				B77B316C26EF00F000B82CE4 /* JPPackageHollowOutView.m in Sources */,
+				B77B316F26EF00F000B82CE4 /* JPPatternInteractiveView.m in Sources */,
+				B73B22AA271E694300B5E113 /* CompositionViewController.m in Sources */,
+				B734AD1E26F43FEB00171E05 /* JPFiltersCollectionViewCell.m in Sources */,
+				B71181542720FEA500636767 /* JPManager.m in Sources */,
+				B77B31B426EF00F000B82CE4 /* UIImageView+JPScorllView.m in Sources */,
+				B77B317C26EF00F000B82CE4 /* JPPackageTenthTextPattern.m in Sources */,
+				B734AD3826F43FEC00171E05 /* JPVideoInfoTableViewCell.m in Sources */,
+				B77B318226EF00F000B82CE4 /* JPPackageEighthTextPattern.m in Sources */,
+				B734AD4126F43FEC00171E05 /* JPRecordGuideView.m in Sources */,
+				B77B319E26EF00F000B82CE4 /* JPSoundEffectMenuView.m in Sources */,
+				B77B316826EF00F000B82CE4 /* JPTextWithUpBorderInteractiveView.m in Sources */,
+				B77B300726EEFF1600B82CE4 /* JPTranstionsModelManager.m in Sources */,
+				B77B31A126EF00F000B82CE4 /* JPAudioMenuBaseView.m in Sources */,
+				B77B312D26EF00EF00B82CE4 /* JPFontModel.m in Sources */,
+				B7019A5C26FC716800ECFE04 /* UIImage+JP.m in Sources */,
+				B77B31B726EF00F000B82CE4 /* JPMusicListsView.m in Sources */,
+				B77AD0B92701A1E700AC0146 /* NSThread+JP.m in Sources */,
+				B77B318726EF00F000B82CE4 /* JPPackageNinthTextPatternInteractiveView.m in Sources */,
+				B77B31A926EF00F000B82CE4 /* JPPackageFilterMenuView.m in Sources */,
+				B74D36AD26FC5D250087FD51 /* JPMaterial.m in Sources */,
+				B77B31A626EF00F000B82CE4 /* JPPackageGuideView.m in Sources */,
+				B77B318E26EF00F000B82CE4 /* JPNewPatternMuneView.m in Sources */,
+				B77B318D26EF00F000B82CE4 /* PKBackAlertView.m in Sources */,
+				B77B318426EF00F000B82CE4 /* JPPackageNinthTextPattern.m in Sources */,
+				B734AD2126F43FEB00171E05 /* JPVideoSettingTableViewCell.m in Sources */,
+				B74D367D26FB123A0087FD51 /* JPImgPickerViewCell.m in Sources */,
+				B77B36D026F0392D00B82CE4 /* JPUtil.m in Sources */,
+				B74D369826FB123A0087FD51 /* JPGIFImageView.m in Sources */,
+				B77B2F9D26EEFEF900B82CE4 /* JPFilterDelegateOnlyCurve.m in Sources */,
+				B77B312F26EF00F000B82CE4 /* JPAudioRecorder.m in Sources */,
+				B77B319126EF00F000B82CE4 /* JPPackageMenuBaseView.m in Sources */,
+				B734AD2C26F43FEB00171E05 /* JPNewSegementView.m in Sources */,
+				B734AD5B26F43FEC00171E05 /* JPAblumSourceViewController.m in Sources */,
+				B77B318B26EF00F000B82CE4 /* JPPackageSixthTextPatternInteractiveView.m in Sources */,
+				B77B31A826EF00F000B82CE4 /* JPPackageVideoEditGuideView.m in Sources */,
+				B77B312B26EF00EF00B82CE4 /* JPImgPickerViewController.m in Sources */,
+				B734AD3026F43FEC00171E05 /* JPNextButton.m in Sources */,
+				B74D369E26FB123A0087FD51 /* JPLogoSelectCollectionViewCell.m in Sources */,
+				B734AD3326F43FEC00171E05 /* JPLocalMediaCloudTableViewCell.m in Sources */,
+				B77B317F26EF00F000B82CE4 /* JPGifContentView.m in Sources */,
+				B74D368E26FB123A0087FD51 /* JPSoundEffectTableViewCell.m in Sources */,
+				B77B36CB26EF2DAC00B82CE4 /* JPBaseNavigationViewController.m in Sources */,
+				B734AD3F26F43FEC00171E05 /* JPHotListTitleView.m in Sources */,
+				B77AD0B32701704200AC0146 /* JPDataBase.m in Sources */,
+				B77B313926EF00F000B82CE4 /* JPVideoThumbSlider.m in Sources */,
+				B77B317526EF00F000B82CE4 /* JPPackageGraphView.m in Sources */,
+				B77B317A26EF00F000B82CE4 /* JPPackageTextWithBorderPatternView.m in Sources */,
+				B74D367F26FB123A0087FD51 /* JPStickerPictureCollectionViewCell.m in Sources */,
+				B77B319826EF00F000B82CE4 /* JPPhotoEditMune.m in Sources */,
+				B77B316926EF00F000B82CE4 /* JPTriangleView.m in Sources */,
+				B77B36D526F039C400B82CE4 /* JPCompositionManager.m in Sources */,
 				B77B21B826EB356600B82CE4 /* ViewController.m in Sources */,
+				B77B318526EF00F000B82CE4 /* JPPackageSixthTextPattern.m in Sources */,
+				B74D369C26FB123A0087FD51 /* JPMusicListsTableViewCell.m in Sources */,
+				B734AD2026F43FEB00171E05 /* JPStartRecordButton.m in Sources */,
+				B77B31AF26EF00F000B82CE4 /* JPCircleShapeLayer.m in Sources */,
+				B77B31AB26EF00F000B82CE4 /* JPPackagePatternAttributeView.m in Sources */,
+				B77B318826EF00F000B82CE4 /* JPGifPatternInteractiveView.m in Sources */,
+				B734AD5926F43FEC00171E05 /* JPNewCameraViewController.m in Sources */,
+				B734AD5226F43FEC00171E05 /* JPVideoClipViewController.m in Sources */,
+				B734AD2726F43FEB00171E05 /* JPCoustomButton.m in Sources */,
+				B74D369D26FB123A0087FD51 /* JPGifListCellCollectionViewCell.m in Sources */,
 				B77B21B226EB356600B82CE4 /* AppDelegate.m in Sources */,
+				B77AD0AD26FDBA1700AC0146 /* MARKRangeSlider.m in Sources */,
+				B77B31B226EF00F000B82CE4 /* JPGifListView.m in Sources */,
+				B74D368626FB123A0087FD51 /* JPPackageMenuAttributePhotoCell.m in Sources */,
+				B734AD1926F43FEB00171E05 /* JPTransitionCompositionModel.m in Sources */,
+				B734AD1B26F43FEB00171E05 /* JPGradualLineView.m in Sources */,
+				B77B319326EF00F000B82CE4 /* JPRecordingMenuView.m in Sources */,
+				B74D368726FB123A0087FD51 /* JPPackageMenuAttributeTimeSliderCell.m in Sources */,
+				B74D36A126FB28C60087FD51 /* UIButton+JP.m in Sources */,
+				B74D368226FB123A0087FD51 /* JPPackageTextPatternMenuCell.m in Sources */,
+				B77B312E26EF00F000B82CE4 /* JPSoundEffect.m in Sources */,
+				B77B314126EF00F000B82CE4 /* JPNewClidView.m in Sources */,
+				B734AD3626F43FEC00171E05 /* JPProgressView.m in Sources */,
+				B77B31AA26EF00F000B82CE4 /* JPMusicMenuView.m in Sources */,
+				B7019A5F26FD770100ECFE04 /* UIViewController+JP.m in Sources */,
+				B77B314226EF00F000B82CE4 /* JPThumImageLayout.m in Sources */,
+				B77AD0A826FDB0DF00AC0146 /* NSObject+JP.m in Sources */,
+				B74D368026FB123A0087FD51 /* JPPackagePictureGraphCell.m in Sources */,
+				B77B31B526EF00F000B82CE4 /* JPHotGraphList.m in Sources */,
+				B77B31A726EF00F000B82CE4 /* JPPackagePhotoEditGuideView.m in Sources */,
+				B77AD09526FD7C5F00AC0146 /* JPErrorMessageView.m in Sources */,
+				B77AD0A326FDAC2D00AC0146 /* JPAlertView.m in Sources */,
+				B734AD3726F43FEC00171E05 /* JPSelectVideosViewCell.m in Sources */,
+				B74D368126FB123A0087FD51 /* JPPackageGraphMenuCell.m in Sources */,
+				B77B313026EF00F000B82CE4 /* JPHotlistGraphModel.m in Sources */,
+				B77AD0B027016F9C00AC0146 /* JPVideoPublishProgressView.m in Sources */,
+				B74D369926FB123A0087FD51 /* JPMaterialTypeCollectionCell.m in Sources */,
+				B77B31AE26EF00F000B82CE4 /* JPAudioRecordingProgressView.m in Sources */,
+				B734AD1C26F43FEB00171E05 /* JPVideoRecordProgressView.m in Sources */,
+				B74D368A26FB123A0087FD51 /* JPTextFontSizeCollectionViewCell.m in Sources */,
+				B77B319626EF00F000B82CE4 /* JPVideoEditMune.m in Sources */,
+				B77B2F9E26EEFEF900B82CE4 /* JPFilterManagers.m in Sources */,
+				B734AD3E26F43FEC00171E05 /* JFRecordTitleView.m in Sources */,
+				B77B317026EF00F000B82CE4 /* JPPackagePictureGraphView.m in Sources */,
+				B77B31B326EF00F000B82CE4 /* JPLocalTextView.m in Sources */,
+				B77B314326EF00F000B82CE4 /* JPTranstionTypeSelectButton.m in Sources */,
+				B77B2FA026EEFEF900B82CE4 /* JPFilterDelegateNormal.m in Sources */,
+				B77B317226EF00F000B82CE4 /* JPPackageSuperView.m in Sources */,
+				B77B31A426EF00F000B82CE4 /* JPSoundEffectListSectionHeaderView.m in Sources */,
+				B77B313C26EF00F000B82CE4 /* JPNewTranstionChangedView.m in Sources */,
+				B74D368426FB123A0087FD51 /* JPNewPatternTableViewCell.m in Sources */,
+				B77B319226EF00F000B82CE4 /* JPCalibratView.m in Sources */,
+				B734AD3D26F43FEC00171E05 /* JPCameraSettingCollectionViewCell.m in Sources */,
+				B77B319F26EF00F000B82CE4 /* JPSoundEffectListView.m in Sources */,
+				B77B318926EF00F000B82CE4 /* JPPackageEighthTextPatternInteractiveView.m in Sources */,
+				B77B31B626EF00F000B82CE4 /* JPLocalGraphList.m in Sources */,
+				B734AD2626F43FEB00171E05 /* JPFilterCollectionView.m in Sources */,
+				B778749026F439AA0019B0F8 /* NSString+JP.m in Sources */,
+				B734AD2226F43FEB00171E05 /* JPNewFilterCollectionViewCell.m in Sources */,
+				B77B313F26EF00F000B82CE4 /* JPNewVideoThumbCollectionViewCell.m in Sources */,
+				B74D36AC26FC5D250087FD51 /* JPMaterialCategory.m in Sources */,
+				B74D368526FB123A0087FD51 /* JPPackageMenuAttributeTextFontCell.m in Sources */,
+				B77B31B126EF00F000B82CE4 /* JPGraphListView.m in Sources */,
+				B734AD2926F43FEB00171E05 /* JPLocalFileCollectionViewCell.m in Sources */,
+				B77B319C26EF00F000B82CE4 /* JPCompositionMessageView.m in Sources */,
+				B734AD5526F43FEC00171E05 /* JPNewImportViewController.m in Sources */,
+				B734AD3226F43FEC00171E05 /* JPHowFastCollectionViewCell.m in Sources */,
+				B77B317726EF00F000B82CE4 /* JPTextWithBorderInteractiveView.m in Sources */,
+				B734AD4326F43FEC00171E05 /* JPRecordButton.m in Sources */,
+				B734AD4826F43FEC00171E05 /* JPNewImportButton.m in Sources */,
+				B734AD4526F43FEC00171E05 /* JPCameraSettingView.m in Sources */,
+				B77B316D26EF00F000B82CE4 /* JPPackageGraphPatternView.m in Sources */,
 				B77B21C326EB356900B82CE4 /* main.m in Sources */,
-				B77B21B526EB356600B82CE4 /* SceneDelegate.m in Sources */,
+				B734AD4B26F43FEC00171E05 /* JPAlbumViewController.m in Sources */,
+				B734AD2326F43FEB00171E05 /* JPPromptView.m in Sources */,
+				B734AD1826F43FEB00171E05 /* JPLocalFileModel.m in Sources */,
+				B77B312C26EF00EF00B82CE4 /* JPThumbInfoModel.m in Sources */,
+				B77B317D26EF00F000B82CE4 /* JPPackageSeventhTextPattern.m in Sources */,
+				B74D369726FB123A0087FD51 /* JPGraphCollectionViewCell.m in Sources */,
+				B74D369526FB123A0087FD51 /* JPPackageFilterCollectionViewCell.m in Sources */,
+				B77B319426EF00F000B82CE4 /* JPCustomColorSlider.m in Sources */,
+				B77B316B26EF00F000B82CE4 /* JPPackageHollowOutInteractiveView.m in Sources */,
+				B77B317126EF00F000B82CE4 /* JPPackageTextAndBackgroudView.m in Sources */,
+				B74D36AB26FC5D250087FD51 /* JPMaterialDownloader.m in Sources */,
+				B77B313226EF00F000B82CE4 /* JPHorizontalCollectionViewLayout.m in Sources */,
+				B74D369A26FB123A0087FD51 /* JPHotGraphListCollectionViewCell.m in Sources */,
+				B77B318F26EF00F000B82CE4 /* JPPackBackView.m in Sources */,
+				B74D363A26FB0C840087FD51 /* UIFont+JP.m in Sources */,
+				B77B319926EF00F000B82CE4 /* PKBackTipView.m in Sources */,
+				B734AD3C26F43FEC00171E05 /* JPGradientAnimateGuideView.m in Sources */,
+				B77B318A26EF00F000B82CE4 /* JPPackageSeventhTextPatternInteractiveView.m in Sources */,
+				B77B316E26EF00F000B82CE4 /* JPPackageTextBackgroudColorView.m in Sources */,
+				B77B314026EF00F000B82CE4 /* JPRecordInfoView.m in Sources */,
+				B77B316A26EF00F000B82CE4 /* JPPackageImageView.m in Sources */,
+				B77B319026EF00F000B82CE4 /* JPActiveMessageView.m in Sources */,
+				B734AD2E26F43FEB00171E05 /* JPVideoPlayerView.m in Sources */,
+				B77AD09D26FD7F1600AC0146 /* MBProgressHUD+JP.m in Sources */,
+				B77B317326EF00F000B82CE4 /* JPPackageTextNoneGraphView.m in Sources */,
+				B77B313526EF00F000B82CE4 /* JPNewPageViewController.m in Sources */,
+				B74D369426FB123A0087FD51 /* JPTextFontCell.m in Sources */,
+				B77B314526EF00F000B82CE4 /* JPPatternInputView.m in Sources */,
+				B734AD1D26F43FEB00171E05 /* JPSelectVideosView.m in Sources */,
+				B77B317926EF00F000B82CE4 /* JPPackageTextPatternView.m in Sources */,
+				B77B2F9F26EEFEF900B82CE4 /* JPFilterDelegateColorBalance.m in Sources */,
+				B74D369626FB123A0087FD51 /* JPRecordAudioThumCell.m in Sources */,
+				B734AD6026F4793300171E05 /* UIColor+JP.m in Sources */,
+				B77AD0B6270171A300AC0146 /* JPMediaModel.m in Sources */,
+				B74D368F26FB123A0087FD51 /* JPVideoThumbSliderCell.m in Sources */,
+				B77B318C26EF00F000B82CE4 /* JPPackageTenthTextPatternInteractiveView.m in Sources */,
+				B734AD5726F43FEC00171E05 /* JPPhotoEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +1798,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/JPSDK/JPSDK/Base/Model/JPSDK-prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -272,6 +1856,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/JPSDK/JPSDK/Base/Model/JPSDK-prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -288,37 +1873,45 @@
 		};
 		B77B21C726EB356900B82CE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 358D143C6FB7677D4A2B7AE1 /* Pods-JPSDK.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZHL2ZXZUJ8;
+				DEVELOPMENT_TEAM = K2JGVMQW6L;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = JPSDK/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rrrenj.JPSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		B77B21C826EB356900B82CE4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EAA5F6EE987429F7BAFA1A96 /* Pods-JPSDK.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZHL2ZXZUJ8;
+				DEVELOPMENT_TEAM = K2JGVMQW6L;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = JPSDK/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rrrenj.JPSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

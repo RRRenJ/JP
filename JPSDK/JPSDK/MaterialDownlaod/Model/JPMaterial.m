@@ -9,7 +9,7 @@
 #import "JPMaterial.h"
 #import "JPUtil.h"
 #import "JPDataBase.h"
-#import <FMDB.h>
+
 
 static NSString *JPMaterialDataTableName = @"material";
 @implementation JPMaterial
@@ -35,7 +35,7 @@ static NSString *JPMaterialDataTableName = @"material";
 
 - (void)setIndexStr:(NSString *)indexStr {
     _indexStr = indexStr;
-    CGSize size = [JPUtil getStringSizeWith:[UIFont placardMTStdCondBoldFontWithSize:12] andContainerSize:CGSizeMake(20000, 14) andString:indexStr];
+    CGSize size = [JPUtil getStringSizeWith:[UIFont jp_placardMTStdCondBoldFontWithSize:12] andContainerSize:CGSizeMake(20000, 14) andString:indexStr];
     self.indexWidth = ceilf(size.width);
 }
 
@@ -50,14 +50,14 @@ static NSString *JPMaterialDataTableName = @"material";
 
 - (NSString *)baseFilePath
 {
-    return [NSString stringWithFormat:@"Documents/paike/%@", self.localPath];
+    return [NSString stringWithFormat:@"Documents/JPSDK/%@", self.localPath];
 }
 
 - (NSString *)absoluteLocalPath {
     if (_absoluteLocalPath != nil) {
         return _absoluteLocalPath;
     }
-    NSString *path = [PK_MATERIAL_FILES_FOLDER stringByAppendingPathComponent:self.localPath];
+    NSString *path = [JP_MATERIAL_FILES_FOLDER stringByAppendingPathComponent:self.localPath];
     _absoluteLocalPath = path;
     return _absoluteLocalPath;
 }

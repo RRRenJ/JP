@@ -25,7 +25,7 @@
     [_lineView removeFromSuperview];
     _cureenrIndex = 0;
     _segementButtons = [NSMutableArray array];
-    CGFloat totalWidth = SCREEN_WIDTH - 30;
+    CGFloat totalWidth = JP_SCREEN_WIDTH - 30;
     CGFloat originX = 15;
     CGFloat simpleWidth = totalWidth / titles.count;
     for (NSInteger index = 0; index < titles.count; index ++) {
@@ -42,7 +42,7 @@
         originX = button.right;
     }
     _lineView = [[UIView alloc] initWithFrame:CGRectMake(15 + (simpleWidth - 20) / 2.0, self.height - 1, 20, 1)];
-    _lineView.backgroundColor = [UIColor appMainBlueColor];
+    _lineView.backgroundColor = [UIColor jp_colorWithHexString:@"0091FF"];
     [self addSubview:_lineView];
 }
 
@@ -51,7 +51,7 @@
     _cureenrIndex = button.tag;
     [self sendActionsForControlEvents:UIControlEventValueChanged];
     [UIView animateWithDuration:0.2 animations:^{
-        _lineView.left = 15 + button.width * button.tag + (button.width - 20) / 2.0;
+        self.lineView.left = 15 + button.width * button.tag + (button.width - 20) / 2.0;
     }];
 }
 
@@ -67,7 +67,7 @@
     _cureenrIndex = index;
     UIButton *button = _segementButtons[index];
     [UIView animateWithDuration:0.2 animations:^{
-        _lineView.left = 15 + button.width * button.tag + (button.width - 20) / 2.0;
+        self.lineView.left = 15 + button.width * button.tag + (button.width - 20) / 2.0;
     }];
 }
 @end

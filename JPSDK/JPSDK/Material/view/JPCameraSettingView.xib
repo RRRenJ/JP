@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -51,7 +51,7 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZp-gd-6vp">
                                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <state key="normal" title="快慢速" image="speed_normal"/>
+                                            <state key="normal" title="快慢速" image="speed_normal.png"/>
                                             <connections>
                                                 <action selector="howFastTypeChange:" destination="-1" eventType="touchUpInside" id="DRs-Bn-dau"/>
                                             </connections>
@@ -59,14 +59,14 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jY2-Cv-Dqo">
                                             <rect key="frame" x="60" y="0.0" width="60" height="60"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <state key="normal" title="镜头" image="camera_jingtouqiehuan_normal"/>
+                                            <state key="normal" title="镜头" image="camera_jingtouqiehuan_normal.png"/>
                                             <state key="disabled" title="镜头" image="camera_qiehuan_unuseful">
                                                 <color key="titleColor" red="0.67843137249999996" green="0.67843137249999996" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
-                                            <state key="selected" title="镜头" image="camera_jingtouqiehuan_highlight">
+                                            <state key="selected" title="镜头" image="camera_jingtouqiehuan_highlight.png">
                                                 <color key="titleColor" red="0.0" green="0.56862745100000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
-                                            <state key="highlighted" title="镜头" image="camera_jingtouqiehuan_highlight">
+                                            <state key="highlighted" title="镜头" image="camera_jingtouqiehuan_highlight.png">
                                                 <color key="titleColor" red="0.0" green="0.56862745100000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
@@ -76,11 +76,11 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYF-Ue-aNc">
                                             <rect key="frame" x="120" y="0.0" width="60" height="60"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <state key="normal" title="滤镜" image="camera_lvjing_normal"/>
-                                            <state key="selected" title="滤镜" image="camera_lvjing_highlight">
+                                            <state key="normal" title="滤镜" image="camera_lvjing_normal.png"/>
+                                            <state key="selected" title="滤镜" image="camera_lvjing_highlight.png">
                                                 <color key="titleColor" red="0.0" green="0.56862745100000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
-                                            <state key="highlighted" title="滤镜" image="camera_lvjing_highlight">
+                                            <state key="highlighted" title="滤镜" image="camera_lvjing_highlight.png">
                                                 <color key="titleColor" red="0.0" green="0.56862745100000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
@@ -90,14 +90,14 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9pV-ws-R1u">
                                             <rect key="frame" x="180" y="0.0" width="60" height="60"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <state key="normal" title="闪光" image="camera_shanguang_normal"/>
+                                            <state key="normal" title="闪光" image="camera_shanguang_normal.png"/>
                                             <state key="disabled" title="闪光" image="camera_light_unuseful">
                                                 <color key="titleColor" red="0.67843137249999996" green="0.67843137249999996" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
-                                            <state key="selected" title="闪光" image="camera_shanguang_highlight">
+                                            <state key="selected" title="闪光" image="camera_shanguang_highlight.png">
                                                 <color key="titleColor" red="0.0" green="0.56862745100000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
-                                            <state key="highlighted" title="闪光" image="camera_shanguang_highlight">
+                                            <state key="highlighted" title="闪光" image="camera_shanguang_highlight.png">
                                                 <color key="titleColor" red="0.0" green="0.56862745100000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
@@ -107,7 +107,7 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tdz-K8-UBj">
                                             <rect key="frame" x="240" y="0.0" width="60" height="60"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <state key="normal" title="画幅" image="16:9_highlight">
+                                            <state key="normal" title="画幅" image="16:9_hl.png">
                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
@@ -173,15 +173,15 @@
         </view>
     </objects>
     <resources>
-        <image name="16:9_highlight" width="26" height="26"/>
-        <image name="camera_jingtouqiehuan_highlight" width="26" height="26"/>
-        <image name="camera_jingtouqiehuan_normal" width="26" height="26"/>
+        <image name="16:9_hl.png" width="28" height="26"/>
+        <image name="camera_jingtouqiehuan_highlight.png" width="26" height="26"/>
+        <image name="camera_jingtouqiehuan_normal.png" width="26" height="26"/>
         <image name="camera_light_unuseful" width="26" height="26"/>
-        <image name="camera_lvjing_highlight" width="26" height="26"/>
-        <image name="camera_lvjing_normal" width="26" height="26"/>
+        <image name="camera_lvjing_highlight.png" width="26" height="26"/>
+        <image name="camera_lvjing_normal.png" width="26" height="26"/>
         <image name="camera_qiehuan_unuseful" width="26" height="26"/>
-        <image name="camera_shanguang_highlight" width="26" height="26"/>
-        <image name="camera_shanguang_normal" width="26" height="26"/>
-        <image name="speed_normal" width="26" height="26"/>
+        <image name="camera_shanguang_highlight.png" width="26" height="26"/>
+        <image name="camera_shanguang_normal.png" width="26" height="26"/>
+        <image name="speed_normal.png" width="26" height="27"/>
     </resources>
 </document>

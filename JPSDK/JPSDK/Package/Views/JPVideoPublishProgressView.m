@@ -21,7 +21,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         timeLb = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
-        timeLb.font = [UIFont placardMTStdCondBoldFontWithSize:24];
+        timeLb.font = [UIFont jp_placardMTStdCondBoldFontWithSize:24];
         timeLb.textColor = [UIColor whiteColor];
         timeLb.textAlignment = NSTextAlignmentCenter;
         [self addSubview:timeLb];

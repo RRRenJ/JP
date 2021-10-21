@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -94,7 +94,7 @@
                     <rect key="frame" x="0.0" y="41" width="375" height="40"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PVP-B0-vDc">
-                            <rect key="frame" x="65" y="38" width="15" height="2"/>
+                            <rect key="frame" x="95" y="38" width="15" height="2"/>
                             <color key="backgroundColor" red="0.0" green="0.56862745098039214" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="2" id="XVe-4X-Cgz"/>
@@ -102,7 +102,7 @@
                             </constraints>
                         </view>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Bh-yp-nHJ">
-                            <rect key="frame" x="15" y="0.0" width="115" height="38"/>
+                            <rect key="frame" x="15" y="0.0" width="172.5" height="38"/>
                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
                             <state key="normal" title="音乐">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -112,7 +112,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="po7-mk-QRh">
-                            <rect key="frame" x="130" y="0.0" width="115" height="40"/>
+                            <rect key="frame" x="187.5" y="0.0" width="172.5" height="40"/>
                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
                             <state key="normal" title="音效">
                                 <color key="titleColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -121,8 +121,8 @@
                                 <action selector="selectAudioType:" destination="-1" eventType="touchUpInside" id="uMI-4K-ICs"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wzv-2j-79u">
-                            <rect key="frame" x="245" y="0.0" width="115" height="40"/>
+                        <button hidden="YES" opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wzv-2j-79u">
+                            <rect key="frame" x="330" y="0.0" width="30" height="40"/>
                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
                             <state key="normal" title="录音">
                                 <color key="titleColor" red="0.46274509803921571" green="0.46274509803921571" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
@@ -135,20 +135,18 @@
                     <color key="backgroundColor" red="0.054901960780000002" green="0.054901960780000002" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="PVP-B0-vDc" secondAttribute="bottom" id="394-bO-WSK"/>
+                        <constraint firstAttribute="trailing" secondItem="po7-mk-QRh" secondAttribute="trailing" constant="15" id="6Ls-kt-trj"/>
                         <constraint firstAttribute="trailing" secondItem="Wzv-2j-79u" secondAttribute="trailing" constant="15" id="9nd-d9-UDV"/>
                         <constraint firstAttribute="bottom" secondItem="po7-mk-QRh" secondAttribute="bottom" id="Bx3-X4-IPZ"/>
                         <constraint firstItem="Wzv-2j-79u" firstAttribute="top" secondItem="b39-qC-6qt" secondAttribute="top" id="EIn-W3-zJg"/>
-                        <constraint firstItem="Wzv-2j-79u" firstAttribute="width" secondItem="6Bh-yp-nHJ" secondAttribute="width" id="Etq-tP-geW"/>
                         <constraint firstItem="po7-mk-QRh" firstAttribute="top" secondItem="b39-qC-6qt" secondAttribute="top" id="HYV-4L-YN3"/>
                         <constraint firstItem="PVP-B0-vDc" firstAttribute="top" secondItem="6Bh-yp-nHJ" secondAttribute="bottom" id="M7K-YA-PEp"/>
                         <constraint firstItem="6Bh-yp-nHJ" firstAttribute="leading" secondItem="b39-qC-6qt" secondAttribute="leading" constant="15" id="P5g-vU-jNH"/>
                         <constraint firstAttribute="bottom" secondItem="Wzv-2j-79u" secondAttribute="bottom" id="RSq-nW-wSc"/>
-                        <constraint firstItem="Wzv-2j-79u" firstAttribute="leading" secondItem="po7-mk-QRh" secondAttribute="trailing" id="S3M-TP-djG"/>
                         <constraint firstItem="po7-mk-QRh" firstAttribute="width" secondItem="6Bh-yp-nHJ" secondAttribute="width" id="VX5-WN-Tmb"/>
                         <constraint firstItem="6Bh-yp-nHJ" firstAttribute="top" secondItem="b39-qC-6qt" secondAttribute="top" id="VgO-1w-y9Q"/>
-                        <constraint firstItem="po7-mk-QRh" firstAttribute="centerX" secondItem="b39-qC-6qt" secondAttribute="centerX" id="eZV-ZY-XyZ"/>
                         <constraint firstAttribute="height" constant="40" id="w5o-EL-4Ch"/>
-                        <constraint firstItem="PVP-B0-vDc" firstAttribute="leading" secondItem="b39-qC-6qt" secondAttribute="leading" constant="65" id="xyj-7v-rhJ"/>
+                        <constraint firstItem="PVP-B0-vDc" firstAttribute="leading" secondItem="b39-qC-6qt" secondAttribute="leading" constant="95" id="xyj-7v-rhJ"/>
                         <constraint firstItem="po7-mk-QRh" firstAttribute="leading" secondItem="6Bh-yp-nHJ" secondAttribute="trailing" id="zCk-LB-kxp"/>
                     </constraints>
                 </view>

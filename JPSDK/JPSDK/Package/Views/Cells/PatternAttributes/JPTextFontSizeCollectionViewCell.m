@@ -28,7 +28,7 @@
     _thumbView.layer.borderWidth = 1;
     _thumbView.layer.borderColor = [UIColor whiteColor].CGColor;
     _thumbView.layer.cornerRadius = 10;
-    _thumbView.backgroundColor = [UIColor colorWithHex:0x0e0e0e];
+    _thumbView.backgroundColor = [UIColor jp_colorWithHexString:@"0e0e0e"];
     UIPanGestureRecognizer *rightPan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(rightPanAction:)];
     rightPan.minimumNumberOfTouches = 1;
     rightPan.maximumNumberOfTouches = 5;
@@ -67,7 +67,7 @@
     [self.bigButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.normalButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     UIButton *button = (UIButton *)sender;
-    [button setTitleColor:[UIColor appMainYellowColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor jp_colorWithHexString:@"0091ff"] forState:UIControlStateNormal];
 //    if (sender == self.normalButton) {
 //        _patternInteractiveView.patternAttribute.textFontType = JPTextFontNormal;
 //    }else if(sender == self.bigButton){

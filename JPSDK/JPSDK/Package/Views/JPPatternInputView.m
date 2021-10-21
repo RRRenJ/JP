@@ -7,7 +7,6 @@
 //
 
 #import "JPPatternInputView.h"
-#import "JPSession.h"
 
 #define MAX_POSITION_LENGTH    15
 
@@ -40,10 +39,10 @@
 - (void)createUI {
     UIView *tittleView = [[UIView alloc] initWithFrame:CGRectZero];
     [self addSubview:tittleView];
-    tittleView.sd_layout.topSpaceToView(self, KShrinkStatusBarHeight).leftEqualToView(self).rightEqualToView(self).heightIs(45);
+    tittleView.sd_layout.topSpaceToView(self, JPShrinkStatusBarHeight).leftEqualToView(self).rightEqualToView(self).heightIs(45);
     
     lb = [[UILabel alloc] initWithFrame:CGRectZero];
-    lb.font = [UIFont pingFangFontWithSize:12];
+    lb.font = [UIFont jp_pingFangWithSize:12];
     lb.textColor = [UIColor whiteColor];
     lb.textAlignment = NSTextAlignmentCenter;
     lb.text = @"添加标题";
@@ -51,12 +50,12 @@
     lb.sd_layout.leftEqualToView(tittleView).rightEqualToView(tittleView).topEqualToView(tittleView).bottomSpaceToView(tittleView, 1);
     
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectZero];
-    lineView.backgroundColor = [UIColor colorWithHex:0x1e1f20];
+    lineView.backgroundColor = [UIColor jp_colorWithHexString:@"1e1f20"];
     [tittleView addSubview:lineView];
     lineView.sd_layout.bottomEqualToView(tittleView).leftSpaceToView(tittleView, 15).rightSpaceToView(tittleView, 15).heightIs(0.5);
     
     UIButton *dismissBtn = [JPUtil createCustomButtonWithTittle:nil
-                                                      withImage:[UIImage imageNamed:@"white-back"]
+                                                      withImage:JPImageWithName(@"white-back")
                                                       withFrame:CGRectZero
                                                          target:self
                                                          action:@selector(dismiss:)];
@@ -64,7 +63,7 @@
     dismissBtn.sd_layout.leftEqualToView(tittleView).bottomSpaceToView(tittleView, 1).heightIs(44).widthIs(45);
     
     UIButton *comfirBtn = [JPUtil createCustomButtonWithTittle:nil
-                                                      withImage:[UIImage imageNamed:@"confirm"]
+                                                      withImage:JPImageWithName(@"confirm")
                                                       withFrame:CGRectZero
                                                          target:self
                                                          action:@selector(comfirm:)];
@@ -72,40 +71,40 @@
     comfirBtn.sd_layout.rightEqualToView(tittleView).bottomSpaceToView(tittleView, 1).heightIs(44).widthIs(45);
     
     topLb = [[UILabel alloc] initWithFrame:CGRectZero];
-    topLb.font = [UIFont pingFangFontWithSize:12];
-    topLb.textColor = [UIColor colorWithHex:0x525252];
+    topLb.font = [UIFont jp_pingFangWithSize:12];
+    topLb.textColor = [UIColor jp_colorWithHexString:@"525252"];
     topLb.textAlignment = NSTextAlignmentCenter;
     topLb.text = @"主标题";
     [self addSubview:topLb];
-    topLb.sd_layout.topSpaceToView(tittleView, ScreenFitFloat6(57)).leftEqualToView(self).rightEqualToView(self).heightIs(13);
+    topLb.sd_layout.topSpaceToView(tittleView, JPScreenFitFloat6(57)).leftEqualToView(self).rightEqualToView(self).heightIs(13);
     
     txtView = [[UITextView alloc] initWithFrame:CGRectZero];
-    txtView.font = [UIFont pingFangFontWithSize:21];
+    txtView.font = [UIFont jp_pingFangWithSize:21];
     txtView.textColor = [UIColor whiteColor];
     txtView.backgroundColor = [UIColor clearColor];
     txtView.delegate = self;
     txtView.textAlignment = NSTextAlignmentCenter;
     [self addSubview:txtView];
-    txtView.sd_layout.topSpaceToView(topLb, ScreenFitFloat6(25)).leftSpaceToView(self, 15).rightSpaceToView(self, 15).heightIs(60);
+    txtView.sd_layout.topSpaceToView(topLb, JPScreenFitFloat6(25)).leftSpaceToView(self, 15).rightSpaceToView(self, 15).heightIs(60);
     
     subLb = [[UILabel alloc] initWithFrame:CGRectZero];
-    subLb.font = [UIFont pingFangFontWithSize:12];
-    subLb.textColor = [UIColor colorWithHex:0x525252];
+    subLb.font = [UIFont jp_pingFangWithSize:12];
+    subLb.textColor = [UIColor jp_colorWithHexString:@"525252"];
     subLb.textAlignment = NSTextAlignmentCenter;
     subLb.hidden = YES;
     subLb.text = @"副标题";
     [self addSubview:subLb];
-    subLb.sd_layout.topSpaceToView(topLb, ScreenFitFloat6(128)).leftEqualToView(self).rightEqualToView(self).heightIs(13);
+    subLb.sd_layout.topSpaceToView(topLb, JPScreenFitFloat6(128)).leftEqualToView(self).rightEqualToView(self).heightIs(13);
     
     subTxtView = [[UITextView alloc] initWithFrame:CGRectZero];
-    subTxtView.font = [UIFont pingFangFontWithSize:21];
+    subTxtView.font = [UIFont jp_pingFangWithSize:21];
     subTxtView.textColor = [UIColor whiteColor];
     subTxtView.backgroundColor = [UIColor clearColor];
     subTxtView.delegate = self;
     subTxtView.hidden = YES;
     subTxtView.textAlignment = NSTextAlignmentCenter;
     [self addSubview:subTxtView];
-    subTxtView.sd_layout.topSpaceToView(subLb, ScreenFitFloat6(25)).leftSpaceToView(self, 15).rightSpaceToView(self, 15).heightIs(60);
+    subTxtView.sd_layout.topSpaceToView(subLb, JPScreenFitFloat6(25)).leftSpaceToView(self, 15).rightSpaceToView(self, 15).heightIs(60);
 }
 
 - (void)showWithPatternInteractiveView:(JPPatternInteractiveView *)patternInteractiveView {
@@ -163,7 +162,7 @@
     NSDictionary* info = [aNotification userInfo];
     NSNumber *duration = [info objectForKey:UIKeyboardAnimationDurationUserInfoKey];
     [UIView animateWithDuration:[duration doubleValue] animations:^{
-        self.top = SCREEN_HEIGHT;
+        self.top = JP_SCREEN_HEIGHT;
     }completion:^(BOOL finish){
         [self removeFromSuperview];
     }];
@@ -229,9 +228,9 @@
     _patternInteractiveView.patternAttribute.text = txtView.text;
     if (txtView.text == nil ||txtView.text.length == 0) {
         _patternInteractiveView.patternAttribute.text = @"双击输入";
-        if (JPPackagePatternTypePosition == _patternInteractiveView.patternAttribute.patternType) {
-            _patternInteractiveView.patternAttribute.text = [JPSession sharedInstance].cityName;
-        }
+//        if (JPPackagePatternTypePosition == _patternInteractiveView.patternAttribute.patternType) {
+//            _patternInteractiveView.patternAttribute.text = [JPSession sharedInstance].cityName;
+//        }
     }
     _patternInteractiveView.patternAttribute.subTitle = subTxtView.text;
     if (subTxtView.text == nil ||subTxtView.text.length == 0) {

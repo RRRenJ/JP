@@ -52,7 +52,7 @@
     _collectionViewLayout.itemSize = infoModel.imageSize;
     [_collectionView reloadData];
     [_collectionView setContentOffset:CGPointMake(_infoModel.startPoint, 0)];
-    _transtionTypeImageView.image = [UIImage imageNamed:infoModel.transtionModel.offImageName];
+    _transtionTypeImageView.image = JPImageWithName(infoModel.transtionModel.offImageName);
     __weak typeof(self) weakSelf = self;
     __weak typeof(infoModel) weakModel = infoModel;
     infoModel.videoModel.thumImageGetCompletion = ^{
@@ -93,12 +93,12 @@
 - (IBAction)changeTheTransitionType:(id)sender {
     if (_isLast == NO && isShowTranstions == NO && self.delegate && [self.delegate respondsToSelector:@selector(changeVideoTranstionTypeWithInfoModel:)]) {
         isShowTranstions = YES;
-        _transtionTypeImageView.image = [UIImage imageNamed:_infoModel.transtionModel.selectImageName];
+        _transtionTypeImageView.image = JPImageWithName(_infoModel.transtionModel.selectImageName);
         [self.delegate changeVideoTranstionTypeWithInfoModel:_infoModel];
     }else if (_isLast == NO && isShowTranstions == YES && self.delegate && [self.delegate respondsToSelector:@selector(changeVideoTranstionTypeDisInfoModel:)])
     {
         isShowTranstions = NO;
-        _transtionTypeImageView.image = [UIImage imageNamed:_infoModel.transtionModel.offImageName];
+        _transtionTypeImageView.image = JPImageWithName(_infoModel.transtionModel.offImageName);
         [self.delegate changeVideoTranstionTypeDisInfoModel:_infoModel];
     }else if (_isLast == YES && self.delegate && [self.delegate respondsToSelector:@selector(changeVideoTranstionTypeAddVideo)])
     {
@@ -109,9 +109,9 @@
 - (void)setTranstionModelSelect:(BOOL)select
 {
     if (select == YES) {
-        _transtionTypeImageView.image = [UIImage imageNamed:_infoModel.transtionModel.selectImageName];
+        _transtionTypeImageView.image = JPImageWithName(_infoModel.transtionModel.selectImageName);
     }else{
-        _transtionTypeImageView.image = [UIImage imageNamed:_infoModel.transtionModel.offImageName];
+        _transtionTypeImageView.image = JPImageWithName(_infoModel.transtionModel.offImageName);
     }
 }
 
@@ -121,7 +121,7 @@
 //    _transtionTypeImageView.hidden = isLast;
 //    _transtionButton.userInteractionEnabled = !isLast;
     if (_isLast == YES) {
-        _transtionTypeImageView.image = [UIImage imageNamed:@"add"];
+        _transtionTypeImageView.image = JPImageWithName(@"add");
         self.addIV = _transtionTypeImageView;
     }
 }

@@ -34,7 +34,7 @@
 
 - (void)createSubviews
 {
-    self.backgroundColor = [[UIColor colorWithHex:0xffffff] colorWithAlphaComponent:0.2];
+    self.backgroundColor = [UIColor jp_colorWithHexString:@"ffffff" alpha:0.2];
     _totalViewArray = [NSMutableArray array];
 }
 
@@ -65,7 +65,7 @@
         }
         [_totalViewArray removeAllObjects];
         _totalProgressView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, self.height)];
-        _totalProgressView.backgroundColor = [UIColor appMainBlueColor];
+        _totalProgressView.backgroundColor = [UIColor jp_colorWithHexString:@"0091FF"];
         [self addSubview:_totalProgressView];
     }
     _totalProgressView.width = self.width * progress;
@@ -82,16 +82,16 @@
     if (_totalViewArray.count > index) {
         NSMutableDictionary *dic = _totalViewArray[index];
         JPVideoModel *model = dic[@"model"];
-        CGFloat width = CMTimeGetSeconds(model.timeRange.duration) / 300.f * (SCREEN_WIDTH + 2);
+        CGFloat width = CMTimeGetSeconds(model.timeRange.duration) / 300.f * (JP_SCREEN_WIDTH + 2);
         if (width <= 3) {
             width = 3;
         }
         UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(originX, 0, 3, 3)];
         //backView.backgroundColor = [UIColor whiteColor];
-        backView.backgroundColor = [UIColor appMainBlueColor];
+        backView.backgroundColor = [UIColor jp_colorWithHexString:@"0091FF"];
         UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
         //view.backgroundColor = model.sourceType == JPVideoSourceCamera ? [UIColor appMainYellowColor] : [UIColor colorWithHex:0xf0770b];
-        view.backgroundColor = [UIColor appMainBlueColor];
+        view.backgroundColor = [UIColor jp_colorWithHexString:@"0091FF"];
         [backView addSubview:view];
         view.sd_layout.topEqualToView(backView).rightEqualToView(backView).bottomEqualToView(backView).leftSpaceToView(backView, 0);
         [self addSubview:backView];
@@ -128,10 +128,10 @@
     }
     _progressView = [[UIView alloc] initWithFrame:CGRectMake(originX, 0, 4, self.height)];
     _progressView.backgroundColor = [UIColor whiteColor];
-    _progressView.backgroundColor = [UIColor appMainBlueColor];
+    _progressView.backgroundColor = [UIColor jp_colorWithHexString:@"0091FF"];
     UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
     //view.backgroundColor = sourceType == JPVideoSourceCamera ? [UIColor appMainYellowColor] : [UIColor colorWithHex:0xf0770b];
-    view.backgroundColor = [UIColor appMainBlueColor];
+    view.backgroundColor = [UIColor jp_colorWithHexString:@"0091FF"];
     [_progressView addSubview:view];
     view.sd_layout.topEqualToView(_progressView).rightEqualToView(_progressView).bottomEqualToView(_progressView).leftSpaceToView(_progressView, 0);
     [self addSubview:_progressView];
@@ -139,7 +139,7 @@
 
 - (void)updateViewWidthWithDuration:(CMTime)duration
 {
-    CGFloat width = CMTimeGetSeconds(duration) / 300.f * (SCREEN_WIDTH + 2);
+    CGFloat width = CMTimeGetSeconds(duration) / 300.f * (JP_SCREEN_WIDTH + 2);
     if (width <= 3) {
         width = 3;
     }
@@ -158,7 +158,7 @@
         [dic sgrSetObject:videoModel forKey:@"model"];
         [dic sgrSetObject:videoModel.videoUrl.path forKey:@"urlPath"];
         [_totalViewArray addObject:dic];
-        CGFloat width = CMTimeGetSeconds(videoModel.videoTime) / 300.f * (SCREEN_WIDTH + 2);
+        CGFloat width = CMTimeGetSeconds(videoModel.videoTime) / 300.f * (JP_SCREEN_WIDTH + 2);
         if (width <= 3) {
             width = 3;
         }

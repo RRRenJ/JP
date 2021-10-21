@@ -26,7 +26,7 @@
         thumImgView.sd_layout.topEqualToView(self.contentView).bottomEqualToView(self.contentView).leftEqualToView(self.contentView).rightEqualToView(self.contentView);
         
         thumImgView.layer.borderWidth = 0.5f;
-        thumImgView.layer.borderColor = [UIColor colorWithHex:0x303132].CGColor;
+        thumImgView.layer.borderColor = [UIColor jp_colorWithHexString:@"303132"].CGColor;
         thumImgView.layer.cornerRadius = 2.f;
     }
     return self;
@@ -40,7 +40,7 @@
         thumImgView.layer.borderColor = [UIColor whiteColor].CGColor;
     }else{
         thumImgView.layer.borderWidth = 0.5f;
-        thumImgView.layer.borderColor = [UIColor colorWithHex:0x303132].CGColor;
+        thumImgView.layer.borderColor = [UIColor jp_colorWithHexString:@"303132"].CGColor;
         
     }
 }

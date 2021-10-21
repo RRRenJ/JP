@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "JPPromptView.h"
-#import "PKGuideView.h"
 
 @interface JPBaseViewController : UIViewController
 
@@ -25,8 +24,6 @@
 @property (nonatomic,strong) UILabel *titleLabel;
 
 @property (nonatomic, strong) JPPromptView *promptView;
-
-@property (nonatomic, strong) PKGuideView * guideView;
 
 - (void)configuePromptViewWithView:(UIView *)view andType:(JPPromptViewType)type andTopOffset:(CGFloat)topOffset andLeftOffset:(CGFloat)leftOffset;
 - (void)configuePromptViewWithView:(UIView *)view andType:(JPPromptViewType)type andTopOffset:(CGFloat)topOffset andLeftOffset:(CGFloat)leftOffset andSuperView:(UIView *)superView;

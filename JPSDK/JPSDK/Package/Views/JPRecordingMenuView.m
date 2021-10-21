@@ -67,7 +67,7 @@
 
 - (void)createSubviews
 {
-    [[NSBundle mainBundle] loadNibNamed:@"JPRecordingMenuView" owner:self options:nil];
+    [JPResourceBundle loadNibNamed:@"JPRecordingMenuView" owner:self options:nil];
     [self addSubview:self.view];
     _recordImageViewArr = [NSMutableArray array];
     self.view.sd_layout.topSpaceToView(self, 0).rightEqualToView(self).bottomEqualToView(self).leftEqualToView(self);
@@ -75,7 +75,7 @@
     _recordButton.layer.borderColor = [UIColor whiteColor].CGColor;
     _recordButton.layer.cornerRadius = 32;
     _recordButton.layer.masksToBounds = YES;
-    _collectionView.contentInset = UIEdgeInsetsMake(0, SCREEN_WIDTH/2, 0,SCREEN_WIDTH/2);
+    _collectionView.contentInset = UIEdgeInsetsMake(0, JP_SCREEN_WIDTH/2, 0,JP_SCREEN_WIDTH/2);
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     _collectionView.bounces = YES;
@@ -93,7 +93,7 @@
         [self.audioRecorder stopRecord];
         [_compositionPlayer scrollToWatchThumImageWithTime:_currentTime withSticker:YES];
         [self.recordButton setTitle:nil forState:UIControlStateNormal];
-        [self.recordButton setImage:[UIImage imageNamed:@"recording"] forState:UIControlStateNormal];
+        [self.recordButton setImage:JPImageWithName(@"recording") forState:UIControlStateNormal];
         _collectionView.scrollEnabled = YES;
     }else{
         if (CMTimeCompare(_recordInfo.totalVideoDuraion, CMTimeAdd(_currentTime, CMTimeMake(1, 3))) <= 0 ) {
@@ -238,7 +238,7 @@
     _isRecorder = NO;
     _collectionView.scrollEnabled = YES;
     [self.recordButton setTitle:nil forState:UIControlStateNormal];
-    [self.recordButton setImage:[UIImage imageNamed:@"recording"] forState:UIControlStateNormal];
+    [self.recordButton setImage:JPImageWithName(@"recording") forState:UIControlStateNormal];
     if (self.delegate && [self.delegate respondsToSelector:@selector(recordingMenuViewShouldDismiss)]) {
         [self.delegate recordingMenuViewShouldDismiss];
     }

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <FMDB.h>
+
 
 @interface JPDataBase : NSObject
 + (instancetype)shareInstance;

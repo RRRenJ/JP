@@ -7,7 +7,6 @@
 //
 
 #import "JPVideoEditMune.h"
-#import "UIButton+ImageAndText.h"
 
 @interface JPVideoEditMune ()
 {
@@ -37,12 +36,12 @@
     }
     _videoModel.timePlayType = index;
     if (_videoModel.timePlayType == JPVideoTimePlayTypeNone) {
-        [_timeTypeButton setImage:[UIImage imageNamed:@"time1.0-1"] forState:UIControlStateNormal];
+        [_timeTypeButton setImage:JPImageWithName(@"time1.0") forState:UIControlStateNormal];
     }else if (_videoModel.timePlayType == JPVideoTimePlayTypeFast)
     {
-        [_timeTypeButton setImage:[UIImage imageNamed:@"time2.0"] forState:UIControlStateNormal];
+        [_timeTypeButton setImage:JPImageWithName(@"time2.0") forState:UIControlStateNormal];
     }else{
-        [_timeTypeButton setImage:[UIImage imageNamed:@"time0.5"] forState:UIControlStateNormal];
+        [_timeTypeButton setImage:JPImageWithName(@"time0.5") forState:UIControlStateNormal];
     }
     if (self.delegate && [self.delegate respondsToSelector:@selector(videoEditMuneWillEditPlaySpeedThisVideo:)]) {
         [self.delegate videoEditMuneWillEditPlaySpeedThisVideo:_videoModel];
@@ -90,14 +89,14 @@
 - (void)createSubviews
 {
     self.backgroundColor = [UIColor blackColor];
-    [[NSBundle mainBundle] loadNibNamed:@"JPVideoEditMune" owner:self options:nil];
+    [JPResourceBundle loadNibNamed:@"JPVideoEditMune" owner:self options:nil];
     [self addSubview:self.view];
     self.view.sd_layout.topEqualToView(self).bottomEqualToView(self).rightEqualToView(self).leftEqualToView(self);
-    _bottomSpace.constant = KTabbarHeightLineHeight;
-    [self.timeTypeButton layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleTop imageTitleSpace:6];
-    [self.reverseButton layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleTop imageTitleSpace:6];
-    [self.clidButton layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleTop imageTitleSpace:6];
-    [self.deleteButton layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleTop imageTitleSpace:6];
+    _bottomSpace.constant = JPTabbarHeightLineHeight;
+    [self.timeTypeButton jp_layoutButtonWithEdgeInsetsStyle:JPButtonEdgeInsetsStyleTop imageTitleSpace:6];
+    [self.reverseButton jp_layoutButtonWithEdgeInsetsStyle:JPButtonEdgeInsetsStyleTop imageTitleSpace:6];
+    [self.clidButton jp_layoutButtonWithEdgeInsetsStyle:JPButtonEdgeInsetsStyleTop imageTitleSpace:6];
+    [self.deleteButton jp_layoutButtonWithEdgeInsetsStyle:JPButtonEdgeInsetsStyleTop imageTitleSpace:6];
 }
 
 
@@ -105,12 +104,12 @@
 {
     _videoModel = videoModel;
     if (_videoModel.timePlayType == JPVideoTimePlayTypeNone) {
-        [_timeTypeButton setImage:[UIImage imageNamed:@"time1.0-1"] forState:UIControlStateNormal];
+        [_timeTypeButton setImage:JPImageWithName(@"time1.0") forState:UIControlStateNormal];
     }else if (_videoModel.timePlayType == JPVideoTimePlayTypeFast)
     {
-        [_timeTypeButton setImage:[UIImage imageNamed:@"time2.0"] forState:UIControlStateNormal];
+        [_timeTypeButton setImage:JPImageWithName(@"time2.0") forState:UIControlStateNormal];
     }else{
-        [_timeTypeButton setImage:[UIImage imageNamed:@"time0.5"] forState:UIControlStateNormal];
+        [_timeTypeButton setImage:JPImageWithName(@"time0.5") forState:UIControlStateNormal];
     }
     canFast = YES;
     canClid = YES;
@@ -125,10 +124,10 @@
     }
     if (canClid == NO) {
         _clidButton.userInteractionEnabled = NO;
-        [_clidButton setImage:[UIImage imageNamed:@"shot-grey"] forState:UIControlStateNormal];
+        [_clidButton setImage:JPImageWithName(@"shot-grey") forState:UIControlStateNormal];
     }else{
         _clidButton.userInteractionEnabled = YES;
-        [_clidButton setImage:[UIImage imageNamed:@"shot"] forState:UIControlStateNormal];
+        [_clidButton setImage:JPImageWithName(@"shot") forState:UIControlStateNormal];
     }
 }
 @end

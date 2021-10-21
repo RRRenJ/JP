@@ -7,7 +7,6 @@
 //
 #import <MediaPlayer/MediaPlayer.h>
 #import "JPNewPageViewController.h"
-#import "JPSession.h"
 #import "JPNewThumbSlider.h"
 #import "JPThumbInfoModel.h"
 #import "JPAudioMenuBaseView.h"
@@ -25,20 +24,17 @@
 #import "JPPatternInputView.h"
 #import "JPPackBackView.h"
 #import "JPCompositionMessageView.h"
-#import "JPShareEditTitleViewController.h"
-#import "JPSelectTagsViewController.h"
 #import "JPVideoPlayerView.h"
 #import "JPNewCameraViewController.h"
 #import "JPPackageGuideView.h"
 #import "JPPackagePhotoEditGuideView.h"
 #import "JPActiveMessageView.h"
-#import <ALAssetsLibrary+CustomPhotoAlbum.h>
+#import "ALAssetsLibrary+CustomPhotoAlbum.h"
 #import "PKBackTipView.h"
 #import "PKBackAlertView.h"
-#import "UIButton+ImageAndText.h"
 
-#import "PKPHPhotoImportViewController.h"
-#import "PKPHPhotoShowViewController.h"
+#import "CompositionViewController.h"
+
 
 @interface JPNewPageViewController ()<JPVideoCompositionPlayerDelegate, JPNewThumbSliderDelegate, JPPackageFilterMenuViewDelegate, JPVideoEditMuneDelegate,JPPhotoEditMuneDelegate,JPAudioMenuBaseViewDelegate,MPMediaPickerControllerDelegate,JPNewTranstionChangedViewDelegate, JPNewPatternMuneViewDelegate, JPPackageGraphPatternMenuViewDelegate, JPPackageViewCacheDelegate, JPPackagePatternAttributeViewDelegate,JPPatternInputViewDelegate, JPCompositionMessageViewDelegate>
 {
@@ -99,13 +95,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *stickersBt;
 @property (nonatomic, strong) UIView * rightBtBackView;
 
-@property (nonatomic, strong) PKGuideView * musicGuideView;
-
-@property (nonatomic, strong) PKGuideView * filterGuideView;
-
-@property (nonatomic, strong) PKGuideView * transformGuideView;
-
-@property (nonatomic, strong) PKGuideView * thumGuideView;
 
 @property (nonatomic, assign) BOOL guide;
 
@@ -115,28 +104,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.videoPlayBackViewHeightLayoutConstraint.constant = SCREEN_WIDTH;
+    self.videoPlayBackViewHeightLayoutConstraint.constant = JP_SCREEN_WIDTH;
     videoisEdit = NO;
     isAddVideo = NO;
-    [JPUtil pageRecordWithVideoId:nil andPosition:@"4"];
-    if (![JPSession sharedInstance].cityName.length) {
-        [[JPSession sharedInstance] initLocate];
-    }
-    _navigationBackViewTopC.constant = KStatusBarHeight;
-    _bottomViewBottomC.constant = KTabbarHeightLineHeight;
+    _navigationBackViewTopC.constant = JP_STATUS_HEIGHT;
+    _bottomViewBottomC.constant = JPTabbarHeightLineHeight;
     CGSize size = _recordInfo.videoSize;
     CGFloat maxWidth = size.width >= size.height ? size.width : size.height;
-    CGFloat width = SCREEN_WIDTH / maxWidth * size.width;
-    CGFloat height = SCREEN_WIDTH / maxWidth * size.height;
+    CGFloat width = JP_SCREEN_WIDTH / maxWidth * size.width;
+    CGFloat height = JP_SCREEN_WIDTH / maxWidth * size.height;
     _graphWidth.constant = width;
     _graphHeight.constant = height;
     self.navagatorView = _navigationBackView;
     self.hasRegistAppStatusNotification = YES;
-    [self createNavigatorViewWithHeight:KShrinkNavigationHeight];
-    [self addLeftButtonWithTittle:nil withImage:[UIImage imageNamed:@"esc"] target:self action:@selector(escPage:)];
-    [self addRightButtonWithTittle:@"下一步" withImage:nil target:self action:@selector(finish:)];
+    [self createNavigatorViewWithHeight:JPShrinkNavigationHeight];
+    [self addLeftButtonWithTittle:nil withImage:JPImageWithName(@"exits") target:self action:@selector(escPage:)];
+    [self addRightButtonWithTittle:@"合成" withImage:nil target:self action:@selector(finish:)];
     [self.rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    self.rightButton.titleLabel.font = [UIFont pingFangBoldFontWithSize:15];
+    self.rightButton.titleLabel.font = [UIFont jp_pingFangWithSize:15];
     _compositionPlayer = [[JPVideoCompositionPlayer alloc] initWithRecordInfo:_recordInfo withStickers:YES withComposition:NO];
     _compositionPlayer.delegate = self;
     [_videoPlayBackView addSubview:_compositionPlayer.gpuImageView];
@@ -164,7 +149,7 @@
     [self.view bringSubviewToFront:_videoeditMessageView];
     [self.view bringSubviewToFront:self.navigationBackView];
     [self.view bringSubviewToFront:self.statusView];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(successLogin:) name:SUCCESSTOLOGINNOTIFICATION object:nil];
+   
     
     if (_recordInfo.pattnaerArr) {
         _patternArray = _recordInfo.pattnaerArr;
@@ -185,75 +170,26 @@
         _patternArray = [NSMutableArray array];
     }
 
-    [self.filterBt layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleTop imageTitleSpace:5];
-    [self.stickersBt layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleTop imageTitleSpace:5];
-    [self.musicBt layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleTop imageTitleSpace:5];
+    [self.filterBt jp_layoutButtonWithEdgeInsetsStyle:JPButtonEdgeInsetsStyleTop imageTitleSpace:5];
+    [self.stickersBt jp_layoutButtonWithEdgeInsetsStyle:JPButtonEdgeInsetsStyleTop imageTitleSpace:5];
+    [self.musicBt jp_layoutButtonWithEdgeInsetsStyle:JPButtonEdgeInsetsStyleTop imageTitleSpace:5];
     
     self.thumbSilderView.hidden = self.isPhotoAlbum;
     self.bottomMenuView.hidden = self.isPhotoAlbum;
-    self.guide = [PKGuideManager manager].guide;
     
-    
- 
 }
 
 
 
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:SUCCESSTOLOGINNOTIFICATION object:nil];
+- (void)dealloc{
+   
     [_compositionPlayer pauseToPlay];
     [[GPUImageContext sharedFramebufferCache] purgeAllUnassignedFramebuffers];
 }
 
-- (void)addGuideView{
-   
-    if ([PKGuideManager manager].guide && [PKGuideManager manager].guideNumber == 2 && self.guide) {
-        self.guideView = [[PKGuideView alloc]initGuideViewWithContent:@"点这里，继续拍摄" type:PKGuideViewTailTypeVertical];
-        [self.thumbSilderView.collectionView addSubview:self.guideView];
-         self.guideView.frame = CGRectMake(self.thumbSilderView.collectionView.contentSize.width - self.guideView.guideSize.width/2 - 30, -self.guideView.guideSize.height - 30, self.guideView.guideSize.width, self.guideView.guideSize.height);
-    }else if([PKGuideManager manager].guide && [PKGuideManager manager].guideNumber == 4 && self.guide){
-        self.guideView = [[PKGuideView alloc]initGuideViewWithContent:@"点这里，选择滤镜" type:PKGuideViewTailTypeLeft];
-        [self.view addSubview:self.guideView];
-        self.guideView.frame = CGRectMake(SCREEN_WIDTH/3.0 - self.guideView.guideSize.width / 2.0, SCREEN_HEIGHT - [JPUtil bottomSafeAreaHeight] - 60 - self.guideView.guideSize.height, self.guideView.guideSize.width, self.guideView.guideSize.height);
-    }else if ([PKGuideManager manager].guide && [PKGuideManager manager].guideNumber == 8 && self.guide) {
-        self.guideView = [[PKGuideView alloc]initGuideViewWithContent:@"轻点视频，选中" type:PKGuideViewTailTypeVertical];
-        [self.thumbSilderView.collectionView addSubview:self.guideView];
-        self.guideView.frame = CGRectMake(0, -self.guideView.guideSize.height - 30, self.guideView.guideSize.width, self.guideView.guideSize.height);
-    }else if ([PKGuideManager manager].guide && [PKGuideManager manager].guideNumber == 10 && self.guide) {
-        self.guideView = [[PKGuideView alloc]initGuideViewWithContent:@"轻点视频，取消选中" type:PKGuideViewTailTypeVertical];
-        [self.thumbSilderView.collectionView addSubview:self.guideView];
-        self.guideView.frame = CGRectMake(0, -self.guideView.guideSize.height - 30, self.guideView.guideSize.width, self.guideView.guideSize.height);
-    }else if([PKGuideManager manager].guide && [PKGuideManager manager].guideNumber == 11 && self.guide) {
-        self.guideView = [[PKGuideView alloc]initGuideViewWithContent:@"点这里，添加音乐" type:PKGuideViewTailTypeRight];
-        [self.view addSubview:self.guideView];
-        self.guideView.frame = CGRectMake(SCREEN_WIDTH / 3.0 * 2 - self.guideView.guideSize.width / 2.0, SCREEN_HEIGHT - [JPUtil bottomSafeAreaHeight] - 60 - self.guideView.guideSize.height, self.guideView.guideSize.width, self.guideView.guideSize.height);
-    }
-    
-    if (![PKGuideManager manager].guide && [PKGuideManager manager].showTouchVideo && !self.isPhotoAlbum) {
-        self.guideView = [[PKGuideView alloc]initGuideViewWithContent:@"点击选中视频可进行剪切等处理" type:PKGuideViewTailTypeVertical];
-        [self.thumbSilderView.collectionView addSubview:self.guideView];
-        self.guideView.frame = CGRectMake(0, -self.guideView.guideSize.height - 30, self.guideView.guideSize.width, self.guideView.guideSize.height);
-    }
-}
 
-- (void)addMusicGuideView{
-    if ([PKGuideManager manager].guide) {
-        [self.guideView removeFromSuperview];
-        if ([PKGuideManager manager].guideNumber == 11 && self.guide) {
-            [PKGuideManager manager].guideNumber = 12;
-            [PKGuideManager manager].musicNo = 2;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                self.musicGuideView = [[PKGuideView alloc]initGuideViewWithContent:@"点这里，添加音乐" type:PKGuideViewTailTypeVertical];
-                [audioMenuBaseView.musicMenu.bottomCollecView addSubview:self.musicGuideView];
-                self.musicGuideView.frame = CGRectMake(ScreenFitFloat6(80) / 2.0 * 5 - self.musicGuideView.guideSize.width / 2.0,  -self.musicGuideView.guideSize.height - 30, self.musicGuideView.guideSize.width, self.musicGuideView.guideSize.height);
-            });
-        }else{
-            self.guide = NO;
-        }
-    }
 
-}
+
 
 - (void)doubleTap:(UITapGestureRecognizer *)tap{
     NSMutableArray *videoModel = [NSMutableArray array];
@@ -289,7 +225,7 @@
         for (NSInteger index = info.imageStartIndex; (index - info.imageStartIndex) < info.count; index ++) {
             UIImage *image = nil;
             if (index + info.imageStartIndex >= imagesArr.count) {
-                image = [UIImage imageNamed:@"logo@3x-1"];
+                image = JPImageWithName(@"logo@3x-1");
             }else{
                 image = imagesArr[index + info.imageStartIndex];
             }
@@ -308,14 +244,9 @@
     return dic;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if ([PKGuideManager manager].resetPageGuideState) {
-        self.guide = [PKGuideManager manager].guide;
-    }
-    
-    [PKDCManager track:@"pageView" withProperties:@{@"pagename":@"拍摄成功页面",@"pageid" : @"app03"}];
+   
     [_thumbSilderView updateThumSlider];
     [_compositionPlayer returnCurrentPage];
     [_compositionPlayer setRecordInfo:_recordInfo];
@@ -333,26 +264,7 @@
     isAddVideo = NO;
     isToLogin = NO;
     isShowingImgController = NO;
-    
-    if ([PKGuideManager manager].guide) {
-        
-        if ([PKGuideManager manager].guideNumber == 1) {
-            [PKGuideManager manager].guideNumber = 2;
-        }
-        if ([PKGuideManager manager].guideNumber == 3) {
-            if(![PKGuideManager manager].resetPageGuideState){
-                if (self.recordInfo.videoSource.count == 2) {
-                    [PKGuideManager manager].guideNumber = 4;
-                }else{
-                    self.guide = NO;
-                }
-            }
-        }
-    }
-    [PKGuideManager manager].resetPageGuideState = YES;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self addGuideView];
-    });
+
 }
 
 
@@ -366,13 +278,11 @@
     }
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [_compositionPlayer pauseToPlay];
     [_compositionPlayer levelCurrentPage];
     [activeMessageView dismiss];
-    [self.guideView removeFromSuperview];
 }
 
 - (void)appBecomeActive
@@ -437,47 +347,36 @@
 - (void)videoCompositionPlayerWillPasue
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (isEditSticker == NO) {
-            [_playButton setHidden:NO];
+        if (self->isEditSticker == NO) {
+            [self.playButton setHidden:NO];
         }
-        if (hotGraphInteractiveView) {
-            hotGraphInteractiveView.changeHidden = YES;
+        if (self->hotGraphInteractiveView) {
+            self->hotGraphInteractiveView.changeHidden = YES;
         }
     });
 }
 - (void)videoCompositionPlayerWillPlaying
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [_playButton setHidden:YES];
-        calibratView.hidden = YES;
+        [self.playButton setHidden:YES];
+        self->calibratView.hidden = YES;
     });
     
 }
 
 
-- (void)escPage:(UIButton *)button
-{
-    if (self.isPhotoAlbum) {
-        PKBackAlertView * alert = [[PKBackAlertView alloc]init];
-        alert.comfirmBlock = ^{
-            [self comfireEscWithPhotoAlbum];
-        };
-        [alert show];
-        
-    }else{
-        PKBackTipView *tipsView = [[PKBackTipView alloc] initWithFrame:self.view.bounds];
-        [tipsView showInView:self.view];
-        WEAK(self);
-        tipsView.dismissCompletion = ^(BOOL left) {
-            if (left) {
-                //保存草稿箱
-                [weakself comfireEscWithSave:YES];
-            }else {
-                //直接退出
-                [weakself comfireEscWithSave:NO];
-            }
-        };
-    }
+- (void)escPage:(UIButton *)button{
+    PKBackTipView *tipsView = [[PKBackTipView alloc] initWithFrame:self.view.bounds];
+    [tipsView showInView:self.view];
+    tipsView.dismissCompletion = ^(BOOL left) {
+        if (left) {
+            //保存草稿箱
+            [self comfireEscWithSave:YES];
+        }else {
+            //直接退出
+            [self comfireEscWithSave:NO];
+        }
+    };
     
 }
 
@@ -497,47 +396,25 @@
     [_compositionPlayer pauseToPlay];
     [self.compositionPlayer destruction];
     [_recordInfo originCompositionBecomeNone];
-    [JPSession sharedInstance].tagID = @"";
     if (!_isDrafts) {
-        [[JPAppDelegate shareAppdelegate].baseTabBarController swicthToTheHostPage];
-        [[JPAppDelegate shareAppdelegate].baseTabBarController.homeNav popToRootViewControllerAnimated:NO];
+//        [[JPAppDelegate shareAppdelegate].baseTabBarController swicthToTheHostPage];
+//        [[JPAppDelegate shareAppdelegate].baseTabBarController.homeNav popToRootViewControllerAnimated:NO];
     }
     __weak typeof(self) weakSelf = self;
     [self.navigationController dismissViewControllerAnimated:YES completion:^{
-        [_compositionPlayer pauseToPlay];
+        [self.compositionPlayer pauseToPlay];
         [self.compositionPlayer destruction];
-        [JPSession sharedInstance].selectTaskModel = nil;
         [weakSelf.navigationController popToRootViewControllerAnimated:NO];
     }];
 }
-- (void)comfireEscWithPhotoAlbum{
 
-    _recordInfo.backgroundMusic = nil;
-    [_recordInfo removeAllAudioFile];
-    _recordInfo.pattnaerArr = nil;
-    [_compositionPlayer pauseToPlay];
-    [self.compositionPlayer destruction];
-    [_recordInfo originCompositionBecomeNone];
-    [JPSession sharedInstance].tagID = @"";
-    if (!_isDrafts) {
-        [[JPAppDelegate shareAppdelegate].baseTabBarController swicthToTheHostPage];
-    }
-    NSMutableArray * controllers = self.navigationController.viewControllers.mutableCopy;
-    for (UIViewController * vc in self.navigationController.viewControllers) {
-        if ([vc isKindOfClass:[PKPHPhotoImportViewController class]] || [vc isKindOfClass:[PKPHPhotoShowViewController class]]) {
-            [controllers removeObject:vc];
-        }
-    }
-    self.navigationController.viewControllers = controllers.copy;
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 #pragma mark - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (0 == buttonIndex) {
         isToLogin = YES;
-        [JPUserInfo needLoginWithNavigation:self.navigationController];
+//        [JPUserInfo needLoginWithNavigation:self.navigationController];
     }
 }
 
@@ -560,7 +437,7 @@
         [self changeVideoPlayStatus:nil];
     }
 //    if ([JPUtil getInfoFromUserDefaults:@"jp_first_composition"] == nil) {
-//        JPCompositionMessageView *compositionView = [[JPCompositionMessageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+//        JPCompositionMessageView *compositionView = [[JPCompositionMessageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, JP_SCREEN_HEIGHT)];
 //        [self.view addSubview:compositionView];
 //        compositionView.delegate = self;
 //        [compositionView show];
@@ -568,26 +445,31 @@
 //        return;
 //    }
     
-    if (![JPUserInfo shareInstance].isLogin) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"合成视频前，请先登录" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alertView show];
-    } else {
+//    if (![JPUserInfo shareInstance].isLogin) {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"合成视频前，请先登录" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        [alertView show];
+//    } else {
         [self updateStickers];
         [self pushToTheShareVC];
         [self.rightButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
         [self.rightBtBackView removeFromSuperview];
-    }
+//    }
 }
 
-- (void)pushToTheShareVC
-{
-    JPSelectTagsViewController *vc = [[JPSelectTagsViewController alloc] init];
+- (void)pushToTheShareVC{
+    
+    CompositionViewController * vc = [[CompositionViewController alloc]init];
     JPCompositionManager *compositionManager = [[JPCompositionManager alloc] initWithRecordInfo:_recordInfo andStikcerArr:_patternArray];
-    vc.compositionManager = compositionManager;
-    if (self.isPhotoAlbum) {
-        vc.compositionManager.isAlbumVideo = YES;
-    }
+    vc.manager = compositionManager;
+    
     [self.navigationController pushViewController:vc animated:YES];
+//    JPSelectTagsViewController *vc = [[JPSelectTagsViewController alloc] init];
+//    JPCompositionManager *compositionManager = [[JPCompositionManager alloc] initWithRecordInfo:_recordInfo andStikcerArr:_patternArray];
+//    vc.compositionManager = compositionManager;
+//    if (self.isPhotoAlbum) {
+//        vc.compositionManager.isAlbumVideo = YES;
+//    }
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
@@ -607,7 +489,7 @@
 
 - (CGRect)getLocalVideoCropSizeWithOriginSize:(CGSize)originSize
 {
-    CGRect videoCropRect = CGRectZero;
+
     CGFloat ratio = 16.0 / 9.0f;
     CGFloat width = originSize.width;
     CGFloat height = originSize.height;
@@ -628,8 +510,8 @@
 }
 
 - (void)audioMenuWillShow:(BOOL)show {
-    CGFloat w = SCREEN_WIDTH;
-    CGFloat h = show == NO ? SCREEN_WIDTH : ScreenFitFloat6(259);
+    CGFloat w = JP_SCREEN_WIDTH;
+    CGFloat h = show == NO ? JP_SCREEN_WIDTH : JPScreenFitFloat6(259);
     CGRect size = [self getLocalVideoCropSizeWithOriginSize:CGSizeMake(w, h)];
 //    JPVideoAspectRatio aspectRatio = _recordInfo.aspectRatio;
 //    if (JPVideoAspectRatio1X1 == aspectRatio || JPVideoAspectRatioCircular == aspectRatio) {
@@ -645,8 +527,8 @@
 //        h = w / 4.f * 3.f;
 //    }
     _compositionPlayer.gpuImageView.frame = size;
-    _compositionPlayer.gpuImageView.centerX = SCREEN_WIDTH / 2.0;
-    _compositionPlayer.gpuImageView.centerY = (show ? ScreenFitFloat6(259) : SCREEN_WIDTH) / 2.0;
+    _compositionPlayer.gpuImageView.centerX = JP_SCREEN_WIDTH / 2.0;
+    _compositionPlayer.gpuImageView.centerY = (show ? JPScreenFitFloat6(259) : JP_SCREEN_WIDTH) / 2.0;
 }
 
 #pragma mark - MPMediaPickerControllerDelegate
@@ -656,7 +538,7 @@
         MPMediaItem *mediaItem = [[mediaItemCollection items] firstObject];
         NSURL *url =  [mediaItem valueForProperty:MPMediaItemPropertyAssetURL];
         if (!url) {
-            [[JPAppDelegate shareAppdelegate] showAlertViewWithTitle:@"您挑选的音乐不在itunes本地，请选择其他音乐。"];
+            [MBProgressHUD jp_showMessage:@"您挑选的音乐不在itunes本地，请选择其他音乐。"];
             return;
         }
         _isChooseItunesMusic = YES;
@@ -689,7 +571,7 @@
             _recordInfo.backgroundMusic = itunesMusicModel;
         }else
         {
-            [[JPAppDelegate shareAppdelegate] showAlertViewWithTitle:@"您挑选的音乐操作错误，请选择其他音乐。"];
+            [MBProgressHUD jp_showMessage:@"您挑选的音乐操作错误，请选择其他音乐。"];
         }
     }
     [mediaPicker dismissViewControllerAnimated:YES completion:nil];
@@ -707,15 +589,12 @@
     if (self.isPhotoAlbum) {
         return;
     }
-    if ([PKGuideManager manager].guideNumber == 2) {
-        [PKGuideManager manager].guideNumber = 3;
-    }
+   
     [self newThumbSliderWillDeselectThisVideoModel:_recordInfo.videoSource.lastObject];
-    JPNewCameraViewController *cameraVC = [[JPNewCameraViewController alloc] init];
+    JPNewCameraViewController *cameraVC = [[JPNewCameraViewController alloc] initWithNibName:@"JPNewCameraViewController" bundle:JPResourceBundle];
     cameraVC.recordInfo = _recordInfo;
     cameraVC.fromPackage = YES;
     isAddVideo = YES;
-    [PKGuideManager manager].resetPageGuideState = NO;
     JPBaseNavigationViewController *nav = [[JPBaseNavigationViewController alloc] initWithRootViewController:cameraVC];
     nav.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:nav animated:YES completion:nil];
@@ -732,41 +611,18 @@
 
 
 
-- (void)newThumbSliderWillSelectThisVideoModel:(JPVideoModel *)videoModel
-{
-    if ([PKGuideManager manager].guide) {
-        [self.guideView removeFromSuperview];
-        if ([PKGuideManager manager].guideNumber == 8 && self.guide) {
-            [PKGuideManager manager].guideNumber = 9;
-        }else{
-            self.guide = NO;
-        }
-    }
-    if (![PKGuideManager manager].guide) {
-        [self.guideView removeFromSuperview];
-    }
+- (void)newThumbSliderWillSelectThisVideoModel:(JPVideoModel *)videoModel{
+    
     [activeMessageView dismiss];
     if (videoModel.isImage == NO) {
         [editPhotoMune removeFromSuperview];
         isShowingEditPhotoMenu = NO;
         
         if (editVideoMune == nil) {
-            editVideoMune = [[JPVideoEditMune alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 60 + KTabbarHeightLineHeight)];
+            editVideoMune = [[JPVideoEditMune alloc] initWithFrame:CGRectMake(0, JP_SCREEN_HEIGHT, JP_SCREEN_WIDTH, 60 + JPTabbarHeightLineHeight)];
             editVideoMune.delegate = self;
         }
-        if ([PKGuideManager manager].guide){
-            [self.guideView removeFromSuperview];
-            if ([PKGuideManager manager].thumNo == 1  && self.guide) {
-                [PKGuideManager manager].thumNo = 2;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                   self.thumGuideView = [[PKGuideView alloc]initGuideViewWithContent:@"点这里，选择快慢速" type:PKGuideViewTailTypeLeft];
-                   [self.view addSubview:self.thumGuideView];
-                   self.thumGuideView.frame = CGRectMake(10, SCREEN_HEIGHT - [JPUtil bottomSafeAreaHeight] - 60 - self.thumGuideView.guideSize.height, self.thumGuideView.guideSize.width, self.thumGuideView.guideSize.height);
-               });
-            }else{
-                self.guide = NO;
-            }
-        }
+        
         if (self.compositionPlayer.isPlaying == YES) {
             [self changeVideoPlayStatus:nil];
         }
@@ -776,13 +632,13 @@
         editVideoMune.videoModel = videoModel;
         isShowingEditVideoMenu = YES;
         [UIView animateWithDuration:0.2 animations:^{
-            editVideoMune.top = SCREEN_HEIGHT - editVideoMune.height;
+            self->editVideoMune.top = JP_SCREEN_HEIGHT - self->editVideoMune.height;
         }];
     }else{
         [editVideoMune removeFromSuperview];
         isShowingEditVideoMenu = NO;
         if (editPhotoMune == nil) {
-            editPhotoMune = [[JPPhotoEditMune alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 60 + KTabbarHeightLineHeight )];
+            editPhotoMune = [[JPPhotoEditMune alloc] initWithFrame:CGRectMake(0, JP_SCREEN_HEIGHT, JP_SCREEN_WIDTH, 60 + JPTabbarHeightLineHeight )];
             editPhotoMune.delegate = self;
         }
         if (self.compositionPlayer.isPlaying == YES) {
@@ -792,7 +648,7 @@
         editPhotoMune.videoModel = videoModel;
         isShowingEditPhotoMenu = YES;
         [UIView animateWithDuration:0.2 animations:^{
-            editPhotoMune.top = SCREEN_HEIGHT - editPhotoMune.height;
+            self->editPhotoMune.top = JP_SCREEN_HEIGHT - self->editPhotoMune.height;
             
         }];
     }
@@ -800,31 +656,16 @@
 
 
 
-- (void)newThumbSliderWillDeselectThisVideoModel:(JPVideoModel *)videoModel
-{
+- (void)newThumbSliderWillDeselectThisVideoModel:(JPVideoModel *)videoModel{
     
-    if ([PKGuideManager manager].guide){
-        [self.thumGuideView removeFromSuperview];
-        if([PKGuideManager manager].guideNumber == 10 && self.guide) {
-            [PKGuideManager manager].guideNumber = 11;
-            [self.guideView removeFromSuperview];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                self.guideView = [[PKGuideView alloc]initGuideViewWithContent:@"点这里，添加音乐" type:PKGuideViewTailTypeRight];
-                [self.view addSubview:self.guideView];
-                self.guideView.frame = CGRectMake(SCREEN_WIDTH / 3.0 * 2 - self.guideView.guideSize.width / 2.0, SCREEN_HEIGHT - [JPUtil bottomSafeAreaHeight] - 60 - self.guideView.guideSize.height, self.guideView.guideSize.width, self.guideView.guideSize.height);
-            });
-        }else{
-//            self.guide = NO;
-        }
-    }
     if (videoModel.isImage == NO) {
         isShowingEditVideoMenu = NO;
         CGFloat dur = 0.5;
         
         [UIView animateWithDuration:dur animations:^{
-            editVideoMune.top = SCREEN_HEIGHT;
+            self->editVideoMune.top = JP_SCREEN_HEIGHT;
         } completion:^(BOOL finished) {
-            [editVideoMune removeFromSuperview];
+            [self->editVideoMune removeFromSuperview];
         }];
     }else
     {
@@ -832,9 +673,9 @@
         CGFloat dur = 0.5;
         
         [UIView animateWithDuration:dur animations:^{
-            editPhotoMune.top = SCREEN_HEIGHT;
+            self->editPhotoMune.top = JP_SCREEN_HEIGHT;
         } completion:^(BOOL finished) {
-            [editPhotoMune removeFromSuperview];
+            [self->editPhotoMune removeFromSuperview];
         }];
     }
     [_thumbSilderView setThisVideoDeselect:videoModel];
@@ -853,12 +694,7 @@
 
 - (void)newThumbSliderWillChangeVideoTranstionTypeThisVideoModel:(JPVideoModel *)videoModel
 {
-    if ([PKGuideManager manager].guide && [PKGuideManager manager].guideNumber == 6 && self.guide) {
-        [self.thumbSilderView removeGuideView];
-        [PKGuideManager manager].guideNumber = 7;
-    }else{
-        self.guide = NO;
-    }
+    
     
     isShowingEditPhotoMenu = NO;
     [editPhotoMune removeFromSuperview];
@@ -868,25 +704,15 @@
         [self changeVideoPlayStatus:nil];
     }
     if (editTranstionTypeMune == nil) {
-        editTranstionTypeMune = [[JPNewTranstionChangedView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 60 + KBottomSafeAreaHeight)];
+        editTranstionTypeMune = [[JPNewTranstionChangedView alloc] initWithFrame:CGRectMake(0, JP_SCREEN_HEIGHT, JP_SCREEN_WIDTH, 60 + JP_BOTTOM_HEIGHT)];
         editTranstionTypeMune.delegate = self;
     }
-    if ([PKGuideManager manager].guide) {
-        [self.guideView removeFromSuperview];
-        if (([PKGuideManager manager].transformNo == 1 && self.guide)) {
-            [PKGuideManager manager].transformNo = 2;
-            self.transformGuideView = [[PKGuideView alloc]initGuideViewWithContent:@"点这里，选择该转场效果" type:PKGuideViewTailTypeLeft];
-            [editTranstionTypeMune.collecView addSubview:self.transformGuideView];
-            self.transformGuideView.frame = CGRectMake(SCREEN_WIDTH / 9 * 5 - self.transformGuideView.guideSize.width / 2.0 - 40, -self.transformGuideView.guideSize.height , self.transformGuideView.guideSize.width, self.transformGuideView.guideSize.height);
-        }else{
-            self.guide = NO;
-        }
-    }
+    
     [self.view addSubview:editTranstionTypeMune];
     isShowingEditTransionTypeMenu = YES;
     editTranstionTypeMune.videoModel = videoModel;
     [UIView animateWithDuration:0.2 animations:^{
-        editTranstionTypeMune.top = SCREEN_HEIGHT - 60 - KBottomSafeAreaHeight;
+        self->editTranstionTypeMune.top = JP_SCREEN_HEIGHT - 60 - JP_BOTTOM_HEIGHT;
     }];
 }
 
@@ -959,17 +785,17 @@
     if (isShowingEditVideoMenu == YES) {
         isShowingEditVideoMenu = NO;
         [UIView animateWithDuration:0.2 animations:^{
-            editVideoMune.top = SCREEN_HEIGHT;
+            self->editVideoMune.top = JP_SCREEN_HEIGHT;
         } completion:^(BOOL finished) {
-            [editVideoMune removeFromSuperview];
+            [self->editVideoMune removeFromSuperview];
         }];
     }else if(isShowingEditPhotoMenu == YES)
     {
         isShowingEditPhotoMenu = NO;
         [UIView animateWithDuration:0.2 animations:^{
-            editPhotoMune.top = SCREEN_HEIGHT;
+            self->editPhotoMune.top = JP_SCREEN_HEIGHT;
         } completion:^(BOOL finished) {
-            [editPhotoMune removeFromSuperview];
+            [self->editPhotoMune removeFromSuperview];
         }];
     }
 }
@@ -977,22 +803,12 @@
 #pragma mark -JPNewTranstionChangedViewDelegate
 - (void)newTranstionChangedViewChangeTranstionModel:(JPVideoTranstionsModel *)transtionModel withTranstionModel:(JPVideoModel *)videoModel
 {
-    if ([PKGuideManager manager].guide && [PKGuideManager manager].guideNumber == 7 && self.guide) {
-        [self.transformGuideView removeFromSuperview];
-        [PKGuideManager manager].guideNumber = 8;
-        self.guideView = [[PKGuideView alloc]initGuideViewWithContent:@"轻点视频，选中" type:PKGuideViewTailTypeVertical];
-        [self.thumbSilderView.collectionView addSubview:self.guideView];
-        self.guideView.frame = CGRectMake(0, -self.guideView.guideSize.height - 30, self.guideView.guideSize.width, self.guideView.guideSize.height);
-    }else{
-        self.guide = NO;
-    }
-    
-    
+   
     isShowingEditTransionTypeMenu = NO;
     [UIView animateWithDuration:0.2 animations:^{
-        editTranstionTypeMune.top = SCREEN_HEIGHT;
+        self->editTranstionTypeMune.top = JP_SCREEN_HEIGHT;
     } completion:^(BOOL finished) {
-        [editTranstionTypeMune removeFromSuperview];
+        [self->editTranstionTypeMune removeFromSuperview];
     }];
     if (videoModel.transtionType != transtionModel.transtionIndex) {
         videoModel.transtionType = transtionModel.transtionIndex;
@@ -1015,10 +831,7 @@
 
 
 - (void)collectionScrollViewDidScroll:(UIScrollView *)scrollView{
-    if ([PKGuideManager manager].guide) {
-        CGFloat offsetX = scrollView.contentOffset.x;
-        self.filterGuideView.transform = CGAffineTransformMakeTranslation(-offsetX, 0);
-    }
+    
 }
 
 - (void)packageFilterMenuViewDidSelectFilter:(JPFilterModel *)filter {
@@ -1027,18 +840,7 @@
     _recordInfo.currentFilterModel = filter;
     [_compositionPlayer switchFilter];
     [self.compositionPlayer startPlaying];
-    if ([PKGuideManager manager].guide && [PKGuideManager manager].filterNo == 2 && self.guide) {
-        [PKGuideManager manager].filterNo = 3;
-        [self.filterGuideView removeFromSuperview];
-        self.filterGuideView = [[PKGuideView alloc]initGuideViewWithContent:@"点这里，选中滤镜" type:PKGuideViewTailTypeRight];
-        [filterMenuView addSubview:self.filterGuideView];
-        self.filterGuideView.frame = CGRectMake(SCREEN_WIDTH - self.filterGuideView.guideSize.width - 10, -self.filterGuideView.guideSize.height, self.filterGuideView.guideSize.width, self.filterGuideView.guideSize.height);
-    }else{
-        self.guide = NO;
-    }
-    
-    
-    
+
 }
 
 - (void)packageFilterMenuViewWillDismiss {
@@ -1046,21 +848,14 @@
     [self someViewWillDismiss];
     [UIView animateWithDuration:0.5 animations:^{
         [self.view layoutIfNeeded];
-        filterMenuView.top = SCREEN_HEIGHT;
+        self->filterMenuView.top = JP_SCREEN_HEIGHT;
     } completion:^(BOOL finished) {
-        [filterMenuView removeFromSuperview];
-        if (_compositionPlayer.isPlaying == NO) {
+        [self->filterMenuView removeFromSuperview];
+        if (self.compositionPlayer.isPlaying == NO) {
             [self changeVideoPlayStatus:nil];
         }
     }];
-    if ([PKGuideManager manager].guide) {
-        [self.filterGuideView removeFromSuperview];
-        if ([PKGuideManager manager].guideNumber == 5 && self.guide) {
-            [PKGuideManager manager].guideNumber = 6;
-        }else{
-            self.guide = NO;
-        }
-    }
+    
 }
 
 #pragma mark JPVideoEditMuneDelegate
@@ -1069,7 +864,7 @@
 {
   
     if (_recordInfo.videoSource.count == 1) {
-        [[JPAppDelegate shareAppdelegate] showAlertViewWithTitle:@"只有一段视频时不能删除"];
+        [MBProgressHUD jp_showMessage:@"只有一段视频时不能删除"];
         return;
     }
     [_recordInfo deleteVideofile:videoModel];
@@ -1109,17 +904,6 @@
 - (void)videoEditMuneWillEditPlaySpeedThisVideo:(JPVideoModel *)videoModel
 {
     
-    if ([PKGuideManager manager].guide){
-        [self.thumGuideView removeFromSuperview];
-        if ( [PKGuideManager manager].guideNumber == 9 && self.guide) {
-            [PKGuideManager manager].guideNumber = 10;
-            self.guideView = [[PKGuideView alloc]initGuideViewWithContent:@"轻点视频，取消选中" type:PKGuideViewTailTypeVertical];
-            [self.thumbSilderView.collectionView addSubview:self.guideView];
-            self.guideView.frame = CGRectMake(0, -self.guideView.guideSize.height - 30, self.guideView.guideSize.width, self.guideView.guideSize.height);
-        }else{
-            self.guide = NO;
-        }
-    }
     
     videoisEdit = YES;
     [_recordInfo originCompositionBecomeNone];
@@ -1149,7 +933,7 @@
         }
     }
     if (videoModel.reverseUrl == nil && videoModel.isReverse == YES) {
-        [self showHUD];
+        [self jp_showHUD];
         self.view.userInteractionEnabled = NO;
         NSDictionary *inputOptions = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
         AVURLAsset *inputAsset = [[AVURLAsset alloc] initWithURL:videoModel.videoUrl options:inputOptions];
@@ -1168,7 +952,7 @@
                 NSString *baseName = [JPVideoUtil fileNameForDocumentMovie];
                 [JPVideoUtil assetByReversingAsset:inputAsset videoComposition:nil duration:inputAsset.duration outputURL:[NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingPathComponent:baseName]] progressHandle:^(CGFloat progress) {
                     NSLog(@"------%.4f", progress);
-                } cancle:&_isCancel compoletion:^(NSURL *url) {
+                } cancle:&self->_isCancel compoletion:^(NSURL *url) {
                     [blockSelf checkToMianQueueWithBaseFile:baseName andVideoModel:videoModel];
                 }];
             });
@@ -1190,7 +974,7 @@
     }
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        [self hidHUD];
+        [self jp_hideHUD];
         self.view.userInteractionEnabled = YES;
         videoModel.reverseVideoBaseFile = baseFile;
         [self newThumbSliderWillDeselectThisVideoModel:videoModel];
@@ -1202,7 +986,7 @@
 {
     
     if (_recordInfo.videoSource.count == 1) {
-        [[JPAppDelegate shareAppdelegate] showAlertViewWithTitle:@"只有一段视频时不能删除"];
+        [MBProgressHUD jp_showMessage:@"只有一段视频时不能删除"];
         return;
     }
     [_recordInfo deleteVideofile:videoModel];
@@ -1224,85 +1008,32 @@
 #pragma mark - JPAudioMenuBaseViewDelegate
 
 - (void)musicCollectionViewScrollViewDidScroll:(UIScrollView *)scrollView{
-    if ([PKGuideManager manager].guide) {
-        CGFloat offsetX = scrollView.contentOffset.x;
-        self.musicGuideView.transform = CGAffineTransformMakeTranslation(-offsetX, 0);
-    }
+   
 }
 
 - (void)musicCollectionViewItemDidSelected{
-    if ([PKGuideManager manager].guide) {
-        [self.musicGuideView removeFromSuperview];
-    }
+   
 }
 
 - (void)musicListWillPop{
-    if ([PKGuideManager manager].guide && self.guide) {
-        [self.musicGuideView removeFromSuperview];
-    }
+    
 }
 
 
 - (void)musicListDidPop{
 
-    if ([PKGuideManager manager].guide && [PKGuideManager manager].musicNo == 4 && self.guide) {
-        [self.musicGuideView removeFromSuperview];
-        self.musicGuideView = [[PKGuideView alloc]initGuideViewWithContent:@"点这里，选中音乐" type:PKGuideViewTailTypeRight];
-        [audioMenuBaseView addSubview:self.musicGuideView];
-        self.musicGuideView.frame = CGRectMake(SCREEN_WIDTH - self.musicGuideView.guideSize.width - 10, -self.musicGuideView.guideSize.height, self.musicGuideView.guideSize.width, self.musicGuideView.guideSize.height);
-    }else{
-        self.guide = NO;
-    }
 }
 
 
 - (void)musicCollectionLoadData{
 
-    [self addMusicGuideView];
-}
-//guide
-- (void)firstMusicUnDownload{
-    if ([PKGuideManager manager].guide && self.guide) {
-        [self.musicGuideView removeFromSuperview];
-        self.musicGuideView = [[PKGuideView alloc]initGuideViewWithContent:@"点这里，下载音乐" type:PKGuideViewTailTypeRight];
-        [audioMenuBaseView addSubview:self.musicGuideView];
-        self.musicGuideView.frame = CGRectMake(SCREEN_WIDTH - self.musicGuideView.guideSize.width , 10, self.musicGuideView.guideSize.width, self.musicGuideView.guideSize.height);
-    }
+  
 }
 
-- (void)firstMusicDownloading{
-    if ([PKGuideManager manager].guide && self.guide) {
-        [self.musicGuideView removeFromSuperview];
-    }
-}
 
-- (void)firstMusicDownloaded{
-    if ([PKGuideManager manager].guide && self.guide && [PKGuideManager manager].musicNo == 2) {
-        [PKGuideManager manager].musicNo = 3;
-        [self.musicGuideView removeFromSuperview];
-        self.musicGuideView = [[PKGuideView alloc]initGuideViewWithContent:@"点这里，添加音乐" type:PKGuideViewTailTypeRight];
-        [audioMenuBaseView addSubview:self.musicGuideView];
-        self.musicGuideView.frame = CGRectMake(SCREEN_WIDTH - self.musicGuideView.guideSize.width, 10, self.musicGuideView.guideSize.width, self.musicGuideView.guideSize.height);
-    }
-}
 
 - (void)selectedBackgroundMusicModel:(JPAudioModel *)model {
-    
-    if ([PKGuideManager manager].guide){
-        if (self.guide && [PKGuideManager manager].musicNo == 3) {
-            [PKGuideManager manager].musicNo = 4;
-            [self.musicGuideView removeFromSuperview];
-            self.musicGuideView = [[PKGuideView alloc]initGuideViewWithContent:@"点这里，返回" type:PKGuideViewTailTypeLeft];
-            [audioMenuBaseView addSubview:self.musicGuideView];
-            self.musicGuideView.frame = CGRectMake( 10, -self.musicGuideView.guideSize.height, self.musicGuideView.guideSize.width, self.musicGuideView.guideSize.height);
-        }
-        [self.guideView removeFromSuperview];
-        if ([PKGuideManager manager].guideNumber == 12 && self.guide) {
-            [PKGuideManager manager].guideNumber = 13;
-        }else{
-            self.guide = NO;
-        }
-    }
+   
     [_compositionPlayer pauseToPlay];
     if (model.isITunes) {
         itunesMusicModel = model;
@@ -1323,42 +1054,17 @@
 }
 
 - (void)audioMenuViewShouldDismiss {
-    if ([PKGuideManager manager].guide) {
-        [self.musicGuideView removeFromSuperview];
-        self.musicGuideView = nil;
-    }
-    if ([PKGuideManager manager].guide && [PKGuideManager manager].guideNumber == 13 && self.guide) {
-        
-        [PKGuideManager manager].guideNumber = 14;
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            self.guideView = [[PKGuideView alloc]initNextGuideViewWith:@"预览视频后，点击这里" andRightSpace:25];
-            [self.navagatorView addSubview:self.guideView];
-            self.navagatorView.clipsToBounds = NO;
-            self.guideView.frame = CGRectMake(SCREEN_WIDTH - self.guideView.guideSize.width - 5, 80, self.guideView.guideSize.width, self.guideView.guideSize.height);
-            [self.rightButton setTitleColor:[UIColor colorWithHexString:@"#0091FF"] forState:UIControlStateNormal];
-            self.rightBtBackView = [[UIView alloc]init];
-            [self.rightButton.superview addSubview:self.rightBtBackView];
-            [self.rightButton.superview bringSubviewToFront:self.rightButton];
-            self.rightBtBackView.sd_layout.centerXEqualToView(self.rightButton).centerYEqualToView(self.rightButton).heightIs(50).widthIs(50);
-            self.rightBtBackView.backgroundColor = UIColor.whiteColor;
-            self.rightBtBackView.layer.cornerRadius = 25;
-            self.rightBtBackView.layer.masksToBounds = YES;
-            self.statusView.backgroundColor = UIColor.clearColor;
-            
-        });
-        
-    }
+    
     if (audioMenuBaseView && audioMenuBaseView.superview) {
         [self someViewWillDismiss];
-        self.videoPlayBackViewHeightLayoutConstraint.constant = SCREEN_WIDTH;
+        self.videoPlayBackViewHeightLayoutConstraint.constant = JP_SCREEN_WIDTH;
         isShowingAudioMenuBaseView = NO;
         [UIView animateWithDuration:0.5 animations:^{
             [self.view layoutIfNeeded];
-            audioMenuBaseView.top = SCREEN_HEIGHT;
+            self->audioMenuBaseView.top = JP_SCREEN_HEIGHT;
             [self audioMenuWillShow:NO];
         } completion:^(BOOL finished) {
-            [audioMenuBaseView removeFromSuperview];
+            [self->audioMenuBaseView removeFromSuperview];
             if (self.compositionPlayer.isPlaying == NO) {
                 [self changeVideoPlayStatus:nil];
             }
@@ -1429,7 +1135,7 @@
     NSMutableArray *deleteArr = [NSMutableArray array];
     for (JPPackagePatternAttribute *patternAttribute in _patternArray) {
         if (patternAttribute.needUpdate == YES) {
-            [self showHUD];
+            [self jp_showHUD];
             [_compositionPlayer addPackagePattern:patternAttribute];
             if (patternAttribute.patternType != JPPackagePatternTypeGifPattern) {
                 UIImage * image = [_viewCache getImageWithModel:patternAttribute];
@@ -1462,43 +1168,29 @@
         }
     }
     [_patternArray removeObjectsInArray:deleteArr];
-    [self hidHUD];
+    [self jp_hideHUD];
     
 }
 
 
 - (IBAction)selectFilterAction:(id)sender {
-    if ([PKGuideManager manager].guide) {
-        [self.guideView removeFromSuperview];
-        if ([PKGuideManager manager].guideNumber == 4 && self.guide) {
-            [PKGuideManager manager].guideNumber = 5;
-        }else{
-            self.guide = NO;
-        }
-    }
+    
     [self someMuneViewWillShow];
     isShowingFilterMenu = YES;
     [_compositionPlayer scrollToWatchThumImageWithTime:kCMTimeZero withSticker:YES];
     if (!filterMenuView) {
-        CGRect frame = CGRectMake(0, self.view.height, SCREEN_WIDTH, self.view.height - SCREEN_WIDTH);
+        CGRect frame = CGRectMake(0, self.view.height, JP_SCREEN_WIDTH, self.view.height - JP_SCREEN_WIDTH);
         //滤镜
         filterMenuView = [[JPPackageFilterMenuView alloc] initWithFrame:frame];
         filterMenuView.delegate = self;
         [filterMenuView layoutIfNeeded];
     }
-    if ([PKGuideManager manager].guide && [PKGuideManager manager].filterNo == 1 && self.guide) {
-        [PKGuideManager manager].filterNo = 2;
-        self.filterGuideView = [[PKGuideView alloc]initGuideViewWithContent:@"点这里，选择该滤镜" type:PKGuideViewTailTypeVertical];
-        [filterMenuView.collecView addSubview:self.filterGuideView];
-        self.filterGuideView.frame = CGRectMake(120 - self.filterGuideView.guideSize.width / 2.0, -self.filterGuideView.guideSize.height - 30 , self.filterGuideView.guideSize.width, self.filterGuideView.guideSize.height);
-    }else{
-        self.guide = NO;
-    }
+    
     [filterMenuView reloadRecordInfo:_recordInfo];
     [self.view addSubview:filterMenuView];
     [UIView animateWithDuration:0.5 animations:^{
         [self.view layoutIfNeeded];
-        filterMenuView.top = SCREEN_WIDTH;
+        self->filterMenuView.top = JP_SCREEN_WIDTH;
     } completion:^(BOOL finished) {
     }];
 }
@@ -1512,9 +1204,9 @@
     isShowingPatternMuneView = NO;
     [UIView animateWithDuration:0.5 animations:^{
         [self.view layoutIfNeeded];
-        newPatternMuneView.top = SCREEN_HEIGHT;
+        self->newPatternMuneView.top = JP_SCREEN_HEIGHT;
     } completion:^(BOOL finished) {
-        [newPatternMuneView removeFromSuperview];
+        [self->newPatternMuneView removeFromSuperview];
         if (self.compositionPlayer.isPlaying == NO) {
             [self changeVideoPlayStatus:nil];
         }
@@ -1589,7 +1281,7 @@
     [newPatternMuneView removeFromSuperview];
     [self someMuneViewWillShow];
     if (!graphPatternMuneView) {
-        CGRect frame = CGRectMake(0, self.view.height, SCREEN_WIDTH, self.view.height - SCREEN_WIDTH);
+        CGRect frame = CGRectMake(0, self.view.height, JP_SCREEN_WIDTH, self.view.height - JP_SCREEN_WIDTH);
         graphPatternMuneView = [[JPPackageGraphPatternMenuView alloc] initWithFrame:frame];
         graphPatternMuneView.recordInfo = _recordInfo;
         [graphPatternMuneView layoutIfNeeded];
@@ -1601,7 +1293,7 @@
     [self.view addSubview:graphPatternMuneView];
     [UIView animateWithDuration:0.5 animations:^{
         [self.view layoutIfNeeded];
-        graphPatternMuneView.top = SCREEN_WIDTH;
+        self->graphPatternMuneView.top = JP_SCREEN_WIDTH;
     } completion:^(BOOL finished) {
         
     }];
@@ -1613,22 +1305,18 @@
         [self changeVideoPlayStatus:nil];
     }
     [self someMuneViewWillShow];
-    CGFloat height = ScreenFitFloat6(259);
-    height = height + KStatusBarHeight;
-    self.videoPlayBackViewHeightLayoutConstraint.constant = ScreenFitFloat6(259);
+    CGFloat height = JPScreenFitFloat6(259);
+    height = height + JP_STATUS_HEIGHT;
+    self.videoPlayBackViewHeightLayoutConstraint.constant = JPScreenFitFloat6(259);
     [_compositionPlayer scrollToWatchThumImageWithTime:kCMTimeZero withSticker:YES];
     isShowingAudioMenuBaseView = YES;
     if (!audioMenuBaseView) {
-        CGRect frame = CGRectMake(0,SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - height);
+        CGRect frame = CGRectMake(0,JP_SCREEN_HEIGHT, JP_SCREEN_WIDTH, JP_SCREEN_HEIGHT - height);
         audioMenuBaseView = [[JPAudioMenuBaseView alloc] initWithFrame:frame withVideoCompositionPlayer:_compositionPlayer];
         audioMenuBaseView.delegate = self;
     }
     if (audioMenuBaseView.musicMenu.dataLoad) {
-        if ([PKGuideManager manager].musicNo == 1) {
-            [self addMusicGuideView];
-        }else{
-            self.guide = NO;
-        }
+        
     }
     [self.view addSubview:audioMenuBaseView];
     [audioMenuBaseView setCurrentTime:_thumbSilderView.currentTime];
@@ -1636,7 +1324,7 @@
     audioMenuBaseView.thumImageDic = [self getVideoTotalThumbImages];
     [audioMenuBaseView refreshMenu];
     [UIView animateWithDuration:0.5 animations:^{
-        audioMenuBaseView.top = height;
+        self->audioMenuBaseView.top = height;
         [self.view layoutIfNeeded];
         [self audioMenuWillShow:YES];
     } completion:^(BOOL finished) {
@@ -1715,7 +1403,7 @@
     isShowingGraphPatternMuneView = NO;
     [graphPatternMuneView removeFromSuperview];
     isEditSticker = YES;
-    CGRect frame = CGRectMake(0, self.view.height, SCREEN_WIDTH, self.view.height - SCREEN_WIDTH);
+    CGRect frame = CGRectMake(0, self.view.height, JP_SCREEN_WIDTH, self.view.height - JP_SCREEN_WIDTH);
     if (!attributeView) {
         attributeView = [[JPPackagePatternAttributeView alloc] initWithFrame:frame];
         attributeView.delegate = self;
@@ -1729,7 +1417,7 @@
     _playButton.hidden = YES;
     [UIView animateWithDuration:0.5 animations:^{
         [self.view layoutIfNeeded];
-        attributeView.top = SCREEN_WIDTH;
+        self->attributeView.top = JP_SCREEN_WIDTH;
     } completion:^(BOOL finished) {
     }];
     
@@ -1741,9 +1429,9 @@
     [self someViewWillDismiss];
     [UIView animateWithDuration:0.5 animations:^{
         [self.view layoutIfNeeded];
-        graphPatternMuneView.top = SCREEN_HEIGHT;
+        self->graphPatternMuneView.top = JP_SCREEN_HEIGHT;
     } completion:^(BOOL finished) {
-        [graphPatternMuneView removeFromSuperview];
+        [self->graphPatternMuneView removeFromSuperview];
         if (self.compositionPlayer.isPlaying == NO) {
             [self changeVideoPlayStatus:nil];
         }
@@ -1795,7 +1483,7 @@
     }
     isEditSticker = YES;
     self.patternInteractiveView = view;
-    CGRect frame = CGRectMake(0, self.view.height, SCREEN_WIDTH, self.view.height - SCREEN_WIDTH);
+    CGRect frame = CGRectMake(0, self.view.height, JP_SCREEN_WIDTH, self.view.height - JP_SCREEN_WIDTH);
     if (attributeView.patternAttributeModel == view.patternAttribute && attributeView.superview != nil) {
         return;
     }
@@ -1815,7 +1503,7 @@
     attributeView.apearView = view;
     [view updateContent];
     [UIView animateWithDuration:0.5 animations:^{
-        attributeView.top = SCREEN_WIDTH;
+        self->attributeView.top = JP_SCREEN_WIDTH;
     } completion:^(BOOL finished) {
         
     }];
@@ -1830,7 +1518,7 @@
     JPPackagePatternType type = patternAttribute.patternType;
     if (type != JPPackagePatternTypeWeather && type != JPPackagePatternTypeDate && type != JPPackagePatternTypePicture && type != JPPackagePatternTypeHollowOutPicture && type != JPPackagePatternTypeWeekPicture && type!= JPPackagePatternTypeDownloadedPicture) {
         if (!patternInputView) {
-            patternInputView = [[JPPatternInputView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+            patternInputView = [[JPPatternInputView alloc] initWithFrame:CGRectMake(0, 0, JP_SCREEN_WIDTH, JP_SCREEN_HEIGHT)];
             patternInputView.delegate  = self;
         }
         isEditSticker = YES;
@@ -1868,9 +1556,9 @@
     self.patternInteractiveView = nil;
     [UIView animateWithDuration:0.5 animations:^{
         [self.view layoutIfNeeded];
-        attributeView.top = SCREEN_HEIGHT;
+        self->attributeView.top = JP_SCREEN_HEIGHT;
     } completion:^(BOOL finished) {
-        [attributeView removeFromSuperview];
+        [self->attributeView removeFromSuperview];
         if (self.compositionPlayer.isPlaying == NO) {
             [self changeVideoPlayStatus:nil];
         }
@@ -1884,20 +1572,6 @@
     [_compositionPlayer returnCurrentPage];
     [_compositionPlayer setRecordInfo:_recordInfo];
     [_compositionPlayer scrollToWatchThumImageWithTime:_patternInteractiveView.patternAttribute.timeRange.start withSticker:NO];
-}
-
-- (void)setGuide:(BOOL)guide{
-    _guide = guide;
-    if (!self.guide) {
-        [self.thumbSilderView removeGuideView];
-        [self.guideView removeFromSuperview];
-        [self.musicGuideView removeFromSuperview];
-        [self.filterGuideView removeFromSuperview];
-        [self.thumGuideView removeFromSuperview];
-        [self.transformGuideView removeFromSuperview];
-        [self.rightButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
-        [self.rightBtBackView removeFromSuperview];
-    }
 }
 
 @end

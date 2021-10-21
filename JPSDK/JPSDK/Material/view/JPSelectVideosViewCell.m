@@ -23,7 +23,7 @@
     [super awakeFromNib];
     self.contentImageView.layer.masksToBounds = YES;
     self.contentImageView.layer.cornerRadius =  2;
-    self.numberLabel.font = [UIFont placardMTStdCondBoldFontWithSize:18];
+    self.numberLabel.font = [UIFont jp_placardMTStdCondBoldFontWithSize:18];
     self.backView.layer.masksToBounds = YES;
     self.backView.layer.cornerRadius =  2;
 }

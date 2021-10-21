@@ -29,7 +29,7 @@
 - (void)setupUI{
     self.textLb = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, (50), (13))];
     self.textLb.font = [UIFont contentFont];
-    self.textLb.textColor = [UIColor colorWithHex:0x777777];
+    self.textLb.textColor = [UIColor jp_colorWithHexString:@"777777"];
     self.textLb.centerY = self.centerY;
     [self.contentView addSubview:self.textLb];
     self.textLb.sd_layout.leftSpaceToView(self.contentView, 15).topEqualToView(self.contentView).heightIs(25).widthIs(50);
@@ -37,15 +37,15 @@
     CGRect frame = CGRectMake(80, 0, self.width - 95, 25);
     NSArray *colorArr = [NSArray arrayWithObjects:
                          [UIColor whiteColor],
-                         [UIColor colorWithHex:0x252525],
-                         [UIColor colorWithHex:0xfb1b45],
-                         [UIColor colorWithHex:0xf78618],
-                         [UIColor colorWithHex:0xf7d518],
-                         [UIColor colorWithHex:0x18df7a],
-                         [UIColor colorWithHex:0x10ddbb],
-                         [UIColor colorWithHex:0x1268dc],
-                         [UIColor colorWithHex:0x7e14e0],
-                         [UIColor colorWithHex:0xf32dc2], nil];
+                         [UIColor jp_colorWithHexString:@"252525"],
+                         [UIColor jp_colorWithHexString:@"fb1b45"],
+                         [UIColor jp_colorWithHexString:@"f78618"],
+                         [UIColor jp_colorWithHexString:@"f7d518"],
+                         [UIColor jp_colorWithHexString:@"18df7a"],
+                         [UIColor jp_colorWithHexString:@"10ddbb"],
+                         [UIColor jp_colorWithHexString:@"1268dc"],
+                         [UIColor jp_colorWithHexString:@"7e14e0"],
+                         [UIColor jp_colorWithHexString:@"f32dc2"], nil];
     JPCustomColorSlider *colorSlider = [[JPCustomColorSlider alloc] initWithFrame:frame withColors:colorArr];
     [self.contentView addSubview:colorSlider];
     _customColorSlider = colorSlider;

@@ -30,8 +30,8 @@
     _backView.layer.cornerRadius = 2.5;
     _contentImageView.layer.masksToBounds = YES;
     _contentImageView.layer.cornerRadius = 2.5;
-    self.backgroundColor = [UIColor colorWithHex:0x101010];
-    self.contentView.backgroundColor = [UIColor colorWithHex:0x101010];
+    self.backgroundColor = [UIColor jp_colorWithHexString:@"101010"];
+    self.contentView.backgroundColor = [UIColor jp_colorWithHexString:@"101010"];
 //    _moveStatusImage.userInteractionEnabled = YES;
     UIPanGestureRecognizer *leftPan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(leftPanAction:)];
     leftPan.minimumNumberOfTouches = 1;
@@ -83,7 +83,7 @@
 {
     self.startMove = YES;
     if (pan.state == UIGestureRecognizerStateBegan) {
-        _moveStatusImage.image = [UIImage imageNamed:@"move-hold"];
+        _moveStatusImage.image = JPImageWithName(@"move-hold");
         if (self.delegate) {
             [self.delegate videoInfoTableViewCellSelect:self andPan:pan];
         }
@@ -102,7 +102,7 @@
             [self.delegate videoInfoTableViewCellSelectLocationChange:self andPan:pan];
         }
     }else{
-        _moveStatusImage.image = [UIImage imageNamed:@"move"];
+        _moveStatusImage.image = JPImageWithName(@"move");
         if (self.delegate) {
             [self.delegate videoInfoTableViewCellSelectLocationEnd:self andPan:pan];
         }

@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -48,7 +45,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AfB-5A-G2C">
                             <rect key="frame" x="0.0" y="0.0" width="187.5" height="60"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" title="Video"/>
+                            <state key="normal" title="视频"/>
                             <connections>
                                 <action selector="switchSourceAction:" destination="-1" eventType="touchUpInside" id="uZa-HC-G5L"/>
                             </connections>
@@ -56,7 +53,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5uQ-uu-czH">
                             <rect key="frame" x="187.5" y="0.0" width="187.5" height="60"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" title="Photo"/>
+                            <state key="normal" title="照片"/>
                             <connections>
                                 <action selector="switchSourceAction:" destination="-1" eventType="touchUpInside" id="Rq5-gP-Qea"/>
                             </connections>
@@ -97,6 +94,7 @@
                 <constraint firstItem="u0f-zo-nrL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="yzq-Bw-rCA"/>
                 <constraint firstAttribute="bottom" secondItem="v5z-1l-DCl" secondAttribute="bottom" id="zYi-QA-w0s"/>
             </constraints>
+            <point key="canvasLocation" x="132" y="132"/>
         </view>
     </objects>
 </document>

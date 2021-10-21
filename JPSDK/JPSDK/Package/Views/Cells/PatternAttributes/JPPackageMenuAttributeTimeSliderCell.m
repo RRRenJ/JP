@@ -32,7 +32,7 @@
 - (void)createUI {
     UILabel *lb = [[UILabel alloc] initWithFrame:CGRectZero];
     lb.font = [UIFont contentFont];
-    lb.textColor = [UIColor colorWithHex:0x777777];
+    lb.textColor = [UIColor jp_colorWithHexString:@"777777"];
     lb.text = @"时间控制";
     [self.contentView addSubview:lb];
     lb.sd_layout.topSpaceToView(self.contentView, 8).leftSpaceToView(self.contentView, 15).widthIs(100).heightIs(13);

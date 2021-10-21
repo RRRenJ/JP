@@ -38,14 +38,14 @@
 
 - (void)createSubviews
 {
-    [[NSBundle mainBundle] loadNibNamed:@"JPHotListTitleView" owner:self options:nil];
+    [JPResourceBundle loadNibNamed:@"JPHotListTitleView" owner:self options:nil];
     [self addSubview:self.view];
     self.view.sd_layout.topEqualToView(self);
     self.view.sd_layout.rightEqualToView(self);
     self.view.sd_layout.bottomEqualToView(self);
     self.view.sd_layout.leftEqualToView(self);
     self.backgroundColor = [UIColor clearColor];
-    self.hostLabel.textColor = [UIColor colorWithHexString:@"#c5c5c5"];
+    self.hostLabel.textColor = [UIColor jp_colorWithHexString:@"#c5c5c5"];
     
 }
 

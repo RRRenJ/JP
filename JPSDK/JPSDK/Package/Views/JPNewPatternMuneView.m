@@ -33,16 +33,16 @@
     [self setTittle:@"图案添加"];
     UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
 
-//    [addButton setImage:[UIImage imageNamed:@"add-4"] forState:UIControlStateNormal];
+//    [addButton setImage:JPImageWithName(@"add-4") forState:UIControlStateNormal];
 //    addButton.layer.masksToBounds = YES;
 //    addButton.layer.borderWidth = 0.5;
 //    addButton.layer.borderColor = [UIColor colorWithHex:0x1f1f1f].CGColor;
 
-    [addButton setImage:[UIImage imageNamed:@"tuan_ad"] forState:UIControlStateNormal];
-    addButton.backgroundColor = [UIColor colorWithHex:0x0e0e0e];
-    self.backgroundColor = [UIColor colorWithHex:0x0e0e0e];
+    [addButton setImage:JPImageWithName(@"tuan_ad") forState:UIControlStateNormal];
+    addButton.backgroundColor = [UIColor jp_colorWithHexString:@"0e0e0e"];
+    self.backgroundColor = [UIColor jp_colorWithHexString:@"0e0e0e"];
     [self addSubview:addButton];
-    CGFloat bottom = KTabbarHeightLineHeight;
+    CGFloat bottom = JPTabbarHeightLineHeight;
     addButton.sd_layout.leftSpaceToView(self, 0).rightSpaceToView(self, 0).bottomSpaceToView(self, bottom).heightIs(41);
     [addButton addTarget:self action:@selector(addPackagePatternAction:) forControlEvents:UIControlEventTouchUpInside];
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.tittleView.bottom, self.width, self.height - self.tittleView.bottom - addButton.height) style:UITableViewStylePlain];
@@ -64,7 +64,7 @@
     _messageLabel.text = @"添加一个图案吧";
     
     _tipImgView = [[UIImageView alloc] init];
-    _tipImgView.image = [UIImage imageNamed:@"13.png"];
+    _tipImgView.image = JPImageWithName(@"Prompt-add");
     _tipImgView.hidden = YES;
     [self addSubview:_tipImgView];
     _tipImgView.sd_layout.bottomSpaceToView(addButton, 5).centerXIs(self.centerX).widthIs(67).heightIs(37);

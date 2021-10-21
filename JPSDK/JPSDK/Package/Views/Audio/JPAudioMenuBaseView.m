@@ -68,25 +68,25 @@
         self.backgroundColor = UIColor.blackColor;
         _compositionPlayer = player;
         // Initialization code
-        [[NSBundle mainBundle] loadNibNamed:@"JPAudioMenuBaseView" owner:self options:nil];
+        [JPResourceBundle loadNibNamed:@"JPAudioMenuBaseView" owner:self options:nil];
         [self addSubview:self.contentView];
         self.contentView.sd_layout.leftEqualToView(self).rightEqualToView(self).topSpaceToView(self, 0).bottomEqualToView(self);
                 
-        self.menuViewHeightLayoutConstraint.constant = ScreenFitFloat6(40);
-        self.volumeViewHeightLayoutConstraint.constant = ScreenFitFloat6(100);
-        self.volumeBgViewHeightLayoutConstraint.constant = ScreenFitFloat6(35);
-        self.laterVolumeBgViewHeightLayoutConstraint.constant = ScreenFitFloat6(35);
-        //self.volumeBgViewWidthLayoutConstraint.constant = SCREEN_WIDTH - ScreenFitFloat6(110);
+        self.menuViewHeightLayoutConstraint.constant = JPScreenFitFloat6(40);
+        self.volumeViewHeightLayoutConstraint.constant = JPScreenFitFloat6(100);
+        self.volumeBgViewHeightLayoutConstraint.constant = JPScreenFitFloat6(35);
+        self.laterVolumeBgViewHeightLayoutConstraint.constant = JPScreenFitFloat6(35);
+        //self.volumeBgViewWidthLayoutConstraint.constant = JP_SCREEN_WIDTH - JPScreenFitFloat6(110);
         [self setNeedsLayout];
         [self layoutIfNeeded];
-        self.slideViewContentViewWidthLayoutConstraint.constant = self.slideViewContentViewHeightLayoutConstraint.constant = ScreenFitFloat6(19);
+        self.slideViewContentViewWidthLayoutConstraint.constant = self.slideViewContentViewHeightLayoutConstraint.constant = JPScreenFitFloat6(19);
         CGFloat leftMax = _volumeBgView.left - _slideViewWidthLayoutConstraint.constant/2.f;
         CGFloat rightMax = _volumeBgView.right - _slideViewWidthLayoutConstraint.constant/2.f;
         self.slideViewLeftLayoutConstraint.constant = rightMax - (rightMax - leftMax)*0.5f;
         CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI_4);
         self.sliderContentView.transform = transform;
         
-        self.laterSlideViewContentViewWidthLayoutConstraint.constant = self.laterSlideViewContentViewHeightLayoutConstraint.constant = ScreenFitFloat6(19);
+        self.laterSlideViewContentViewWidthLayoutConstraint.constant = self.laterSlideViewContentViewHeightLayoutConstraint.constant = JPScreenFitFloat6(19);
         CGFloat laterLeftMax = _laterVolumeBgView.left - _laterSlideViewWidthLayoutConstraint.constant/2.f;
         CGFloat laterRightMax = _laterVolumeBgView.right - _laterSlideViewWidthLayoutConstraint.constant/2.f;
         self.laterSlideViewLeftLayoutConstraint.constant = laterRightMax - (laterRightMax - laterLeftMax)*0.5f;
@@ -94,8 +94,8 @@
         self.laterSliderContentView.transform = laterTransform;
         
         CGFloat y = self.menuViewHeightLayoutConstraint.constant + self.volumeViewHeightLayoutConstraint.constant;
-        src = [[UIScrollView alloc] initWithFrame:CGRectMake(0, y, SCREEN_WIDTH, ScreenFitFloat6(251))];
-        src.contentSize = CGSizeMake(SCREEN_WIDTH*3, src.height);
+        src = [[UIScrollView alloc] initWithFrame:CGRectMake(0, y, JP_SCREEN_WIDTH, JPScreenFitFloat6(251))];
+        src.contentSize = CGSizeMake(JP_SCREEN_WIDTH*3, src.height);
         src.pagingEnabled = YES;
         src.scrollEnabled = NO;
         src.showsVerticalScrollIndicator = NO;
@@ -110,10 +110,10 @@
         musicView.delegate = self;
         self.musicMenu = musicView;
         [src addSubview:musicView];
-        bottom = KTabbarHeightLineHeight;
-     musicView.sd_layout.topEqualToView(src).bottomSpaceToView(src, bottom).leftEqualToView(src).widthIs(SCREEN_WIDTH);
+        bottom = JPTabbarHeightLineHeight;
+     musicView.sd_layout.topEqualToView(src).bottomSpaceToView(src, bottom).leftEqualToView(src).widthIs(JP_SCREEN_WIDTH);
         [src setContentOffset:CGPointMake(0, 0) animated:NO];
-        _selectedViewLeftLayoutConstraint.constant = (SCREEN_WIDTH - 30)/6 + 15 - _selectedViewWidthLayoutConstraint.constant/2;
+        _selectedViewLeftLayoutConstraint.constant = (JP_SCREEN_WIDTH - 30)/4 + 15 - _selectedViewWidthLayoutConstraint.constant/2;
         
         UIPanGestureRecognizer *panGes = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(volumePercentChanged:)];
         panGes.minimumNumberOfTouches = 1;
@@ -143,8 +143,8 @@
     if (consant >= middle && consant <= rightMax) {
         wh = 10.f + fabs(9.f/(middle - rightMax))*(consant - middle);
     }
-    if (wh > ScreenFitFloat6(19)) {
-        wh = ScreenFitFloat6(19);
+    if (wh > JPScreenFitFloat6(19)) {
+        wh = JPScreenFitFloat6(19);
     }
     if (wh < 10.f) {
         wh = 10.f;
@@ -360,8 +360,8 @@
         if (consant >= middle && consant <= rightMax) {
             wh = 10.f + fabs(9.f/(middle - rightMax))*(consant - middle);
         }
-        if (wh > ScreenFitFloat6(19)) {
-            wh = ScreenFitFloat6(19);
+        if (wh > JPScreenFitFloat6(19)) {
+            wh = JPScreenFitFloat6(19);
         }
         if (wh < 10.f) {
             wh = 10.f;
@@ -416,8 +416,8 @@
         if (consant >= middle && consant <= rightMax) {
             wh = 10.f + fabs(9.f/(middle - rightMax))*(consant - middle);
         }
-        if (wh > ScreenFitFloat6(19)) {
-            wh = ScreenFitFloat6(19);
+        if (wh > JPScreenFitFloat6(19)) {
+            wh = JPScreenFitFloat6(19);
         }
         if (wh < 10.f) {
             wh = 10.f;
@@ -447,10 +447,10 @@
     }
     _selectedAudioType = type;
     if (JPSelectedAudioTypeMusic == _selectedAudioType) {
-        _selectedViewLeftLayoutConstraint.constant = (SCREEN_WIDTH - 30)/6 + 15 - _selectedViewWidthLayoutConstraint.constant/2;
+        _selectedViewLeftLayoutConstraint.constant = (JP_SCREEN_WIDTH - 30)/4 + 15 - _selectedViewWidthLayoutConstraint.constant/2;
         [_musicBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_soundEffectBtn setTitleColor:[UIColor colorWithHex:0x767676] forState:UIControlStateNormal];
-        [_recordAudioBtn setTitleColor:[UIColor colorWithHex:0x767676] forState:UIControlStateNormal];
+        [_soundEffectBtn setTitleColor:[UIColor jp_colorWithHexString:@"767676"] forState:UIControlStateNormal];
+        [_recordAudioBtn setTitleColor:[UIColor jp_colorWithHexString:@"767676"] forState:UIControlStateNormal];
         [src setContentOffset:CGPointMake(0, 0) animated:NO];
         [_compositionPlayer pauseToPlay];
         [self endPlay];
@@ -459,14 +459,15 @@
             soundEffectMenuView = [[JPSoundEffectMenuView alloc] initWithFrame:src.bounds andCompositionPlayer:_compositionPlayer];
             soundEffectMenuView.delegate = self;
             [src addSubview:soundEffectMenuView];
-            soundEffectMenuView.sd_layout.topEqualToView(src).bottomEqualToView(src).leftSpaceToView(src, SCREEN_WIDTH).widthIs(SCREEN_WIDTH);
+            soundEffectMenuView.sd_layout.topEqualToView(src).bottomEqualToView(src).leftSpaceToView(src, JP_SCREEN_WIDTH).widthIs(JP_SCREEN_WIDTH);
         }
         soundEffectMenuView.recordInfo = _recordInfo;
         [_soundEffectBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_musicBtn setTitleColor:[UIColor colorWithHex:0x767676] forState:UIControlStateNormal];
-        [_recordAudioBtn setTitleColor:[UIColor colorWithHex:0x767676] forState:UIControlStateNormal];
-        _selectedViewLeftLayoutConstraint.constant = SCREEN_WIDTH/2 - _selectedViewWidthLayoutConstraint.constant/2;
-        [src setContentOffset:CGPointMake(SCREEN_WIDTH, 0) animated:NO];
+        [_musicBtn setTitleColor:[UIColor jp_colorWithHexString:@"767676"] forState:UIControlStateNormal];
+        [_recordAudioBtn setTitleColor:[UIColor jp_colorWithHexString:@"767676"] forState:UIControlStateNormal];
+//        _selectedViewLeftLayoutConstraint.constant = JP_SCREEN_WIDTH/2 - _selectedViewWidthLayoutConstraint.constant/2;
+        _selectedViewLeftLayoutConstraint.constant = (JP_SCREEN_WIDTH - 30)*3/4 + 15 - _selectedViewWidthLayoutConstraint.constant/2;
+        [src setContentOffset:CGPointMake(JP_SCREEN_WIDTH, 0) animated:NO];
         [soundEffectMenuView updateViews];
         [self endPlay];
     } else if (JPSelectedAudioTypeRecordAudio == _selectedAudioType){
@@ -474,18 +475,18 @@
             recordView = [[JPRecordingMenuView alloc] initWithFrame:src.bounds andCompositionPlayer:_compositionPlayer];
             recordView.delegate = self;
             [src addSubview:recordView];
-            CGFloat bottom = KTabbarHeightLineHeight;
-            recordView.sd_layout.topEqualToView(src).bottomSpaceToView(src, bottom).leftSpaceToView(src, SCREEN_WIDTH*2).widthIs(SCREEN_WIDTH);
+            CGFloat bottom = JPTabbarHeightLineHeight;
+            recordView.sd_layout.topEqualToView(src).bottomSpaceToView(src, bottom).leftSpaceToView(src, JP_SCREEN_WIDTH*2).widthIs(JP_SCREEN_WIDTH);
         }
         [_compositionPlayer scrollToWatchThumImageWithTime:kCMTimeZero withSticker:NO];
         recordView.recordInfo = _recordInfo;
         [recordView setThumImageArr:[_thumImageDic valueForKey:@"images"]];
         [recordView setCurrentTime:_currentTime];
         [_recordAudioBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_soundEffectBtn setTitleColor:[UIColor colorWithHex:0x767676] forState:UIControlStateNormal];
-        [_musicBtn setTitleColor:[UIColor colorWithHex:0x767676] forState:UIControlStateNormal];
-        _selectedViewLeftLayoutConstraint.constant = (SCREEN_WIDTH - 30)*5/6 + 15 - _selectedViewWidthLayoutConstraint.constant/2;
-        [src setContentOffset:CGPointMake(SCREEN_WIDTH*2, 0) animated:NO];
+        [_soundEffectBtn setTitleColor:[UIColor jp_colorWithHexString:@"767676"] forState:UIControlStateNormal];
+        [_musicBtn setTitleColor:[UIColor jp_colorWithHexString:@"767676"] forState:UIControlStateNormal];
+        _selectedViewLeftLayoutConstraint.constant = (JP_SCREEN_WIDTH - 30)*5/6 + 15 - _selectedViewWidthLayoutConstraint.constant/2;
+        [src setContentOffset:CGPointMake(JP_SCREEN_WIDTH*2, 0) animated:NO];
         [recordView updateRecordViews];
         [self endPlay];
     }

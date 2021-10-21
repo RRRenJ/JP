@@ -17,7 +17,7 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"JPCalibratView" owner:self options:nil];
+        NSArray *nib = [JPResourceBundle loadNibNamed:@"JPCalibratView" owner:self options:nil];
         JPCalibratView *_myView = (JPCalibratView *)[nib objectAtIndex:0];
         self = _myView;
     }

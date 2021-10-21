@@ -35,11 +35,11 @@
 
 - (void)createSubviews
 {
-    [[NSBundle mainBundle] loadNibNamed:@"JPSelectVideosView" owner:self options:nil];
+    [JPResourceBundle loadNibNamed:@"JPSelectVideosView" owner:self options:nil];
     [self addSubview:self.view];
     self.view.sd_layout.topEqualToView(self).bottomEqualToView(self).rightEqualToView(self).leftEqualToView(self);
     self.collectionView.dataSource = self;
-    [self.collectionView registerNib:[UINib nibWithNibName:@"JPSelectVideosViewCell" bundle:nil] forCellWithReuseIdentifier:@"JPSelectVideosViewCell"];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"JPSelectVideosViewCell" bundle:JPResourceBundle] forCellWithReuseIdentifier:@"JPSelectVideosViewCell"];
     self.collectionView.showsVerticalScrollIndicator = NO;
     self.collectionView.showsHorizontalScrollIndicator = NO;
 }

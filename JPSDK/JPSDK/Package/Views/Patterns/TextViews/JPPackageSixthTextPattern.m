@@ -41,7 +41,7 @@
 }
 
 - (void)createSubviews{
-    [[NSBundle mainBundle] loadNibNamed:@"JPPackageSixthTextPattern" owner:self options:nil];
+    [JPResourceBundle loadNibNamed:@"JPPackageSixthTextPattern" owner:self options:nil];
     self.textView.backgroundColor = [UIColor clearColor];
     [self addSubview:self.textView];
     self.textView.sd_layout.topEqualToView(self).bottomEqualToView(self).leftEqualToView(self).rightEqualToView(self);
@@ -66,8 +66,8 @@
 - (CGSize)getMyReallySizeWithPackagePatternAttribute:(JPPackagePatternAttribute *)patternAttribute andScale:(CGFloat)scale{
     [self setScale:scale];
     [self layoutIfNeeded];
-    CGFloat width = [UIFont widthForText:patternAttribute.text andFontSize:[UIFont fontWithName:patternAttribute.textFontName size:patternAttribute.textFontSize * scale] andHeight:patternAttribute.textFontSize * scale] + 20 * scale;
-    CGFloat subWidth = [UIFont widthForText:patternAttribute.subTitle andFontSize:[UIFont fontWithName:patternAttribute.textFontName size:(patternAttribute.textFontSize - 6) * scale] andHeight:patternAttribute.textFontSize * scale] + 15 * scale;
+    CGFloat width = [UIFont jp_widthForText:patternAttribute.text andFontSize:[UIFont fontWithName:patternAttribute.textFontName size:patternAttribute.textFontSize * scale] andHeight:patternAttribute.textFontSize * scale] + 20 * scale;
+    CGFloat subWidth = [UIFont jp_widthForText:patternAttribute.subTitle andFontSize:[UIFont fontWithName:patternAttribute.textFontName size:(patternAttribute.textFontSize - 6) * scale] andHeight:patternAttribute.textFontSize * scale] + 15 * scale;
     CGFloat height = self.subTittle.bottom + 5 * scale ;
     return CGSizeMake(MAX(width, subWidth), height);
 }

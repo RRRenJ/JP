@@ -11,6 +11,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIColor (JP)
 
++ (UIColor *)jp_colorWithHexString:(NSString *)color alpha:(CGFloat)alpha;
+
++ (UIColor *)jp_colorWithHexString:(NSString *)color;
+
 @end
 
 NS_ASSUME_NONNULL_END

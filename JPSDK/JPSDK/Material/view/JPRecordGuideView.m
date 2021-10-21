@@ -8,7 +8,6 @@
 
 #import "JPRecordGuideView.h"
 #import "JPGradientAnimateGuideView.h"
-#import "JPSession.h"
 
 #define VIDEO_SPEED_TAG   999
 #define CAMARA_FLIP_TAG   1000
@@ -29,38 +28,38 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        CGFloat height = KShrinkStatusBarHeight;
-        CGFloat width = (SCREEN_WIDTH - 30) / 5.0;
-        if (![JPUtil getInfoFromUserDefaults:kRecordOfVideoSpeedGuideStep]) {
-            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(ScreenFitFloat6(31), height, ScreenFitFloat6(50), 60) andText:@"快慢速"];
-            view.centerX =15 + width / 2.0;
-            view.tag = VIDEO_SPEED_TAG;
-            [self addSubview:view];
-        }
-        if (![JPUtil getInfoFromUserDefaults:kRecordOfCamaraFlipGuideStep]) {
-            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(ScreenFitFloat6(95), height, ScreenFitFloat6(80), 60) andText:@"翻转镜头"];
-            view.tag = CAMARA_FLIP_TAG;
-            view.centerX =15 + width / 2.0 + width;
-            [self addSubview:view];
-        }
-        if (![JPUtil getInfoFromUserDefaults:kRecordOfFilterSelectedGuideStep]) {
-            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(ScreenFitFloat6(175), height, ScreenFitFloat6(50), 60) andText:@"滤镜"];
-            view.tag = FILTER_SELECTED_TAG;
-            view.centerX =15 + width / 2.0 + width * 2;
-            [self addSubview:view];
-        }
-        if (![JPUtil getInfoFromUserDefaults:kRecordOfFlashLightSelectedGuideStep]) {
-            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(ScreenFitFloat6(240), height, ScreenFitFloat6(80), 60) andText:@"闪光灯"];
-            view.tag = FLASH_LIGHT_TAG;
-            view.centerX =15 + width / 2.0 + width * 3;
-            [self addSubview:view];
-        }
-        if (![JPUtil getInfoFromUserDefaults:kRecordOfVideoFrameGuideStep]) {
-            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - ScreenFitFloat6(74), height, ScreenFitFloat6(100), 60) andText:@"选择画幅"];
-            view.centerX =15 + width / 2.0 + width * 4;
-            view.tag = VIDEO_FRAME_TAG;
-            [self addSubview:view];
-        }
+//        CGFloat height = JPKShrinkStatusBarHeight;
+//        CGFloat width = (SCREEN_WIDTH - 30) / 5.0;
+//        if (![JPUtil getInfoFromUserDefaults:kRecordOfVideoSpeedGuideStep]) {
+//            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(JPScreenFitFloat6(31), height, JPScreenFitFloat6(50), 60) andText:@"快慢速"];
+//            view.centerX =15 + width / 2.0;
+//            view.tag = VIDEO_SPEED_TAG;
+//            [self addSubview:view];
+//        }
+//        if (![JPUtil getInfoFromUserDefaults:kRecordOfCamaraFlipGuideStep]) {
+//            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(JPScreenFitFloat6(95), height, JPScreenFitFloat6(80), 60) andText:@"翻转镜头"];
+//            view.tag = CAMARA_FLIP_TAG;
+//            view.centerX =15 + width / 2.0 + width;
+//            [self addSubview:view];
+//        }
+//        if (![JPUtil getInfoFromUserDefaults:kRecordOfFilterSelectedGuideStep]) {
+//            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(JPScreenFitFloat6(175), height, JPScreenFitFloat6(50), 60) andText:@"滤镜"];
+//            view.tag = FILTER_SELECTED_TAG;
+//            view.centerX =15 + width / 2.0 + width * 2;
+//            [self addSubview:view];
+//        }
+//        if (![JPUtil getInfoFromUserDefaults:kRecordOfFlashLightSelectedGuideStep]) {
+//            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(JPScreenFitFloat6(240), height, JPScreenFitFloat6(80), 60) andText:@"闪光灯"];
+//            view.tag = FLASH_LIGHT_TAG;
+//            view.centerX =15 + width / 2.0 + width * 3;
+//            [self addSubview:view];
+//        }
+//        if (![JPUtil getInfoFromUserDefaults:kRecordOfVideoFrameGuideStep]) {
+//            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - JPScreenFitFloat6(74), height, JPScreenFitFloat6(100), 60) andText:@"选择画幅"];
+//            view.centerX =15 + width / 2.0 + width * 4;
+//            view.tag = VIDEO_FRAME_TAG;
+//            [self addSubview:view];
+//        }
     }
     return self;
 }
@@ -100,32 +99,32 @@
 }
 
 - (void)removeGuide:(NSString *)str withAnimation:(BOOL)animation {
-    [JPSession sharedInstance].showRecordGuide = NO;
-    if ([str isEqualToString:kRecordOfVideoSpeedGuideStep] && ![JPUtil getInfoFromUserDefaults:kRecordOfVideoSpeedGuideStep]) {
-        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kRecordOfVideoSpeedGuideStep];
-        [self removeViewWithTag:VIDEO_SPEED_TAG withAnimation:animation];
-        return;
-    }
-    if ([str isEqualToString:kRecordOfCamaraFlipGuideStep] && ![JPUtil getInfoFromUserDefaults:kRecordOfCamaraFlipGuideStep]) {
-        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kRecordOfCamaraFlipGuideStep];
-        [self removeViewWithTag:CAMARA_FLIP_TAG withAnimation:animation];
-        return;
-    }
-    if ([str isEqualToString:kRecordOfFilterSelectedGuideStep] && ![JPUtil getInfoFromUserDefaults:kRecordOfFilterSelectedGuideStep]) {
-        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kRecordOfFilterSelectedGuideStep];
-        [self removeViewWithTag:FILTER_SELECTED_TAG withAnimation:animation];
-        return;
-    }
-    if ([str isEqualToString:kRecordOfFlashLightSelectedGuideStep] && ![JPUtil getInfoFromUserDefaults:kRecordOfFlashLightSelectedGuideStep]) {
-        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kRecordOfFlashLightSelectedGuideStep];
-        [self removeViewWithTag:FLASH_LIGHT_TAG withAnimation:animation];
-        return;
-    }
-    if ([str isEqualToString:kRecordOfVideoFrameGuideStep] && ![JPUtil getInfoFromUserDefaults:kRecordOfVideoFrameGuideStep]) {
-        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kRecordOfVideoFrameGuideStep];
-        [self removeViewWithTag:VIDEO_FRAME_TAG withAnimation:animation];
-        return;
-    }
+//    [JPSession sharedInstance].showRecordGuide = NO;
+//    if ([str isEqualToString:kRecordOfVideoSpeedGuideStep] && ![JPUtil getInfoFromUserDefaults:kRecordOfVideoSpeedGuideStep]) {
+//        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kRecordOfVideoSpeedGuideStep];
+//        [self removeViewWithTag:VIDEO_SPEED_TAG withAnimation:animation];
+//        return;
+//    }
+//    if ([str isEqualToString:kRecordOfCamaraFlipGuideStep] && ![JPUtil getInfoFromUserDefaults:kRecordOfCamaraFlipGuideStep]) {
+//        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kRecordOfCamaraFlipGuideStep];
+//        [self removeViewWithTag:CAMARA_FLIP_TAG withAnimation:animation];
+//        return;
+//    }
+//    if ([str isEqualToString:kRecordOfFilterSelectedGuideStep] && ![JPUtil getInfoFromUserDefaults:kRecordOfFilterSelectedGuideStep]) {
+//        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kRecordOfFilterSelectedGuideStep];
+//        [self removeViewWithTag:FILTER_SELECTED_TAG withAnimation:animation];
+//        return;
+//    }
+//    if ([str isEqualToString:kRecordOfFlashLightSelectedGuideStep] && ![JPUtil getInfoFromUserDefaults:kRecordOfFlashLightSelectedGuideStep]) {
+//        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kRecordOfFlashLightSelectedGuideStep];
+//        [self removeViewWithTag:FLASH_LIGHT_TAG withAnimation:animation];
+//        return;
+//    }
+//    if ([str isEqualToString:kRecordOfVideoFrameGuideStep] && ![JPUtil getInfoFromUserDefaults:kRecordOfVideoFrameGuideStep]) {
+//        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kRecordOfVideoFrameGuideStep];
+//        [self removeViewWithTag:VIDEO_FRAME_TAG withAnimation:animation];
+//        return;
+//    }
 }
 
 @end

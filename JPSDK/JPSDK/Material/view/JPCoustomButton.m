@@ -55,7 +55,7 @@
     _bottomLabel.width = 30;
     _bottomLabel.height = 14;
     _bottomLabel.textAlignment = NSTextAlignmentCenter;
-    _bottomLabel.textColor = [UIColor colorWithHex:0x515151];
+    _bottomLabel.textColor = [UIColor jp_colorWithHexString:@"515151"];
     _bottomLabel.font = [UIFont contentFont];
 }
 

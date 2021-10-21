@@ -7,7 +7,6 @@
 //
 
 #import "JPJPPackageTextWithPingyinGraphView.h"
-#import "NSString+Transform.h"
 #import "JPPackageTextPatternView.h"
 
 @interface JPJPPackageTextWithPingyinGraphView () {

@@ -36,7 +36,7 @@
     
     [JPUtil setViewRadius:_slideThumContentView byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(_sliderThunmContentViewWidthLayoutConstraint.constant/2, _sliderThunmContentViewWidthLayoutConstraint.constant/2)];
     
-    _deleteBtn.imageEdgeInsets = UIEdgeInsetsMake(ScreenFitFloat6(16) , 0, 0, 0);
+    _deleteBtn.imageEdgeInsets = UIEdgeInsetsMake(JPScreenFitFloat6(16) , 0, 0, 0);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

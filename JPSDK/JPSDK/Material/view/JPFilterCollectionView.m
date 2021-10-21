@@ -8,6 +8,7 @@
 
 #import "JPFilterCollectionView.h"
 #import "JPFiltersCollectionViewCell.h"
+#import "JPFilterManagers.h"
 
 static NSString *JPFiltersCellIdentifier = @"JPFiltersCellIdentifier";
 
@@ -38,7 +39,7 @@ static NSString *JPFiltersCellIdentifier = @"JPFiltersCellIdentifier";
 
 - (void)createSubviews
 {
-    [[NSBundle mainBundle] loadNibNamed:@"JPFilterCollectionView" owner:self options:nil];
+    [JPResourceBundle loadNibNamed:@"JPFilterCollectionView" owner:self options:nil];
     [self addSubview:self.view];
     self.view.sd_layout.topEqualToView(self);
     self.view.sd_layout.rightEqualToView(self);
@@ -46,7 +47,7 @@ static NSString *JPFiltersCellIdentifier = @"JPFiltersCellIdentifier";
     self.view.sd_layout.leftEqualToView(self);
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-    [_collectionView registerNib:[UINib nibWithNibName:@"JPFiltersCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:JPFiltersCellIdentifier];
+    [_collectionView registerNib:[UINib nibWithNibName:@"JPFiltersCollectionViewCell" bundle:JPResourceBundle] forCellWithReuseIdentifier:JPFiltersCellIdentifier];
     _dataSource = [JPFilterManagers getFiltersArr];
     _selelctFilterModel = _dataSource.firstObject;
 }

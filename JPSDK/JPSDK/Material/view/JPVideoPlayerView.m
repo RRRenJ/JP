@@ -43,7 +43,7 @@
 - (void)createSubviews
 {
     self.backgroundColor = [UIColor clearColor];
-    [[NSBundle mainBundle] loadNibNamed:@"JPVideoPlayerView" owner:self options:nil];
+    [JPResourceBundle loadNibNamed:@"JPVideoPlayerView" owner:self options:nil];
     [self addSubview:self.view];
     self.view.sd_layout.topEqualToView(self).bottomEqualToView(self).rightEqualToView(self).leftEqualToView(self);
     self.filterNameView.hidden = YES;
@@ -95,8 +95,8 @@
 {
     [_videoAspectRatioLabel.layer removeAllAnimations];
     _videoAspectRatioLabel.hidden = YES;
-    _videoAspectRatioLabel.font = [UIFont pingFangFontWithSize:15.f];
-    _videoAspectRatioLabel.backgroundColor = [UIColor colorWithHexString:@"000000" alpha:0.5];
+    _videoAspectRatioLabel.font = [UIFont jp_pingFangWithSize:15.f];
+    _videoAspectRatioLabel.backgroundColor = [UIColor jp_colorWithHexString:@"000000" alpha:0.5];
     _videoAspectRatioLabel.textAlignment = NSTextAlignmentNatural;
     _videoAspectRatioLabel.text = [NSString stringWithFormat:@"  %@  ",message] ;
     _videoAspectRatioLabel.height = 32;
@@ -122,7 +122,7 @@
         _selectVideoAspectRatio = aspectRatio;
         [_videoAspectRatioLabel.layer removeAllAnimations];
         _videoAspectRatioLabel.hidden = YES;
-        _videoAspectRatioLabel.font = [UIFont placardMTStdCondBoldFontWithSize:30];
+        _videoAspectRatioLabel.font = [UIFont jp_placardMTStdCondBoldFontWithSize:30];
         switch (aspectRatio) {
             case JPVideoAspectRatio16X9:
                 _videoAspectRatioLabel.text = @"16 : 9";

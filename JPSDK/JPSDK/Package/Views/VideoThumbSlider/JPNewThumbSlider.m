@@ -10,7 +10,7 @@
 #import "JPNewVideoThumbCollectionViewCell.h"
 #import "JPNewClidView.h"
 #import "JPThumImageLayout.h"
-#import "JPSession.h"
+
 @interface JPNewThumbSlider ()<UICollectionViewDataSource, JPNewVideoThumbCollectionViewCellDelegate, JPNewClidViewDelegate, UICollectionViewDelegateTimelineLayout>
 {
     UICollectionView *collecView;
@@ -50,7 +50,7 @@
 
 - (instancetype)initWithRecordInfo:(JPVideoRecordInfo *)videoRecordInfo
 {
-    CGRect frame = CGRectMake(0, 0, SCREEN_WIDTH, 70);
+    CGRect frame = CGRectMake(0, 0, JP_SCREEN_WIDTH, 70);
     if (self = [self initWithFrame:frame]) {
         _recordInfo = videoRecordInfo;
         [self createSubviews];
@@ -66,8 +66,8 @@
         return;
     }
     timeLb = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.width, 12)];
-    timeLb.font = [UIFont placardMTStdCondBoldFontWithSize:12];
-    timeLb.textColor = [UIColor colorWithHex:0x525252];
+    timeLb.font = [UIFont jp_placardMTStdCondBoldFontWithSize:12];
+    timeLb.textColor = [UIColor jp_colorWithHexString:@"525252"];
     timeLb.textAlignment = NSTextAlignmentCenter;
     timeLb.text = @"00:00";
     [self addSubview:timeLb];
@@ -84,7 +84,7 @@
     collecView.showsHorizontalScrollIndicator = NO;
     collecView.showsVerticalScrollIndicator = NO;
     collecView.clipsToBounds = NO;
-    [collecView registerNib:[UINib nibWithNibName:@"JPNewVideoThumbCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"JPNewVideoThumbCollectionViewCell"];
+    [collecView registerNib:[UINib nibWithNibName:@"JPNewVideoThumbCollectionViewCell" bundle:JPResourceBundle] forCellWithReuseIdentifier:@"JPNewVideoThumbCollectionViewCell"];
     [self addSubview:collecView];
     collecView.clipsToBounds = NO;
     self.clipsToBounds = NO;
@@ -246,8 +246,8 @@
     CGPoint points = [longPressGesture locationOfTouch:0 inView:self];
     _moveImageView.centerX = points.x;
     CGFloat offset = collecView.contentOffset.x;
-    if (_moveImageView.right >= SCREEN_WIDTH) {
-        _moveImageView.right = SCREEN_WIDTH;
+    if (_moveImageView.right >= JP_SCREEN_WIDTH) {
+        _moveImageView.right = JP_SCREEN_WIDTH;
         offset = offset + changed;
     }else if (_moveImageView.left <= 0)
     {
@@ -543,18 +543,7 @@
 
 - (void)scrollToTime:(CMTime)time
 {
-    if ([PKGuideManager manager].guide && [PKGuideManager manager].guideNumber == 6) {
-        JPThumbInfoModel *thumbInfoModel = _dataSource.firstObject;
-        if (thumbInfoModel && CMTimeCompare(time, CMTimeAdd(thumbInfoModel.reallyDuration, CMTimeMake(80, 30))) <= 0 && CMTimeCompare(time, CMTimeSubtract(thumbInfoModel.reallyDuration, CMTimeMake(80, 30))) >= 0 && _dataSource.count >= 2) {
-      
-            if (!self.guideView) {
-                self.guideView = [[PKGuideView alloc]initGuideViewWithContent:@"点这里，选择转场效果" type:PKGuideViewTailTypeVertical];
-                self.guideView.centerX = thumbInfoModel.contentOffset + thumbInfoModel.width + 30;;
-                self.guideView.bottom = -20.0;
-                [collecView addSubview:self.guideView];
-            }
-        }
-    }
+    
     if (needScorll == YES || selctInfoModel || _willMove == YES) {
         return;
     }
@@ -594,17 +583,11 @@
     
 }
 
-- (void)removeGuideView{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.guideView removeFromSuperview];
-    });
-    
-}
 
 - (void)addPromptVideoView
 {
     [JPUtil saveIssueInfoToUserDefaults:@"video-can-drag" resouceName:@"video-can-drag"];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Prompt-video"]];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:JPImageWithName(@"Prompt-video")];
     [imageView sizeToFit];
     JPThumbInfoModel *infoModel = _dataSource.lastObject;
     imageView.centerX = infoModel.contentOffset + infoModel.width - 60.f;
@@ -672,7 +655,7 @@
     offset = offset + changed;
     [layout adjustedToWidth:width];
     CGRect frame = [_clidView convertRect:_clidView.bounds toView:self];
-    if (frame.origin.x >= 30 && frame.origin.x <= SCREEN_WIDTH - 30) {
+    if (frame.origin.x >= 30 && frame.origin.x <= JP_SCREEN_WIDTH - 30) {
         [collecView setContentOffset:CGPointMake(offset, 0)];
     }
     NSArray *avilCell = [collecView visibleCells].copy;
@@ -698,7 +681,7 @@
     offset = offset - changed;
     [layout adjustedToWidth:endPoint];
     CGRect frame = [_clidView convertRect:_clidView.bounds toView:self];
-    if (frame.origin.x + frame.size.width <= 30 || frame.origin.x + frame.size.width >= SCREEN_WIDTH - 30) {
+    if (frame.origin.x + frame.size.width <= 30 || frame.origin.x + frame.size.width >= JP_SCREEN_WIDTH - 30) {
         [collecView setContentOffset:CGPointMake(offset, 0)];
     }
     _clidView.width = endPoint;
@@ -745,16 +728,11 @@
 }
 
 
-- (BOOL)isShowVideoGuide
-{
-    
-    return ((([JPUtil showPackageVideoEditGuideView]  && [JPSession sharedInstance].showPackageVdieoEditGuide) || [self isCurrentActive]) && !_hasClickActive);
-}
 
 - (BOOL)isCurrentActive
 {
-    
-    return [[JPSession sharedInstance].tagName isEqualToString:@"时光倒流"];
+
+    return NO;
 }
 
 

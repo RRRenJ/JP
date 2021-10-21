@@ -7,7 +7,6 @@
 //
 
 #import "JPPackageTextPatternView.h"
-#import "NSString+Transform.h"
 
 @interface JPPackageTextPatternView() {
     JPPackagePatternAttribute * pattern;
@@ -80,12 +79,12 @@
 - (void)createTextPatternWithPinyin {
   
 
-    [[NSBundle mainBundle] loadNibNamed:@"JPPackageTextPatternView" owner:self options:nil];
+    [JPResourceBundle loadNibNamed:@"JPPackageTextPatternView" owner:self options:nil];
     [self addSubview:self.pingyinView];
     self.pingyinView.sd_layout.topEqualToView(self).rightEqualToView(self).bottomEqualToView(self).leftEqualToView(self);
     self.titleLabel.textColor = pattern.textColor;
     self.titleLabel.text = pattern.text;
-    self.pingyinContsntLabel.text = [NSString chineseToPinyin:self.titleLabel.text];
+    self.pingyinContsntLabel.text = [NSString jp_chineseToPinyin:self.titleLabel.text];
 }
 
 - (void)setPatternAttribute:(JPPackagePatternAttribute *)patternAttribute
@@ -98,7 +97,7 @@
         self.titleLabel.text = patternAttribute.text;
         self.pingyinContsntLabel.font = [UIFont fontWithName:patternAttribute.textFontName size:patternAttribute.textFontSize - 6];
         self.pingyinContsntLabel.textColor = patternAttribute.textColor;
-        self.pingyinContsntLabel.text = [NSString chineseToPinyin:patternAttribute.text];
+        self.pingyinContsntLabel.text = [NSString jp_chineseToPinyin:patternAttribute.text];
     }else{
         contentLb.textColor = pattern.textColor;
         contentLb.text = pattern.text;
@@ -111,7 +110,7 @@
 - (CGSize)getMyReallySizeWithPackagePatternAttribute:(JPPackagePatternAttribute *)patternAttribute andScale:(CGFloat)scale
 {
     if (patternAttribute.patternType == JPPackagePatternTypeTextWithNone) {
-        CGFloat width = [UIFont widthForText:patternAttribute.text andFontSize:[UIFont fontWithName:patternAttribute.textFontName size:patternAttribute.textFontSize * scale] andHeight:patternAttribute.textFontSize * scale] + 15 * scale;
+        CGFloat width = [UIFont jp_widthForText:patternAttribute.text andFontSize:[UIFont fontWithName:patternAttribute.textFontName size:patternAttribute.textFontSize * scale] andHeight:patternAttribute.textFontSize * scale] + 15 * scale;
         return CGSizeMake(width, patternAttribute.textFontSize * scale + 7 *scale);
     }else{
         [self setPatternAttribute:patternAttribute];

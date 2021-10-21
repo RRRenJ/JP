@@ -85,14 +85,11 @@ typedef NS_ENUM(NSInteger, JPCompositionType)
 - (void)destruction;
 
 - (void)startComposition;
-- (void)shareLinkToShareType:(JPShareAccountType)shareType;
 - (void)copiesLink;
 - (void)shareToIns;
 - (void)shareToMeiPai;
-- (void)shareToBindWithShareType:(JPShareAccountType)accountType;
 - (void)finishWithCompletion:(void(^)(void))completion;
 - (void)generateTenMinueteVideoWithWithCompletion:(void(^)(BOOL sucess))completion;
-- (void)pushLocalVideoToShareType:(JPShareAccountType)shareType;
 - (void)submitVideoInfoWithCompletionBlock:(void (^)(BOOL success))completionHandler;
 - (void)savedVideoToDB;
 

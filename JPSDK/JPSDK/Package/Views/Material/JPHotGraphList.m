@@ -38,7 +38,7 @@
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         //设置布局方向为垂直流布局
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        flowLayout.itemSize = CGSizeMake(ScreenFitFloat6(100), ScreenFitFloat6(135));
+        flowLayout.itemSize = CGSizeMake(JPScreenFitFloat6(100), JPScreenFitFloat6(135));
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0 , self.width,self.height - 10) collectionViewLayout:flowLayout];
         _collectionView.delegate = self;
@@ -49,7 +49,7 @@
         [_collectionView registerClass:[JPHotGraphListCollectionViewCell class] forCellWithReuseIdentifier:@"JPHotGraphListCollectionViewCell"];
         [self addSubview:_collectionView];
         
-        _collectionView.sd_layout.centerYEqualToView(self).leftEqualToView(self).rightEqualToView(self).heightIs(ScreenFitFloat6(135));
+        _collectionView.sd_layout.centerYEqualToView(self).leftEqualToView(self).rightEqualToView(self).heightIs(JPScreenFitFloat6(135));
     }
     return self;
 }
@@ -154,14 +154,14 @@
 
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(0, ScreenFitFloat6(15), 0, 0);
+    return UIEdgeInsetsMake(0, JPScreenFitFloat6(15), 0, 0);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     return 0.f;
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return ScreenFitFloat6(15);
+    return JPScreenFitFloat6(15);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {

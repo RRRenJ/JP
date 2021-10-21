@@ -30,7 +30,7 @@
     progressView = [[JPVideoPublishProgressView alloc] initWithFrame:CGRectMake(0, 0, 25, 25) withStartAngle:-M_PI endAngle:M_PI];
     [progressView updateViewWithProgress:0];
     [progressView hideProgerssLb];
-    [progressView changeProgessColorWithColor:[UIColor appMainYellowColor] andTintColor:[UIColor colorWithHex:0x313131]];
+    [progressView changeProgessColorWithColor:[UIColor jp_colorWithHexString:@"0091ff"] andTintColor:[UIColor jp_colorWithHexString:@"313131"]];
     progressView.hidden = YES;
     [self.contentView addSubview:progressView];
     progressView.sd_layout.rightSpaceToView(self.contentView, 15).heightIs(25).widthEqualToHeight().centerYEqualToView(self.contentView);
@@ -55,8 +55,8 @@
 - (void)updateView {
     self.nameLb.textColor = [UIColor whiteColor];
     if (_material.isSelected) {
-        [self.determineBtn setImage:[UIImage imageNamed:@"finish_small"] forState:UIControlStateNormal];
-        self.nameLb.textColor = [UIColor appMainYellowColor];
+        [self.determineBtn setImage:JPImageWithName(@"finish_small") forState:UIControlStateNormal];
+        self.nameLb.textColor = [UIColor jp_colorWithHexString:@"0091ff"];
         self.downloadBtn.hidden = YES;
         self.downloadBtn.enabled = NO;
         self.determineBtn.hidden = NO;
@@ -69,7 +69,7 @@
         self.determineBtn.enabled = NO;
         progressView.hidden = YES;
     } else if (_material.materialStatus == JPMaterialStatusDownLoaded){
-        [self.determineBtn setImage:[UIImage imageNamed:@"circular-1"] forState:UIControlStateNormal];
+        [self.determineBtn setImage:JPImageWithName(@"circular-1") forState:UIControlStateNormal];
         self.downloadBtn.hidden = YES;
         self.downloadBtn.enabled = NO;
         self.determineBtn.hidden = NO;

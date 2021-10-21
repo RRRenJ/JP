@@ -72,25 +72,25 @@
 
 - (void)getCategoryList {
     self.dataLoad = NO;
-    NSMutableDictionary *dic = @{@"service":@"App.Material_Music.Lists"}.mutableCopy;
-    [JPService requestWithURLString:API_HOST parameters:dic type:JPHttpRequestTypePost success:^(JPResultBase *response){
-        if (response.ret && 200 == [response.ret intValue]) {
-            if (response.data && [response.data isKindOfClass:[NSArray class]]) {
-                for (int i = 0; i < [response.data count]; i ++) {
-                    if ([[response.data objectAtIndex:i] isKindOfClass:[NSDictionary class]]) {
-                        JPMaterialCategory *category = [JPMaterialCategory mj_objectWithKeyValues:[response.data objectAtIndex:i]];
-                        category.material_id = 2;
-                        [dataArr sgrAddObject:category];
-                    }
-                }
-            }
-        }
+//    NSMutableDictionary *dic = @{@"service":@"App.Material_Music.Lists"}.mutableCopy;
+//    [JPService requestWithURLString:API_HOST parameters:dic type:JPHttpRequestTypePost success:^(JPResultBase *response){
+//        if (response.ret && 200 == [response.ret intValue]) {
+//            if (response.data && [response.data isKindOfClass:[NSArray class]]) {
+//                for (int i = 0; i < [response.data count]; i ++) {
+//                    if ([[response.data objectAtIndex:i] isKindOfClass:[NSDictionary class]]) {
+//                        JPMaterialCategory *category = [JPMaterialCategory mj_objectWithKeyValues:[response.data objectAtIndex:i]];
+//                        category.material_id = 2;
+//                        [dataArr sgrAddObject:category];
+//                    }
+//                }
+//            }
+//        }
         [self createUI];
     
-    }failure:^(NSError *error){
-        [self createUI];
-        
-    } withErrorMsg:nil];
+//    }failure:^(NSError *error){
+//        [self createUI];
+//        
+//    } withErrorMsg:nil];
 }
 
 - (void)createUI {
@@ -98,14 +98,14 @@
         [self.delegate musicCollectionLoadData];
     }
     self.dataLoad = YES;
-    [[NSBundle mainBundle] loadNibNamed:@"JPMusicMenuView" owner:self options:nil];
+    [JPResourceBundle loadNibNamed:@"JPMusicMenuView" owner:self options:nil];
     [self addSubview:self.view];
     self.view.sd_layout.topSpaceToView(self, 0).rightEqualToView(self).bottomEqualToView(self).leftEqualToView(self);
     self.view.clipsToBounds = YES;
-    self.bottomLineOriYLayoutConstraint.constant = ScreenFitFloat6(120);
-    self.musicImageViewWidthLayoutConstraint.constant = self.musicImageViewHeightLayoutConstraint.constant = ScreenFitFloat6(201);
+    self.bottomLineOriYLayoutConstraint.constant = JPScreenFitFloat6(120);
+    self.musicImageViewWidthLayoutConstraint.constant = self.musicImageViewHeightLayoutConstraint.constant = JPScreenFitFloat6(201);
     
-    self.alertLbTopLayoutConstraint.constant = (ScreenFitFloat6(120) - 13)/2;
+    self.alertLbTopLayoutConstraint.constant = (JPScreenFitFloat6(120) - 13)/2;
     
     _volumeThumViewLeftLayoutConstraint.constant = 121;
     _volumeThumContentView.transform = CGAffineTransformMakeScale(0.5 * 0.5 + 0.5, 0.5 * 0.5 + 0.5);
@@ -147,7 +147,7 @@
     [collectView registerClass:[JPBackgroundMusicCell class] forCellWithReuseIdentifier:@"JPBackgroundMusicCell"];
     [self.bottomView addSubview:collectView];
     self.bottomView.clipsToBounds = NO;
-    collectView.sd_layout.leftSpaceToView(self.bottomView, 0).rightSpaceToView(self.bottomView, 0).topSpaceToView(self.bottomView, ScreenFitFloat6(7)).bottomEqualToView(self.bottomView);
+    collectView.sd_layout.leftSpaceToView(self.bottomView, 0).rightSpaceToView(self.bottomView, 0).topSpaceToView(self.bottomView, JPScreenFitFloat6(7)).bottomEqualToView(self.bottomView);
     [self updateUI];
     self.bottomCollecView = self.bottomView;
     self.collecView = collectView;
@@ -200,7 +200,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     JPBackgroundMusicCell * cell  = [collectionView dequeueReusableCellWithReuseIdentifier:@"JPBackgroundMusicCell" forIndexPath:indexPath];
     if (0 == indexPath.row) {
-        cell.imgView.image = [UIImage imageNamed:@"itunes"];
+        cell.imgView.image = JPImageWithName(@"itunes");
         cell.txtLb.text = @"iTunes";
     } else {
         JPMaterialCategory *music = [dataArr objectAtIndex:indexPath.row - 1];
@@ -237,7 +237,7 @@
 #pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(ScreenFitFloat6(80), collectionView.height);
+    return CGSizeMake(JPScreenFitFloat6(80), collectionView.height);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
@@ -303,11 +303,11 @@
     [UIView animateWithDuration:0.5 animations:^{
         [self.view layoutIfNeeded];
     }completion:^(BOOL finish){
-        _originLb.hidden = YES;
-        _deleteBtn.hidden = YES;
-        _deleteBtn.enabled = NO;
-        _musicNameLb.hidden = YES;
-        _musicDurLb.hidden = YES;
+        self.originLb.hidden = YES;
+        self.deleteBtn.hidden = YES;
+        self.deleteBtn.enabled = NO;
+        self.musicNameLb.hidden = YES;
+        self.musicDurLb.hidden = YES;
     }];
     if (self.delegate && [self.delegate respondsToSelector:@selector(didDeleteBackgroundMusic)]) {
         [self.delegate didDeleteBackgroundMusic];

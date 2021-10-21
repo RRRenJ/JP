@@ -35,7 +35,7 @@
 
 - (void)createSubviews
 {
-    [[NSBundle mainBundle] loadNibNamed:@"JPPackageTextBackgroudColorView" owner:self options:nil];
+    [JPResourceBundle loadNibNamed:@"JPPackageTextBackgroudColorView" owner:self options:nil];
     self.view.backgroundColor = [UIColor clearColor];
     [self addSubview:self.view];
     self.view.sd_layout.topEqualToView(self).bottomEqualToView(self).leftEqualToView(self).rightEqualToView(self);
@@ -59,7 +59,7 @@
 
 - (CGSize)getMyReallySizeWithPackagePatternAttribute:(JPPackagePatternAttribute *)patternAttribute andScale:(CGFloat)scale
 {
-    CGFloat width = [UIFont widthForText:patternAttribute.text andFontSize:[UIFont fontWithName:patternAttribute.textFontName size:patternAttribute.textFontSize * scale] andHeight:patternAttribute.textFontSize * scale] + 15 * scale;
+    CGFloat width = [UIFont jp_widthForText:patternAttribute.text andFontSize:[UIFont fontWithName:patternAttribute.textFontName size:patternAttribute.textFontSize * scale] andHeight:patternAttribute.textFontSize * scale] + 15 * scale;
     return CGSizeMake(width, patternAttribute.textFontSize * scale + 7 *scale);
 }
 

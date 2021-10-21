@@ -8,6 +8,7 @@
 
 #import "JPNewFilterCollectionView.h"
 #import "JPNewFilterCollectionViewCell.h"
+#import "JPFilterManagers.h"
 @interface JPNewFilterCollectionView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UIView *view;
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *collectionLayout;
@@ -37,17 +38,16 @@
 }
 
 
-- (void)createSubviews
-{
+- (void)createSubviews{
     _filterArr = [JPFilterManagers getFiltersArr];
     self.selectFilterModel = _filterArr.firstObject;
     self.backgroundColor = [UIColor clearColor];
-    [[NSBundle mainBundle] loadNibNamed:@"JPNewFilterCollectionView" owner:self options:nil];
+    [JPResourceBundle loadNibNamed:@"JPNewFilterCollectionView" owner:self options:nil];
     [self addSubview:self.view];
     self.view.sd_layout.topEqualToView(self).bottomEqualToView(self).rightEqualToView(self).leftEqualToView(self);
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    [self.collectionView registerNib:[UINib nibWithNibName:@"JPNewFilterCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"JPNewFilterCollectionViewCell"];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"JPNewFilterCollectionViewCell" bundle:JPResourceBundle] forCellWithReuseIdentifier:@"JPNewFilterCollectionViewCell"];
     self.collectionView.showsVerticalScrollIndicator = NO;
     self.collectionView.showsHorizontalScrollIndicator = NO;
     self.collectionView.clipsToBounds = NO;

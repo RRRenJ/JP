@@ -23,24 +23,21 @@
 
 @implementation JPStartRecordButton
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder
-{
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
     if (self = [super initWithCoder:aDecoder]) {
         [self createSubviews];
     }
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self createSubviews];
     }
     return self;
 }
-- (void)createSubviews
-{
-    self.missAnnimation = YES;
+- (void)createSubviews{
+    
     self.backgroundColor = [UIColor clearColor];
     _layerView = [[UIView alloc] initWithFrame:self.bounds];
     _layerView.backgroundColor = [UIColor clearColor];
@@ -51,7 +48,7 @@
     _layerView.userInteractionEnabled = NO;
     [self addSubview:_layerView];
     _backView = [[UIView alloc] initWithFrame:CGRectMake(_layerView.left + 5,_layerView.top + 5, 65, 65)];
-    _backView.backgroundColor = [UIColor appMainBlueColor];
+    _backView.backgroundColor = [UIColor jp_colorWithHexString:@"0091FF"];
     _backView.layer.masksToBounds = YES;
     _backView.layer.cornerRadius = 32.5;
     _backView.userInteractionEnabled = NO;
@@ -85,16 +82,16 @@
     if (!_labelButtonScal) {
         _labelButtonScal = YES;
         [UIView animateWithDuration:0.1 animations:^{
-            _backView.transform = CGAffineTransformMakeScale(0.8, 0.8);
+            self.backView.transform = CGAffineTransformMakeScale(0.8, 0.8);
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:0.1 animations:^{
-                _backView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+                self.backView.transform = CGAffineTransformMakeScale(1.0, 1.0);
                 
             } completion:^(BOOL finished) {
-                _textBecomeChange = YES;
+                self.textBecomeChange = YES;
                 [UIView animateWithDuration:0.1 animations:^{
-                    _secondsLabel.alpha = 1.0;
-                    _backView.alpha = 0.0;
+                    self.secondsLabel.alpha = 1.0;
+                    self.backView.alpha = 0.0;
                 } completion:^(BOOL finished) {
                     
                     
@@ -134,7 +131,7 @@
     _labelButtonScal = NO;
     _textBecomeChange = NO;
     _backView.transform = CGAffineTransformMakeScale(1.0, 1.0);
-    _backView.backgroundColor = [UIColor appMainBlueColor];
+    _backView.backgroundColor = [UIColor jp_colorWithHexString:@"0091FF"];
     _layerView.transform = CGAffineTransformMakeScale(1.0, 1.0);
     _backView.alpha = 1.0;
     _secondsLabel.alpha = 0.0;

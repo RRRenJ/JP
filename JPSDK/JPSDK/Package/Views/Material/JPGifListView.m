@@ -33,7 +33,7 @@
 - (NSMutableArray *)getGifPicture
 {
     NSMutableArray *array = [NSMutableArray array];
-    NSArray *baseData = [NSArray arrayWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"gif_pngs" withExtension:@"plist"] ];
+    NSArray *baseData = [NSArray arrayWithContentsOfURL:[JPResourceBundle URLForResource:@"gif_pngs" withExtension:@"plist"] ];
     for (NSInteger index = 0; index < baseData.count; index ++) {
         NSString *number = [NSString stringWithFormat:@"%ld", (long)index];
         while (number.length < 2) {
@@ -61,7 +61,7 @@
     layout.minimumInteritemSpacing = 0;
     
     //设置布局方向为垂直流布局
-    collecView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 13 , SCREEN_WIDTH ,self.height - 80) collectionViewLayout:layout];
+    collecView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 13 , JP_SCREEN_WIDTH ,self.height - 80) collectionViewLayout:layout];
     collecView.delegate = self;
     collecView.backgroundColor = self.backgroundColor;
     collecView.dataSource = self;
@@ -103,19 +103,19 @@
 #pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(ScreenFitFloat6(60), ScreenFitFloat6(60));
+    return CGSizeMake(JPScreenFitFloat6(60), JPScreenFitFloat6(60));
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    CGFloat f = (SCREEN_WIDTH - ScreenFitFloat6(60)*4 - 30)/8.f;
+    CGFloat f = (JP_SCREEN_WIDTH - JPScreenFitFloat6(60)*4 - 30)/8.f;
     return UIEdgeInsetsMake(f, f, f, f);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return (SCREEN_WIDTH - ScreenFitFloat6(60)*4 - 30)/8.f;
+    return (JP_SCREEN_WIDTH - JPScreenFitFloat6(60)*4 - 30)/8.f;
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return (SCREEN_WIDTH - ScreenFitFloat6(60)*4 - 30)/8.f;
+    return (JP_SCREEN_WIDTH - JPScreenFitFloat6(60)*4 - 30)/8.f;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {

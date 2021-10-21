@@ -30,30 +30,30 @@
 
 - (void)setUpSubViews {
     
-    _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenFitFloat6(100), ScreenFitFloat6(100))];
+    _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, JPScreenFitFloat6(100), JPScreenFitFloat6(100))];
     [self.contentView addSubview:_imgView];
     _imgView.sd_layout
     .topSpaceToView(self.contentView, 0)
     .leftSpaceToView(self.contentView, 0)
-    .widthIs(ScreenFitFloat6(100))
-    .heightIs(ScreenFitFloat6(100));
+    .widthIs(JPScreenFitFloat6(100))
+    .heightIs(JPScreenFitFloat6(100));
     
-    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_imgView.frame) + ScreenFitFloat6(15), ScreenFitFloat6(100), ScreenFitFloat6(20))];
-    _titleLabel.font = [UIFont pingFangFontWithSize:ScreenFitFloat6(12)];
-    _titleLabel.textColor = [UIColor colorWithHexString:@"#787878"];
+    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_imgView.frame) + JPScreenFitFloat6(15), JPScreenFitFloat6(100), JPScreenFitFloat6(20))];
+    _titleLabel.font = [UIFont jp_pingFangWithSize:JPScreenFitFloat6(12)];
+    _titleLabel.textColor = [UIColor jp_colorWithHexString:@"787878"];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
-    _titleLabel.font = [UIFont pingFangFontWithSize:ScreenFitFloat6(12)];
+    _titleLabel.font = [UIFont jp_pingFangWithSize:JPScreenFitFloat6(12)];
     [self.contentView addSubview:_titleLabel];
     _titleLabel.sd_layout
-    .topSpaceToView(_imgView, ScreenFitFloat6(15))
+    .topSpaceToView(_imgView, JPScreenFitFloat6(15))
     .leftSpaceToView(self.contentView, 0)
-    .widthIs(ScreenFitFloat6(100))
-    .heightIs(ScreenFitFloat6(20));
+    .widthIs(JPScreenFitFloat6(100))
+    .heightIs(JPScreenFitFloat6(20));
     
     _thumLb = [[UILabel alloc] initWithFrame:CGRectZero];
-    _thumLb.font = [UIFont placardMTStdCondBoldFontWithSize:18];
+    _thumLb.font = [UIFont jp_placardMTStdCondBoldFontWithSize:18];
     _thumLb.textAlignment = NSTextAlignmentCenter;
-    _thumLb.textColor = [UIColor colorWithHex:0x787878];
+    _thumLb.textColor = [UIColor jp_colorWithHexString:@"787878"];
     _thumLb.text = @"NONE";
     _thumLb.hidden= YES;
     [self.contentView addSubview:_thumLb];
@@ -74,14 +74,14 @@
 - (void)setCellNeedsLayout {
     if (_isSelect){
         self.imgView.layer.borderWidth = 2;
-        self.imgView.layer.borderColor = [UIColor appMainYellowColor].CGColor;
+        self.imgView.layer.borderColor = [UIColor jp_colorWithHexString:@"0091ff"].CGColor;
         self.titleLabel.textColor = [UIColor whiteColor];
     }else{
         self.imgView.layer.borderWidth = 0;
-        self.titleLabel.textColor = [UIColor colorWithHexString:@"#787878"];
+        self.titleLabel.textColor = [UIColor jp_colorWithHexString:@"787878"];
         if (!_model.thumPicture) {
             self.imgView.layer.borderWidth = 0.5;
-            self.imgView.layer.borderColor = [UIColor colorWithHex:0x313131].CGColor;
+            self.imgView.layer.borderColor = [UIColor jp_colorWithHexString:@"313131"].CGColor;
         }
     }
 }

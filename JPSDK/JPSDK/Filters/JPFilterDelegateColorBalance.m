@@ -26,8 +26,8 @@
     if (self = [super initWithShaderContentPaths:shaderPaths andCurveName:imageName]) {
         filterColorTextureUniform = [filterProgram uniformIndex:@"inputImageTextureColor"];
         filterColorMidTextureUniform = [filterProgram uniformIndex:@"inputImageTextureMidColor"];
-        _midColorPicture = [[GPUImagePicture alloc] initWithImage:[UIImage imageNamed:@"midRBGMap"]];
-        _colorPicture = [[GPUImagePicture alloc] initWithImage:[UIImage imageNamed:@"balanceMap"]];
+        _midColorPicture = [[GPUImagePicture alloc] initWithImage:JPImageWithName(@"midRBGMap")];
+        _colorPicture = [[GPUImagePicture alloc] initWithImage:JPImageWithName(@"balanceMap")];
 
     }
     return self;

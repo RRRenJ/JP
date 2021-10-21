@@ -83,7 +83,7 @@ static CGSize AssetGridThumbnailSize;
     assetsArr = [NSMutableArray array];
     _imageDic = [NSMutableDictionary dictionary];
     //创建导航栏
-    [self createNavigatorViewWithHeight:KShrinkNavigationHeight];
+    [self createNavigatorViewWithHeight:JPShrinkNavigationHeight];
     if (_isSelectOneImage) {
         [self addPopButton];
     }else{
@@ -105,10 +105,10 @@ static CGSize AssetGridThumbnailSize;
         if (!avauthAlertView) {
             NSString *str = @"让大家看看手机里的精美素材吧~请在「设置」-「隐私」-「照片」中打开未来拍客的本地图库获取权限";
             avauthAlertView = [[JPAlertView alloc] initWithTitle:str
-                                                        andFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH)];
+                                                        andFrame:CGRectMake(0, 0, JP_SCREEN_WIDTH, JP_SCREEN_WIDTH)];
         }
         [self.view addSubview:avauthAlertView];
-        avauthAlertView.sd_layout.centerXEqualToView(self.view).centerYEqualToView(self.view).widthIs(SCREEN_WIDTH).heightIs(SCREEN_WIDTH);
+        avauthAlertView.sd_layout.centerXEqualToView(self.view).centerYEqualToView(self.view).widthIs(JP_SCREEN_WIDTH).heightIs(JP_SCREEN_WIDTH);
     }
 }
 
@@ -137,12 +137,12 @@ static CGSize AssetGridThumbnailSize;
 #pragma mark - public methods
 
 - (void)createUI {
-    UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - ScreenFitFloat6(75), SCREEN_WIDTH, ScreenFitFloat6(75))];
-    bottomView.backgroundColor = [UIColor colorWithHex:0x171819];
+    UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, JP_SCREEN_HEIGHT - JPScreenFitFloat6(75), JP_SCREEN_WIDTH, JPScreenFitFloat6(75))];
+    bottomView.backgroundColor = [UIColor jp_colorWithHexString:@"171819"];
     [self.view addSubview:bottomView];
     UIButton *comfirmBtn = [JPUtil createCustomButtonWithTittle:nil
-                                                      withImage:[UIImage imageNamed:@"ok"]
-                                                      withFrame:CGRectMake(0, (bottomView.height - ScreenFitFloat6(40))/2, ScreenFitFloat6(40), ScreenFitFloat6(40))
+                                                      withImage:JPImageWithName(@"ok")
+                                                      withFrame:CGRectMake(0, (bottomView.height - JPScreenFitFloat6(40))/2, JPScreenFitFloat6(40), JPScreenFitFloat6(40))
                                                          target:self
                                                          action:@selector(comfirm:)];
     comfirmBtn.centerX = bottomView.centerX;
@@ -151,8 +151,8 @@ static CGSize AssetGridThumbnailSize;
     UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
     //设置布局方向为垂直流布局
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    layout.itemSize = CGSizeMake((SCREEN_WIDTH - ScreenFitFloat6(45))/4, (SCREEN_WIDTH - ScreenFitFloat6(45))/4);
-    _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(ScreenFitFloat6(12.5), self.navagatorView.bottom + ScreenFitFloat6(15) , SCREEN_WIDTH - ScreenFitFloat6(25),SCREEN_HEIGHT - self.navagatorView.bottom - ScreenFitFloat6(100)) collectionViewLayout:layout];
+    layout.itemSize = CGSizeMake((JP_SCREEN_WIDTH - JPScreenFitFloat6(45))/4, (JP_SCREEN_WIDTH - JPScreenFitFloat6(45))/4);
+    _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(JPScreenFitFloat6(12.5), self.navagatorView.bottom + JPScreenFitFloat6(15) , JP_SCREEN_WIDTH - JPScreenFitFloat6(25),JP_SCREEN_HEIGHT - self.navagatorView.bottom - JPScreenFitFloat6(100)) collectionViewLayout:layout];
     _collectionView.delegate = self;
     _collectionView.backgroundColor = self.view.backgroundColor;
     _collectionView.dataSource = self;
@@ -231,19 +231,19 @@ static CGSize AssetGridThumbnailSize;
         
         NSMutableArray *updatedCollectionsFetchResults = nil;
         
-        for (PHFetchResult *collectionsFetchResult in collectionsFetchResults) {
+        for (PHFetchResult *collectionsFetchResult in self->collectionsFetchResults) {
             PHFetchResultChangeDetails *changeDetails = [changeInstance changeDetailsForFetchResult:collectionsFetchResult];
             if (changeDetails) {
                 if (!updatedCollectionsFetchResults) {
-                    updatedCollectionsFetchResults = [collectionsFetchResults mutableCopy];
+                    updatedCollectionsFetchResults = [self->collectionsFetchResults mutableCopy];
                 }
-                [updatedCollectionsFetchResults replaceObjectAtIndex:[collectionsFetchResults indexOfObject:collectionsFetchResult] withObject:[changeDetails fetchResultAfterChanges]];
+                [updatedCollectionsFetchResults replaceObjectAtIndex:[self->collectionsFetchResults indexOfObject:collectionsFetchResult] withObject:[changeDetails fetchResultAfterChanges]];
             }
         }
         
         // This only affects to changes in albums level (add/remove/edit album)
         if (updatedCollectionsFetchResults) {
-            collectionsFetchResults = updatedCollectionsFetchResults;
+            self->collectionsFetchResults = updatedCollectionsFetchResults;
         }
         
         // However, we want to update if photos are added, so the counts of items & thumbnails are updated too.
@@ -282,7 +282,7 @@ static CGSize AssetGridThumbnailSize;
                                       if (cell.tag == currentTag) {
                                           [cell.imgView setImage:result];
                                       }
-                                      [_imageDic setObject:result forKey:indexPath];
+                                      [self.imageDic setObject:result forKey:indexPath];
                                   }];
  
     }
@@ -312,8 +312,15 @@ static CGSize AssetGridThumbnailSize;
     }
     if (![selectedDataArr containsObject:asset]) {
         if (MAX_SELECTED_PICTURE_COUNT < [selectedDataArr count]) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"你最多只能选择%d张照片",MAX_SELECTED_PICTURE_COUNT] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alertView show];
+            
+            UIAlertController * alert = [UIAlertController alertControllerWithTitle:nil message:[NSString stringWithFormat:@"你最多只能选择%d张照片",MAX_SELECTED_PICTURE_COUNT] preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction * action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            
+            [alert addAction:action];
+            [self presentViewController:alert animated:YES completion:nil];
+
             return;
         }
         [selectedDataArr addObject:asset];
@@ -330,11 +337,11 @@ static CGSize AssetGridThumbnailSize;
 #pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake((SCREEN_WIDTH - ScreenFitFloat6(45))/4, (SCREEN_WIDTH - ScreenFitFloat6(45))/4);
+    return CGSizeMake((JP_SCREEN_WIDTH - JPScreenFitFloat6(45))/4, (JP_SCREEN_WIDTH - JPScreenFitFloat6(45))/4);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(0, ScreenFitFloat6(2.5), 0, ScreenFitFloat6(2.5));
+    return UIEdgeInsetsMake(0, JPScreenFitFloat6(2.5), 0, JPScreenFitFloat6(2.5));
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
@@ -342,7 +349,7 @@ static CGSize AssetGridThumbnailSize;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return ScreenFitFloat6(5);
+    return JPScreenFitFloat6(5);
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -460,7 +467,7 @@ static CGSize AssetGridThumbnailSize;
                     attribute.patternType = JPPackagePatternTypePicture;
                     [arr addObject:attribute];
                 }else{
-                    [[JPAppDelegate shareAppdelegate] showAlertViewWithTitle:@"导出照片失败,请重试"];
+                    [MBProgressHUD jp_showMessage:@"导出照片失败,请重试"];
                     return;
                 }
             }

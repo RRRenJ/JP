@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "JPMaterial.h"
 
+
+
 @class JPMaterialDownloader;
 @protocol JPMaterialDownloaderDelegate <NSObject>
 

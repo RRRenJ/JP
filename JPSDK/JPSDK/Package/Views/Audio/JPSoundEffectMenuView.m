@@ -29,17 +29,17 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [[NSBundle mainBundle] loadNibNamed:@"JPSoundEffectMenuView" owner:self options:nil];
+        [JPResourceBundle loadNibNamed:@"JPSoundEffectMenuView" owner:self options:nil];
         [self addSubview:self.contentView];
         self.contentView.sd_layout.leftEqualToView(self).rightEqualToView(self).topEqualToView(self).bottomEqualToView(self);
         self.backgroundColor = [UIColor blackColor];
         dataArr = [NSMutableArray array];
         _compositionPlayer = compositionPlayere;
         duration = [_compositionPlayer videoDuration];
-        _bottomHeight.constant = 40 + KTabbarHeightLineHeight;
+        _bottomHeight.constant = 40 + JPTabbarHeightLineHeight;
         //列表
-        tbView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.height - _bottomViewHeightLayoutConstraint.constant) style:UITableViewStylePlain];
-        [tbView registerNib:[UINib nibWithNibName:@"JPSoundEffectTableViewCell" bundle:nil] forCellReuseIdentifier:@"JPSoundEffectTableViewCell"];
+        tbView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, JP_SCREEN_WIDTH, self.height - _bottomViewHeightLayoutConstraint.constant) style:UITableViewStylePlain];
+        [tbView registerNib:[UINib nibWithNibName:@"JPSoundEffectTableViewCell" bundle:JPResourceBundle] forCellReuseIdentifier:@"JPSoundEffectTableViewCell"];
         tbView.contentSize = CGSizeMake(tbView.width, tbView.height);
         tbView.separatorStyle = UITableViewCellSeparatorStyleNone;
         tbView.delegate = self;
@@ -134,7 +134,7 @@
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return ScreenFitFloat6(60);
+    return JPScreenFitFloat6(60);
 }
 
 #pragma mark - JPSoundEffectTableViewCellDelegate

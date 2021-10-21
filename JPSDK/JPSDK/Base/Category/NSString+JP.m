@@ -10,7 +10,7 @@
 
 @implementation NSString (JP)
 
-- (NSString *)md5{
+- (NSString *)jp_md5{
     const char *cStr = [self UTF8String];
     unsigned char digest[CC_MD5_DIGEST_LENGTH];
     CC_MD5( cStr, (CC_LONG)strlen(cStr), digest ); // This is the md5 call
@@ -21,6 +21,16 @@
         [output appendFormat:@"%02x", digest[i]];
     
     return  output;
+}
+
++ (NSString *)jp_chineseToPinyin:(NSString *)chinese{
+    if (chinese == nil || chinese.length == 0) {
+        return @"";
+    }
+    NSMutableString *pinyin = [chinese mutableCopy];
+    CFStringTransform((__bridge CFMutableStringRef)pinyin, NULL, kCFStringTransformMandarinLatin, NO);
+//    CFStringTransform((__bridge CFMutableStringRef)pinyin, NULL, kCFStringTransformStripCombiningMarks, NO);//去掉音标
+    return pinyin;
 }
 
 @end

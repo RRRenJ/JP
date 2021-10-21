@@ -70,7 +70,7 @@
     AVURLAsset *videoAsset = [AVURLAsset assetWithURL:self.videoModel.videoUrl];
     _totalVideoTime = JP_VIDEO_MIN_DURATION;
     if ([videoAsset tracksWithMediaType:AVMediaTypeVideo].count == 0) {
-        [[JPAppDelegate shareAppdelegate] showAlertViewWithTitle:@"视频资源错误,无法合成"];
+        [MBProgressHUD jp_showMessage:@"视频资源错误,无法合成"];
         [self.navigationController popViewControllerAnimated:YES];
         return;
     }
@@ -87,11 +87,11 @@
     _totalTimeLabel.hidden = YES;
     _leftTimeLabel.font = _rightTimeLabel.font = [UIFont fontWithName:@"PlacardMTStd-Cond" size:11];
     _rightTimeLabel.text = _endTimeLabel.text = [NSString stringWithTimeInterval:(NSInteger)ceil(CMTimeGetSeconds(_videoModel.videoTime))];
-    [self createNavigatorViewWithHeight:KShrinkNavigationHeight];
-    [self addLeftButtonWithTittle:nil withImage:[UIImage imageNamed:@"esc"] target:self action:@selector(escEdit)];
-    [self addRightButtonWithTittle:nil withImage:[UIImage imageNamed:@"confirm"] target:self action:@selector(finishedEidt:)];
-    _progressViewTop.constant = KShrinkStatusBarHeight;
-    _videoBackViewTop.constant = KShrinkStatusBarHeight;
+    [self createNavigatorViewWithHeight:JPShrinkNavigationHeight];
+    [self addLeftButtonWithTittle:nil withImage:JPImageWithName(@"exits") target:self action:@selector(escEdit)];
+    [self addRightButtonWithTittle:nil withImage:JPImageWithName(@"confirm") target:self action:@selector(finishedEidt:)];
+    _progressViewTop.constant = JPShrinkStatusBarHeight;
+    _videoBackViewTop.constant = JPShrinkStatusBarHeight;
     [self configueVideoLocal];
     self.navagatorView.backgroundColor = [UIColor clearColor];
     _startSliderView.hidden = YES;
@@ -161,7 +161,7 @@
     [self.toBigButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.toSmallButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     UIButton *button = (UIButton *)sender;
-    [button setTitleColor:[UIColor appMainYellowColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor jp_colorWithHexString:@"0091FF"] forState:UIControlStateNormal];
     if (sender == _noneButton) {
         _photoTranstionType = JPPhotoModelTranstionNormal;
     }else if (sender == _toBigButton)
@@ -200,7 +200,7 @@
 - (void)appBecomeBackgound
 {
     self.view.userInteractionEnabled = YES;
-    [self hidHUD];
+    [self jp_hideHUD];
     [_videoLocal destruction];
     [self.writeVideoLocal destruction];
     _videoLocal = nil;
@@ -219,22 +219,22 @@
     _startSliderOriginX.constant = _startSliderOriginX.constant + point.x;
     if (_startSliderOriginX.constant <= 7.5) {
         _startSliderOriginX.constant = 7.5;
-    }else if(_startSliderOriginX.constant >= (SCREEN_WIDTH - _endSliderOriginX.constant - 16)){
-        _startSliderOriginX.constant = (SCREEN_WIDTH - _endSliderOriginX.constant - 16);
+    }else if(_startSliderOriginX.constant >= (JP_SCREEN_WIDTH - _endSliderOriginX.constant - 16)){
+        _startSliderOriginX.constant = (JP_SCREEN_WIDTH - _endSliderOriginX.constant - 16);
     }
     CMTime currentTime = [self videoReallyTime];
     if (CMTimeCompare(currentTime, _reallyHasTime) > 0) {
         currentTime = _reallyHasTime;
         CGFloat width = [self widthWithTime:currentTime];
-        _endSliderOriginX.constant = (SCREEN_WIDTH - width - _startSliderOriginX.constant -16);
+        _endSliderOriginX.constant = (JP_SCREEN_WIDTH - width - _startSliderOriginX.constant -16);
     }
     CGFloat width = [self widthWithTime:_totalVideoTime];
-    if ((SCREEN_WIDTH - _endSliderOriginX.constant - _startSliderOriginX.constant - 16) < width) {
-        _endSliderOriginX.constant = (SCREEN_WIDTH - width - _startSliderOriginX.constant -16);
+    if ((JP_SCREEN_WIDTH - _endSliderOriginX.constant - _startSliderOriginX.constant - 16) < width) {
+        _endSliderOriginX.constant = (JP_SCREEN_WIDTH - width - _startSliderOriginX.constant -16);
         currentTime = _totalVideoTime;
         if (_endSliderOriginX.constant < 7.5) {
             _endSliderOriginX.constant = 7.5;
-            _startSliderOriginX.constant = (SCREEN_WIDTH - width - _endSliderOriginX.constant -16);
+            _startSliderOriginX.constant = (JP_SCREEN_WIDTH - width - _endSliderOriginX.constant -16);
         }
     }
     
@@ -286,25 +286,25 @@
     endPoint = endPoint - point.x;
     if (endPoint <= 7.5) {
         endPoint = 7.5;
-    }else if (endPoint >= SCREEN_WIDTH - 16 - startPoint)
+    }else if (endPoint >= JP_SCREEN_WIDTH - 16 - startPoint)
     {
-        endPoint = SCREEN_WIDTH - 16 - startPoint;
+        endPoint = JP_SCREEN_WIDTH - 16 - startPoint;
     }
     _endSliderOriginX.constant = endPoint;
     CMTime currentTime = [self videoReallyTime];
     if (CMTimeCompare(currentTime, _reallyHasTime) > 0) {
         currentTime = _reallyHasTime;
         CGFloat width = [self widthWithTime:currentTime];
-        _startSliderOriginX.constant = (SCREEN_WIDTH - width - _endSliderOriginX.constant - 16);
+        _startSliderOriginX.constant = (JP_SCREEN_WIDTH - width - _endSliderOriginX.constant - 16);
     }
     
     CGFloat width = [self widthWithTime:_totalVideoTime];
-    if ((SCREEN_WIDTH - _endSliderOriginX.constant - _startSliderOriginX.constant - 16) < width) {
+    if ((JP_SCREEN_WIDTH - _endSliderOriginX.constant - _startSliderOriginX.constant - 16) < width) {
          currentTime = _totalVideoTime;
-        _startSliderOriginX.constant = (SCREEN_WIDTH - width - _endSliderOriginX.constant -16);
+        _startSliderOriginX.constant = (JP_SCREEN_WIDTH - width - _endSliderOriginX.constant -16);
         if (_startSliderOriginX.constant < 7.5) {
             _startSliderOriginX.constant = 7.5;
-            _endSliderOriginX.constant = (SCREEN_WIDTH - width - _startSliderOriginX.constant -16);
+            _endSliderOriginX.constant = (JP_SCREEN_WIDTH - width - _startSliderOriginX.constant -16);
         }
     }
     
@@ -345,15 +345,15 @@
     if (atMin) {
         _topSliderLineView.backgroundColor = [UIColor whiteColor];
         _bottomSliderLineView.backgroundColor = [UIColor whiteColor];
-        _startSliderView.image = [UIImage imageNamed:@"left_slide"];
-        _endSliderView.image = [UIImage imageNamed:@"right_slide"];
+        _startSliderView.image = JPImageWithName(@"left_slide");
+        _endSliderView.image = JPImageWithName(@"right_slide");
         _rightTimeLabel.hidden = YES;
         _totalTimeLabel.hidden = YES;
     } else {
         _rightTimeLabel.hidden = NO;
         _totalTimeLabel.hidden = NO;
-        _startSliderView.image = [UIImage imageNamed:@"left_slide"];
-        _endSliderView.image = [UIImage imageNamed:@"right_slide"];
+        _startSliderView.image = JPImageWithName(@"left_slide");
+        _endSliderView.image = JPImageWithName(@"right_slide");
         _topSliderLineView.backgroundColor = [UIColor whiteColor];
         _bottomSliderLineView.backgroundColor = [UIColor whiteColor];
     }
@@ -362,7 +362,7 @@
 - (CMTime)videoReallyTime
 {
     NSLog(@"%.2f, %.2f", _startSliderOriginX.constant, _endSliderOriginX.constant);
-    CGFloat currentWidth = SCREEN_WIDTH - _endSliderOriginX.constant - _startSliderOriginX.constant - 16;
+    CGFloat currentWidth = JP_SCREEN_WIDTH - _endSliderOriginX.constant - _startSliderOriginX.constant - 16;
 
     return [self videoTimeWithWidth:currentWidth];
 }
@@ -370,7 +370,7 @@
 - (CMTime)videoTimeWithWidth:(CGFloat)width
 {
     CGFloat currentWidth = width;
-    CGFloat reallyWidth = SCREEN_WIDTH - 31;
+    CGFloat reallyWidth = JP_SCREEN_WIDTH - 31;
     double duration = CMTimeGetSeconds(_videoModel.videoTime);
     double widthseconds = 1.0f * duration / reallyWidth;
     if (widthseconds == 0) {
@@ -383,7 +383,7 @@
 
 - (CGFloat)widthWithTime:(CMTime)time
 {
-    CGFloat reallyWidth = SCREEN_WIDTH - 31;
+    CGFloat reallyWidth = JP_SCREEN_WIDTH - 31;
     double duration = CMTimeGetSeconds(_videoModel.videoTime);
     double widthseconds = 1.0f * duration / reallyWidth;
     if (widthseconds == 0) {
@@ -443,10 +443,16 @@
                                           otherButtonTitles:@"是", nil];
     [alert show];
 }
-- (void)viewWillAppear:(BOOL)animated
-{
+
+- (BOOL)prefersStatusBarHidden{
+    return YES;
+}
+
+
+
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [JPUtil setupStatusBarHidden:YES];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -462,14 +468,14 @@
             weakSelf.thumbImageArr = [reslut copy];
             weakSelf.imageViewWidth = imageViewWidth;
             [weakSelf setupThumbImageView];
-            _currentTimeLabel.hidden = NO;
+            self.currentTimeLabel.hidden = NO;
         }];
         if (CMTimeCompare(CMTimeAdd(_recordInfo.currentTotalTime, _videoModel.videoTime), _recordInfo.totalDuration) > 0 && _isSecondStep == NO) {
             CMTime realyTime = CMTimeSubtract(_recordInfo.totalDuration, _recordInfo.currentTotalTime);
             _reallyHasTime = realyTime;
             _endTimeLabel.text = [NSString stringWithTimeInterval:(NSInteger)CMTimeGetSeconds(_reallyHasTime)];
             CGFloat width = [self widthWithTime:realyTime];
-            _endSliderOriginX.constant = (SCREEN_WIDTH - width - _startSliderOriginX.constant -16);
+            _endSliderOriginX.constant = (JP_SCREEN_WIDTH - width - _startSliderOriginX.constant -16);
             _currentHasTime = realyTime;
             
         }else if (_isSecondStep){
@@ -479,7 +485,7 @@
             CGFloat originX = [self widthWithTime:_videoModel.timeRange.start];
             _startSliderOriginX.constant = 7.5 + originX;
             CGFloat width = [self widthWithTime:realyTime];
-            _endSliderOriginX.constant = (SCREEN_WIDTH - width - _startSliderOriginX.constant -16);
+            _endSliderOriginX.constant = (JP_SCREEN_WIDTH - width - _startSliderOriginX.constant -16);
             _currentHasTime = realyTime;
         }
     }
@@ -516,7 +522,7 @@
         [self finishedWithVideoBaseName:clipBasebame];
     }else{
         self.view.userInteractionEnabled = NO;
-        [self showHUD];
+        [self jp_showHUD];
          clipBasebame = [JPVideoUtil fileNameForDocumentMovie];
         CMTime nextClistartTime = kCMTimeZero;
         NSDictionary *inputOptions = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
@@ -558,13 +564,13 @@
 - (void)finishedError
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self hidHUD];
+        [self jp_hideHUD];
         self.view.userInteractionEnabled = YES;
         [self.videoLocal destruction];
         [self.writeVideoLocal destruction];
         self.videoLocal = nil;
         self.writeVideoLocal = nil;
-        [[JPAppDelegate shareAppdelegate] showAlertViewWithTitle:@"剪辑失败,请重试"];
+        [MBProgressHUD jp_showMessage:@"剪辑失败,请重试"];
         [self.navigationController popViewControllerAnimated:YES];
     });
 
@@ -578,11 +584,11 @@
 - (void)finishedWithVideoBaseName:(NSString *)videoBaseName
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (_recordInfo.hasChangedAspectRatio == NO) {
-            if (_videoModel.aspectRatio == JPVideoAspectRatio9X16) {
-                _recordInfo.aspectRatio = JPVideoAspectRatio1X1;
+        if (self.recordInfo.hasChangedAspectRatio == NO) {
+            if (self.videoModel.aspectRatio == JPVideoAspectRatio9X16) {
+                self.recordInfo.aspectRatio = JPVideoAspectRatio1X1;
             }else{
-                _recordInfo.aspectRatio = _videoModel.aspectRatio;
+                self.recordInfo.aspectRatio = self.videoModel.aspectRatio;
             }
         }
         NSURL *originMovieUrl = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingPathComponent:videoBaseName]];
@@ -592,7 +598,7 @@
         if (self.delegate) {
             [self.delegate didFinishedClipVideoModel:self.videoModel];
         }
-        [self hidHUD];
+        [self jp_hideHUD];
         self.view.userInteractionEnabled = YES;
         self.currentTimeLabel.hidden = NO;
         [self.videoLocal destruction];
@@ -600,14 +606,14 @@
         self.videoLocal = nil;
         self.writeVideoLocal = nil;
         if (self.fromThirdApp) {
-            [_recordInfo addVideoFile:self.videoModel];
+            [self.recordInfo addVideoFile:self.videoModel];
         }
-        if (_fromPackage) {
+        if (self.fromPackage) {
             [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         } else {
-            JPNewPageViewController *trimVC = [[JPNewPageViewController alloc] init];
-            trimVC.recordInfo = _recordInfo;
-            trimVC.cancelGesturesReturn = YES;
+            JPNewPageViewController *trimVC = [[JPNewPageViewController alloc] initWithNibName:@"JPNewPageViewController" bundle:JPResourceBundle];
+            trimVC.recordInfo = self.recordInfo;
+            trimVC.jp_cancelGesturesReturn = YES;
             [self.navigationController setViewControllers:@[trimVC] animated:YES];
         }
     });

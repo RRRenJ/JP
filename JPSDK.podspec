@@ -1,0 +1,39 @@
+Pod::Spec.new do |s|
+  s.name     = 'JPSDK'
+  s.version  = '0.0.1'
+  s.license  = 'BSD'
+  s.summary  = 'JPSDK.'
+  s.homepage = 'https://github.com/RRRenJ/JPSDK'
+  s.author   = { 'RRRenj' => '584201474@qq.com' }
+  s.source   = { :git => 'https://github.com/RRRenJ/JPGPUImage.git', :tag => "#{s.version}" }
+
+  s.prefix_header_file = false
+  s.prefix_header_file = 'JPSDK/JPSDK/Base/Model/JPSDK-prefix.pch'
+  s.source_files = 'JPSDK/JPSDK/**/*.{h,m,pch}'
+  s.resources = 'JPSDK/JPSDK/Resource/JPResource.bundle'
+  s.requires_arc = true
+  s.xcconfig = { 'CLANG_MODULES_AUTOLINK' => 'YES' }
+  
+  s.ios.deployment_target = '8.0'
+  s.ios.exclude_files = 'Source/Mac'
+  s.ios.frameworks   = ['AVFoundation']
+  
+  s.dependency 'SDCycleScrollView'
+  s.dependency 'SDAutoLayout'
+  s.dependency 'MBProgressHUD'
+  s.dependency 'Masonry'
+  s.dependency 'FMDB'
+  s.dependency 'MJRefresh'
+  
+  #s.osx.deployment_target = '10.6'
+  #s.osx.exclude_files = 'framework/Source/iOS',
+  #                      'framework/Source/GPUImageFilterPipeline.*',
+  #                      'framework/Source/GPUImageMovieComposition.*',
+  #                      'framework/Source/GPUImageVideoCamera.*',
+  #                      'framework/Source/GPUImageStillCamera.*',
+  #                      'framework/Source/GPUImageUIElement.*'
+  #s.osx.xcconfig = { 'GCC_WARN_ABOUT_RETURN_TYPE' => 'YES' }
+  
+  
+  
+end

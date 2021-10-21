@@ -13,7 +13,6 @@
 #import "JPStickerPictureCollectionViewCell.h"
 #import "JPPackagePictureGraphView.h"
 #import "JPPackageGraphView.h"
-#import "JPSession.h"
 #import "UIImageView+JPScorllView.h"
 @interface JPLocalGraphList()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,JPPackagePictureGraphCellDelegate>{
     UICollectionView *collecView;
@@ -116,7 +115,7 @@
     layout.minimumInteritemSpacing = 0;
     
     //设置布局方向为垂直流布局
-    collecView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 13 , SCREEN_WIDTH ,self.height - 80) collectionViewLayout:layout];
+    collecView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 13 , JP_SCREEN_WIDTH ,self.height - 80) collectionViewLayout:layout];
     collecView.tag = noDisableVerticalScrollTag;
     collecView.delegate = self;
     collecView.backgroundColor = self.backgroundColor;
@@ -130,12 +129,12 @@
 //    collecView.showsVerticalScrollIndicator = YES;
     [collecView registerClass:[JPPackagePictureGraphCell class] forCellWithReuseIdentifier:@"JPPackagePictureGraphCell"];
     [collecView registerClass:[JPPackageGraphMenuCell class] forCellWithReuseIdentifier:@"JPPackageGraphMenuCell"];
-    [collecView registerNib:[UINib nibWithNibName:@"JPStickerPictureCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"JPStickerPictureCollectionViewCell"];
+    [collecView registerNib:[UINib nibWithNibName:@"JPStickerPictureCollectionViewCell" bundle:JPResourceBundle] forCellWithReuseIdentifier:@"JPStickerPictureCollectionViewCell"];
     [self addSubview:collecView];
     collecView.sd_layout.bottomSpaceToView(self, 0).leftEqualToView(self).rightEqualToView(self).topSpaceToView(self,0);
     [collecView reloadData];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [collecView flashScrollIndicators];
+        [self->collecView flashScrollIndicators];
     });
 }
 
@@ -161,7 +160,7 @@
     if (indexPath.row == [dataArr count]) {
         JPPackagePictureGraphCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"JPPackagePictureGraphCell" forIndexPath:indexPath];
         cell.imgView.userInteractionEnabled = NO;
-        cell.imgView.image = [UIImage imageNamed:@"add_picture"];
+        cell.imgView.image = JPImageWithName(@"add_picture");
         cell.showDeleteBtn = NO;
         cell.deleteBtn.tag = indexPath.row;
         cell.delegate = self;
@@ -214,19 +213,19 @@
 #pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(ScreenFitFloat6(60), ScreenFitFloat6(60));
+    return CGSizeMake(JPScreenFitFloat6(60), JPScreenFitFloat6(60));
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    CGFloat f = (SCREEN_WIDTH - ScreenFitFloat6(60)*4 - 30)/8.f;
+    CGFloat f = (JP_SCREEN_WIDTH - JPScreenFitFloat6(60)*4 - 30)/8.f;
     return UIEdgeInsetsMake(f, f, f, f);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return (SCREEN_WIDTH - ScreenFitFloat6(60)*4 - 30)/8.f;
+    return (JP_SCREEN_WIDTH - JPScreenFitFloat6(60)*4 - 30)/8.f;
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return (SCREEN_WIDTH - ScreenFitFloat6(60)*4 - 30)/8.f;
+    return (JP_SCREEN_WIDTH - JPScreenFitFloat6(60)*4 - 30)/8.f;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {

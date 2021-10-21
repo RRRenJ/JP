@@ -152,7 +152,7 @@
     deleteControl = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0,
                                                                  kJPPatternInteractiveViewControlSize, kJPPatternInteractiveViewControlSize)];
     deleteControl.backgroundColor = [UIColor clearColor];
-    deleteControl.image = [UIImage imageNamed:@"delete_pattern"];
+    deleteControl.image = JPImageWithName(@"delete_pattern");
     deleteControl.userInteractionEnabled = YES;
     UITapGestureRecognizer * singleTap = [[UITapGestureRecognizer alloc]
                                           initWithTarget:self
@@ -165,7 +165,7 @@
                                                                    kJPPatternInteractiveViewControlSize, kJPPatternInteractiveViewControlSize)];
     resizingControl.backgroundColor = [UIColor clearColor];
     resizingControl.userInteractionEnabled = YES;
-    resizingControl.image = [UIImage imageNamed:@"zoom_pattern"];
+    resizingControl.image = JPImageWithName(@"zoom_pattern");
     UIPanGestureRecognizer* panResizeGesture = [[UIPanGestureRecognizer alloc]
                                                 initWithTarget:self
                                                 action:@selector(resizeTranslate:)];
@@ -309,9 +309,9 @@
                         self.frame = frame;
                     } completion:^(BOOL finished) {
                         if (finished) {
-                            _patternAttribute.frame = self.frame;
-                            if(_delegate && [_delegate respondsToSelector:@selector(patternInteractiveViewEndMove:)]) {
-                                [_delegate patternInteractiveViewEndMove:self];
+                            self.patternAttribute.frame = self.frame;
+                            if(self.delegate && [self.delegate respondsToSelector:@selector(patternInteractiveViewEndMove:)]) {
+                                [self.delegate patternInteractiveViewEndMove:self];
                             }
                         }
                     }];
@@ -320,10 +320,10 @@
         }
             break;
         case UIGestureRecognizerStateCancelled:
-            JPLog(@"UIGestureRecognizerStateCancelled");
+            NSLog(@"UIGestureRecognizerStateCancelled");
             break;
         case UIGestureRecognizerStateFailed:
-            JPLog(@"UIGestureRecognizerStateFailed");
+            NSLog(@"UIGestureRecognizerStateFailed");
             break;
         default:
             break;

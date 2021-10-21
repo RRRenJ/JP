@@ -42,7 +42,7 @@
 - (void)createSubviews
 {
     self.backgroundColor = [UIColor clearColor];
-    [[NSBundle mainBundle] loadNibNamed:@"JPNewClidView" owner:self options:nil];
+    [JPResourceBundle loadNibNamed:@"JPNewClidView" owner:self options:nil];
     [self addSubview:self.view];
     self.view.sd_layout.topEqualToView(self).rightEqualToView(self).bottomEqualToView(self).leftEqualToView(self);
     [JPUtil setViewRadius:self.leftImageView byRoundingCorners:UIRectCornerTopLeft|UIRectCornerBottomLeft cornerRadii:CGSizeMake(3, 3)];
@@ -82,16 +82,16 @@
     }
     if (end - start < 120) {
         start = end - 120;
-        _leftImageView.image = [UIImage imageNamed:@"left-y"];
-        _rightImageView.image = [UIImage imageNamed:@"right-y"];
+        _leftImageView.image = JPImageWithName(@"left-y");
+        _rightImageView.image = JPImageWithName(@"right-y");
 
     }else if(end - start > _maxWidth){
         start = end - _maxWidth;
-        _leftImageView.image = [UIImage imageNamed:@"left-y"];
-        _rightImageView.image = [UIImage imageNamed:@"right-y"];
+        _leftImageView.image = JPImageWithName(@"left-y");
+        _rightImageView.image = JPImageWithName(@"right-y");
     }else{
-        _leftImageView.image = [UIImage imageNamed:@"left_slide"];
-        _rightImageView.image = [UIImage imageNamed:@"right_slide"];
+        _leftImageView.image = JPImageWithName(@"left_slide");
+        _rightImageView.image = JPImageWithName(@"right_slide");
     }
     CGFloat width = end - start;
     _startPoint = start;
@@ -105,8 +105,8 @@
 - (void)setWidth:(CGFloat)width
 {
     [super setWidth:width];
-    _leftImageView.image = [UIImage imageNamed:@"left_slide"];
-    _rightImageView.image = [UIImage imageNamed:@"right_slide"];
+    _leftImageView.image = JPImageWithName(@"left_slide");
+    _rightImageView.image = JPImageWithName(@"right_slide");
 }
 
 - (void)rightPanAction:(UIPanGestureRecognizer *)pan
@@ -130,17 +130,17 @@
     }
     if (end - start < 120) {
         end = start + 120;
-        _leftImageView.image = [UIImage imageNamed:@"left-y"];
-        _rightImageView.image = [UIImage imageNamed:@"right-y"];
+        _leftImageView.image = JPImageWithName(@"left-y");
+        _rightImageView.image = JPImageWithName(@"right-y");
         
     }else if(end - start > _maxWidth)
     {
         end = start + _maxWidth;
-        _leftImageView.image = [UIImage imageNamed:@"left-y"];
-        _rightImageView.image = [UIImage imageNamed:@"right-y"];
+        _leftImageView.image = JPImageWithName(@"left-y");
+        _rightImageView.image = JPImageWithName(@"right-y");
     }else{
-        _leftImageView.image = [UIImage imageNamed:@"left_slide"];
-        _rightImageView.image = [UIImage imageNamed:@"right_slide"];
+        _leftImageView.image = JPImageWithName(@"left_slide");
+        _rightImageView.image = JPImageWithName(@"right_slide");
     }
     CGFloat width = end - start;
     _startPoint = start;

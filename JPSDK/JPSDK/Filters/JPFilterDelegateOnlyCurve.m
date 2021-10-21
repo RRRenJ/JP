@@ -21,7 +21,7 @@
 - (instancetype)initWithShaderContentPaths:(NSArray<NSString *> *)shaderPaths andCurveName:(NSString *)imageName
 {
     if (self = [super initWithShaderContentPaths:shaderPaths]) {
-        self.rgbPicture = [[GPUImagePicture alloc] initWithImage:[UIImage imageNamed:imageName]];
+        self.rgbPicture = [[GPUImagePicture alloc] initWithImage:JPImageWithName(imageName)];
         filterRGBTextureUniform = [filterProgram uniformIndex:@"inputImageTextureRGB"];
     }
     return self;

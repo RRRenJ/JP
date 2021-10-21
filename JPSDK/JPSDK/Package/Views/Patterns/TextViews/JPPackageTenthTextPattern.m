@@ -39,7 +39,7 @@
 }
 
 - (void)createSubviews{
-    [[NSBundle mainBundle] loadNibNamed:@"JPPackageTenthTextPattern" owner:self options:nil];
+    [JPResourceBundle loadNibNamed:@"JPPackageTenthTextPattern" owner:self options:nil];
     self.textView.backgroundColor = [UIColor clearColor];
     [self addSubview:self.textView];
     self.textView.sd_layout.topEqualToView(self).bottomEqualToView(self).leftEqualToView(self).rightEqualToView(self);

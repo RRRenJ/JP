@@ -22,8 +22,8 @@
 
 - (instancetype)initWithErrorType:(JPErrorMessageViewType)errorType
 {
-    if (self = [self initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)]) {
-        [[NSBundle mainBundle] loadNibNamed:@"JPErrorMessageView" owner:self options:nil];
+    if (self = [self initWithFrame:CGRectMake(0, 0, JP_SCREEN_WIDTH, JP_SCREEN_HEIGHT)]) {
+        [JPResourceBundle loadNibNamed:@"JPErrorMessageView" owner:self options:nil];
         [self addSubview:self.view];
         
         self.view.sd_layout
@@ -33,9 +33,9 @@
         .heightRatioToView(self, 0.38);
         
         _bgLayer = [CALayer layer];
-        _bgLayer.frame = CGRectMake((SCREEN_WIDTH*0.44)/2 - 2, (SCREEN_HEIGHT*0.62)/2 - 2, SCREEN_WIDTH*0.56+4, SCREEN_HEIGHT*0.38+4);
+        _bgLayer.frame = CGRectMake((JP_SCREEN_WIDTH*0.44)/2 - 2, (JP_SCREEN_HEIGHT*0.62)/2 - 2, JP_SCREEN_WIDTH*0.56+4, JP_SCREEN_HEIGHT*0.38+4);
         _bgLayer.backgroundColor = [UIColor blackColor].CGColor;
-        _bgLayer.shadowColor = [UIColor colorWithHexString:@"#ffffff" alpha:1].CGColor;
+        _bgLayer.shadowColor = [UIColor jp_colorWithHexString:@"ffffff"].CGColor;
         _bgLayer.shadowOffset = CGSizeMake(0, 0);
         _bgLayer.shadowOpacity = 0.5;
         _bgLayer.shadowRadius = 4;
@@ -49,17 +49,17 @@
         if (errorType == JPErrorMessageViewTypeNetwork) {
             _errorTitleLabel.text = @"找不到网络了～";
             _errorMessageLabel.text = @"";
-            _logoImageView.image = [UIImage imageNamed:@"no_network"];
+            _logoImageView.image = JPImageWithName(@"no_network");
             _retryBtn.hidden = NO;
         }else if(errorType == JPErrorMessageViewTypeComposition){
             _errorTitleLabel.text = @"合成失败";
             _errorMessageLabel.text = @"视频合成失败";
-            _logoImageView.image = [UIImage imageNamed:@"no_network"];
+            _logoImageView.image = JPImageWithName(@"no_network");
             _retryBtn.hidden = YES;
         }else{
             _errorTitleLabel.text = @"存储空间不足500M";
             _errorMessageLabel.text = @"请先清理手机的内存空间";
-            _logoImageView.image = [UIImage imageNamed:@"no_network"];
+            _logoImageView.image = JPImageWithName(@"no_network");
             _retryBtn.hidden = YES;
         }
         self.view.layer.masksToBounds = YES;
@@ -69,7 +69,7 @@
         self.alpha = 0.0;
         self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
         self.view.alpha = 0.0;
-        [[JPAppDelegate shareAppdelegate].window addSubview:self];
+        [[UIApplication sharedApplication].keyWindow addSubview:self];
         [self show];
         }
     return self;

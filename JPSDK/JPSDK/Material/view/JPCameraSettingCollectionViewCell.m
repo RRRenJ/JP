@@ -26,15 +26,15 @@
 - (void)selected:(BOOL)selected{
     if (selected) {
 
-        self.nameLb.textColor = [UIColor appMainBlueColor];
+        self.nameLb.textColor = [UIColor jp_colorWithHexString:@"0091FF"];
         self.contentView.layer.masksToBounds = YES;
         self.contentView.layer.cornerRadius = 2;
-        self.contentView.backgroundColor = [UIColor colorWithHexString:@"3e3e3e"];
+        self.contentView.backgroundColor = [UIColor jp_colorWithHexString:@"3e3e3e"];
     }else{
-        self.nameLb.textColor = [UIColor colorWithHexString:@"ffffff"];
+        self.nameLb.textColor = [UIColor jp_colorWithHexString:@"ffffff"];
         self.contentView.layer.masksToBounds = NO;
         self.contentView.layer.cornerRadius = 0;
-        self.contentView.backgroundColor = [UIColor colorWithHexString:@"232323"];
+        self.contentView.backgroundColor = [UIColor jp_colorWithHexString:@"232323"];
     }
     
 }

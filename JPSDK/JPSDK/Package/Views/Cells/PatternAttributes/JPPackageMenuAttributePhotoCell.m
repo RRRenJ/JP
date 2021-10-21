@@ -33,9 +33,9 @@
 - (void)setupUI{
     self.textLb = [[UILabel alloc] initWithFrame:CGRectMake(0, (6), (50), (13))];
     self.textLb.font = [UIFont contentFont];
-    self.textLb.textColor = [UIColor colorWithHex:0x777777];
+    self.textLb.textColor = [UIColor jp_colorWithHexString:@"777777"];
     [self.contentView addSubview:self.textLb];
-    self.textLb.text = NSLocalizedString(@"pattern_attribute_add_login", @"");
+    self.textLb.text = @"添加图标";
     self.textLb.sd_layout.leftSpaceToView(self.contentView, 15).topEqualToView(self.contentView).heightIs(25).widthIs(100);
     UIView *backView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.contentView addSubview:backView];
@@ -51,14 +51,14 @@
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     layout.itemSize = CGSizeMake(50, 35);
     //设置布局方向为垂直流布局
-    _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0 , SCREEN_WIDTH ,self.height - 80) collectionViewLayout:layout];
+    _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0 , JP_SCREEN_WIDTH ,self.height - 80) collectionViewLayout:layout];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     _collectionView.backgroundColor = self.backgroundColor;
     _collectionView.bounces = NO;
     _collectionView.showsHorizontalScrollIndicator = NO;
     _collectionView.showsVerticalScrollIndicator = NO;
-    [_collectionView registerNib:[UINib nibWithNibName:@"JPLogoSelectCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"JPLogoSelectCollectionViewCell"];
+    [_collectionView registerNib:[UINib nibWithNibName:@"JPLogoSelectCollectionViewCell" bundle:JPResourceBundle] forCellWithReuseIdentifier:@"JPLogoSelectCollectionViewCell"];
     [backView addSubview:_collectionView];
     _collectionView.sd_layout.leftSpaceToView(_logoImageView, 15).topEqualToView(backView).bottomEqualToView(backView).rightEqualToView(backView);
 }
@@ -68,7 +68,7 @@
     _patternInteractiveView = patternInteractiveView;
     _logoImageView.image = patternInteractiveView.patternAttribute.logoImage;
     if (patternInteractiveView.patternAttribute.logoImage == nil) {
-       _logoImageView.image = [UIImage imageNamed:@"loginIcon"];
+       _logoImageView.image = JPImageWithName(@"loginIcon");
     }
     [_collectionView reloadData];
 }
@@ -109,7 +109,7 @@
             [weakself.collectionView reloadData];
         };
         pickerVC.modalPresentationStyle = UIModalPresentationFullScreen;
-        [self.viewController presentViewController:pickerVC animated:YES completion:nil];
+        [[JPUtil currentViewController] presentViewController:pickerVC animated:YES completion:nil];
     }else{
         [cell changeMSelectedState];
         JPPackagePatternAttribute *model = _dataArr[indexPath.row];

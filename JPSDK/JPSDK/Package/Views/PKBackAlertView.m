@@ -37,7 +37,7 @@
 
 
 - (void)setupViews{
-    self.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    self.frame = CGRectMake(0, 0, JP_SCREEN_WIDTH, JP_SCREEN_HEIGHT);
     self.backgroundColor = UIColor.clearColor;
     [self addSubview:self.contentView];
     [self.contentView addSubview:self.titleLb];
@@ -110,7 +110,7 @@
 - (UIView *)contentView{
     if (!_contentView) {
         _contentView = [[UIView alloc]init];
-        _contentView.backgroundColor = [UIColor colorWithHexString:@"#262626"];
+        _contentView.backgroundColor = [UIColor jp_colorWithHexString:@"#262626"];
         _contentView.layer.cornerRadius = 7;
         _contentView.layer.masksToBounds = YES;
     }
@@ -143,12 +143,12 @@
     if (!_comfirmBt) {
         _comfirmBt = [UIButton buttonWithType:UIButtonTypeCustom];
         [_comfirmBt setTitle:@"确定" forState:UIControlStateNormal];
-        [_comfirmBt setTitleColor:[UIColor colorWithHexString:@"#0091FF"] forState:UIControlStateNormal];
+        [_comfirmBt setTitleColor:[UIColor jp_colorWithHexString:@"#0091FF"] forState:UIControlStateNormal];
         _comfirmBt.titleLabel.font = [UIFont systemFontOfSize:12 weight:UIFontWeightSemibold];
         _comfirmBt.layer.masksToBounds = YES;
         _comfirmBt.layer.cornerRadius = 15;
         _comfirmBt.layer.borderWidth = 1;
-        _comfirmBt.layer.borderColor = [UIColor colorWithHexString:@"#0091FF"].CGColor;
+        _comfirmBt.layer.borderColor = [UIColor jp_colorWithHexString:@"#0091FF"].CGColor;
         _comfirmBt.backgroundColor = UIColor.clearColor;
         [_comfirmBt addTarget:self action:@selector(comfirmBtClicked) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -163,7 +163,7 @@
         _cancelBt.titleLabel.font = [UIFont systemFontOfSize:12 weight:UIFontWeightSemibold];
         _cancelBt.layer.masksToBounds = YES;
         _cancelBt.layer.cornerRadius = 15;
-        _cancelBt.backgroundColor = [UIColor colorWithHexString:@"#0091FF"];
+        _cancelBt.backgroundColor = [UIColor jp_colorWithHexString:@"#0091FF"];
         [_cancelBt addTarget:self action:@selector(cancelBtClicked) forControlEvents:UIControlEventTouchUpInside];
     }
     return _cancelBt;

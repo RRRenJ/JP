@@ -17,11 +17,11 @@
 
 + (void)initialize {
     UINavigationBar *navBar = [UINavigationBar appearance];
-    navBar.tintColor = [UIColor colorWithHexString:@"#353535"];
+    navBar.tintColor = [UIColor jp_colorWithHexString:@"#353535"];
     navBar.barTintColor = [UIColor whiteColor];
     navBar.titleTextAttributes = @{
-        NSForegroundColorAttributeName : [UIColor colorWithHexString:@"#333333"],
-        NSFontAttributeName : [UIFont pingFangWithSize:17 weight:UIFontWeightMedium]};
+        NSForegroundColorAttributeName : [UIColor jp_colorWithHexString:@"#333333"],
+        NSFontAttributeName : [UIFont jp_pingFangWithSize:17 weight:UIFontWeightMedium]};
     //设置透明的背景图，便于识别底部线条有没有被隐藏
     [navBar setBackgroundImage:[[UIImage alloc] init]
                        forBarPosition:UIBarPositionAny
@@ -53,7 +53,7 @@
     if (stateBarcurrentOrientation != UIInterfaceOrientationLandscapeLeft && stateBarcurrentOrientation != UIInterfaceOrientationLandscapeRight) {
         //如果屏幕方向 变为竖屏了 重置下导航栏的frame
         CGRect windowFrame = UIScreen.mainScreen.bounds;
-        self.navigationBar.frame = CGRectMake(0, 20, windowFrame.size.width, KNormalNavigationHeight - 20);
+        self.navigationBar.frame = CGRectMake(0, 20, windowFrame.size.width, JP_NAVIGATION_HEIGHT - 20);
     }
 }
 

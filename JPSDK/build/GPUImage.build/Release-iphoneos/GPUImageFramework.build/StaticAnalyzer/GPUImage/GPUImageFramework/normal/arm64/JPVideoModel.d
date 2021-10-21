@@ -1,0 +1,23 @@
+dependencies: \
+  /Users/rrrenj/Desktop/WorkSpace/JPSDK/JPSDK/JPSDK/GPUImage/Source/record/models/JPVideoModel.m \
+  /Users/rrrenj/Desktop/WorkSpace/JPSDK/JPSDK/JPSDK/build/GPUImage.build/Release-iphoneos/GPUImageFramework.build/module.modulemap \
+  /Users/rrrenj/Desktop/WorkSpace/JPSDK/JPSDK/JPSDK/GPUImage/Source/record/models/JPVideoModel.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.5.sdk/usr/include/mach-o/compact_unwind_encoding.modulemap \
+  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.5.sdk/usr/include/mach-o/dyld.modulemap \
+  /Users/rrrenj/Desktop/WorkSpace/JPSDK/JPSDK/JPSDK/GPUImage/Source/record/models/JPPhotoModel.h \
+  /Users/rrrenj/Desktop/WorkSpace/JPSDK/JPSDK/JPSDK/GPUImage/Source/iOS/GPUImageContext.h \
+  /Users/rrrenj/Desktop/WorkSpace/JPSDK/JPSDK/JPSDK/GPUImage/Source/GLProgram.h \
+  /Users/rrrenj/Desktop/WorkSpace/JPSDK/JPSDK/JPSDK/GPUImage/Source/GPUImageFramebuffer.h \
+  /Users/rrrenj/Desktop/WorkSpace/JPSDK/JPSDK/JPSDK/GPUImage/Source/GPUImageFramebufferCache.h \
+  /Users/rrrenj/Desktop/WorkSpace/JPSDK/JPSDK/JPSDK/GPUImage/Source/record/filters/JPInkwellFilter.h \
+  /Users/rrrenj/Desktop/WorkSpace/JPSDK/JPSDK/JPSDK/GPUImage/Source/record/filters/JPUIImageFilter.h \
+  /Users/rrrenj/Desktop/WorkSpace/JPSDK/JPSDK/JPSDK/GPUImage/Source/GPUImageFilter.h \
+  /Users/rrrenj/Desktop/WorkSpace/JPSDK/JPSDK/JPSDK/GPUImage/Source/GPUImageOutput.h \
+  /Users/rrrenj/Desktop/WorkSpace/JPSDK/JPSDK/JPSDK/GPUImage/Source/iOS/GPUImagePicture.h \
+  /Users/rrrenj/Desktop/WorkSpace/JPSDK/JPSDK/JPSDK/GPUImage/Source/record/util/JPVideoUtil.h \
+  /Users/rrrenj/Desktop/WorkSpace/JPSDK/JPSDK/JPSDK/GPUImage/Source/record/models/JPVideoRecordInfo.h \
+  /Users/rrrenj/Desktop/WorkSpace/JPSDK/JPSDK/JPSDK/GPUImage/Source/record/models/JPFilterModel.h \
+  /Users/rrrenj/Desktop/WorkSpace/JPSDK/JPSDK/JPSDK/GPUImage/Source/record/models/JPAudioModel.h \
+  /Users/rrrenj/Desktop/WorkSpace/JPSDK/JPSDK/JPSDK/GPUImage/Source/record/models/JPBaseVideoRecordInfo.h \
+  /Users/rrrenj/Desktop/WorkSpace/JPSDK/JPSDK/JPSDK/GPUImage/Source/record/filters/JPGeneralFilter.h \
+  /Users/rrrenj/Desktop/WorkSpace/JPSDK/JPSDK/JPSDK/GPUImage/Source/record/models/JPFiltersAttributeModel.h

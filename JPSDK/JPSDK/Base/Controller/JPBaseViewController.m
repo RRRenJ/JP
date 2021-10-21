@@ -58,11 +58,7 @@ static NSDictionary *JP_PAGE_KEY_VALUE;
     NSString *className  = NSStringFromClass([self class]);
     NSString *page = JP_PAGE_KEY_VALUE[className];
     if (page) {
-        if (isStart) {
-            [MobClick beginLogPageView:page];
-        }else{
-            [MobClick endLogPageView:page];
-        }
+       
     }
 }
 
@@ -72,7 +68,7 @@ static NSDictionary *JP_PAGE_KEY_VALUE;
     [self.promptView dismiss];
     self.promptView = nil;
     [[GPUImageContext sharedImageProcessingContext].framebufferCache purgeAllUnassignedFramebuffers];
-    [self.guideView removeFromSuperview];
+    
 }
 - (void)viewDidDisappear:(BOOL)animated
 {
@@ -142,7 +138,7 @@ static NSDictionary *JP_PAGE_KEY_VALUE;
 
 - (void)createNavigatorViewWithHeight:(CGFloat)height {
     if (!self.navagatorView) {
-        self.navagatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, height)];
+        self.navagatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, JP_SCREEN_WIDTH, height)];
         self.navagatorView.backgroundColor = self.view.backgroundColor;
         [self.view addSubview:self.navagatorView];
         self.navagatorView.sd_layout.widthRatioToView(self.view, 1.0);
@@ -162,7 +158,7 @@ static NSDictionary *JP_PAGE_KEY_VALUE;
 
 - (void)addDismissButton {
     if (self.navagatorView && !self.leftButton) {
-        CGRect frame = CGRectMake(ScreenFitFloat6(3), self.navagatorView.height - KShrinkOnlyNavigationHeight, ScreenFitFloat6(40), KShrinkOnlyNavigationHeight);
+        CGRect frame = CGRectMake(JPScreenFitFloat6(3), self.navagatorView.height - JPShrinkOnlyNavigationHeight, JPScreenFitFloat6(40), JPShrinkOnlyNavigationHeight);
         
         self.leftButton = [JPUtil createCustomButtonWithTittle:nil
                                                      withImage:[UIImage imageNamed:@"esc"]
@@ -180,7 +176,7 @@ static NSDictionary *JP_PAGE_KEY_VALUE;
 
 - (void)addPopButton {
     if (self.navagatorView && !self.leftButton) {
-        CGRect frame = CGRectMake(0, self.navagatorView.height - KShrinkOnlyNavigationHeight, ScreenFitFloat6(40), KShrinkOnlyNavigationHeight);
+        CGRect frame = CGRectMake(0, self.navagatorView.height - JPShrinkOnlyNavigationHeight, JPScreenFitFloat6(40), JPShrinkOnlyNavigationHeight);
         
         self.leftButton = [JPUtil createCustomButtonWithTittle:nil
                                                      withImage:[UIImage imageNamed:@"white-back"]
@@ -201,7 +197,7 @@ static NSDictionary *JP_PAGE_KEY_VALUE;
         return;
     }
     
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - ScreenFitFloat6(200))/2.f, 0, ScreenFitFloat6(200), ScreenFitFloat6(20))];
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake((JP_SCREEN_WIDTH - JPScreenFitFloat6(200))/2.f, 0, JPScreenFitFloat6(200), JPScreenFitFloat6(20))];
     self.titleLabel.font = [UIFont titleFont];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.textColor = [UIColor whiteColor];
@@ -278,7 +274,7 @@ static NSDictionary *JP_PAGE_KEY_VALUE;
     if (!self.navagatorView || self.leftButton) {
         return;
     }
-    CGRect frame = CGRectMake(0, self.navagatorView.height - KShrinkOnlyNavigationHeight, ScreenFitFloat6(40), KShrinkOnlyNavigationHeight);
+    CGRect frame = CGRectMake(0, self.navagatorView.height - JPShrinkOnlyNavigationHeight, JPScreenFitFloat6(40), JPShrinkOnlyNavigationHeight);
     
     self.leftButton = [JPUtil createCustomButtonWithTittle:tittle
                                                  withImage:image
@@ -301,7 +297,7 @@ static NSDictionary *JP_PAGE_KEY_VALUE;
     if (!self.navagatorView || self.rightButton) {
         return;
     }
-    CGRect frame = CGRectMake(SCREEN_WIDTH - ScreenFitFloat6(60), self.navagatorView.height - KShrinkOnlyNavigationHeight, ScreenFitFloat6(60), KShrinkOnlyNavigationHeight);
+    CGRect frame = CGRectMake(JP_SCREEN_WIDTH - JPScreenFitFloat6(60), self.navagatorView.height - JPShrinkOnlyNavigationHeight, JPScreenFitFloat6(60), JPShrinkOnlyNavigationHeight);
     
     self.rightButton = [JPUtil createCustomButtonWithTittle:tittle
                                                   withImage:image
@@ -408,7 +404,7 @@ static NSDictionary *JP_PAGE_KEY_VALUE;
 }
 
 - (void)alertTitle:(NSString *)title andMessage:(NSString *)msg comfireTitle:(NSString *)comfireTitle cancelTitle:(NSString *)cancelTitle comfireCompltion:(void (^)(void))comfireAction cancelCompletion:(void (^)(void))cancelCompletion {
-    [NSThread asyncSafeInMainQueue:^{
+    [NSThread jp_asyncSafeInMainQueue:^{
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action1 = [UIAlertAction actionWithTitle:cancelTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
             if (cancelCompletion) {

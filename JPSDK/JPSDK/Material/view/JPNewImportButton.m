@@ -39,7 +39,7 @@
 
 - (void)createSubviews
 {
-    [[NSBundle mainBundle] loadNibNamed:@"JPNewImportButton" owner:self options:nil];
+    [JPResourceBundle loadNibNamed:@"JPNewImportButton" owner:self options:nil];
     [self addSubview:self.view];
     self.view.sd_layout.topEqualToView(self).rightEqualToView(self).bottomEqualToView(self).leftEqualToView(self);
     self.hasImportView.hidden = YES;

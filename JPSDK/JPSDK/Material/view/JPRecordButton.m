@@ -38,7 +38,7 @@
     self.layer.cornerRadius = self.height / 2.0;
     _timeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _timeLabel.textColor = [UIColor whiteColor];
-    _timeLabel.backgroundColor = [UIColor appMainYellowColor];
+    _timeLabel.backgroundColor = [UIColor jp_colorWithHexString:@"0091FF"];
     _timeLabel.font = [UIFont fontWithName:@"PlacardMTStd-Cond" size:24];
     _timeLabel.layer.masksToBounds = YES;
     _timeLabel.layer.cornerRadius = (self.height - 8) / 2.0;
@@ -58,7 +58,7 @@
 - (void)becomeNone
 {
     _timeLabel.text = @"";
-    _timeLabel.backgroundColor = [UIColor appMainYellowColor];
+    _timeLabel.backgroundColor = [UIColor jp_colorWithHexString:@"0091FF"];
 }
 
 - (void)startScrollFilter
@@ -68,6 +68,6 @@
 
 - (void)endScrollFilter
 {
-    _timeLabel.backgroundColor = [UIColor appMainYellowColor];
+    _timeLabel.backgroundColor = [UIColor jp_colorWithHexString:@"0091FF"];
 }
 @end

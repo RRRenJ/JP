@@ -37,14 +37,14 @@
     CAShapeLayer *borderShape = [CAShapeLayer layer];
     borderShape.frame = self.imgView.bounds;
     borderShape.path = maskPath.CGPath;
-    borderShape.strokeColor = [UIColor colorWithHex:0x303133].CGColor;
+    borderShape.strokeColor = [UIColor jp_colorWithHexString:@"303133"].CGColor;
     borderShape.fillColor = nil;
     borderShape.lineWidth = 0.5f;
     [self.imgView.layer addSublayer:borderShape];
     
-    CGRect frame = CGRectMake(self.imgView.right, self.imgView.top, ScreenFitFloat6(27), ScreenFitFloat6(27));
+    CGRect frame = CGRectMake(self.imgView.right, self.imgView.top, JPScreenFitFloat6(27), JPScreenFitFloat6(27));
     self.deleteBtn = [JPUtil createCustomButtonWithTittle:nil
-                                                withImage:[UIImage imageNamed:@"delete"]
+                                                withImage:JPImageWithName(@"delete")
                                                 withFrame:frame
                                                    target:self
                                                    action:@selector(delete:)];

@@ -32,23 +32,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self createNavigatorViewWithHeight:KShrinkNavigationHeight];
+    [self createNavigatorViewWithHeight:JPShrinkNavigationHeight];
     self.navagatorView.backgroundColor = [UIColor blackColor];
     [self addCustomTittleViewWithTittle:@"导入视频"];
     [self addPopButton];
-    _contentViewTop.constant = KShrinkNavigationHeight;
+    _contentViewTop.constant = JPShrinkNavigationHeight;
     if (_fromPackage) {
         self.importButton = [JPNewImportButton buttonWithType:UIButtonTypeCustom];
         [self.importButton setBackgroundColor:[UIColor clearColor]];
-        CGFloat height = KShrinkStatusBarHeight;
-        self.importButton.frame = CGRectMake(SCREEN_WIDTH - 120, height, 120, 44);
+        CGFloat height = JPShrinkStatusBarHeight;
+        self.importButton.frame = CGRectMake(JP_SCREEN_WIDTH - 120, height, 120, 44);
         [self.navagatorView addSubview:self.importButton];
         [self.importButton setupNumber:0];
         _selectFileModels = [NSMutableArray array];
         [_importButton addTarget:self action:@selector(finishSelectVideo) forControlEvents:UIControlEventTouchUpInside];
     }
     self.progressView = [[JPVideoRecordProgressView alloc] init];
-    self.progressView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 3);
+    self.progressView.frame = CGRectMake(0, 0, JP_SCREEN_WIDTH, 3);
     //self.progressView.hidden= YES;
     [self.navagatorView addSubview:self.progressView];
     self.progressView.sd_layout.topSpaceToView(self.navagatorView, 0).leftSpaceToView(self.navagatorView, 0).rightSpaceToView(self.navagatorView, 0).heightIs(3);
@@ -56,7 +56,7 @@
     [self.segementView addTarget:self action:@selector(didChangePage:) forControlEvents:UIControlEventValueChanged];
     self.videoVC = [self loadVCWithSourceType:JPAssetTypeVideo];
     self.photoVC = [self loadVCWithSourceType:JPAssetTypePhoto];
-    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 2, 0);
+    self.scrollView.contentSize = CGSizeMake(JP_SCREEN_WIDTH * 2, 0);
     self.scrollView.delegate = self;
 }
 
@@ -81,11 +81,11 @@
     ablumVC.recordInfo = _recordInfo;
     [self addChildViewController:ablumVC];
     [self.scrollView addSubview:ablumVC.view];
-    ablumVC.view.sd_layout.topEqualToView(self.scrollView).bottomEqualToView(self.scrollView).widthIs(SCREEN_WIDTH);
+    ablumVC.view.sd_layout.topEqualToView(self.scrollView).bottomEqualToView(self.scrollView).widthIs(JP_SCREEN_WIDTH);
     if (type == JPAssetTypeVideo) {
         ablumVC.view.sd_layout.leftEqualToView(self.scrollView);
     }else{
-        ablumVC.view.sd_layout.leftSpaceToView(self.scrollView, SCREEN_WIDTH);
+        ablumVC.view.sd_layout.leftSpaceToView(self.scrollView, JP_SCREEN_WIDTH);
     }
     if (_fromPackage) {
         ablumVC.delegate = self;
@@ -100,14 +100,14 @@
         return;
     }
     CGFloat offsetX = scrollView.contentOffset.x;
-    if (offsetX / SCREEN_WIDTH < 0.1 ) {
+    if (offsetX / JP_SCREEN_WIDTH < 0.1 ) {
         if (self.segementView.cureenrIndex != 0) {
             [self.segementView setCurrentIndex:0];
             self.isDragging = NO;
         }
 
     }
-    if (offsetX / SCREEN_WIDTH > 0.9 ) {
+    if (offsetX / JP_SCREEN_WIDTH > 0.9 ) {
         if (self.segementView.cureenrIndex != 1) {
             [self.segementView setCurrentIndex:1];
             self.isDragging = NO;
@@ -129,7 +129,7 @@
         if (self.photoVC == nil) {
             self.photoVC = [self loadVCWithSourceType:JPAssetTypePhoto];
         }
-        [_scrollView setContentOffset:CGPointMake(SCREEN_WIDTH, 0) animated:YES];
+        [_scrollView setContentOffset:CGPointMake(JP_SCREEN_WIDTH, 0) animated:YES];
     }
 }
 
@@ -195,9 +195,9 @@
     if (_fromPackage) {
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     } else {
-        JPNewPageViewController *trimVC = [[JPNewPageViewController alloc] init];
+        JPNewPageViewController *trimVC = [[JPNewPageViewController alloc] initWithNibName:@"JPNewPageViewController" bundle:JPResourceBundle];
         trimVC.recordInfo = _recordInfo;
-        trimVC.cancelGesturesReturn = YES;
+        trimVC.jp_cancelGesturesReturn = YES;
         [self.navigationController setViewControllers:@[trimVC] animated:YES];
     }
 }

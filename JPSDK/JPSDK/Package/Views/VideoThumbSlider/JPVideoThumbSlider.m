@@ -36,7 +36,7 @@
 - (id)initWithFrame:(CGRect)frame withAsset:(AVAsset *)asset andVideoDuration:(CMTime)dur andTotalDuration:(CMTime)totalDuration{
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor colorWithHex:0x0e0e0e];
+        self.backgroundColor = [UIColor jp_colorWithHexString:@"0e0e0e"];
         thumbImageGenerator = [AVAssetImageGenerator assetImageGeneratorWithAsset:asset];
         thumbImageGenerator.appliesPreferredTrackTransform = YES;
         thumbImageGenerator.apertureMode = AVAssetImageGeneratorApertureModeEncodedPixels;
@@ -59,8 +59,8 @@
             return;
         }
         timeLb = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.width, 12)];
-        timeLb.font = [UIFont placardMTStdCondBoldFontWithSize:12];
-        timeLb.textColor = [UIColor colorWithHex:0x525252];
+        timeLb.font = [UIFont jp_placardMTStdCondBoldFontWithSize:12];
+        timeLb.textColor = [UIColor jp_colorWithHexString:@"525252"];
         timeLb.textAlignment = NSTextAlignmentCenter;
         timeLb.text = @"00:00";
         [self addSubview:timeLb];
@@ -104,44 +104,44 @@
     dispatch_async(aHQueue, ^{
         @autoreleasepool {
 
-        thumbImageGenerator.maximumSize = CGSizeMake(10000, (40));
+        self->thumbImageGenerator.maximumSize = CGSizeMake(10000, (40));
         CMTime startTime = kCMTimeZero;
         CMTime actualTime;
         NSError *error = nil;
-        CGImageRef halfWayImage = [thumbImageGenerator copyCGImageAtTime:startTime actualTime: &actualTime error: &error];
+        CGImageRef halfWayImage = [self->thumbImageGenerator copyCGImageAtTime:startTime actualTime: &actualTime error: &error];
         if (halfWayImage) {
             UIImage *thumbnail = [[UIImage alloc] initWithCGImage:halfWayImage];
-            [dataArr addObject:thumbnail];
-            [reallySourceImage addObject:thumbnail];
+            [self->dataArr addObject:thumbnail];
+            [self->reallySourceImage addObject:thumbnail];
             CGImageRelease(halfWayImage);
             CGSize size = thumbnail.size;
-            layout = [[UICollectionViewFlowLayout alloc]init];
+            self->layout = [[UICollectionViewFlowLayout alloc]init];
             //设置布局方向为垂直流布局
-            layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-            layout.itemSize = size;
-            layout.minimumInteritemSpacing = 0;
+            self->layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+            self->layout.itemSize = size;
+            self->layout.minimumInteritemSpacing = 0;
             CMTime duration = CMTimeMultiplyByFloat64(CMTimeMake(1, 30), size.width / 2.0);
             startTime = CMTimeAdd(startTime, duration);
-            CMTime totalDuration = totalVideoDuration;
+            CMTime totalDuration = self->totalVideoDuration;
             while (CMTimeCompare(totalDuration, startTime) >= 0) {
-                CGImageRef halfWayImage = [thumbImageGenerator copyCGImageAtTime:startTime actualTime: &actualTime error: &error];
+                CGImageRef halfWayImage = [self->thumbImageGenerator copyCGImageAtTime:startTime actualTime: &actualTime error: &error];
                 if (halfWayImage) {
                     UIImage *thumbnail = [[UIImage alloc] initWithCGImage:halfWayImage];
-                    [dataArr addObject:thumbnail];
-                    if (CMTimeCompare(videoDuration, startTime) >= 0) {
-                        [reallySourceImage addObject:thumbnail];
+                    [self->dataArr addObject:thumbnail];
+                    if (CMTimeCompare(self->videoDuration, startTime) >= 0) {
+                        [self->reallySourceImage addObject:thumbnail];
                     }
-                    if (dataArr.count * size.width >= SCREEN_WIDTH / 2.0 && collecView == nil) {
+                    if (self->dataArr.count * size.width >= JP_SCREEN_WIDTH / 2.0 && self->collecView == nil) {
                         dispatch_async(dispatch_get_main_queue(), ^{
                             [self createUI];
                         });
                     }else{
-                        if (dataArr.count % 10 == 9) {
+                        if (self->dataArr.count % 10 == 9) {
                             dispatch_async(dispatch_get_main_queue(), ^{
-                                if (collecView == nil) {
+                                if (self->collecView == nil) {
                                     [self createUI];
                                 }else{
-                                    [collecView reloadData];
+                                    [self->collecView reloadData];
                                 }
                             });
                         }
@@ -151,13 +151,13 @@
                 startTime = CMTimeAdd(startTime, duration);
             }
             dispatch_async(dispatch_get_main_queue(), ^{
-                if (collecView == nil) {
+                if (self->collecView == nil) {
                     [self createUI];
                 }else{
-                    [collecView reloadData];
+                    [self->collecView reloadData];
                 }
                 if (self.delegate && [self.delegate respondsToSelector:@selector(compositionAssetDidLoad:)]) {
-                    [self.delegate compositionAssetDidLoad:dataArr];
+                    [self.delegate compositionAssetDidLoad:self->dataArr];
                     
                 }
             });

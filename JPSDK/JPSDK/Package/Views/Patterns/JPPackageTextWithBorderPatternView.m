@@ -54,7 +54,7 @@
     contentLb.text = pattern.text;
     [self addSubview:contentLb];
     contentLb.sd_layout.topSpaceToView(self, 5).leftSpaceToView(self, 5).rightSpaceToView(self, 5).bottomSpaceToView(self, 5);
-    contentLb.layer.borderColor = [UIColor colorWithHex:0xFEFEFE].CGColor;
+    contentLb.layer.borderColor = [UIColor jp_colorWithHexString:@"FEFEFE"].CGColor;
     contentLb.layer.borderWidth = 3.f;
 }
 
@@ -109,12 +109,12 @@
 {
     
     if (patternAttribute.patternType == JPPackagePatternTypeTextWithBorderLine) {
-        CGFloat width = [UIFont widthForText:patternAttribute.text andFontSize:[UIFont fontWithName:patternAttribute.textFontName size:patternAttribute.textFontSize * scale] andHeight:patternAttribute.textFontSize * scale] + 30 * scale + 10 * scale;
+        CGFloat width = [UIFont jp_widthForText:patternAttribute.text andFontSize:[UIFont fontWithName:patternAttribute.textFontName size:patternAttribute.textFontSize * scale] andHeight:patternAttribute.textFontSize * scale] + 30 * scale + 10 * scale;
         return CGSizeMake(width, patternAttribute.textFontSize * scale + 14 *scale + 10 * scale);
 
     }
     {
-        CGFloat width = [UIFont widthForText:patternAttribute.text andFontSize:[UIFont fontWithName:patternAttribute.textFontName size:patternAttribute.textFontSize * scale] andHeight:patternAttribute.textFontSize * scale] + 30 * scale ;
+        CGFloat width = [UIFont jp_widthForText:patternAttribute.text andFontSize:[UIFont fontWithName:patternAttribute.textFontName size:patternAttribute.textFontSize * scale] andHeight:patternAttribute.textFontSize * scale] + 30 * scale ;
         return CGSizeMake(width, patternAttribute.textFontSize * scale + 14 *scale + 10 * scale);
     }
     

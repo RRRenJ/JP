@@ -9,9 +9,10 @@
 #import "JPPackageTextPatternMenuView.h"
 #import "JPHorizontalCollectionViewLayout.h"
 #import "JPPackageTextPatternMenuCell.h"
-#import "TAPageControl.h"
+#import <SDCycleScrollView/TAPageControl.h>
 #import "JPFontModel.h"
-#import "JPSession.h"
+
+
 @interface JPPackageTextPatternMenuView()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,
   JPHorizontalCollectionViewLayoutDelegate>{
     UICollectionView *collecView;
@@ -56,7 +57,7 @@
                     attribute.thumPictureName = @"f02";
                     attribute.text = @"双击输入";
                     attribute.textColor = [UIColor whiteColor];
-                    attribute.backgroundColor = [UIColor colorWithHex:0xfb1b45];
+                    attribute.backgroundColor = [UIColor jp_colorWithHexString:@"fb1b45"];
                     attribute.selectColorIndex = 0;
                     attribute.patternName = @"F02";
                     attribute.selectBackColorIndex = 2;
@@ -89,7 +90,7 @@
                     attribute.text = @"双击输入";
                     attribute.subTitle = @"添加副标题";
                     attribute.textColor = [UIColor whiteColor];
-                    attribute.backgroundColor = [UIColor appMainBlueColor];
+                    attribute.backgroundColor = [UIColor jp_colorWithHexString:@"0091FF"];
                     attribute.selectColorIndex = 0;
                     attribute.selectBackColorIndex = 4;
                     attribute.patternName = @"F06";
@@ -104,7 +105,7 @@
                     attribute.textColor = [UIColor whiteColor];
                     attribute.selectColorIndex = 0;
                     attribute.selectBackColorIndex = 2;
-                    attribute.backgroundColor = [UIColor colorWithHex:0xfb1b45];
+                    attribute.backgroundColor = [UIColor jp_colorWithHexString:@"fb1b45"];
                     attribute.textFontSize = 15;
                     attribute.textFontName = [JPFontModel getFontNameWithType:JPTextFontTypePingFang];
                     break;
@@ -138,7 +139,7 @@
                     attribute.textColor = [UIColor whiteColor];
                     attribute.selectColorIndex = 0;
                     attribute.selectBackColorIndex = 8;
-                    attribute.backgroundColor = [UIColor colorWithHex:0x7e14e0];
+                    attribute.backgroundColor = [UIColor jp_colorWithHexString:@"7e14e0"];
                     attribute.patternName = @"F10";
                     attribute.textFontName = [JPFontModel getFontNameWithType:JPTextFontTypePingFang];
                     attribute.textFontSize = 15;
@@ -170,7 +171,7 @@
     //设置布局方向为垂直流布局
     layout.layoutDelegate = self;
     layout.pageChangeDelegate = self;
-    collecView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0 , SCREEN_WIDTH ,self.height - 80) collectionViewLayout:layout];
+    collecView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0 , JP_SCREEN_WIDTH ,self.height - 80) collectionViewLayout:layout];
     collecView.delegate = self;
     collecView.backgroundColor = self.backgroundColor;
     collecView.dataSource = self;
@@ -232,7 +233,7 @@
 #pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake((SCREEN_WIDTH)/3, 60);
+    return CGSizeMake((JP_SCREEN_WIDTH)/3, 60);
 }
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{

@@ -7,15 +7,14 @@
 //
 
 #import "JPFilterManagers.h"
-#import <JPFiltersAttributeModel.h>
+#import "JPFiltersAttributeModel.h"
 #import "JPFilterDelegateNormal.h"
 #import "JPFilterDelegateOnlyCurve.h"
 #import "JPFilterDelegateColorBalance.h"
 static NSArray *JPFiltersArr = nil;
 
 @implementation JPFilterManagers
-+ (NSArray *)getFiltersArr
-{
++ (NSArray *)getFiltersArr{
     if (JPFiltersArr == nil) {
         NSMutableArray *dataArr = [NSMutableArray array];
         for (NSInteger index = 1; index <= 10; index ++) {

@@ -15,11 +15,11 @@
     if (selected) {
         self.contentView.layer.masksToBounds = YES;
         self.contentView.layer.cornerRadius = 2;
-        self.contentView.backgroundColor = [UIColor colorWithHexString:@"3e3e3e"];
+        self.contentView.backgroundColor = [UIColor jp_colorWithHexString:@"3e3e3e"];
     }else{
         self.contentView.layer.masksToBounds = NO;
         self.contentView.layer.cornerRadius = 0;
-        self.contentView.backgroundColor = [UIColor colorWithHexString:@"232323"];
+        self.contentView.backgroundColor = [UIColor jp_colorWithHexString:@"232323"];
     }
     
 }

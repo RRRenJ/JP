@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+
+
+
 @interface JPMaterial : NSObject
 @property (nonatomic, assign) long long materialId;
 @property (nonatomic, assign) NSTimeInterval createDate;

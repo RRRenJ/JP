@@ -26,11 +26,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self createNavigatorViewWithHeight:KShrinkNavigationHeight];
+    [self createNavigatorViewWithHeight:JPShrinkNavigationHeight];
     [self addCustomTittleViewWithTittle:@"本地相机"];
     [self addPopButton];
-    self.view.backgroundColor = [UIColor colorWithHex:0x0b0b0b];
-    _lineViewOriginX.constant = SCREEN_WIDTH / 4.0 - 12.5;
+    self.view.backgroundColor = [UIColor jp_colorWithHexString:@"0b0b0b"];
+    _lineViewOriginX.constant = JP_SCREEN_WIDTH / 4.0 - 12.5;
     self.videoVC = [self loadVCWithSourceType:JPAssetTypeVideo];
 }
 
@@ -42,10 +42,10 @@
         if (!avauthAlertView) {
             NSString *str = @"让大家看看手机里的精美素材吧~请在「设置」-「隐私」-「照片」中打开未来拍客的本地图库获取权限";
             avauthAlertView = [[JPAlertView alloc] initWithTitle:str
-                                                        andFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH)];
+                                                        andFrame:CGRectMake(0, 0, JP_SCREEN_WIDTH, JP_SCREEN_WIDTH)];
         }
         [self.view addSubview:avauthAlertView];
-        avauthAlertView.sd_layout.centerXEqualToView(self.view).centerYEqualToView(self.view).widthIs(SCREEN_WIDTH).heightIs(SCREEN_WIDTH);
+        avauthAlertView.sd_layout.centerXEqualToView(self.view).centerYEqualToView(self.view).widthIs(JP_SCREEN_WIDTH).heightIs(JP_SCREEN_WIDTH);
     }
 }
 
@@ -58,7 +58,7 @@
     ablumVC.recordInfo = _recordInfo;
     [self addChildViewController:ablumVC];
     [_containerView addSubview:ablumVC.view];
-    ablumVC.view.sd_layout.topEqualToView(_containerView).bottomEqualToView(_containerView).widthIs(SCREEN_WIDTH);
+    ablumVC.view.sd_layout.topEqualToView(_containerView).bottomEqualToView(_containerView).widthIs(JP_SCREEN_WIDTH);
     if (type == JPAssetTypeVideo) {
         ablumVC.view.sd_layout.leftEqualToView(_containerView);
     }else{
@@ -68,15 +68,15 @@
     return ablumVC;
 }
 - (IBAction)switchSourceAction:(id)sender {
-    CGFloat originX = SCREEN_WIDTH / 4.0 - 12.5;
+    CGFloat originX = JP_SCREEN_WIDTH / 4.0 - 12.5;
     if (sender == self.videoButton) {
         [_scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     }else{
         if (self.photoVC == nil) {
             self.photoVC = [self loadVCWithSourceType:JPAssetTypePhoto];
         }
-        [_scrollView setContentOffset:CGPointMake(SCREEN_WIDTH, 0) animated:YES];
-        originX = SCREEN_WIDTH / 4.0 - 12.5 + SCREEN_WIDTH / 2.0;
+        [_scrollView setContentOffset:CGPointMake(JP_SCREEN_WIDTH, 0) animated:YES];
+        originX = JP_SCREEN_WIDTH / 4.0 - 12.5 + JP_SCREEN_WIDTH / 2.0;
     }
     [UIView animateWithDuration:0.2 animations:^{
         

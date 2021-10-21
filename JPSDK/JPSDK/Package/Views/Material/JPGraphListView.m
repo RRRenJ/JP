@@ -44,7 +44,7 @@
     UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
     //设置布局方向为垂直流布局
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    layout.itemSize = CGSizeMake(ScreenFitFloat6(60), ScreenFitFloat6(60));
+    layout.itemSize = CGSizeMake(JPScreenFitFloat6(60), JPScreenFitFloat6(60));
     layout.minimumInteritemSpacing = 0;
     collectView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:layout];
     collectView.tag = noDisableVerticalScrollTag;
@@ -66,34 +66,34 @@
 }
 
 - (void)getListData {
-    NSMutableDictionary *dic = @{@"service":@"App.Material_Pattern.Resource_lists",
-                                 @"id":_categoryId
-                                }.mutableCopy;
-    [JPService requestWithURLString:API_HOST parameters:dic type:JPHttpRequestTypePost success:^(JPResultBase *response){
-        if (response.ret && 200 == [response.ret intValue]) {
-            if (response.data && [response.data isKindOfClass:[NSArray class]]) {
-                for (int i = 0; i < [response.data count]; i ++) {
-                    if ([[response.data objectAtIndex:i] isKindOfClass:[NSDictionary class]]) {
-                        @autoreleasepool {
-                            JPMaterial *material = [JPMaterial mj_objectWithKeyValues:[response.data objectAtIndex:i]];
-                            material.material_id = 1;
-                            [dataArr sgrAddObject:material];
-                            JPMaterial *m = [[JPMaterialDownloader shareInstance] getMaterialWithLocalPath:material.localPath];
-                            if (m) {
-                                material.materialStatus = m.materialStatus;
-                                material.downloadPro = m.downloadPro;
-                            } else {
-                                material.materialStatus = JPMaterialStatusUnknown;
-                            }
-                        }
-                    }
-                }
-            }
-        }
+//    NSMutableDictionary *dic = @{@"service":@"App.Material_Pattern.Resource_lists",
+//                                 @"id":_categoryId
+//                                }.mutableCopy;
+//    [JPService requestWithURLString:API_HOST parameters:dic type:JPHttpRequestTypePost success:^(JPResultBase *response){
+//        if (response.ret && 200 == [response.ret intValue]) {
+//            if (response.data && [response.data isKindOfClass:[NSArray class]]) {
+//                for (int i = 0; i < [response.data count]; i ++) {
+//                    if ([[response.data objectAtIndex:i] isKindOfClass:[NSDictionary class]]) {
+//                        @autoreleasepool {
+//                            JPMaterial *material = [JPMaterial mj_objectWithKeyValues:[response.data objectAtIndex:i]];
+//                            material.material_id = 1;
+//                            [dataArr sgrAddObject:material];
+//                            JPMaterial *m = [[JPMaterialDownloader shareInstance] getMaterialWithLocalPath:material.localPath];
+//                            if (m) {
+//                                material.materialStatus = m.materialStatus;
+//                                material.downloadPro = m.downloadPro;
+//                            } else {
+//                                material.materialStatus = JPMaterialStatusUnknown;
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
         [self createUI];
-    }failure:^(NSError *error){
+//    }failure:^(NSError *error){
         [self createUI];
-    } withErrorMsg:nil];
+//    } withErrorMsg:nil];
 }
 
 - (JPGraphCollectionViewCell *)getCurrentDownloadCell:(NSString *)uuid {
@@ -162,15 +162,15 @@
 
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    CGFloat f = (SCREEN_WIDTH - ScreenFitFloat6(60)*4 - 30)/8.f;
+    CGFloat f = (JP_SCREEN_WIDTH - JPScreenFitFloat6(60)*4 - 30)/8.f;
     return UIEdgeInsetsMake(f, f, f, f);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return (SCREEN_WIDTH - ScreenFitFloat6(60)*4 - 30)/8.f;
+    return (JP_SCREEN_WIDTH - JPScreenFitFloat6(60)*4 - 30)/8.f;
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return (SCREEN_WIDTH - ScreenFitFloat6(60)*4 - 30)/8.f;
+    return (JP_SCREEN_WIDTH - JPScreenFitFloat6(60)*4 - 30)/8.f;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {

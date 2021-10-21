@@ -7,7 +7,6 @@
 //
 
 #import "JPPhotoEditMune.h"
-#import "UIButton+ImageAndText.h"
 
 @interface JPPhotoEditMune ()
 @property (strong, nonatomic) IBOutlet UIView *view;
@@ -61,26 +60,26 @@
 - (void)createSubviews
 {
     self.backgroundColor = [UIColor blackColor];
-    [[NSBundle mainBundle] loadNibNamed:@"JPPhotoEditMune" owner:self options:nil];
+    [JPResourceBundle loadNibNamed:@"JPPhotoEditMune" owner:self options:nil];
     [self addSubview:self.view];
     self.view.sd_layout.topEqualToView(self).bottomEqualToView(self).rightEqualToView(self).leftEqualToView(self);
-    _bottomSpace.constant = KTabbarHeightLineHeight;
-    [self.beSmallButton layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleTop imageTitleSpace:6];
-    [self.beBigButton layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleTop imageTitleSpace:6];
-    [self.deleteButton layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleTop imageTitleSpace:6];
+    _bottomSpace.constant = JPTabbarHeightLineHeight;
+    [self.beSmallButton jp_layoutButtonWithEdgeInsetsStyle:JPButtonEdgeInsetsStyleTop imageTitleSpace:6];
+    [self.beBigButton jp_layoutButtonWithEdgeInsetsStyle:JPButtonEdgeInsetsStyleTop imageTitleSpace:6];
+    [self.deleteButton jp_layoutButtonWithEdgeInsetsStyle:JPButtonEdgeInsetsStyleTop imageTitleSpace:6];
 }
 
 
 - (void)setVideoModel:(JPVideoModel *)videoModel
 {
-    [self.beBigButton setImage:[UIImage imageNamed:@"enlarge-off"] forState:UIControlStateNormal];
-    [self.beSmallButton setImage:[UIImage imageNamed:@"narrow-off"] forState:UIControlStateNormal];
+    [self.beBigButton setImage:JPImageWithName(@"enlarge-off") forState:UIControlStateNormal];
+    [self.beSmallButton setImage:JPImageWithName(@"narrow-off") forState:UIControlStateNormal];
     _videoModel = videoModel;
     if (_videoModel.photoTransionType == JPPhotoModelTranstionBigToSmall) {
-        [self.beSmallButton setImage:[UIImage imageNamed:@"narrow-on"] forState:UIControlStateNormal];
+        [self.beSmallButton setImage:JPImageWithName(@"narrow-on") forState:UIControlStateNormal];
     }else if (_videoModel.photoTransionType == JPPhotoModelTranstionSmallToBig)
     {
-        [self.beBigButton setImage:[UIImage imageNamed:@"enlarge-on"] forState:UIControlStateNormal];
+        [self.beBigButton setImage:JPImageWithName(@"enlarge-on") forState:UIControlStateNormal];
 
     }
 }

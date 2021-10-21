@@ -10,7 +10,7 @@
 
 @interface JPFilterManagers : NSObject<JPVideoRecordInfoFilterManager>
 
-
 + (NSArray *)getFiltersArr;
 - (id<JPGeneralFilterDelegate>)filterManagerGeneralImageFilterDelegeteWithFilterType:(NSInteger)filterType;
+
 @end

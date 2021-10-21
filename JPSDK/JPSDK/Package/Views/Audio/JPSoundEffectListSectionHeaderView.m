@@ -20,7 +20,7 @@
     
     self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
-        [[NSBundle mainBundle] loadNibNamed:@"JPSoundEffectListSectionHeaderView" owner:self options:nil];
+        [JPResourceBundle loadNibNamed:@"JPSoundEffectListSectionHeaderView" owner:self options:nil];
         [self.contentView addSubview:self.view];
         self.view.sd_layout.leftEqualToView(self.contentView).rightEqualToView(self.contentView).topEqualToView(self.contentView).bottomEqualToView(self.contentView);
     }

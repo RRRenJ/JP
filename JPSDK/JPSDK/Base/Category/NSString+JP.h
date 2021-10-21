@@ -11,7 +11,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (JP)
 
-- (NSString *)md5;
+- (NSString *)jp_md5;
+
++ (NSString *)jp_chineseToPinyin:(NSString *)chinese;
+
 
 @end
 

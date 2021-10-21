@@ -7,9 +7,6 @@
 //
 
 #import "JPPackageGraphView.h"
-#import "JPSession.h"
-
-
 
 
 @interface JPPackageGraphView(){
@@ -163,15 +160,15 @@
 }
 
 - (void)createWeatherGraphUI {
-    [[NSBundle mainBundle] loadNibNamed:@"JPPackageGraphView" owner:self options:nil];
+    [JPResourceBundle loadNibNamed:@"JPPackageGraphView" owner:self options:nil];
     [self addSubview:self.weatherView];
     self.weatherView.sd_layout.topEqualToView(self).rightEqualToView(self).bottomEqualToView(self).leftEqualToView(self);
-    self.coldLabel.text = [JPSession sharedInstance].weatherCode;
-    NSLog(@"温度：%@", [JPSession sharedInstance].weatherCode);
-    self.coldLabel.font = [UIFont placardMTStdCondBoldFontWithSize:85];
-    self.weatherImageView.image = [UIImage imageNamed:[self getImgWithWeatherType:[JPSession sharedInstance].weatherType]];
-    NSLog(@"------%@", [JPSession sharedInstance].cityName);
-    self.weatherPositionLabel.text = [JPSession sharedInstance].cityName;
+//    self.coldLabel.text = [JPSession sharedInstance].weatherCode;
+//    NSLog(@"温度：%@", [JPSession sharedInstance].weatherCode);
+    self.coldLabel.font = [UIFont jp_placardMTStdCondBoldFontWithSize:85];
+//    self.weatherImageView.image = JPImageWithName([self getImgWithWeatherType:[JPSession sharedInstance].weatherType]);
+//    NSLog(@"------%@", [JPSession sharedInstance].cityName);
+//    self.weatherPositionLabel.text = [JPSession sharedInstance].cityName;
 }
 
 - (CGSize)getMyReallySizeWithPackagePatternAttribute:(JPPackagePatternAttribute *)patternAttribute andScale:(CGFloat)scale
@@ -193,7 +190,7 @@
 //        [self.positionLabel sizeToFit];
 //        [self layoutIfNeeded];
         CGFloat height = ceil(self.positionLabel.bottom + (10) * scale);
-        CGFloat width = [UIFont widthForText:patternAttribute.text andFontSize:[UIFont fontWithName:patternAttribute.textFontName size:patternAttribute.textFontSize] andHeight:height] + 15 * scale;
+        CGFloat width = [UIFont jp_widthForText:patternAttribute.text andFontSize:[UIFont fontWithName:patternAttribute.textFontName size:patternAttribute.textFontSize] andHeight:height] + 15 * scale;
         width = MAX(width, (50 + 15) * scale);
         return CGSizeMake(width, height);
 
@@ -215,7 +212,7 @@
 
 - (void)createDateGraphUI {
 
-    [[NSBundle mainBundle] loadNibNamed:@"JPPackageGraphView" owner:self options:nil];
+    [JPResourceBundle loadNibNamed:@"JPPackageGraphView" owner:self options:nil];
     [self addSubview:self.dateView];
     self.dateView.sd_layout.topEqualToView(self).rightEqualToView(self).bottomEqualToView(self).leftEqualToView(self);
     self.dateBorderView.layer.masksToBounds = YES;
@@ -232,15 +229,15 @@
     } else {
         dayStr = [NSString stringWithFormat:@"%ld",(long)[components day]];
     }
-    _weekLabel.font = [UIFont placardMTStdCondBoldFontWithSize:(15)];
+    _weekLabel.font = [UIFont jp_placardMTStdCondBoldFontWithSize:(15)];
     _weekLabel.text = weekDayStr;
-    _DateLabel.font = [UIFont placardMTStdCondBoldFontWithSize:(50)];
+    _DateLabel.font = [UIFont jp_placardMTStdCondBoldFontWithSize:(50)];
     _DateLabel.text = dayStr;
 }
 
 - (void)createPositionGraphUI {
 
-    [[NSBundle mainBundle] loadNibNamed:@"JPPackageGraphView" owner:self options:nil];
+    [JPResourceBundle loadNibNamed:@"JPPackageGraphView" owner:self options:nil];
     [self addSubview:self.positinView];
     self.positinView.sd_layout.topEqualToView(self).rightEqualToView(self).bottomEqualToView(self).leftEqualToView(self);
     self.positionLabel.font = [UIFont systemFontOfSize:18];

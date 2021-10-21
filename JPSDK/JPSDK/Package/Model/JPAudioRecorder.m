@@ -117,7 +117,7 @@
         // Silent Mode LOG(@"AudioRoute: SILENT, do nothing!");
     } else {
         NSString* routeStr = (__bridge NSString*)route;
-        JPLog(@"AudioRoute: %@", routeStr);
+        NSLog(@"AudioRoute: %@", routeStr);
         NSRange headphoneRange = [routeStr rangeOfString : @"Headphone"];
         NSRange headsetRange = [routeStr rangeOfString : @"Headset"];
         if (headphoneRange.location != NSNotFound) {
@@ -130,7 +130,7 @@
 }
 - (void)resetOutputTarget {
     BOOL hasHeadset = [self hasHeadset];
-    JPLog (@"Will Set output target is_headset = %@ .", hasHeadset ? @"YES" : @"NO");
+    NSLog (@"Will Set output target is_headset = %@ .", hasHeadset ? @"YES" : @"NO");
     UInt32 audioRouteOverride = hasHeadset ? kAudioSessionOverrideAudioRoute_None:kAudioSessionOverrideAudioRoute_Speaker;
     AudioSessionSetProperty(kAudioSessionProperty_OverrideAudioRoute, sizeof(audioRouteOverride), &audioRouteOverride);
     [self hasHeadset];
@@ -138,7 +138,7 @@
 
 - (BOOL)checkAndPrepareCategoryForRecording {
     BOOL hasMicphone = [self hasMicphone];
-    JPLog(@"Will Set category for recording! hasMicophone = %@", hasMicphone?@"YES":@"NO");
+    NSLog(@"Will Set category for recording! hasMicophone = %@", hasMicphone?@"YES":@"NO");
     if (hasMicphone) {
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionMixWithOthers | AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];
     }

@@ -8,7 +8,7 @@
 
 #import "JPPackagePhotoEditGuideView.h"
 #import "JPGradientAnimateGuideView.h"
-#import "JPSession.h"
+//#import "JPSession.h"
 
 #define REDUCE_PHOTO_TAG   999
 #define ENLARGE_PHOTO_TAG   1000
@@ -27,25 +27,25 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        CGFloat width = SCREEN_WIDTH / 3.0;
-        if (![JPUtil getInfoFromUserDefaults:kPackageOfReducePhotoGuideStep]) {
-            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(0, 0, width, 60) andText:@"缩小"];
-            view.centerX = width / 2.0;
-            view.tag = REDUCE_PHOTO_TAG;
-            [self addSubview:view];
-        }
-        if (![JPUtil getInfoFromUserDefaults:kPackageOfEnlargePhotoGuideStep]) {
-            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(0, 0, width, 60) andText:@"放大"];
-            view.tag = ENLARGE_PHOTO_TAG;
-            view.centerX = width / 2.0 + width;
-            [self addSubview:view];
-        }
-        if (![JPUtil getInfoFromUserDefaults:kPackageOfPhotoDeleteGuideStep]) {
-            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(0, 0, width, 60) andText:@"删除"];
-            view.tag = DELETE_PHOTO_TAG;
-            view.centerX = width / 2.0 + width * 2;
-            [self addSubview:view];
-        }
+        CGFloat width = JP_SCREEN_WIDTH / 3.0;
+//        if (![JPUtil getInfoFromUserDefaults:kPackageOfReducePhotoGuideStep]) {
+//            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(0, 0, width, 60) andText:@"缩小"];
+//            view.centerX = width / 2.0;
+//            view.tag = REDUCE_PHOTO_TAG;
+//            [self addSubview:view];
+//        }
+//        if (![JPUtil getInfoFromUserDefaults:kPackageOfEnlargePhotoGuideStep]) {
+//            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(0, 0, width, 60) andText:@"放大"];
+//            view.tag = ENLARGE_PHOTO_TAG;
+//            view.centerX = width / 2.0 + width;
+//            [self addSubview:view];
+//        }
+//        if (![JPUtil getInfoFromUserDefaults:kPackageOfPhotoDeleteGuideStep]) {
+//            JPGradientAnimateGuideView *view = [[JPGradientAnimateGuideView alloc] initWithFrame:CGRectMake(0, 0, width, 60) andText:@"删除"];
+//            view.tag = DELETE_PHOTO_TAG;
+//            view.centerX = width / 2.0 + width * 2;
+//            [self addSubview:view];
+//        }
     }
     return self;
 }
@@ -85,22 +85,22 @@
 }
 
 - (void)removeGuide:(NSString *)str withAnimation:(BOOL)animation {
-    [JPSession sharedInstance].showPackagePhotoEditGuide = NO;
-    if ([str isEqualToString:kPackageOfReducePhotoGuideStep] && ![JPUtil getInfoFromUserDefaults:kPackageOfReducePhotoGuideStep]) {
-        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kPackageOfReducePhotoGuideStep];
-        [self removeViewWithTag:REDUCE_PHOTO_TAG withAnimation:animation];
-        return;
-    }
-    if ([str isEqualToString:kPackageOfEnlargePhotoGuideStep] && ![JPUtil getInfoFromUserDefaults:kPackageOfEnlargePhotoGuideStep]) {
-        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kPackageOfEnlargePhotoGuideStep];
-        [self removeViewWithTag:ENLARGE_PHOTO_TAG withAnimation:animation];
-        return;
-    }
-    if ([str isEqualToString:kPackageOfPhotoDeleteGuideStep] && ![JPUtil getInfoFromUserDefaults:kPackageOfPhotoDeleteGuideStep]) {
-        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kPackageOfPhotoDeleteGuideStep];
-        [self removeViewWithTag:DELETE_PHOTO_TAG withAnimation:animation];
-        return;
-    }
+//    [JPSession sharedInstance].showPackagePhotoEditGuide = NO;
+//    if ([str isEqualToString:kPackageOfReducePhotoGuideStep] && ![JPUtil getInfoFromUserDefaults:kPackageOfReducePhotoGuideStep]) {
+//        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kPackageOfReducePhotoGuideStep];
+//        [self removeViewWithTag:REDUCE_PHOTO_TAG withAnimation:animation];
+//        return;
+//    }
+//    if ([str isEqualToString:kPackageOfEnlargePhotoGuideStep] && ![JPUtil getInfoFromUserDefaults:kPackageOfEnlargePhotoGuideStep]) {
+//        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kPackageOfEnlargePhotoGuideStep];
+//        [self removeViewWithTag:ENLARGE_PHOTO_TAG withAnimation:animation];
+//        return;
+//    }
+//    if ([str isEqualToString:kPackageOfPhotoDeleteGuideStep] && ![JPUtil getInfoFromUserDefaults:kPackageOfPhotoDeleteGuideStep]) {
+//        [JPUtil saveIssueInfoToUserDefaults:[NSNumber numberWithBool:YES] resouceName:kPackageOfPhotoDeleteGuideStep];
+//        [self removeViewWithTag:DELETE_PHOTO_TAG withAnimation:animation];
+//        return;
+//    }
 }
 
 @end

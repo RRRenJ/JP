@@ -19,7 +19,7 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.contentView.backgroundColor = [UIColor colorWithHexString:@"0e0e0e"];
+        self.contentView.backgroundColor = [UIColor jp_colorWithHexString:@"0e0e0e"];
         _imgView = [[UIImageView alloc] initWithFrame:CGRectZero];
         _imgView.contentMode = UIViewContentModeScaleAspectFit;
         _imgView.clipsToBounds = YES;
@@ -43,7 +43,7 @@
 - (void)setIsSelect:(BOOL)isSelect{
     _isSelect = isSelect;
     if (_isSelect) {
-        self.titleLb.textColor =  [UIColor colorWithHexString:@"#0091FF"];
+        self.titleLb.textColor =  [UIColor jp_colorWithHexString:@"0091ff"];
         self.titleLb.font = [UIFont systemFontOfSize:12 weight:UIFontWeightSemibold];
     }else{
         self.titleLb.textColor = UIColor.whiteColor;

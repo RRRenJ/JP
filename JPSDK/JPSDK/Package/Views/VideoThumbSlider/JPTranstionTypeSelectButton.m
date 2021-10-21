@@ -30,7 +30,7 @@
 - (void)createSubviews
 {
     self.backgroundColor = [UIColor clearColor];
-    [[NSBundle mainBundle] loadNibNamed:@"JPTranstionTypeSelectButton" owner:self options:nil];
+    [JPResourceBundle loadNibNamed:@"JPTranstionTypeSelectButton" owner:self options:nil];
     [self addSubview:self.view];
     self.view.sd_layout.topEqualToView(self).rightEqualToView(self).bottomEqualToView(self).leftEqualToView(self);
 }
@@ -39,7 +39,7 @@
 - (void)setTranstionName:(NSString *)name imageName:(NSString *)imageName andLabelColor:(UIColor *)color
 {
     _transtionTypeLabel.text = name;
-    _transtionTypeImageView.image = [UIImage imageNamed:imageName];
+    _transtionTypeImageView.image = [UIImage imageNamed:imageName inBundle:JPResourceBundle compatibleWithTraitCollection:nil];
     _transtionTypeLabel.textColor = color;
 }
 @end

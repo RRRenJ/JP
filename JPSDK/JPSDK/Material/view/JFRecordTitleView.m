@@ -38,7 +38,7 @@
 
 - (void)createSubviews
 {
-    [[NSBundle mainBundle] loadNibNamed:@"JFRecordTitleView" owner:self options:nil];
+    [JPResourceBundle loadNibNamed:@"JFRecordTitleView" owner:self options:nil];
     [self addSubview:self.view];
     self.view.sd_layout.topEqualToView(self);
     self.view.sd_layout.rightEqualToView(self);

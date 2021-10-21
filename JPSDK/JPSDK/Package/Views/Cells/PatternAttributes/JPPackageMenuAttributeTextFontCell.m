@@ -24,13 +24,13 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.contentView.backgroundColor = [UIColor colorWithHex:0x0e0e0e];
+        self.contentView.backgroundColor = [UIColor jp_colorWithHexString:@"0e0e0e"];
         dataArr = [self getAllFontsName];
         
         UILabel *textLb = [[UILabel alloc] initWithFrame:CGRectMake(0, (6), (50), (13))];
         textLb.font = [UIFont contentFont];
-        textLb.textColor = [UIColor colorWithHex:0x777777];
-        textLb.text = NSLocalizedString(@"pattern_attribute_text_font", @"");
+        textLb.textColor = [UIColor jp_colorWithHexString:@"777777"];
+        textLb.text = @"字体";
         [self.contentView addSubview:textLb];
         textLb.sd_layout.leftSpaceToView(self.contentView, 15).topSpaceToView(self.contentView, 8).heightIs(13).widthIs(100);
         
@@ -38,7 +38,7 @@
         layout.itemSize = CGSizeMake(35, 35);
         //设置布局方向为垂直流布局
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        collecView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0 , SCREEN_WIDTH ,self.height - 80) collectionViewLayout:layout];
+        collecView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0 , JP_SCREEN_WIDTH ,self.height - 80) collectionViewLayout:layout];
         collecView.delegate = self;
         collecView.dataSource = self;
         collecView.bounces = YES;
@@ -65,7 +65,8 @@
     NSMutableArray *arr = [NSMutableArray array];
     for (int i =0; i<6; i++) {
         JPFontModel *model = [[JPFontModel alloc] init];
-        model.thumImg = [UIImage imageNamed:[NSString stringWithFormat:@"fonts0%d",i+1]];
+        NSString * imageName = [NSString stringWithFormat:@"fonts0%d",i+1];
+        model.thumImg = JPImageWithName(imageName);
         switch (i) {
             case 0:
                 model.fontName = @"PingFangSC-Regular";

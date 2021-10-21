@@ -43,7 +43,7 @@
 - (void)createsubviews
 {
     self.backgroundColor = [UIColor clearColor];
-    [[NSBundle mainBundle] loadNibNamed:@"JPCompositionMessageView" owner:self options:nil];
+    [JPResourceBundle loadNibNamed:@"JPCompositionMessageView" owner:self options:nil];
     [self addSubview:self.view];
     self.alpha = 0;
     self.view.sd_layout.topEqualToView(self).rightEqualToView(self).bottomEqualToView(self).leftEqualToView(self);
@@ -58,14 +58,14 @@
     
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     // 行间距设置为10
-    [paragraphStyle setLineSpacing:ScreenFitFloat6(10)];
+    [paragraphStyle setLineSpacing:JPScreenFitFloat6(10)];
     NSString *str = @"进入下一步就要开始合成视频了, 可以再调整一下你的视频哦";
     NSMutableAttributedString  *setString = [[NSMutableAttributedString alloc] initWithString:str];
     [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [str length])];
     // 设置Label要显示的text
     [_tipLabel  setAttributedText:setString];
     
-    _tipLabel.font = [UIFont systemFontOfSize:ScreenFitFloat6(12)];
+    _tipLabel.font = [UIFont systemFontOfSize:JPScreenFitFloat6(12)];
     
     _tipView.layer.masksToBounds = YES;
     _tipView.layer.cornerRadius = 1.5;
@@ -74,14 +74,14 @@
     
     paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     // 行间距设置为10
-    [paragraphStyle setLineSpacing:ScreenFitFloat6(10)];
+    [paragraphStyle setLineSpacing:JPScreenFitFloat6(10)];
     str = @"合成完毕后,我们会在手机本地和云端为你保存视频";
     setString = [[NSMutableAttributedString alloc] initWithString:str];
     [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [str length])];
     // 设置Label要显示的text
     [_tipLabelOne  setAttributedText:setString];
     
-    _tipLabelOne.font = [UIFont systemFontOfSize:ScreenFitFloat6(12)];
+    _tipLabelOne.font = [UIFont systemFontOfSize:JPScreenFitFloat6(12)];
 }
 
 - (void)plhoders:(UITapGestureRecognizer *)tap
