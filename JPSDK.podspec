@@ -1,16 +1,17 @@
 Pod::Spec.new do |s|
   s.name     = 'JPSDK'
-  s.version  = '0.0.1'
+  s.version  = '0.0.2'
   s.license  = 'BSD'
   s.summary  = 'JPSDK.'
   s.homepage = 'https://github.com/RRRenJ/JPSDK'
   s.author   = { 'RRRenj' => '584201474@qq.com' }
   s.source   = { :git => 'https://github.com/RRRenJ/JPGPUImage.git', :tag => "#{s.version}" }
+  s.license      = { :type => "MIT", :file => "LICENSE" }
 
   s.prefix_header_file = false
   s.prefix_header_file = 'JPSDK/JPSDK/Base/Model/JPSDK-prefix.pch'
-  s.source_files = 'JPSDK/JPSDK/**/*.{h,m,pch}'
-  s.resources = 'JPSDK/JPSDK/Resource/JPResource.bundle'
+  s.source_files = 'JPSDK/JPSDK/**/*.{h,m}'
+  s.resource = 'JPSDK/JPSDK/Resource/JPResource.bundle'
   s.requires_arc = true
   s.xcconfig = { 'CLANG_MODULES_AUTOLINK' => 'YES' }
   
