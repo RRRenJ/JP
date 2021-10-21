@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JPVideoEditMune">
+            <connections>
+                <outlet property="bottomSpace" destination="lc6-85-ikR" id="Tg0-bO-6Fb"/>
+                <outlet property="clidButton" destination="TdU-ae-TGV" id="5M5-eu-kFj"/>
+                <outlet property="deleteButton" destination="6WG-tA-3vM" id="fp2-NX-Bwp"/>
+                <outlet property="reverseButton" destination="wRo-sh-XdH" id="kxi-u7-fSU"/>
+                <outlet property="timeTypeButton" destination="mes-HH-nHm" id="WNW-yK-hbv"/>
+                <outlet property="view" destination="Pni-dA-xGy" id="dX0-Wo-KRb"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Pni-dA-xGy">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mes-HH-nHm">
+                    <rect key="frame" x="0.0" y="0.0" width="94" height="60"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="快慢" image="time1.0-1"/>
+                    <connections>
+                        <action selector="changeTimeTypeAction:" destination="-1" eventType="touchUpInside" id="pY3-If-Rgv"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRo-sh-XdH">
+                    <rect key="frame" x="94" y="0.0" width="93.5" height="60"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="倒放" image="reversal-1"/>
+                    <connections>
+                        <action selector="videoReverseAction:" destination="-1" eventType="touchUpInside" id="eBy-iV-T1Q"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TdU-ae-TGV">
+                    <rect key="frame" x="187.5" y="0.0" width="94" height="60"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="剪切" image="shot"/>
+                    <connections>
+                        <action selector="clidVideoAction:" destination="-1" eventType="touchUpInside" id="5Cm-x6-yTL"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6WG-tA-3vM">
+                    <rect key="frame" x="281.5" y="0.0" width="93.5" height="60"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="删除" image="delete-5"/>
+                    <connections>
+                        <action selector="deleteVideoAction:" destination="-1" eventType="touchUpInside" id="YjG-zc-bwJ"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="6WG-tA-3vM" firstAttribute="top" secondItem="Pni-dA-xGy" secondAttribute="top" id="61K-I4-Avj"/>
+                <constraint firstItem="mes-HH-nHm" firstAttribute="width" secondItem="Pni-dA-xGy" secondAttribute="width" multiplier="0.25" id="6ff-4N-AF6"/>
+                <constraint firstItem="6WG-tA-3vM" firstAttribute="leading" secondItem="TdU-ae-TGV" secondAttribute="trailing" id="7kF-B5-zbw"/>
+                <constraint firstItem="6WG-tA-3vM" firstAttribute="width" secondItem="TdU-ae-TGV" secondAttribute="width" id="BUw-uL-PdO"/>
+                <constraint firstItem="TdU-ae-TGV" firstAttribute="top" secondItem="Pni-dA-xGy" secondAttribute="top" id="GZl-UA-Lbq"/>
+                <constraint firstItem="TdU-ae-TGV" firstAttribute="width" secondItem="wRo-sh-XdH" secondAttribute="width" id="MJ2-uB-US1"/>
+                <constraint firstItem="wRo-sh-XdH" firstAttribute="width" secondItem="mes-HH-nHm" secondAttribute="width" id="RVQ-xV-q4m"/>
+                <constraint firstItem="TdU-ae-TGV" firstAttribute="height" secondItem="wRo-sh-XdH" secondAttribute="height" id="SAW-d0-87q"/>
+                <constraint firstItem="wRo-sh-XdH" firstAttribute="height" secondItem="mes-HH-nHm" secondAttribute="height" id="WKq-dt-lBk"/>
+                <constraint firstItem="mes-HH-nHm" firstAttribute="leading" secondItem="Pni-dA-xGy" secondAttribute="leading" id="Wm3-ja-e8t"/>
+                <constraint firstItem="mes-HH-nHm" firstAttribute="top" secondItem="Pni-dA-xGy" secondAttribute="top" id="cB4-FG-daa"/>
+                <constraint firstItem="TdU-ae-TGV" firstAttribute="leading" secondItem="wRo-sh-XdH" secondAttribute="trailing" id="evL-g0-D7N"/>
+                <constraint firstAttribute="bottom" secondItem="mes-HH-nHm" secondAttribute="bottom" id="lc6-85-ikR"/>
+                <constraint firstItem="6WG-tA-3vM" firstAttribute="height" secondItem="TdU-ae-TGV" secondAttribute="height" id="oHP-Ig-kRl"/>
+                <constraint firstItem="wRo-sh-XdH" firstAttribute="top" secondItem="Pni-dA-xGy" secondAttribute="top" id="u4z-z0-tHN"/>
+                <constraint firstItem="wRo-sh-XdH" firstAttribute="leading" secondItem="mes-HH-nHm" secondAttribute="trailing" id="xk7-Rc-PKy"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="18.5" y="114"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="delete-5" width="22" height="22"/>
+        <image name="reversal-1" width="22" height="22"/>
+        <image name="shot" width="20.5" height="22"/>
+        <image name="time1.0-1" width="22" height="22"/>
+    </resources>
+</document>

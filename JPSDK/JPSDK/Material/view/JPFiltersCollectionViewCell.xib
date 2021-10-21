@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="JPFiltersCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DSFilterTileHudson" translatesAutoresizingMaskIntoConstraints="NO" id="9l5-R5-dwM">
+                        <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <real key="value" value="22.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ok" translatesAutoresizingMaskIntoConstraints="NO" id="5uP-ws-5nV">
+                        <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="9l5-R5-dwM" secondAttribute="bottom" id="3LO-HS-PLi"/>
+                <constraint firstItem="5uP-ws-5nV" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="KLN-ol-bIS"/>
+                <constraint firstItem="9l5-R5-dwM" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="M4Y-Xt-Y9L"/>
+                <constraint firstAttribute="trailing" secondItem="9l5-R5-dwM" secondAttribute="trailing" id="T0D-24-Zuh"/>
+                <constraint firstAttribute="bottom" secondItem="5uP-ws-5nV" secondAttribute="bottom" id="cdu-Bt-twy"/>
+                <constraint firstItem="5uP-ws-5nV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ftG-Mo-qvr"/>
+                <constraint firstItem="9l5-R5-dwM" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="hiB-Tv-Nsm"/>
+                <constraint firstAttribute="trailing" secondItem="5uP-ws-5nV" secondAttribute="trailing" id="r3y-Lb-W45"/>
+            </constraints>
+            <connections>
+                <outlet property="filteredImageView" destination="9l5-R5-dwM" id="OA4-dk-hJ1"/>
+                <outlet property="selectImageView" destination="5uP-ws-5nV" id="Wg3-DW-tu9"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="53.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="DSFilterTileHudson" width="40" height="40"/>
+        <image name="ok" width="35" height="35"/>
+    </resources>
+</document>

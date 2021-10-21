@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JPNewImportViewController">
+            <connections>
+                <outlet property="contentView" destination="zsr-P1-67N" id="jTh-94-nRp"/>
+                <outlet property="contentViewTop" destination="YwQ-h4-hpC" id="W5K-pP-9hn"/>
+                <outlet property="scrollView" destination="2Fg-Pz-wwo" id="81H-9S-vcV"/>
+                <outlet property="segementView" destination="0CS-HL-XUB" id="BJD-yh-NTQ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rSH-pN-yZg">
+                    <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0CS-HL-XUB" customClass="JPNewSegementView">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="dR2-OF-sbv"/>
+                            </constraints>
+                        </view>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Fg-Pz-wwo">
+                            <rect key="frame" x="0.0" y="50" width="375" height="573"/>
+                            <subviews>
+                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zsr-P1-67N">
+                                    <rect key="frame" x="0.0" y="0.0" width="750" height="573"/>
+                                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="zsr-P1-67N" firstAttribute="leading" secondItem="2Fg-Pz-wwo" secondAttribute="leading" id="46Z-u3-lkd"/>
+                                <constraint firstItem="zsr-P1-67N" firstAttribute="width" secondItem="2Fg-Pz-wwo" secondAttribute="width" multiplier="2" id="DKl-4G-MET"/>
+                                <constraint firstAttribute="bottom" secondItem="zsr-P1-67N" secondAttribute="bottom" id="HRx-7b-Qcg"/>
+                                <constraint firstAttribute="trailing" secondItem="zsr-P1-67N" secondAttribute="trailing" id="a5J-pB-tKI"/>
+                                <constraint firstItem="zsr-P1-67N" firstAttribute="centerY" secondItem="2Fg-Pz-wwo" secondAttribute="centerY" id="aVw-qV-8NT"/>
+                                <constraint firstItem="zsr-P1-67N" firstAttribute="top" secondItem="2Fg-Pz-wwo" secondAttribute="top" id="dIb-0O-H0C"/>
+                            </constraints>
+                        </scrollView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="0CS-HL-XUB" firstAttribute="leading" secondItem="rSH-pN-yZg" secondAttribute="leading" id="YwY-eC-RnT"/>
+                        <constraint firstAttribute="trailing" secondItem="2Fg-Pz-wwo" secondAttribute="trailing" id="bTm-ny-iuP"/>
+                        <constraint firstItem="2Fg-Pz-wwo" firstAttribute="top" secondItem="0CS-HL-XUB" secondAttribute="bottom" constant="20" id="cyT-Nu-jLW"/>
+                        <constraint firstItem="2Fg-Pz-wwo" firstAttribute="leading" secondItem="rSH-pN-yZg" secondAttribute="leading" id="mgW-tp-mgW"/>
+                        <constraint firstAttribute="bottom" secondItem="2Fg-Pz-wwo" secondAttribute="bottom" id="rkS-XY-3uN"/>
+                        <constraint firstAttribute="trailing" secondItem="0CS-HL-XUB" secondAttribute="trailing" id="w5X-1d-Q8l"/>
+                        <constraint firstItem="0CS-HL-XUB" firstAttribute="top" secondItem="rSH-pN-yZg" secondAttribute="top" id="xmq-ZB-i9w"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="rSH-pN-yZg" secondAttribute="bottom" id="Jac-Gl-WCy"/>
+                <constraint firstItem="rSH-pN-yZg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="44" id="YwQ-h4-hpC"/>
+                <constraint firstAttribute="trailing" secondItem="rSH-pN-yZg" secondAttribute="trailing" id="g5Y-Vl-0wo"/>
+                <constraint firstItem="rSH-pN-yZg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="r5Z-oW-i65"/>
+            </constraints>
+            <point key="canvasLocation" x="56.5" y="88.5"/>
+        </view>
+    </objects>
+</document>

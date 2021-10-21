@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="PlacardMTStd-Cond.otf">
+            <string>PlacardMTStd-Cond</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JPVideoPlayerView">
+            <connections>
+                <outlet property="filterCnNameLabel" destination="6P2-4x-Vhp" id="Y6C-qj-6mc"/>
+                <outlet property="filterEnNameLabel" destination="wth-az-0zK" id="QUL-2O-0x8"/>
+                <outlet property="filterNameView" destination="mb0-gE-pip" id="mQx-cy-3Zw"/>
+                <outlet property="filterNumberLabel" destination="og1-xE-4qG" id="m1b-0o-lCh"/>
+                <outlet property="videoAspectRatioLabel" destination="gAm-5C-anM" id="W1Q-Ub-OK8"/>
+                <outlet property="view" destination="fxY-Y1-k4v" id="4Tl-CE-6oW"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view userInteractionEnabled="NO" contentMode="scaleToFill" id="fxY-Y1-k4v">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAm-5C-anM">
+                    <rect key="frame" x="164.5" y="170" width="46" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="TZH-rX-YcY"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="PlacardMTStd-Cond" family="Placard MT Std" pointSize="30"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mb0-gE-pip">
+                    <rect key="frame" x="15" y="125" width="150" height="85"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="og1-xE-4qG">
+                            <rect key="frame" x="0.0" y="0.0" width="32" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="De6-Ha-3ez"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ORIGINAL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wth-az-0zK">
+                            <rect key="frame" x="0.0" y="30" width="133.5" height="36"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="原生" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6P2-4x-Vhp">
+                            <rect key="frame" x="0.0" y="30" width="31" height="15"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="15" id="TbW-l8-cF0"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="85" id="9oo-Fa-nOh"/>
+                        <constraint firstItem="og1-xE-4qG" firstAttribute="leading" secondItem="mb0-gE-pip" secondAttribute="leading" id="BTJ-SA-cwf"/>
+                        <constraint firstItem="og1-xE-4qG" firstAttribute="top" secondItem="mb0-gE-pip" secondAttribute="top" id="MPC-kB-ftl"/>
+                        <constraint firstItem="6P2-4x-Vhp" firstAttribute="top" secondItem="wth-az-0zK" secondAttribute="top" id="RsP-ux-n2N"/>
+                        <constraint firstAttribute="width" constant="150" id="ZDm-49-JQB"/>
+                        <constraint firstItem="wth-az-0zK" firstAttribute="leading" secondItem="mb0-gE-pip" secondAttribute="leading" id="kon-zd-c9J"/>
+                        <constraint firstItem="6P2-4x-Vhp" firstAttribute="leading" secondItem="mb0-gE-pip" secondAttribute="leading" id="qHa-Wt-XOr"/>
+                        <constraint firstItem="wth-az-0zK" firstAttribute="top" secondItem="og1-xE-4qG" secondAttribute="bottom" id="qUy-g4-hDC"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="gAm-5C-anM" firstAttribute="centerX" secondItem="fxY-Y1-k4v" secondAttribute="centerX" id="4PO-CK-H50"/>
+                <constraint firstItem="gAm-5C-anM" firstAttribute="centerY" secondItem="fxY-Y1-k4v" secondAttribute="centerY" id="7IM-vE-DWe"/>
+                <constraint firstItem="mb0-gE-pip" firstAttribute="centerY" secondItem="fxY-Y1-k4v" secondAttribute="centerY" constant="-20" id="GpM-8b-C3U"/>
+                <constraint firstItem="mb0-gE-pip" firstAttribute="leading" secondItem="fxY-Y1-k4v" secondAttribute="leading" constant="15" id="uym-Au-aTT"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-58" y="63"/>
+        </view>
+    </objects>
+</document>

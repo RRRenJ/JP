@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JPPackageTextPatternView">
+            <connections>
+                <outlet property="pingyinContsntLabel" destination="rxE-NM-Cgn" id="Nb2-gi-SD7"/>
+                <outlet property="pingyinView" destination="kIo-U6-mX4" id="dAO-Bu-gkA"/>
+                <outlet property="titleLabel" destination="6CT-Kc-yIO" id="3xE-EZ-l70"/>
+                <outlet property="titleLabelOriginY" destination="aCI-MX-dvZ" id="8oW-JN-iCg"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="kIo-U6-mX4">
+            <rect key="frame" x="0.0" y="0.0" width="120" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6CT-Kc-yIO">
+                    <rect key="frame" x="41.5" y="5" width="37.5" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxE-NM-Cgn">
+                    <rect key="frame" x="49" y="23" width="24" height="11"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="rxE-NM-Cgn" firstAttribute="top" secondItem="6CT-Kc-yIO" secondAttribute="bottom" id="N61-5N-N6H"/>
+                <constraint firstItem="6CT-Kc-yIO" firstAttribute="centerX" secondItem="kIo-U6-mX4" secondAttribute="centerX" id="Teu-oN-OmZ"/>
+                <constraint firstItem="6CT-Kc-yIO" firstAttribute="top" secondItem="kIo-U6-mX4" secondAttribute="top" constant="5" id="aCI-MX-dvZ"/>
+                <constraint firstItem="rxE-NM-Cgn" firstAttribute="centerX" secondItem="6CT-Kc-yIO" secondAttribute="centerX" id="dAz-vF-UMB"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-7" y="74"/>
+        </view>
+    </objects>
+</document>

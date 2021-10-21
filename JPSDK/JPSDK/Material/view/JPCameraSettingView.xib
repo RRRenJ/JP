@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JPCameraSettingView">
+            <connections>
+                <outlet property="cameraButton" destination="jY2-Cv-Dqo" id="5Ur-RX-eck"/>
+                <outlet property="collectionView" destination="WLh-Xq-M5u" id="rSV-1l-4Ix"/>
+                <outlet property="collectionViewFlowLayout" destination="y8X-VG-wy0" id="llB-Ac-EWD"/>
+                <outlet property="filterButton" destination="TYF-Ue-aNc" id="sJd-fA-0nt"/>
+                <outlet property="frameButton" destination="Tdz-K8-UBj" id="nZ7-kS-W5s"/>
+                <outlet property="howFastButton" destination="nZp-gd-6vp" id="Q7Q-QD-aJr"/>
+                <outlet property="lightButton" destination="9pV-ws-R1u" id="itP-i5-Wcz"/>
+                <outlet property="scrollView" destination="HPh-qc-pIU" id="wVd-g6-uw4"/>
+                <outlet property="view" destination="fE1-Cs-RlJ" id="24o-ti-7WQ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="fE1-Cs-RlJ">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPh-qc-pIU">
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O9a-b0-BuP">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                            <subviews>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="WLh-Xq-M5u">
+                                    <rect key="frame" x="321" y="13" width="258" height="34"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="34" id="XYJ-Ys-X6P"/>
+                                        <constraint firstAttribute="width" constant="258" id="pgq-PQ-j7o"/>
+                                    </constraints>
+                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="y8X-VG-wy0">
+                                        <size key="itemSize" width="60" height="30"/>
+                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
+                                </collectionView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hrl-uP-N9J">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZp-gd-6vp">
+                                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <state key="normal" title="快慢速" image="speed_normal"/>
+                                            <connections>
+                                                <action selector="howFastTypeChange:" destination="-1" eventType="touchUpInside" id="DRs-Bn-dau"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jY2-Cv-Dqo">
+                                            <rect key="frame" x="60" y="0.0" width="60" height="60"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <state key="normal" title="镜头" image="camera_jingtouqiehuan_normal"/>
+                                            <state key="disabled" title="镜头" image="camera_qiehuan_unuseful">
+                                                <color key="titleColor" red="0.67843137249999996" green="0.67843137249999996" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <state key="selected" title="镜头" image="camera_jingtouqiehuan_highlight">
+                                                <color key="titleColor" red="0.0" green="0.56862745100000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <state key="highlighted" title="镜头" image="camera_jingtouqiehuan_highlight">
+                                                <color key="titleColor" red="0.0" green="0.56862745100000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="switchCameraSession:" destination="-1" eventType="touchUpInside" id="rCZ-eo-ga7"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYF-Ue-aNc">
+                                            <rect key="frame" x="120" y="0.0" width="60" height="60"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <state key="normal" title="滤镜" image="camera_lvjing_normal"/>
+                                            <state key="selected" title="滤镜" image="camera_lvjing_highlight">
+                                                <color key="titleColor" red="0.0" green="0.56862745100000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <state key="highlighted" title="滤镜" image="camera_lvjing_highlight">
+                                                <color key="titleColor" red="0.0" green="0.56862745100000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="changeFilterAction:" destination="-1" eventType="touchUpInside" id="KS0-3O-WwS"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9pV-ws-R1u">
+                                            <rect key="frame" x="180" y="0.0" width="60" height="60"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <state key="normal" title="闪光" image="camera_shanguang_normal"/>
+                                            <state key="disabled" title="闪光" image="camera_light_unuseful">
+                                                <color key="titleColor" red="0.67843137249999996" green="0.67843137249999996" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <state key="selected" title="闪光" image="camera_shanguang_highlight">
+                                                <color key="titleColor" red="0.0" green="0.56862745100000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <state key="highlighted" title="闪光" image="camera_shanguang_highlight">
+                                                <color key="titleColor" red="0.0" green="0.56862745100000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="switchLight:" destination="-1" eventType="touchUpInside" id="sl8-uj-KLI"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tdz-K8-UBj">
+                                            <rect key="frame" x="240" y="0.0" width="60" height="60"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <state key="normal" title="画幅" image="16:9_highlight">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="changeVideoFrame:" destination="-1" eventType="touchUpInside" id="OMa-Am-n8t"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="9pV-ws-R1u" firstAttribute="top" secondItem="Hrl-uP-N9J" secondAttribute="top" id="17K-0S-PGE"/>
+                                        <constraint firstItem="jY2-Cv-Dqo" firstAttribute="leading" secondItem="nZp-gd-6vp" secondAttribute="trailing" id="3JK-uq-CTm"/>
+                                        <constraint firstItem="jY2-Cv-Dqo" firstAttribute="top" secondItem="Hrl-uP-N9J" secondAttribute="top" id="6pf-PC-Qet"/>
+                                        <constraint firstAttribute="trailing" secondItem="Tdz-K8-UBj" secondAttribute="trailing" id="C8W-MP-lOJ"/>
+                                        <constraint firstItem="jY2-Cv-Dqo" firstAttribute="width" secondItem="TYF-Ue-aNc" secondAttribute="width" id="FJ5-Lf-23x"/>
+                                        <constraint firstItem="Tdz-K8-UBj" firstAttribute="top" secondItem="Hrl-uP-N9J" secondAttribute="top" id="FaZ-9y-vyT"/>
+                                        <constraint firstItem="Tdz-K8-UBj" firstAttribute="height" secondItem="9pV-ws-R1u" secondAttribute="height" id="JQd-iY-b4f"/>
+                                        <constraint firstItem="9pV-ws-R1u" firstAttribute="width" secondItem="Tdz-K8-UBj" secondAttribute="width" id="UOn-rI-80y"/>
+                                        <constraint firstItem="Tdz-K8-UBj" firstAttribute="leading" secondItem="9pV-ws-R1u" secondAttribute="trailing" id="XUC-Lx-WJE"/>
+                                        <constraint firstItem="9pV-ws-R1u" firstAttribute="leading" secondItem="TYF-Ue-aNc" secondAttribute="trailing" id="bck-7Q-ex1"/>
+                                        <constraint firstItem="nZp-gd-6vp" firstAttribute="leading" secondItem="Hrl-uP-N9J" secondAttribute="leading" id="bta-vN-Rk4"/>
+                                        <constraint firstItem="9pV-ws-R1u" firstAttribute="height" secondItem="TYF-Ue-aNc" secondAttribute="height" id="cRK-IM-qVz"/>
+                                        <constraint firstItem="TYF-Ue-aNc" firstAttribute="top" secondItem="Hrl-uP-N9J" secondAttribute="top" id="jNO-hK-DOH"/>
+                                        <constraint firstItem="nZp-gd-6vp" firstAttribute="width" secondItem="jY2-Cv-Dqo" secondAttribute="width" id="kLG-BO-6NE"/>
+                                        <constraint firstAttribute="bottom" secondItem="nZp-gd-6vp" secondAttribute="bottom" id="nYc-mh-L0m"/>
+                                        <constraint firstItem="TYF-Ue-aNc" firstAttribute="height" secondItem="jY2-Cv-Dqo" secondAttribute="height" id="oRU-oY-1VX"/>
+                                        <constraint firstItem="jY2-Cv-Dqo" firstAttribute="height" secondItem="nZp-gd-6vp" secondAttribute="height" id="pgR-KA-zk3"/>
+                                        <constraint firstItem="TYF-Ue-aNc" firstAttribute="width" secondItem="9pV-ws-R1u" secondAttribute="width" id="tbg-CY-cfr"/>
+                                        <constraint firstItem="nZp-gd-6vp" firstAttribute="top" secondItem="Hrl-uP-N9J" secondAttribute="top" id="uki-MG-LQy"/>
+                                        <constraint firstItem="TYF-Ue-aNc" firstAttribute="leading" secondItem="jY2-Cv-Dqo" secondAttribute="trailing" id="un3-rN-eVi"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="Hrl-uP-N9J" secondAttribute="bottom" id="3jc-A8-l8B"/>
+                                <constraint firstItem="Hrl-uP-N9J" firstAttribute="leading" secondItem="O9a-b0-BuP" secondAttribute="leading" id="NdU-MY-hRo"/>
+                                <constraint firstItem="WLh-Xq-M5u" firstAttribute="centerX" secondItem="Hrl-uP-N9J" secondAttribute="centerX" multiplier="3" id="PiT-pR-NfG"/>
+                                <constraint firstItem="WLh-Xq-M5u" firstAttribute="centerY" secondItem="O9a-b0-BuP" secondAttribute="centerY" id="aUB-xd-BW5"/>
+                                <constraint firstItem="Hrl-uP-N9J" firstAttribute="top" secondItem="O9a-b0-BuP" secondAttribute="top" id="pTe-XK-1Sp"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="O9a-b0-BuP" firstAttribute="leading" secondItem="HPh-qc-pIU" secondAttribute="leading" id="BlP-vS-hJY"/>
+                        <constraint firstItem="O9a-b0-BuP" firstAttribute="centerY" secondItem="HPh-qc-pIU" secondAttribute="centerY" id="KmM-Oc-pFY"/>
+                        <constraint firstItem="O9a-b0-BuP" firstAttribute="top" secondItem="HPh-qc-pIU" secondAttribute="top" id="PmH-uf-LcN"/>
+                        <constraint firstAttribute="bottom" secondItem="O9a-b0-BuP" secondAttribute="bottom" id="kaq-Vd-uok"/>
+                        <constraint firstAttribute="trailing" secondItem="O9a-b0-BuP" secondAttribute="trailing" id="l1E-HC-c8q"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="O9a-b0-BuP" firstAttribute="width" secondItem="fE1-Cs-RlJ" secondAttribute="width" multiplier="2" id="4rt-mk-Sbm"/>
+                <constraint firstAttribute="trailing" secondItem="HPh-qc-pIU" secondAttribute="trailing" id="OoA-dL-9Gm"/>
+                <constraint firstItem="Hrl-uP-N9J" firstAttribute="width" secondItem="fE1-Cs-RlJ" secondAttribute="width" id="UZR-Mf-bQP"/>
+                <constraint firstItem="HPh-qc-pIU" firstAttribute="leading" secondItem="fE1-Cs-RlJ" secondAttribute="leading" id="VaN-u0-6oj"/>
+                <constraint firstItem="HPh-qc-pIU" firstAttribute="top" secondItem="fE1-Cs-RlJ" secondAttribute="top" id="YIa-Ty-eQJ"/>
+                <constraint firstAttribute="bottom" secondItem="HPh-qc-pIU" secondAttribute="bottom" id="wlP-oR-GuL"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="25" y="89"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="16:9_highlight" width="26" height="26"/>
+        <image name="camera_jingtouqiehuan_highlight" width="26" height="26"/>
+        <image name="camera_jingtouqiehuan_normal" width="26" height="26"/>
+        <image name="camera_light_unuseful" width="26" height="26"/>
+        <image name="camera_lvjing_highlight" width="26" height="26"/>
+        <image name="camera_lvjing_normal" width="26" height="26"/>
+        <image name="camera_qiehuan_unuseful" width="26" height="26"/>
+        <image name="camera_shanguang_highlight" width="26" height="26"/>
+        <image name="camera_shanguang_normal" width="26" height="26"/>
+        <image name="speed_normal" width="26" height="26"/>
+    </resources>
+</document>

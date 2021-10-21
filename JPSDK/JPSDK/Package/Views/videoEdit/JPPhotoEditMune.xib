@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JPPhotoEditMune">
+            <connections>
+                <outlet property="beBigButton" destination="lc9-lS-VIp" id="dO9-Mg-GN7"/>
+                <outlet property="beSmallButton" destination="dQv-Zc-lEi" id="CMO-GU-60i"/>
+                <outlet property="bottomSpace" destination="igf-BN-pVx" id="ZPe-4L-yyu"/>
+                <outlet property="deleteButton" destination="oNi-Pb-v1Q" id="gcw-Ib-Yj1"/>
+                <outlet property="view" destination="7Q5-LO-NUU" id="lW2-K2-hr4"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="7Q5-LO-NUU">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQv-Zc-lEi">
+                    <rect key="frame" x="0.0" y="0.0" width="125" height="60"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="缩小" image="narrow-off"/>
+                    <connections>
+                        <action selector="becomeSmallAction:" destination="-1" eventType="touchUpInside" id="sow-g4-sfE"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNi-Pb-v1Q">
+                    <rect key="frame" x="250" y="0.0" width="125" height="60"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="删除" image="delete-5"/>
+                    <connections>
+                        <action selector="deleteAction:" destination="-1" eventType="touchUpInside" id="cFG-rm-UYy"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lc9-lS-VIp">
+                    <rect key="frame" x="125" y="0.0" width="125" height="60"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="放大" image="enlarge-off"/>
+                    <connections>
+                        <action selector="becomeBigAction:" destination="-1" eventType="touchUpInside" id="xUx-YC-Gab"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="lc9-lS-VIp" firstAttribute="leading" secondItem="dQv-Zc-lEi" secondAttribute="trailing" id="1cv-7E-Yga"/>
+                <constraint firstItem="dQv-Zc-lEi" firstAttribute="top" secondItem="7Q5-LO-NUU" secondAttribute="top" id="1vY-ls-aWA"/>
+                <constraint firstItem="oNi-Pb-v1Q" firstAttribute="width" secondItem="lc9-lS-VIp" secondAttribute="width" id="CLB-EI-a6J"/>
+                <constraint firstItem="lc9-lS-VIp" firstAttribute="top" secondItem="7Q5-LO-NUU" secondAttribute="top" id="LI1-Z9-Do5"/>
+                <constraint firstItem="dQv-Zc-lEi" firstAttribute="leading" secondItem="7Q5-LO-NUU" secondAttribute="leading" id="N6V-5P-s5m"/>
+                <constraint firstItem="lc9-lS-VIp" firstAttribute="width" secondItem="dQv-Zc-lEi" secondAttribute="width" id="S6Z-oM-c3X"/>
+                <constraint firstItem="dQv-Zc-lEi" firstAttribute="width" secondItem="7Q5-LO-NUU" secondAttribute="width" multiplier="1 : 3" id="TVK-eO-Qpw"/>
+                <constraint firstItem="lc9-lS-VIp" firstAttribute="height" secondItem="dQv-Zc-lEi" secondAttribute="height" id="X58-Vb-pHc"/>
+                <constraint firstAttribute="bottom" secondItem="dQv-Zc-lEi" secondAttribute="bottom" id="igf-BN-pVx"/>
+                <constraint firstItem="oNi-Pb-v1Q" firstAttribute="top" secondItem="7Q5-LO-NUU" secondAttribute="top" id="qTi-Fw-9dx"/>
+                <constraint firstItem="oNi-Pb-v1Q" firstAttribute="leading" secondItem="lc9-lS-VIp" secondAttribute="trailing" id="zKU-lr-9rA"/>
+                <constraint firstItem="oNi-Pb-v1Q" firstAttribute="height" secondItem="lc9-lS-VIp" secondAttribute="height" id="zQU-uC-wSU"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-36" y="86"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="delete-5" width="22" height="22"/>
+        <image name="enlarge-off" width="22" height="22"/>
+        <image name="narrow-off" width="22" height="22"/>
+    </resources>
+</document>

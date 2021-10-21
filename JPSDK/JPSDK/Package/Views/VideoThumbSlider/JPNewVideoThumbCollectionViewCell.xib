@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="JPNewVideoThumbCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="276" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="276" height="50"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xpB-I1-Vyz">
+                        <rect key="frame" x="216" y="0.0" width="60" height="50"/>
+                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="vRa-oe-pBe"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transtionIcon0-Selected.png" translatesAutoresizingMaskIntoConstraints="NO" id="uAh-tS-24f">
+                        <rect key="frame" x="236" y="15" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="25" id="4id-VC-nai"/>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="25" id="NoE-UI-VgT"/>
+                        </constraints>
+                    </imageView>
+                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nYf-jc-poa">
+                        <rect key="frame" x="0.0" y="0.0" width="216" height="50"/>
+                        <subviews>
+                            <collectionView multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="k0K-jL-jif">
+                                <rect key="frame" x="0.0" y="0.0" width="216" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="giR-jg-k1i">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="k0K-jL-jif" firstAttribute="leading" secondItem="nYf-jc-poa" secondAttribute="leading" id="79A-Z7-CeL"/>
+                            <constraint firstAttribute="bottom" secondItem="k0K-jL-jif" secondAttribute="bottom" id="IOK-Ye-MmZ"/>
+                            <constraint firstItem="k0K-jL-jif" firstAttribute="top" secondItem="nYf-jc-poa" secondAttribute="top" id="mhk-YW-tN0"/>
+                            <constraint firstAttribute="trailing" secondItem="k0K-jL-jif" secondAttribute="trailing" id="vZt-EK-qfs"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Td6-We-ooi">
+                        <rect key="frame" x="216" y="0.0" width="60" height="50"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="ly1-YN-Aep"/>
+                        </constraints>
+                        <connections>
+                            <action selector="changeTheTransitionType:" destination="gTV-IL-0wX" eventType="touchUpInside" id="VII-mb-VRn"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="xpB-I1-Vyz" firstAttribute="leading" secondItem="nYf-jc-poa" secondAttribute="trailing" id="0hj-PC-aDF"/>
+                <constraint firstAttribute="trailing" secondItem="Td6-We-ooi" secondAttribute="trailing" id="3bg-VU-KDf"/>
+                <constraint firstAttribute="bottom" secondItem="nYf-jc-poa" secondAttribute="bottom" id="9n7-nC-7oH"/>
+                <constraint firstItem="nYf-jc-poa" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="B7X-fM-9gq"/>
+                <constraint firstAttribute="bottom" secondItem="Td6-We-ooi" secondAttribute="bottom" id="OPo-vL-Cg1"/>
+                <constraint firstItem="nYf-jc-poa" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Uuc-qg-ucH"/>
+                <constraint firstItem="uAh-tS-24f" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Wks-fi-TWB"/>
+                <constraint firstItem="uAh-tS-24f" firstAttribute="centerX" secondItem="xpB-I1-Vyz" secondAttribute="centerX" id="XaC-bB-RxK"/>
+                <constraint firstItem="Td6-We-ooi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ds2-fg-dZe"/>
+                <constraint firstAttribute="trailing" secondItem="xpB-I1-Vyz" secondAttribute="trailing" id="f8U-UB-I4b"/>
+                <constraint firstItem="xpB-I1-Vyz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="nny-TS-yjr"/>
+                <constraint firstAttribute="bottom" secondItem="xpB-I1-Vyz" secondAttribute="bottom" id="rg9-Om-8pS"/>
+            </constraints>
+            <size key="customSize" width="256" height="58"/>
+            <connections>
+                <outlet property="collectionView" destination="k0K-jL-jif" id="VcP-Yn-EU7"/>
+                <outlet property="collectionViewLayout" destination="giR-jg-k1i" id="nCC-7k-0Ba"/>
+                <outlet property="transtionButton" destination="Td6-We-ooi" id="zuU-KW-xon"/>
+                <outlet property="transtionTypeImageView" destination="uAh-tS-24f" id="Lh5-xd-XnP"/>
+            </connections>
+            <point key="canvasLocation" x="137" y="58"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="transtionIcon0-Selected.png" width="20" height="20"/>
+    </resources>
+</document>
